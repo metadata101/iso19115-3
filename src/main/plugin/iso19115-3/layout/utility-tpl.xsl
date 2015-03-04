@@ -6,6 +6,7 @@
   xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
   xmlns:mrs="http://standards.iso.org/19115/-3/mrs/1.0/2014-12-25"
   xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0/2014-12-25"
+  xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
   xmlns:mco="http://standards.iso.org/19115/-3/mco/1.0/2014-12-25"
   xmlns:msr="http://standards.iso.org/19115/-3/msr/1.0/2014-12-25"
   xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
@@ -18,6 +19,11 @@
   xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="#all">
 
   <xsl:include href="utility-tpl-multilingual.xsl"/>
+
+  <xsl:template name="get-iso19115-3-is-service">
+    <xsl:value-of
+            select="count($metadata/mdb:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+  </xsl:template>
 
 
   <xsl:template name="get-iso19115-3-extents-as-json">[
