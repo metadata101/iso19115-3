@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdb:MD_Metadata xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
+	xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
+	xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
+	xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
+	xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
+	xmlns:gml="http://www.opengis.net/gml/3.2">
+	<mdb:identificationInfo>
+		<mri:MD_DataIdentification>
+			<mri:extent>
+				<gex:EX_Extent>
+					<gex:temporalElement>
+						<gex:EX_TemporalExtent>
+							<gex:extent>
+								<gml:TimePeriod gml:id="A1234">
+									<gml:beginPosition>2015-02-19</gml:beginPosition>
+									<gml:endPosition>2015-02-19</gml:endPosition>
+								</gml:TimePeriod>
+							</gex:extent>
+						</gex:EX_TemporalExtent>
+					</gex:temporalElement>
+				</gex:EX_Extent>
+			</mri:extent>
+			<mri:citation>
+				<cit:CI_Citation>
+					<cit:date>
+						<cit:CI_Date>
+							<cit:date>
+								<gco:Date>2015-02-19</gco:Date>
+							</cit:date>
+							<cit:dateType>
+								<cit:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation"/>
+							</cit:dateType>
+						</cit:CI_Date>
+					</cit:date>
+					<cit:date>
+						<cit:CI_Date>
+							<cit:date>
+								<gco:Date>2015-02-19</gco:Date>
+							</cit:date>
+							<cit:dateType>
+								<cit:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication"/>
+							</cit:dateType>
+						</cit:CI_Date>
+					</cit:date>
+					<cit:date>
+						<cit:CI_Date>
+							<cit:date>
+								<gco:Date>2015-02-19</gco:Date>
+							</cit:date>
+							<cit:dateType>
+								<cit:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="revision"/>
+							</cit:dateType>
+						</cit:CI_Date>
+					</cit:date>
+				</cit:CI_Citation>
+			</mri:citation>
+		</mri:MD_DataIdentification>
+	</mdb:identificationInfo>
+</mdb:MD_Metadata>

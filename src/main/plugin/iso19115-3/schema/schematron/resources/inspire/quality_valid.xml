@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdb:MD_Metadata xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
+	xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
+	xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
+	xmlns:mrl="http://standards.iso.org/19115/-3/mrl/1.0/2014-12-25"
+	xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
+	xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25">
+	<mdb:identificationInfo>
+		<mri:MD_DataIdentification>
+			<mri:spatialResolution>
+				<mri:MD_Resolution>
+					<mri:equivalentScale>
+						<mri:MD_RepresentativeFraction>
+							<mri:denominator>
+								<gco:Integer>15</gco:Integer>
+							</mri:denominator>
+						</mri:MD_RepresentativeFraction>
+					</mri:equivalentScale>
+				</mri:MD_Resolution>
+			</mri:spatialResolution>
+			<mri:spatialResolution>
+				<mri:MD_Resolution>
+					<mri:distance>
+						<gco:Distance uom="">5</gco:Distance>
+					</mri:distance>
+				</mri:MD_Resolution>
+			</mri:spatialResolution>
+			<mri:spatialResolution>
+				<mri:MD_Resolution>
+					<mri:vertical>
+						<gco:Distance uom="">2</gco:Distance>
+					</mri:vertical>
+				</mri:MD_Resolution>
+			</mri:spatialResolution>
+			<mri:spatialResolution>
+				<mri:MD_Resolution>
+					<mri:distance>
+						<gco:Distance uom="">4</gco:Distance>
+					</mri:distance>
+				</mri:MD_Resolution>
+			</mri:spatialResolution>
+			<mri:spatialResolution>
+				<mri:MD_Resolution>
+					<mri:angularDistance>
+						<gco:Angle uom="">-4</gco:Angle>
+					</mri:angularDistance>
+				</mri:MD_Resolution>
+			</mri:spatialResolution>
+			<mri:spatialResolution>
+				<mri:MD_Resolution>
+					<mri:levelOfDetail>
+						<gco:CharacterString>25</gco:CharacterString>
+					</mri:levelOfDetail>
+				</mri:MD_Resolution>
+			</mri:spatialResolution>
+		</mri:MD_DataIdentification>
+	</mdb:identificationInfo>
+	<mdb:resourceLineage>
+		<mrl:LI_Lineage>
+			<mrl:statement>
+				<gco:CharacterString>Lineage</gco:CharacterString>
+			</mrl:statement>
+			<mrl:scope>
+				<mcc:MD_Scope>
+					<mcc:level>
+						<mcc:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset"/>
+					</mcc:level>
+				</mcc:MD_Scope>
+			</mrl:scope>
+			<mrl:additionalDocumentation>
+				<cit:CI_Citation>
+					<cit:title>
+						<gco:CharacterString>Resource lineage document</gco:CharacterString>
+					</cit:title>
+				</cit:CI_Citation>
+			</mrl:additionalDocumentation>
+		</mrl:LI_Lineage>
+	</mdb:resourceLineage>
+</mdb:MD_Metadata>

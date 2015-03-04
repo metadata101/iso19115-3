@@ -1,0 +1,9 @@
+<mcc:MD_BrowseGraphic xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"
+                      xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25">
+  <mcc:fileName>
+    <gco:CharacterString>http://upload.wikimedia.org/wikipedia/fr/thumb/1/1e/Logo_BRGM.svg/320px-Logo_BRGM.svg.png</gco:CharacterString>
+  </mcc:fileName>
+  <mcc:fileDescription>
+    <gco:CharacterString>Logo BRGM</gco:CharacterString>
+  </mcc:fileDescription>
+</mcc:MD_BrowseGraphic>

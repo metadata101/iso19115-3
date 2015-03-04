@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdb:MD_Metadata xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
+	xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
+	xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
+	xmlns:gcx="http://standards.iso.org/19115/-3/gcx/1.0/2014-12-25"
+	xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
+	xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"
+	xmlns:xlink="http://www.w3.org/1999/xlink">
+	<mdb:identificationInfo>
+		<mri:MD_DataIdentification>
+			<mri:descriptiveKeywords>
+				<mri:MD_Keywords>
+					<mri:keyword>
+						<gcx:Anchor xlink:href="http://localhost:8080/geonetwork/srv/fre/xml.keyword.get?thesaurus=external.theme.inspire-theme&amp;id=http://rdfdata.eionet.europa.eu/inspirethemes/themes/10">Altitude</gcx:Anchor>
+					</mri:keyword>
+					<mri:keyword>
+						<gcx:Anchor xlink:href="http://localhost:8080/geonetwork/srv/fre/xml.keyword.get?thesaurus=external.theme.inspire-theme&amp;id=http://rdfdata.eionet.europa.eu/inspirethemes/themes/5">Adresses</gcx:Anchor>
+					</mri:keyword>
+					<mri:type>
+						<mri:MD_KeywordTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_KeywordTypeCode"
+							codeListValue="theme"/>
+					</mri:type>
+					<mri:thesaurusName>
+						<cit:CI_Citation>
+							<cit:title>
+								<gco:CharacterString>GEMET - INSPIRE themes, version 1.0</gco:CharacterString>
+							</cit:title>
+							<cit:date>
+								<cit:CI_Date>
+									<cit:date>
+										<gco:Date>2008-06-01</gco:Date>
+									</cit:date>
+									<cit:dateType>
+										<cit:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode"
+											codeListValue="publication"/>
+									</cit:dateType>
+								</cit:CI_Date>
+							</cit:date>
+							<cit:identifier>
+								<mcc:MD_Identifier>
+									<mcc:code>
+										<gcx:Anchor xlink:href="http://localhost:8080/geonetwork/srv/eng//thesaurus.download?ref=external.theme.inspire-theme">geonetwork.thesaurus.external.theme.inspire-theme</gcx:Anchor>
+									</mcc:code>
+								</mcc:MD_Identifier>
+							</cit:identifier>
+						</cit:CI_Citation>
+					</mri:thesaurusName>
+				</mri:MD_Keywords>
+			</mri:descriptiveKeywords>
+		</mri:MD_DataIdentification>
+	</mdb:identificationInfo>
+		<mdb:metadataScope>
+			<mdb:MD_MetadataScope>
+				<mdb:resourceScope>
+					<mcc:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset"/>
+				</mdb:resourceScope>
+				<mdb:name>
+					<gco:CharacterString>Resource name</gco:CharacterString>
+				</mdb:name>
+			</mdb:MD_MetadataScope>
+		</mdb:metadataScope>
+	</mdb:MD_Metadata>

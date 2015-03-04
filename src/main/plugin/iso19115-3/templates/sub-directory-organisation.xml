@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cit:CI_Responsibility
+    xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
+    xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
+    xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25">
+  <cit:role>
+    <cit:CI_RoleCode 
+      codeList="codeListLocation#CI_RoleCode" 
+      codeListValue="pointOfContact"/>
+  </cit:role>
+  <cit:party>
+    <cit:CI_Organisation>
+      <cit:name>
+        <gco:CharacterString>Organisation Name</gco:CharacterString>
+      </cit:name>
+      <cit:contactInfo>
+        <cit:CI_Contact>
+          <cit:address>
+            <cit:CI_Address>
+              <cit:electronicMailAddress>
+                <gco:CharacterString/>
+              </cit:electronicMailAddress>
+            </cit:CI_Address>
+          </cit:address>
+        </cit:CI_Contact>
+      </cit:contactInfo>
+      <cit:individual>
+        <cit:CI_Individual>
+          <cit:name>
+            <gco:CharacterString/>
+          </cit:name>
+          <cit:positionName>
+            <gco:CharacterString/>
+          </cit:positionName>
+        </cit:CI_Individual>
+      </cit:individual>
+    </cit:CI_Organisation>
+  </cit:party>
+</cit:CI_Responsibility>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdb:MD_Metadata xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
+    xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
+    xmlns:mrl="http://standards.iso.org/19115/-3/mrl/1.0/2014-12-25">
+    <mdb:identificationInfo>
+        <mri:MD_DataIdentification>
+            <mri:spatialResolution>
+                <mri:MD_Resolution>
+                </mri:MD_Resolution>
+            </mri:spatialResolution>           
+        </mri:MD_DataIdentification>
+    </mdb:identificationInfo>
+    <mdb:resourceLineage>
+        <mrl:LI_Lineage>
+        </mrl:LI_Lineage>
+    </mdb:resourceLineage>
+</mdb:MD_Metadata>
