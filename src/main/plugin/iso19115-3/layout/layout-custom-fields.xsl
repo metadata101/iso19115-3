@@ -61,7 +61,7 @@
        A custom directive is created.
   -->
   <xsl:template mode="mode-iso19115-3"
-                match="gts:TM_PeriodDuration|gml:duration"
+                match="gco:TM_PeriodDuration|gml:duration"
                 priority="2000">
 
     <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>

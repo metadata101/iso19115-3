@@ -13,8 +13,10 @@
   xmlns:gcx="http://standards.iso.org/19115/-3/gcx/1.0/2014-12-25"
   xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
   xmlns:dqm="http://standards.iso.org/19157/-2/dqm/1.0/2014-12-25"
+  xmlns:mrc="http://standards.iso.org/19157/-2/mrc/1.0/2014-12-25"
   xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
   xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
+  xmlns:gfc="http://standards.iso.org/19110/gfc/1.1/2014-12-25"
   xmlns:gmx="http://standards.iso.org/19115/-3/gmx"
   xmlns:gts="http://www.isotc211.org/2005/gts"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -32,8 +34,8 @@
 
   <!-- Visit all XML tree recursively -->
   <xsl:template mode="mode-iso19115-3"
-                match="mds:*|mcc:*|mri:*|mrs:*|mrd:*|mco:*|msr:*|lan:*|
-                       gcx:*|gex:*|dqm:*|mdq:*|cit:*|srv:*|gml:*|gts:*"
+                match="mds:*|mcc:*|mri:*|mrs:*|mrc:*|mrd:*|mco:*|msr:*|lan:*|
+                       gcx:*|gex:*|dqm:*|mdq:*|cit:*|srv:*|gml:*|gts:*|gfc:*"
                 priority="2">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
@@ -154,7 +156,6 @@
     TODO: move to editor config ? -->
     <xsl:variable name="forceDisplayAttributes" select="false()"/>
 
-    <!-- TODO: Support gmd:LocalisedCharacterString -->
     <xsl:variable name="theElement" select="gco:CharacterString|gco:Integer|gco:Decimal|
       gco:Boolean|gco:Real|gco:Measure|gco:Length|gco:Distance|gco:Angle|gmx:FileName|
       gco:Scale|gco:RecordType|gmx:MimeFileType|gco:LocalName|gco:ScopedName|gco:RecordType|
@@ -274,16 +275,14 @@
     <xsl:variable name="value" select="normalize-space(text())"/>
 
     <xsl:variable name="attributes">
-      <xsl:if test="$isEditing">
-        <!-- Create form for all existing attribute (not in gn namespace)
-        and all non existing attributes not already present. -->
-        <xsl:apply-templates mode="render-for-field-for-attribute"
-                             select="@*|
-                              gn:attribute[not(@name = parent::node()/@*/name())]">
-          <xsl:with-param name="ref" select="gn:element/@ref"/>
-          <xsl:with-param name="insertRef" select="gn:element/@ref"/>
-        </xsl:apply-templates>
-      </xsl:if>
+      <!-- Create form for all existing attribute (not in gn namespace)
+      and all non existing attributes not already present. -->
+      <xsl:apply-templates mode="render-for-field-for-attribute"
+                           select="@*|
+                            gn:attribute[not(@name = parent::node()/@*/name())]">
+        <xsl:with-param name="ref" select="gn:element/@ref"/>
+        <xsl:with-param name="insertRef" select="gn:element/@ref"/>
+      </xsl:apply-templates>
     </xsl:variable>
 
     <xsl:call-template name="render-element">

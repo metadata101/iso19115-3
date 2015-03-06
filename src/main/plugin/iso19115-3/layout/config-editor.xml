@@ -180,6 +180,15 @@
     <exclude>
       <name>mri:denominator</name>
       <name>mcc:code</name>
+      <name>gfc:typeName</name>
+      <name>gfc:code</name>
+      <name>gfc:valueType</name>
+      <name>gco:aName</name>
+      <name>gfc:isAbstract</name>
+      <name>mrc:illuminationElevationAngle</name>
+      <name>mrc:illuminationAzimuthAngle</name>
+      <name>mrc:cloudCoverPercentage</name>
+      <name>mrc:compressionGenerationQuantity</name>
       <name>cit:electronicMailAddress</name>
       <name>cit:postalCode</name>
       <name>cit:city</name>
@@ -187,8 +196,16 @@
       <name>cit:number</name>
       <name>cit:hoursOfService</name>
       <name>cit:date</name>
+      <name>mac:type</name>
+      <name>msr:geometricObjectCount</name>
+      <name>msr:numberOfDimensions</name>
+      <name>msr:checkPointAvailability</name>
+      <name>msr:dimensionSize</name>
+      <name>msr:resolution</name>
+      <name>msr:transformationParameterAvailability</name>
       <name>mcc:fileName</name>
       <name>mcc:fileType</name>
+      <name>mcc:version</name>
       <name>cit:protocol</name>
       <name>mrd:amendmentNumber</name>
       <name>mrd:fileDecompressionTechnique</name>
@@ -304,6 +321,10 @@
           <field xpath="/mdb:MD_Metadata/mdb:metadataProfile"/>
         </section>
       </tab>
+      <tab id="portrayalCatalogueInfo" toggle="true">
+        <section xpath="/mdb:MD_Metadata/mdb:portrayalCatalogueInfo" or="portrayalCatalogueInfo"
+                 in="/mdb:MD_Metadata"/>
+      </tab>
       <tab id="metadataConstraints" toggle="true">
         <section xpath="/mdb:MD_Metadata/mdb:metadataConstraints" or="metadataConstraints"
                  in="/mdb:MD_Metadata"/>
@@ -316,11 +337,6 @@
         <section xpath="/mdb:MD_Metadata/mdb:applicationSchemaInfo" or="applicationSchemaInfo"
                  in="/mdb:MD_Metadata"/>
       </tab>
-      <tab id="portrayalCatalogueInfo" toggle="true">
-        <section xpath="/mdb:MD_Metadata/mdb:portrayalCatalogueInfo" or="portrayalCatalogueInfo"
-                 in="/mdb:MD_Metadata"/>
-      </tab>
-      <!-- mdb:metadataExtensionInfo-->
     </view>
     <view name="xml">
       <tab id="xml" default="true"/>
