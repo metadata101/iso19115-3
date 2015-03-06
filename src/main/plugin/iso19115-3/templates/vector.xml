@@ -11,13 +11,15 @@
   xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
   xmlns:mrl="http://standards.iso.org/19115/-3/mrl/1.0/2014-12-25"
   xmlns:mrs="http://standards.iso.org/19115/-3/mrs/1.0/2014-12-25"
+  xmlns:mrc="http://standards.iso.org/19115/-3/mrc/1.0/2014-12-25"
   xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
+  xmlns:gfc="http://standards.iso.org/19110/gfc/1.1/2014-12-25"
   xmlns:gml="http://www.opengis.net/gml/3.2"
   xsi:schemaLocation="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25 ../schema.xsd">
   <mdb:metadataIdentifier>
     <mcc:MD_Identifier>
       <mcc:code>
-        <gco:CharacterString/>
+        <gco:CharacterString></gco:CharacterString>
       </mcc:code>
     </mcc:MD_Identifier>
   </mdb:metadataIdentifier>
@@ -32,6 +34,16 @@
       </lan:characterEncoding>
     </lan:PT_Locale>
   </mdb:defaultLocale>
+  <mdb:metadataScope>
+    <mdb:MD_MetadataScope>
+      <mdb:resourceScope>
+        <mcc:MD_ScopeCode codeList="" codeListValue="dataset"/>
+      </mdb:resourceScope>
+      <mdb:name>
+        <gco:CharacterString></gco:CharacterString>
+      </mdb:name>
+    </mdb:MD_MetadataScope>
+  </mdb:metadataScope>
   <mdb:contact>
     <cit:CI_Responsibility>
       <cit:role>
@@ -159,8 +171,7 @@
         </cit:CI_Responsibility>
       </mri:pointOfContact>
       <mri:spatialRepresentationType>
-        <mri:MD_SpatialRepresentationTypeCode codeList="codeListLocation#MD_SpatialRepresentationTypeCode"
-          codeListValue="vector"/>
+        <mcc:MD_SpatialRepresentationTypeCode codeList="" codeListValue="vector"/>
       </mri:spatialRepresentationType>
       <mri:spatialResolution>
         <mri:MD_Resolution>
@@ -286,6 +297,33 @@
       </mri:supplementalInformation>
     </mri:MD_DataIdentification>
   </mdb:identificationInfo>
+  <mdb:contentInfo>
+    <mrc:MD_FeatureCatalogue>
+      <mrc:featureCatalogue>
+        <gfc:FC_FeatureCatalogue>
+          <gfc:producer></gfc:producer>
+          <gfc:featureType>
+            <gfc:FC_FeatureType>
+              <gfc:typeName>Table name</gfc:typeName>
+              <gfc:isAbstract>
+                <gco:Boolean>false</gco:Boolean>
+              </gfc:isAbstract>
+              <gfc:carrierOfCharacteristics>
+                <gfc:FC_FeatureAttribute>
+                  <gfc:memberName>Column name</gfc:memberName>
+                  <gfc:definition>
+                    <gco:CharacterString>Definition</gco:CharacterString>
+                  </gfc:definition>
+                  <gfc:cardinality></gfc:cardinality>
+                </gfc:FC_FeatureAttribute>
+              </gfc:carrierOfCharacteristics>
+              <gfc:featureCatalogue/>
+            </gfc:FC_FeatureType>
+          </gfc:featureType>
+        </gfc:FC_FeatureCatalogue>
+      </mrc:featureCatalogue>
+    </mrc:MD_FeatureCatalogue>
+  </mdb:contentInfo>
   <mdb:distributionInfo>
     <mrd:MD_Distribution>
       <mrd:transferOptions>
