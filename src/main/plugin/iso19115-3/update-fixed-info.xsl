@@ -11,7 +11,8 @@
   xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
   xmlns:dqm="http://standards.iso.org/19157/-2/dqm/1.0/2014-12-25"
   xmlns:gfc="http://standards.iso.org/19110/gfc/1.1/2014-12-25"
-  xmlns:xlink="http://www.w3.org/1999/xlink" 
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:java="java:org.fao.geonet.util.XslUtil"
   xmlns:gn="http://www.fao.org/geonetwork"
   exclude-result-prefixes="#all">
   
@@ -366,8 +367,8 @@
   -->
   <xsl:template match="lan:PT_Locale">
     <xsl:element name="lan:{local-name()}">
-      <xsl:variable name="id" select="upper-case(
-        substring(lan:language/lan:LanguageCode/@codeListValue, 1, 3))"/>
+      <xsl:variable name="id"
+                    select="upper-case(java:twoCharLangCode(lan:language/lan:LanguageCode/@codeListValue))"/>
       
       <xsl:apply-templates select="@*"/>
       <xsl:if test="normalize-space(@id)='' or normalize-space(@id)!=$id">
@@ -386,7 +387,7 @@
     <xsl:element name="lan:{local-name()}">
       <xsl:variable name="currentLocale" select="upper-case(replace(normalize-space(@locale), '^#', ''))"/>
       <xsl:variable name="ptLocale" select="$language[upper-case(replace(normalize-space(@id), '^#', ''))=string($currentLocale)]"/>
-      <xsl:variable name="id" select="upper-case(substring($ptLocale/lan:language/lan:LanguageCode/@codeListValue, 1, 3))"/>
+      <xsl:variable name="id" select="upper-case(java:twoCharLangCode($ptLocale/lan:language/lan:LanguageCode/@codeListValue))"/>
       <xsl:apply-templates select="@*"/>
       <xsl:if test="$id != '' and ($currentLocale='' or @locale!=concat('#', $id)) ">
         <xsl:attribute name="locale">

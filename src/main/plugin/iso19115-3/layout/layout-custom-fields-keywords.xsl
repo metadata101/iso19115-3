@@ -4,12 +4,14 @@
                 xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
                 xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"
                 xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
+                xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
                 xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
                 xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
                 xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
                 xmlns:gml="http://www.opengis.net/gml/3.2"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:gn="http://www.fao.org/geonetwork"
                 xmlns:gn-fn-metadata="http://geonetwork-opensource.org/xsl/functions/metadata"
                 exclude-result-prefixes="#all">
@@ -97,18 +99,33 @@
         <!-- Single quote are escaped inside keyword. 
           TODO: support multilingual editing of keywords
           -->
-        <xsl:variable name="keywords" select="string-join(mri:keyword/*[1], ',')"/>
+        <xsl:variable name="thesaurusConfig"
+                      as="element()?"
+                      select="$thesaurusList/thesaurus[@key = $thesaurusKey]"/>
+
+        <!-- if gui lang eng > #EN -->
+        <xsl:variable name="guiLangId"
+                      select="
+                      if (count($metadata/mdb:otherLocale/lan:PT_Locale[lan:language/lan:LanguageCode/@codeListValue = $lang]) = 1)
+                        then $metadata/mdb:otherLocale/lan:PT_Locale[lan:language/lan:LanguageCode/@codeListValue = $lang]/@id
+                        else $metadata/mdb:otherLocale/lan:PT_Locale[lan:language/lan:LanguageCode/@codeListValue = $metadataLanguage]/@id"/>
+        <xsl:variable name="keywords" select="string-join(
+                  if ($guiLangId and mri:keyword//*[@locale = concat('#', $guiLangId)]) then mri:keyword//*[@locale = concat('#', $guiLangId)] else mri:keyword/*[1], ',')"/>
 
         <!-- Define the list of transformation mode available. -->
-        <xsl:variable name="transformations">to-iso19115-3-keyword,to-iso19115-3-keyword-with-anchor,to-iso19115-3-keyword-as-xlink</xsl:variable>
+        <xsl:variable name="transformations"
+                      as="xs:string"
+                      select="if ($thesaurusConfig/@transformations != '')
+                              then $thesaurusConfig/@transformations
+                              else 'to-iso19115-3-keyword,to-iso19115-3-keyword-with-anchor,to-iso19115-3-keyword-as-xlink'"/>
 
         <!-- Get current transformation mode based on XML fragement analysis -->
         <xsl:variable name="transformation"
           select="if (parent::node()/@xlink:href)
-          then 'to-iso19115-3-keyword-as-xlink'
-          else if (count(mri:keyword/gmx:Anchor) > 0)
-          then 'to-iso19115-3-keyword-with-anchor'
-          else 'to-iso19115-3-keyword'"/>
+                  then 'to-iso19115-3-keyword-as-xlink'
+                  else if (count(mri:keyword/gmx:Anchor) > 0)
+                  then 'to-iso19115-3-keyword-with-anchor'
+                  else 'to-iso19115-3-keyword'"/>
 
         <xsl:variable name="parentName" select="name(..)"/>
 
@@ -135,12 +152,16 @@
             * transformations: list of transformations
             * transformation: current transformation
           -->
+        <xsl:variable name="allLanguages"
+                      select="concat($metadataLanguage, ',', $metadataOtherLanguages)"/>
+
         <div data-gn-keyword-selector="{$widgetMode}"
           data-metadata-id="{$metadataId}"
           data-element-ref="{concat('_X', ../gn:element/@ref, '_replace')}"
           data-thesaurus-title="{$thesaurusTitle}"
           data-thesaurus-key="{$thesaurusKey}"
-          data-keywords="{$keywords}" data-transformations="{$transformations}"
+          data-keywords="{$keywords}"
+          data-transformations="{$transformations}"
           data-current-transformation="{$transformation}"
           data-lang="{$metadataOtherLanguagesAsJson}"
           data-max-tags="{$maxTags}">

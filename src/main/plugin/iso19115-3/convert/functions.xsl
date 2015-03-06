@@ -1,8 +1,8 @@
 <xsl:stylesheet version="2.0" 
-    xmlns:mds="http://standards.iso.org/19115/-3/mds/1.0/2014-12-25"
     xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0/2014-12-25"
     xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
     xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
+    xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
     xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
     xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
     xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
@@ -47,8 +47,8 @@
   <xsl:template name="langId19115-3">
       <xsl:variable name="tmp">
           <xsl:choose>
-              <xsl:when test="/*[name(.)='mds:MD_Metadata' or @gco:isoType='mds:MD_Metadata']/mds:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue">
-                  <xsl:value-of select="/*[name(.)='mds:MD_Metadata' or @gco:isoType='mds:MD_Metadata']/mds:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue"/>
+              <xsl:when test="/mdb:MD_Metadata/mdb:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue">
+                  <xsl:value-of select="/mdb:MD_Metadata/mdb:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue"/>
               </xsl:when>
               <xsl:otherwise><xsl:value-of select="$defaultLang"/></xsl:otherwise>
           </xsl:choose>
@@ -58,31 +58,31 @@
 
 
   <xsl:template name="defaultTitle">
-      <xsl:param name="isoDocLangId"/>
+    <xsl:param name="isoDocLangId"/>
 
-      <xsl:variable name="poundLangId" select="concat('#',upper-case(java:twoCharLangCode($isoDocLangId)))" />
+    <xsl:variable name="poundLangId" select="concat('#',upper-case(java:twoCharLangCode($isoDocLangId)))" />
 
-      <xsl:variable name="identification" select="/*[name(.)='mds:MD_Metadata' or @gco:isoType='mds:MD_Metadata']/mds:identificationInfo/*"></xsl:variable>
-      <xsl:variable name="docLangTitle" select="$identification/mri:citation/*/cit:title//lan:LocalisedCharacterString[@locale=$poundLangId]"/>
-      <xsl:variable name="charStringTitle" select="$identification/mri:citation/*/cit:title/gco:CharacterString"/>
-      <xsl:variable name="locStringTitles" select="$identification/mri:citation/*/cit:title//lan:LocalisedCharacterString"/>
-      <xsl:choose>
-      <xsl:when    test="string-length(string($docLangTitle)) != 0">
+    <xsl:variable name="identification" select="/mdb:MD_Metadata/mdb:identificationInfo/*"></xsl:variable>
+    <xsl:variable name="docLangTitle" select="$identification/mri:citation/*/cit:title/lan:LocalisedCharacterString[@locale = $poundLangId]"/>
+    <xsl:variable name="charStringTitle" select="$identification/mri:citation/*/cit:title/gco:CharacterString"/>
+    <xsl:variable name="locStringTitles" select="$identification/mri:citation/*/cit:title//lan:LocalisedCharacterString"/>
+    <xsl:choose>
+      <xsl:when test="string-length(string($docLangTitle)) != 0">
           <xsl:value-of select="$docLangTitle[1]"/>
       </xsl:when>
-      <xsl:when    test="string-length(string($charStringTitle[1])) != 0">
+      <xsl:when test="string-length(string($charStringTitle[1])) != 0">
           <xsl:value-of select="string($charStringTitle[1])"/>
       </xsl:when>
       <xsl:otherwise>
           <xsl:value-of select="string($locStringTitles[1])"/>
       </xsl:otherwise>
-      </xsl:choose>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template name="getMimeTypeFile">
     <xsl:param name="datadir"/>
     <xsl:param name="fname"/>
-    <xsl:value-of select="mime:detectMimeTypeFile($datadir,$fname)"/>
+    <xsl:value-of select="mime:detectMimeTypeFile($datadir, $fname)"/>
   </xsl:template>
 
   <xsl:template name="getMimeTypeUrl">

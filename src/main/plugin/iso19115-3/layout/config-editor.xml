@@ -126,6 +126,7 @@
 
   <fieldsWithFieldset>
     <name>mcc:MD_Identifier</name>
+    <name>mdb:metadataStandard</name>
     <name>mdb:metadataScope</name>
     <name>mdb:dateInfo</name>
     <name>mdb:contentInfo</name>
@@ -177,52 +178,27 @@
     to restrict the list.
     -->
     <exclude>
-      <!-- TODO: Update namespace prefix -->
-      <name>gmd:identifier</name>
-      <name>gmd:metadataStandardName</name>
-      <name>gmd:metadataStandardVersion</name>
-      <name>gmd:hierarchyLevelName</name>
-      <name>gmd:dataSetURI</name>
-      <name>gmd:postalCode</name>
-      <name>gmd:city</name>
-      <name>gmd:administrativeArea</name>
-      <name>gmd:voice</name>
-      <name>gmd:facsimile</name>
-      <name>gmd:dataset</name>
-      <name>gmd:other</name>
-      <name>gmd:hoursOfService</name>
-      <name>gmd:applicationProfile</name>
-      <name>gmd:page</name>
-      <name>gmd:date</name>
-      <name>gmd:fileName</name>
-      <name>gmd:protocol</name>
-      <name>gmd:fileType</name>
-      <name>gmd:unitsOfDistribution</name>
-      <name>gmd:amendmentNumber</name>
-      <name>gmd:specification</name>
-      <name>gmd:fileDecompressionTechnique</name>
-      <name>gmd:turnaround</name>
-      <name>gmd:fees</name>
-      <name>gmd:userDeterminedLimitations</name>
-      <name>gmd:codeSpace</name>
-      <name>gmd:version</name>
-      <name>gmd:edition</name>
-      <name>gmd:ISBN</name>
-      <name>gmd:ISSN</name>
-      <name>gmd:errorStatistic</name>
-      <name>gmd:schemaAscii</name>
-      <name>gmd:softwareDevelopmentFileFormat</name>
-      <name>gmd:shortName</name>
-      <name>gmd:condition</name>
-      <name>gmd:maximumOccurence</name>
-      <name>gmd:domainValue</name>
-      <name>gmd:densityUnits</name>
-      <name>gmd:descriptor</name>
-      <name>gmd:denominator</name>
-      <name>gmd:classificationSystem</name>
-      <name>gmd:checkPointDescription</name>
-      <name>gmd:transformationDimensionDescription</name>
-      <name>gmd:orientationParameterDescription</name>
+      <name>mri:denominator</name>
+      <name>mcc:code</name>
+      <name>cit:electronicMailAddress</name>
+      <name>cit:postalCode</name>
+      <name>cit:city</name>
+      <name>cit:administrativeArea</name>
+      <name>cit:number</name>
+      <name>cit:hoursOfService</name>
+      <name>cit:date</name>
+      <name>mcc:fileName</name>
+      <name>mcc:fileType</name>
+      <name>cit:protocol</name>
+      <name>mrd:amendmentNumber</name>
+      <name>mrd:fileDecompressionTechnique</name>
+      <name>mcc:codeSpace</name>
+      <name>cit:edition</name>
+      <name>cit:ISBN</name>
+      <name>cit:ISSN</name>
+      <name>mex:condition</name>
+      <name>mex:maximumOccurence</name>
+      <name>mex:domainValue</name>
       <name>srv:name</name>
       <name>srv:invocationName</name>
       <name>srv:serviceTypeVersion</name>

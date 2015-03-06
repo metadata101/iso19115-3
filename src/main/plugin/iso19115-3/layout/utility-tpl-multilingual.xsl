@@ -32,13 +32,14 @@
           <xsl:if test="$mainLanguage">
             <xsl:variable name="mainLanguageId"
                           select="$metadata/mdb:otherLocale/lan:PT_Locale[
-                                  lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue = $mainLanguage]/@id"/>
+                                  lan:language/lan:LanguageCode/@codeListValue = $mainLanguage]/@id"/>
 
             <lang><xsl:value-of select="concat('&quot;', $mainLanguage, '&quot;:&quot;#', $mainLanguageId, '&quot;')"/></lang>
           </xsl:if>
 
-          <xsl:for-each select="$metadata/mdb:otherLocale/lan:PT_Locale[lan:languageCode/lan:LanguageCode/@codeListValue != $mainLanguage]">
-            <lang><xsl:value-of select="concat('&quot;', lan:languageCode/lan:LanguageCode/@codeListValue, '&quot;:&quot;#', @id, '&quot;')"/></lang>
+          <xsl:for-each select="$metadata/mdb:otherLocale/lan:PT_Locale[
+                                  lan:language/lan:LanguageCode/@codeListValue != $mainLanguage]">
+            <lang><xsl:value-of select="concat('&quot;', lan:language/lan:LanguageCode/@codeListValue, '&quot;:&quot;#', @id, '&quot;')"/></lang>
           </xsl:for-each>
         </xsl:otherwise>
       </xsl:choose>
@@ -58,7 +59,7 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:for-each select="$metadata/mdb:otherLocale/lan:PT_Locale">
-          <lang id="{@id}" code="{lan:languageCode/lan:LanguageCode/@codeListValue}"/>
+          <lang id="{@id}" code="{lan:language/lan:LanguageCode/@codeListValue}"/>
         </xsl:for-each>
       </xsl:otherwise>
     </xsl:choose>
@@ -68,18 +69,16 @@
   <!-- Template used to return a gco:CharacterString element
         in default metadata language or in a specific locale
         if exist.
-        FIXME : lan:PT_FreeText should not be in the match clause as gco:CharacterString
-        is mandatory and PT_FreeText optional. Added for testing GM03 import.
     -->
-  <xsl:template mode="localised" match="*[lan:PT_FreeText]">
+  <xsl:template mode="localised" match="*[lan:PT_FreeText or gco:CharacterString]">
     <xsl:param name="langId"/>
 
     <xsl:choose>
       <xsl:when
-          test="lan:PT_FreeText/lan:textGroup/lan:LocalisedCharacterString[@locale=$langId] and
-          lan:PT_FreeText/lan:textGroup/lan:LocalisedCharacterString[@locale=$langId] != ''">
+          test="lan:PT_FreeText/lan:textGroup/lan:LocalisedCharacterString[@locale = $langId] and
+          lan:PT_FreeText/lan:textGroup/lan:LocalisedCharacterString[@locale = $langId] != ''">
         <xsl:value-of
-            select="lan:PT_FreeText/lan:textGroup/lan:LocalisedCharacterString[@locale=$langId]"/>
+            select="lan:PT_FreeText/lan:textGroup/lan:LocalisedCharacterString[@locale = $langId]"/>
       </xsl:when>
       <xsl:when test="not(gco:CharacterString)">
         <!-- If no CharacterString, try to use the first textGroup available -->
@@ -90,5 +89,9 @@
         <xsl:value-of select="gco:CharacterString"/>
       </xsl:otherwise>
     </xsl:choose>
+  </xsl:template>
+
+  <xsl:template mode="localised" match="*">
+    <!-- Nothing to do, is not a text content field. -->
   </xsl:template>
 </xsl:stylesheet>

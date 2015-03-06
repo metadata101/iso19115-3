@@ -99,7 +99,7 @@
     </cit:CI_Citation>
   </mdb:metadataStandard>
   <mdb:otherLocale>
-    <lan:PT_Locale id="FRE">
+    <lan:PT_Locale id="FR">
       <lan:language>
         <lan:LanguageCode codeList="" codeListValue="fre"></lan:LanguageCode>
       </lan:language>
@@ -107,7 +107,7 @@
     </lan:PT_Locale>
   </mdb:otherLocale>
   <mdb:otherLocale>
-    <lan:PT_Locale id="GER">
+    <lan:PT_Locale id="GE">
       <lan:language>
         <lan:LanguageCode codeList="" codeListValue="ger"></lan:LanguageCode>
       </lan:language>
@@ -115,7 +115,7 @@
     </lan:PT_Locale>
   </mdb:otherLocale>
   <mdb:otherLocale>
-    <lan:PT_Locale id="CHI">
+    <lan:PT_Locale id="CH">
       <lan:language>
         <lan:LanguageCode codeList="" codeListValue="chi"></lan:LanguageCode>
       </lan:language>
@@ -123,7 +123,7 @@
     </lan:PT_Locale>
   </mdb:otherLocale>
   <mdb:otherLocale>
-    <lan:PT_Locale id="SPA">
+    <lan:PT_Locale id="SP">
       <lan:language>
         <lan:LanguageCode codeList="" codeListValue="spa"></lan:LanguageCode>
       </lan:language>
@@ -131,7 +131,7 @@
     </lan:PT_Locale>
   </mdb:otherLocale>
   <mdb:otherLocale>
-    <lan:PT_Locale id="ARA">
+    <lan:PT_Locale id="AR">
       <lan:language>
         <lan:LanguageCode codeList="" codeListValue="ara"></lan:LanguageCode>
       </lan:language>
@@ -139,7 +139,7 @@
     </lan:PT_Locale>
   </mdb:otherLocale>
   <mdb:otherLocale>
-    <lan:PT_Locale id="RUS">
+    <lan:PT_Locale id="RU">
       <lan:language>
         <lan:LanguageCode codeList="" codeListValue="rus"></lan:LanguageCode>
       </lan:language>
@@ -165,22 +165,22 @@
             <gco:CharacterString>Multilingual template for Vector data</gco:CharacterString>
             <lan:PT_FreeText>
               <lan:textGroup>
-                <lan:LocalisedCharacterString locale="#FRE">Modèle pour les données vecteur (multilingue)</lan:LocalisedCharacterString>
+                <lan:LocalisedCharacterString locale="#FR">Modèle pour les données vecteur (multilingue)</lan:LocalisedCharacterString>
               </lan:textGroup>
               <lan:textGroup>
-                <lan:LocalisedCharacterString locale="#GER">Vorlage für die Vektor-Daten (mehrsprachig)</lan:LocalisedCharacterString>
+                <lan:LocalisedCharacterString locale="#GE">Vorlage für die Vektor-Daten (mehrsprachig)</lan:LocalisedCharacterString>
               </lan:textGroup>
               <lan:textGroup>
-                <lan:LocalisedCharacterString locale="#SPA">De plantilla para el vector de datos (multilingüe)</lan:LocalisedCharacterString>
+                <lan:LocalisedCharacterString locale="#SP">De plantilla para el vector de datos (multilingüe)</lan:LocalisedCharacterString>
               </lan:textGroup>
               <lan:textGroup>
-                <lan:LocalisedCharacterString locale="#RUS">Шаблон для векторных данных (многоязычное)</lan:LocalisedCharacterString>
+                <lan:LocalisedCharacterString locale="#RU">Шаблон для векторных данных (многоязычное)</lan:LocalisedCharacterString>
               </lan:textGroup>
               <lan:textGroup>
-                <lan:LocalisedCharacterString locale="#ARA">نموذج البيانات الموجهة  (متعددة اللغات)</lan:LocalisedCharacterString>
+                <lan:LocalisedCharacterString locale="#AR">نموذج البيانات الموجهة  (متعددة اللغات)</lan:LocalisedCharacterString>
               </lan:textGroup>
               <lan:textGroup>
-                <lan:LocalisedCharacterString locale="#CHI">模板矢量数据（多种语言）</lan:LocalisedCharacterString>
+                <lan:LocalisedCharacterString locale="#CH">模板矢量数据（多种语言）</lan:LocalisedCharacterString>
               </lan:textGroup>
             </lan:PT_FreeText>
           </cit:title>
