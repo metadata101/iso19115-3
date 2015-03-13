@@ -736,12 +736,12 @@
 
     <!-- Index all codelist -->
     <xsl:for-each select="$metadata//*[*/@codeListValue != '']">
-      <Field name="{local-name()}"
+      <Field name="cl_{local-name()}"
              string="{*/@codeListValue}"
              store="true" index="true"/>
       <!--<xsl:message><xsl:value-of select="name(*)"/>:<xsl:value-of select="*/@codeListValue"/> (<xsl:value-of select="$lang"/>) = <xsl:value-of select="util:getCodelistTranslation(name(*), string(*/@codeListValue), $lang)"/></xsl:message>-->
-      <Field name="{concat(local-name(), '_text')}"
-             string="{util:getCodelistTranslation(name(*), string(*/@codeListValue), $lang)}"
+      <Field name="cl_{concat(local-name(), '_text')}"
+             string="{util:getCodelistTranslation(name(*), string(*/@codeListValue), string($lang))}"
              store="true" index="true"/>
     </xsl:for-each>
 
