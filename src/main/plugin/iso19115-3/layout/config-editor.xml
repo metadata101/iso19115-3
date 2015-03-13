@@ -139,6 +139,7 @@
     <name>mdb:distributionInfo</name>
     <name>mri:descriptiveKeywords</name>
     <name>mri:thesaurusName</name>
+    <name>mri:resourceConstraints</name>
     <name>mdb:spatialRepresentationInfo</name>
     <name>mri:pointOfContact</name>
     <name>mdb:dataQualityInfo</name>
