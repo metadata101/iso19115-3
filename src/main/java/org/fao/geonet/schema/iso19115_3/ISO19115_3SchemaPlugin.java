@@ -35,6 +35,7 @@ public class ISO19115_3SchemaPlugin
                 .add(ISO19115_3Namespaces.MDB)
                 .add(ISO19115_3Namespaces.MRC)
                 .add(ISO19115_3Namespaces.MRL)
+                .add(ISO19115_3Namespaces.MRI)
                 .add(ISO19115_3Namespaces.SRV)
                 .build();
     }
