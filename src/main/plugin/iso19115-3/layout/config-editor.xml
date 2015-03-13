@@ -19,6 +19,21 @@
 
   <!-- Form field type configuration. Default is text. -->
   <fields>
+    <for name="cit:issueIdentification" use="textarea"/>
+    <for name="cit:description" use="textarea"/>
+    <for name="mcc:fileDescription" use="textarea"/>
+    <for name="gex:description" use="textarea"/>
+    <for name="mrc:description" use="textarea"/>
+    <for name="mrd:mediumNote" use="textarea"/>
+    <for name="lan:description" use="textarea"/>
+    <for name="mcc:description" use="textarea"/>
+    <for name="msr:transformationDimensionMapping" use="textarea"/>
+    <for name="msr:dimensionDescription" use="textarea"/>
+    <for name="msr:orientationParameterDescription" use="textarea"/>
+    <for name="cit:contactInstructions" use="textarea"/>
+    <for name="mco:userNote" use="textarea"/>
+    <for name="mco:handlingDescription" use="textarea"/>
+    <for name="mrl:description" use="textarea"/>
     <for name="mri:abstract" use="textarea"/>
     <for name="gmd:checkPointDescription" use="textarea"/>
     <for name="mri:credit" use="textarea"/>
@@ -179,6 +194,50 @@
     to restrict the list.
     -->
     <exclude>
+      <name>cit:protocolRequest</name>
+      <name>gex:minimumValue</name>
+      <name>gex:maximumValue</name>
+      <name>mrc:minValue</name>
+      <name>mrc:maxValue</name>
+      <name>mrc:scaleFactor</name>
+      <name>mrc:offset</name>
+      <name>mrc:meanValue</name>
+      <name>mrc:standardDeviation</name>
+      <name>gco:Real</name>
+      <name>mrc:numberOfValues</name>
+      <name>mrc:bitsPerValue</name>
+      <name>mrc:triangulationIndicator</name>
+      <name>mrc:radiometricCalibrationDataAvailability</name>
+      <name>mrc:filmDistortionInformationAvailability</name>
+      <name>mrc:radiometricCalibrationDataAvailability</name>
+      <name>mrc:cameraCalibrationInformationAvailability</name>
+      <name>mrc:lensDistortionInformationAvailability</name>
+      <name>mrc:complianceCode</name>
+      <name>mrc:includedWithDataset</name>
+      <name>mrc:featureInstanceCount</name>
+      <name>gfc:uniqueInstance</name>
+      <name>mrd:density</name>
+      <name>mrd:densityUnits</name>
+      <name>mrd:volumes</name>
+      <name>mrd:unitsOfDistribution</name>
+      <name>mrd:transferSize</name>
+      <name>cit:linkage</name>
+      <name>cit:page</name>
+      <name>mco:useLimitation</name>
+      <name>mri:levelOfDetail</name>
+      <name>mri:distance</name>
+      <name>mri:vertical</name>
+      <name>mri:angularDistance</name>
+      <name>msr:controlPointAvailability</name> 
+      <name>msr:orientationParameterAvailability</name>  
+      <name>mac:averageAirTemperature</name>
+      <name>mac:maxRelativeHumidity</name>
+      <name>mac:maxAltitude</name>
+      <name>mac:meterologicalConditions</name>
+      <name>mas:schemaLanguage</name>
+      <name>mas:constraintLanguage</name>
+      <name>gex:extentTypeCode</name>
+      <name>mdq:pass</name>
       <name>mri:denominator</name>
       <name>mcc:code</name>
       <name>gfc:typeName</name>
