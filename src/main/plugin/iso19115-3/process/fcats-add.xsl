@@ -4,10 +4,10 @@ Stylesheet used to update metadata for a service and
 attached it to the metadata for data.
 -->
 <xsl:stylesheet version="2.0" xmlns:gmd="http://standards.iso.org/19115/-3/gmd"
-                xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
-                xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
-                xmlns:mrc="http://standards.iso.org/19115/-3/mrc/1.0/2014-12-25"
-                xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
+                xmlns:gco="http://standards.iso.org/19139/gco/1.0"
+                xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0"
+                xmlns:mrc="http://standards.iso.org/19115/-3/mrc/1.0"
+                xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:gn="http://www.fao.org/geonetwork"
                 xmlns:xlink="http://www.w3.org/1999/xlink">

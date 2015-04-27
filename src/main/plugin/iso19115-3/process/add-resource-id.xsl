@@ -2,12 +2,12 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:exslt="http://exslt.org/common"
                 xmlns:geonet="http://www.fao.org/geonetwork"
-                xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
+                xmlns:gco="http://standards.iso.org/19139/gco/1.0"
                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
-                xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"
-                xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
-                xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
-                xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
+                xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0"
+                xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0"
+                xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0"
+                xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0"
                 version="2.0" exclude-result-prefixes="#all">
 
   <xsl:import href="../../iso19139/process/process-utility.xsl"/>
@@ -36,7 +36,6 @@
     <xsl:variable name="hasResourceId"
                   select="count($root//mdb:identificationInfo/*/mri:citation/
             cit:CI_Citation/cit:identifier/*/mcc:code[gco:CharacterString != '']) > 0"/>
-    <xsl:message>#<xsl:value-of select="$hasResourceId"/> </xsl:message>
     <xsl:if test="not($hasResourceId)">
       <suggestion process="add-resource-id" id="{generate-id()}" category="identification" target="identification">
         <name><xsl:value-of select="geonet:i18n($add-resource-id-loc, 'a', $guiLang)"/></name>

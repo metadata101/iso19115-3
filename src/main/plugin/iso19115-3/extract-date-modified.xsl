@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet
   version="2.0"
-  xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
-  xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
+  xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0"
+  xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <xsl:template
