@@ -322,7 +322,9 @@
         <for name="mrd:distributor"/>
         <for name="mdb:contact"/>
         <for name="mcc:processor"/>
-        <for name="cit:citedResponsibleParty"/>
+        <for name="cit:party"/>
+        <for name="cit:CI_Individual"/>
+        <for name="cit:CI_Organisation"/>
       </flatModeExceptions>
     </view>
     <view name="advanced">

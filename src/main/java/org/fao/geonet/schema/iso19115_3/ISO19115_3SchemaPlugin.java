@@ -92,6 +92,8 @@ public class ISO19115_3SchemaPlugin
         return getAttributeUuidrefValues(metadata, "operatesOn", ISO19115_3Namespaces.SRV);
     };
     public Set<String> getAssociatedFeatureCatalogueUUIDs (Element metadata) {
+        // Feature catalog may also be embedded into the document
+        // Or the citation of the feature catalog may contains a reference to it
         return getAttributeUuidrefValues(metadata, "featureCatalogueCitation", ISO19115_3Namespaces.MRC);
     };
     public Set<String> getAssociatedSourceUUIDs (Element metadata) {

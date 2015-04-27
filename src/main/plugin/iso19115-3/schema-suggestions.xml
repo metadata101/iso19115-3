@@ -173,11 +173,11 @@
 		<suggest name="uuidref"/>
 	</field>
 
-	<field name="mrc:featureCatalogueCitation">
-		<suggest name="uuidref"/>
-	</field>
-	
-	<field name="gml:Polygon">
+	<!--<field name="mrc:featureCatalogueCitation">-->
+		<!--<suggest name="uuidref"/>-->
+	<!--</field>-->
+
+  <field name="gml:Polygon">
 		<suggest name="srsName"/>
 	</field>
 

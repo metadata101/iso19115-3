@@ -13,16 +13,33 @@ attached it to the metadata for data.
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:gn="http://www.fao.org/geonetwork"
-                >
+                exclude-result-prefixes="#all">
 
+  <!-- Linking a dataset to a service -->
+  <!-- UUID of the metadata to attached to the service -->
   <xsl:param name="uuidref"/>
+
+  <!-- Comma separated values of layers to attached to -->
   <xsl:param name="scopedName"/>
-  <xsl:param name="siteUrl"/>
+
+
+
+  <!-- Linking a service to a dataset -->
+  <!-- Protocol of the service to attach to the dataset record -->
   <xsl:param name="protocol" select="'OGC:WMS-1.1.1-http-get-map'"/>
+
+  <!-- URL of the service -->
   <xsl:param name="url"/>
+
+  <!-- Optional description -->
   <xsl:param name="desc"/>
 
-  <xsl:template match="/mdb:MD_Metadata|*[contains(@gco:isoType, 'mdb:MD_Metadata')]">
+
+
+  <xsl:param name="siteUrl"/>
+
+
+  <xsl:template match="/mdb:MD_Metadata">
     <xsl:copy>
       <xsl:copy-of select="@*"/>
 
@@ -46,29 +63,18 @@ attached it to the metadata for data.
         And add the link to the dataset -->
       <xsl:choose>
         <xsl:when
-            test="mdb:identificationInfo/srv:SV_ServiceIdentification|
-			    			mdb:identificationInfo/*[@gco:isoType='srv:SV_ServiceIdentification']">
+            test="mdb:identificationInfo/srv:SV_ServiceIdentification">
           <mdb:identificationInfo>
             <srv:SV_ServiceIdentification>
               <xsl:copy-of
-                  select="mdb:identificationInfo/*/mri:citation|
-                          mdb:identificationInfo/*/mri:abstract|
-                          mdb:identificationInfo/*/mri:purpose|
-                          mdb:identificationInfo/*/mri:credit|
-                          mdb:identificationInfo/*/mri:statut|
-                          mdb:identificationInfo/*/mri:pointOfContact|
-                          mdb:identificationInfo/*/mri:resourceMaintenance|
-                          mdb:identificationInfo/*/mri:graphicOverview|
-                          mdb:identificationInfo/*/mri:resourceFormat|
-                          mdb:identificationInfo/*/mri:descriptiveKeywords|
-                          mdb:identificationInfo/*/mri:resourceSpecificUsage|
-                          mdb:identificationInfo/*/mri:resourceConstraints|
-                          mdb:identificationInfo/*/mri:aggregationInfo|
-                          mdb:identificationInfo/*/srv:serviceType|
+                      select="mdb:identificationInfo/*/mri:*"/>
+
+              <xsl:copy-of
+                  select="mdb:identificationInfo/*/srv:serviceType|
                           mdb:identificationInfo/*/srv:serviceTypeVersion|
                           mdb:identificationInfo/*/srv:accessProperties|
-                          mdb:identificationInfo/*/srv:restrictions|
-                          mdb:identificationInfo/*/srv:extent"/>
+                          mdb:identificationInfo/*/srv:couplingType|
+                          mdb:identificationInfo/*/srv:coupledResource[*/srv:resourceReference/@uuidref != $uuidref]"/>
 
 
               <!-- Handle SV_CoupledResource -->
@@ -76,56 +82,31 @@ attached it to the metadata for data.
                 <xsl:for-each select="tokenize($scopedName, ',')">
                   <srv:coupledResource>
                     <srv:SV_CoupledResource>
-                      <srv:operationName>
-                        <gco:CharacterString>GetCapabilities</gco:CharacterString>
-                      </srv:operationName>
-                      <srv:identifier>
-                        <gco:CharacterString>
-                          <xsl:value-of select="$uuidref"/>
-                        </gco:CharacterString>
-                      </srv:identifier>
-                      <gco:ScopedName>
-                        <xsl:value-of select="."/>
-                      </gco:ScopedName>
+                      <srv:scopedName>
+                        <gco:ScopedName>
+                          <xsl:value-of select="."/>
+                        </gco:ScopedName>
+                      </srv:scopedName>
+                      <srv:resourceReference uuidref="{$uuidref}"/>
                     </srv:SV_CoupledResource>
                   </srv:coupledResource>
                 </xsl:for-each>
               </xsl:variable>
 
-              <xsl:choose>
-                <xsl:when
-                    test="mdb:identificationInfo/*/srv:coupledResource">
-                  <xsl:for-each
-                      select="mdb:identificationInfo/*/srv:coupledResource">
-                    <!-- Avoid duplicate SV_CoupledResource elements -->
-                    <xsl:choose>
-                      <xsl:when
-                          test="srv:SV_CoupledResource/srv:identifier/gco:CharacterString!=$uuidref">
-                        <xsl:copy-of select="."/>
-                      </xsl:when>
-                    </xsl:choose>
-                    <xsl:if test="position()=last()">
-                      <xsl:copy-of select="$coupledResource"/>
-                    </xsl:if>
-                  </xsl:for-each>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:if test="$uuidref and $uuidref != ''">
-                    <xsl:copy-of select="$coupledResource"/>
-                  </xsl:if>
-                </xsl:otherwise>
-
-              </xsl:choose>
+              <xsl:copy-of select="$coupledResource"/>
 
 
               <xsl:copy-of
-                  select="mdb:identificationInfo/*/srv:couplingType|
-							mdb:identificationInfo/*/srv:containsOperations|
-							mdb:identificationInfo/*/srv:operatesOn[@uuidref!=$uuidref]"/>
+                  select="mdb:identificationInfo/*/srv:operatedDataset|
+                          mdb:identificationInfo/*/srv:profile|
+                          mdb:identificationInfo/*/srv:serviceStandard|
+                          mdb:identificationInfo/*/srv:containsOperations"/>
 
               <srv:operatesOn uuidref="{$uuidref}"
                               xlink:href="{$siteUrl}/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;id={$uuidref}"/>
 
+              <xsl:copy-of
+                      select="mdb:identificationInfo/*/srv:containsChain"/>
             </srv:SV_ServiceIdentification>
           </mdb:identificationInfo>
         </xsl:when>
@@ -140,8 +121,7 @@ attached it to the metadata for data.
 
       <xsl:choose>
         <xsl:when
-            test="mdb:identificationInfo/srv:SV_ServiceIdentification|
-				mdb:identificationInfo/*[@gco:isoType='srv:SV_ServiceIdentification']">
+            test="mdb:identificationInfo/srv:SV_ServiceIdentification">
           <xsl:copy-of select="mri:distributionInfo"/>
         </xsl:when>
         <!-- In a dataset add a link in the distribution section -->

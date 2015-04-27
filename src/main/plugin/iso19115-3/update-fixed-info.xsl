@@ -269,7 +269,7 @@
     <xsl:copy>
       <xsl:copy-of select="@*"/>
       <cit:linkage>
-        <cit:URL>
+        <gco:CharacterString>
           <xsl:choose>
             <xsl:when test="/root/env/config/downloadservice/simple='true'">
               <xsl:value-of select="concat(/root/env/siteURL,'/resources.get?uuid=',/root/env/uuid,'&amp;fname=',$fname,'&amp;access=private')"/>
@@ -281,7 +281,7 @@
               <xsl:value-of select="cit:linkage/gco:CharacterString"/>
             </xsl:otherwise>
           </xsl:choose>
-        </cit:URL>
+        </gco:CharacterString>
       </cit:linkage>
       <xsl:copy-of select="cit:protocol"/>
       <xsl:copy-of select="cit:applicationProfile"/>
@@ -340,8 +340,8 @@
   <!-- Do not allow to expand operatesOn sub-elements 
     and constrain users to use uuidref attribute to link
     service metadata to datasets. This will avoid to have
-    error on XSD validation. -->
-  <xsl:template match="srv:operatesOn|mrc:featureCatalogueCitation">
+    error on XSD validation.  |mrc:featureCatalogueCitation[@uuidref] -->
+  <xsl:template match="srv:operatesOn">
     <xsl:copy>
       <xsl:copy-of select="@uuidref"/>
       <xsl:if test="@uuidref">
