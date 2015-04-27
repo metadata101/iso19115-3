@@ -150,6 +150,8 @@
               <cit:name>
                 <xsl:choose>
                   <xsl:when test="contains($name, '|')">
+                    <!-- TODO: Should check if only PT_FreeText should be used
+                    even for the default language. -->
                     <lan:PT_FreeText>
                       <xsl:for-each select="tokenize($name, $separator)">
                         <xsl:variable name="nameLang" select="substring-before(., '#')"></xsl:variable>

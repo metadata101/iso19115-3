@@ -392,7 +392,7 @@
   </xsl:template>
   
   <!-- Apply same changes as above to the lan:LocalisedCharacterString -->
-  <xsl:variable name="language" select="//lan:PT_Locale" /> <!-- Need list of all locale -->
+  <xsl:variable name="language" select="//(mdb:defaultLocale|mdb:otherLocale)/lan:PT_Locale" /> <!-- Need list of all locale -->
   
   <xsl:template match="lan:LocalisedCharacterString">
     <xsl:element name="lan:{local-name()}">
