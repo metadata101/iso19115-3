@@ -59,7 +59,7 @@ USA.
 	<sch:ns prefix="gmd" uri="http://standards.iso.org/19115/-3/gmd"/>
     <sch:ns prefix="gmx" uri="http://standards.iso.org/19115/-3/gmx"/>
 	<sch:ns prefix="srv" uri="http://standards.iso.org/19115/-3/srv"/>
-	<sch:ns prefix="gco" uri="http://standards.iso.org/19139/gco/1.0/2014-12-25"/>
+	<sch:ns prefix="gco" uri="http://standards.iso.org/19139/gco/1.0"/>
 	<sch:ns prefix="geonet" uri="http://www.fao.org/geonetwork"/>
 	<sch:ns prefix="skos" uri="http://www.w3.org/2004/02/skos/core#"/>
 	<sch:ns prefix="xlink" uri="http://www.w3.org/1999/xlink"/>

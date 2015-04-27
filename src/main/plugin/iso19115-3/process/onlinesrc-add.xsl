@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
-  xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
-  xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0/2014-12-25"
-  xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
-  xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
+  xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0"
+  xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0"
+  xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0"
+  xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0"
+  xmlns:gco="http://standards.iso.org/19139/gco/1.0"
   xmlns:gn="http://www.fao.org/geonetwork"
   exclude-result-prefixes="#all" >
   
@@ -16,6 +17,8 @@
   <xsl:param name="url"/>
   <xsl:param name="name"/>
   <xsl:param name="desc"/>
+
+  <xsl:variable name="separator" select="'\|'"/>
   
   <xsl:template match="/mdb:MD_Metadata|*[contains(@gco:isoType, 'mdb:MD_Metadata')]">
     <xsl:copy>
@@ -134,21 +137,60 @@
                 <xsl:value-of select="$url"/>
               </gco:CharacterString>
             </cit:linkage>
-            <cit:protocol>
-              <gco:CharacterString>
-                <xsl:value-of select="$protocol"/>
-              </gco:CharacterString>
-            </cit:protocol>
-            <cit:name>
-              <gco:CharacterString>
-                <xsl:value-of select="."/>
-              </gco:CharacterString>
-            </cit:name>
-            <cit:description>
-              <gco:CharacterString>
-                <xsl:value-of select="tokenize($desc, ',')[position() = $pos]"/>
-              </gco:CharacterString>
-            </cit:description>
+
+            <xsl:if test="$protocol != ''">
+              <cit:protocol>
+                <gco:CharacterString>
+                  <xsl:value-of select="$protocol"/>
+                </gco:CharacterString>
+              </cit:protocol>
+            </xsl:if>
+
+            <xsl:if test="$name != ''">
+              <cit:name>
+                <xsl:choose>
+                  <xsl:when test="contains($name, '|')">
+                    <lan:PT_FreeText>
+                      <xsl:for-each select="tokenize($name, $separator)">
+                        <xsl:variable name="nameLang" select="substring-before(., '#')"></xsl:variable>
+                        <xsl:variable name="nameValue" select="substring-after(., '#')"></xsl:variable>
+                        <lan:textGroup>
+                          <lan:LocalisedCharacterString locale="{concat('#', $nameLang)}"><xsl:value-of select="$nameValue" /></lan:LocalisedCharacterString>
+                        </lan:textGroup>
+                      </xsl:for-each>
+                    </lan:PT_FreeText>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <gco:CharacterString>
+                      <xsl:value-of select="substring-after($name, '#')"/>
+                    </gco:CharacterString>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </cit:name>
+            </xsl:if>
+
+            <xsl:if test="$desc != ''">
+              <cit:description>
+                <xsl:choose>
+                  <xsl:when test="contains($desc, '|')">
+                    <lan:PT_FreeText>
+                      <xsl:for-each select="tokenize($desc, $separator)">
+                        <xsl:variable name="descLang" select="substring-before(., '#')"></xsl:variable>
+                        <xsl:variable name="descValue" select="substring-after(., '#')"></xsl:variable>
+                        <lan:textGroup>
+                          <lan:LocalisedCharacterString locale="{concat('#', $descLang)}"><xsl:value-of select="$descValue" /></lan:LocalisedCharacterString>
+                        </lan:textGroup>
+                      </xsl:for-each>
+                    </lan:PT_FreeText>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <gco:CharacterString>
+                      <xsl:value-of select="substring-after($desc, '#')"/>
+                    </gco:CharacterString>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </cit:description>
+            </xsl:if>
           </cit:CI_OnlineResource>
         </mrd:onLine>
       </xsl:for-each>

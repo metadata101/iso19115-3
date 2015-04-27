@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<gmd:MD_Metadata xmlns:gmd="http://standards.iso.org/19115/-3/gmd" xmlns:srv="http://standards.iso.org/19115/-3/srv" xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gmx="http://standards.iso.org/19115/-3/gmx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gfc="http://standards.iso.org/19115/-3/gfc" xmlns:gml="http://www.opengis.net/gml" xmlns:geonet="http://www.fao.org/geonetwork">
+<gmd:MD_Metadata xmlns:gmd="http://standards.iso.org/19115/-3/gmd" xmlns:srv="http://standards.iso.org/19115/-3/srv" xmlns:gco="http://standards.iso.org/19139/gco/1.0" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gmx="http://standards.iso.org/19115/-3/gmx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gfc="http://standards.iso.org/19115/-3/gfc" xmlns:gml="http://www.opengis.net/gml" xmlns:geonet="http://www.fao.org/geonetwork">
   <gmd:fileIdentifier>
     <gco:CharacterString>2cdeb98f-c90d-4aaa-9143-dd7bea3707ba</gco:CharacterString>
   </gmd:fileIdentifier>

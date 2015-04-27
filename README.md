@@ -2,10 +2,6 @@
 
 This is the ISO19115-3 schema plugin for GeoNetwork 3.x or greater version.
 
-## Warning:
-
-The XML schema is not the final version. The work on the schema is accessible from https://github.com/ISO-TC211/XML/.
-
 ## Reference documents:
 
 * http://www.iso.org/iso/catalogue_detail.htm?csnumber=53798

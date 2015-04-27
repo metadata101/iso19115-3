@@ -4,7 +4,7 @@ Stylesheet used to update metadata for a service and
 detach a dataset metadata
 -->
 <xsl:stylesheet version="2.0"
-                xmlns:mrc="http://standards.iso.org/19115/-3/mrc/1.0/2014-12-25"
+                xmlns:mrc="http://standards.iso.org/19115/-3/mrc/1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:gn="http://www.fao.org/geonetwork">
 

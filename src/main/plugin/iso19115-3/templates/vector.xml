@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mdb:MD_Metadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
-  xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
-  xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
-  xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"
-  xmlns:mco="http://standards.iso.org/19115/-3/mco/1.0/2014-12-25"
-  xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
-  xmlns:mmi="http://standards.iso.org/19115/-3/mmi/1.0/2014-12-25"
-  xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0/2014-12-25"
-  xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
-  xmlns:mrl="http://standards.iso.org/19115/-3/mrl/1.0/2014-12-25"
-  xmlns:mrs="http://standards.iso.org/19115/-3/mrs/1.0/2014-12-25"
-  xmlns:mrc="http://standards.iso.org/19115/-3/mrc/1.0/2014-12-25"
-  xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
-  xmlns:gfc="http://standards.iso.org/19110/gfc/1.1/2014-12-25"
-  xmlns:gml="http://www.opengis.net/gml/3.2"
-  xsi:schemaLocation="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25 ../schema.xsd">
+                 xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0"
+                 xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0"
+                 xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0"
+                 xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0"
+                 xmlns:mco="http://standards.iso.org/19115/-3/mco/1.0"
+                 xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0"
+                 xmlns:mmi="http://standards.iso.org/19115/-3/mmi/1.0"
+                 xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0"
+                 xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0"
+                 xmlns:mrl="http://standards.iso.org/19115/-3/mrl/1.0"
+                 xmlns:mrs="http://standards.iso.org/19115/-3/mrs/1.0"
+                 xmlns:mrc="http://standards.iso.org/19115/-3/mrc/1.0"
+                 xmlns:gco="http://standards.iso.org/19139/gco/1.0"
+                 xmlns:gfc="http://standards.iso.org/19110/gfc/1.1"
+                 xmlns:gml="http://www.opengis.net/gml/3.2">
   <mdb:metadataIdentifier>
     <mcc:MD_Identifier>
       <mcc:code>
@@ -30,7 +29,7 @@
       </lan:language>
       <lan:characterEncoding>
         <lan:MD_CharacterSetCode codeList="codeListLocation#MD_CharacterSetCode"
-          codeListValue="anyValidURI"/>
+                                 codeListValue="anyValidURI"/>
       </lan:characterEncoding>
     </lan:PT_Locale>
   </mdb:defaultLocale>
@@ -230,7 +229,7 @@
               <gex:minimumValue></gex:minimumValue>
               <gex:maximumValue></gex:maximumValue>
               <gex:verticalCRS>
-                
+
               </gex:verticalCRS>
             </gex:EX_VerticalExtent>
           </gex:verticalElement>
@@ -240,7 +239,7 @@
         <mmi:MD_MaintenanceInformation>
           <mmi:maintenanceAndUpdateFrequency>
             <mmi:MD_MaintenanceFrequencyCode codeListValue="asNeeded"
-              codeList="./resources/codeList.xml#MD_MaintenanceFrequencyCode"/>
+                                             codeList="./resources/codeList.xml#MD_MaintenanceFrequencyCode"/>
           </mmi:maintenanceAndUpdateFrequency>
         </mmi:MD_MaintenanceInformation>
       </mri:resourceMaintenance>
@@ -251,7 +250,7 @@
           </mri:keyword>
           <mri:type>
             <mri:MD_KeywordTypeCode codeListValue="theme"
-              codeList="./resources/codeList.xml#MD_KeywordTypeCode"/>
+                                    codeList="./resources/codeList.xml#MD_KeywordTypeCode"/>
           </mri:type>
         </mri:MD_Keywords>
       </mri:descriptiveKeywords>
@@ -262,7 +261,7 @@
           </mri:keyword>
           <mri:type>
             <mri:MD_KeywordTypeCode codeListValue="place"
-              codeList="./resources/codeList.xml#MD_KeywordTypeCode"/>
+                                    codeList="./resources/codeList.xml#MD_KeywordTypeCode"/>
           </mri:type>
         </mri:MD_Keywords>
       </mri:descriptiveKeywords>
@@ -270,11 +269,11 @@
         <mco:MD_LegalConstraints>
           <mco:accessConstraints>
             <mco:MD_RestrictionCode codeListValue="copyright"
-              codeList="./resources/codeList.xml#MD_RestrictionCode"/>
+                                    codeList="./resources/codeList.xml#MD_RestrictionCode"/>
           </mco:accessConstraints>
           <mco:useConstraints>
             <mco:MD_RestrictionCode codeListValue="otherRestictions"
-              codeList="./resources/codeList.xml#MD_RestrictionCode"/>
+                                    codeList="./resources/codeList.xml#MD_RestrictionCode"/>
           </mco:useConstraints>
           <mco:otherConstraints>
             <gco:CharacterString/>
@@ -288,7 +287,7 @@
           </lan:language>
           <lan:characterEncoding>
             <lan:MD_CharacterSetCode codeList="codeListLocation#MD_CharacterSetCode"
-              codeListValue="utf8"/>
+                                     codeListValue="utf8"/>
           </lan:characterEncoding>
         </lan:PT_Locale>
       </mri:defaultLocale>

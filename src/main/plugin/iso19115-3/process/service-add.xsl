@@ -1,44 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--  
-Stylesheet used to update metadata for a service and 
-attached it to the metadata for data.
+Stylesheet used to link a service to a dataset
+by adding a reference to the distribution section.
 -->
 <xsl:stylesheet version="2.0"
-                xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
-                xmlns:srv="http://standards.iso.org/19115/-3/srv/1.0/2014-12-25"
-                xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
-                xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0/2014-12-25"
-                xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
-                xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
+                xmlns:gco="http://standards.iso.org/19139/gco/1.0"
+                xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0"
+                xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0"
+                xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0"
+                xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0"
+                xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:gn="http://www.fao.org/geonetwork"
                 exclude-result-prefixes="#all">
+  <xsl:output indent="yes"/>
 
-  <!-- Linking a dataset to a service -->
-  <!-- UUID of the metadata to attached to the service -->
+  <!-- Unused -->
   <xsl:param name="uuidref"/>
-
-  <!-- Comma separated values of layers to attached to -->
+  
+  <!-- List of layers -->
   <xsl:param name="scopedName"/>
-
-
-
-  <!-- Linking a service to a dataset -->
-  <!-- Protocol of the service to attach to the dataset record -->
-  <xsl:param name="protocol" select="'OGC:WMS-1.1.1-http-get-map'"/>
-
-  <!-- URL of the service -->
+  <xsl:param name="protocol" select="'OGC:WMS'"/>
   <xsl:param name="url"/>
-
-  <!-- Optional description -->
   <xsl:param name="desc"/>
-
-
-
+  
   <xsl:param name="siteUrl"/>
-
-
+  
   <xsl:template match="/mdb:MD_Metadata">
     <xsl:copy>
       <xsl:copy-of select="@*"/>
@@ -59,70 +46,14 @@ attached it to the metadata for data.
       <xsl:apply-templates select="mdb:metadataExtensionInfo"/>
 
 
-      <!-- Check current metadata is a service metadata record
-        And add the link to the dataset -->
-      <xsl:choose>
-        <xsl:when
-            test="mdb:identificationInfo/srv:SV_ServiceIdentification">
-          <mdb:identificationInfo>
-            <srv:SV_ServiceIdentification>
-              <xsl:copy-of
-                      select="mdb:identificationInfo/*/mri:*"/>
-
-              <xsl:copy-of
-                  select="mdb:identificationInfo/*/srv:serviceType|
-                          mdb:identificationInfo/*/srv:serviceTypeVersion|
-                          mdb:identificationInfo/*/srv:accessProperties|
-                          mdb:identificationInfo/*/srv:couplingType|
-                          mdb:identificationInfo/*/srv:coupledResource[*/srv:resourceReference/@uuidref != $uuidref]"/>
-
-
-              <!-- Handle SV_CoupledResource -->
-              <xsl:variable name="coupledResource">
-                <xsl:for-each select="tokenize($scopedName, ',')">
-                  <srv:coupledResource>
-                    <srv:SV_CoupledResource>
-                      <srv:scopedName>
-                        <gco:ScopedName>
-                          <xsl:value-of select="."/>
-                        </gco:ScopedName>
-                      </srv:scopedName>
-                      <srv:resourceReference uuidref="{$uuidref}"/>
-                    </srv:SV_CoupledResource>
-                  </srv:coupledResource>
-                </xsl:for-each>
-              </xsl:variable>
-
-              <xsl:copy-of select="$coupledResource"/>
-
-
-              <xsl:copy-of
-                  select="mdb:identificationInfo/*/srv:operatedDataset|
-                          mdb:identificationInfo/*/srv:profile|
-                          mdb:identificationInfo/*/srv:serviceStandard|
-                          mdb:identificationInfo/*/srv:containsOperations"/>
-
-              <srv:operatesOn uuidref="{$uuidref}"
-                              xlink:href="{$siteUrl}/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;id={$uuidref}"/>
-
-              <xsl:copy-of
-                      select="mdb:identificationInfo/*/srv:containsChain"/>
-            </srv:SV_ServiceIdentification>
-          </mdb:identificationInfo>
-        </xsl:when>
-        <xsl:otherwise>
-          <!-- Probably a dataset metadata record -->
-          <xsl:copy-of select="mdb:identificationInfo"/>
-        </xsl:otherwise>
-      </xsl:choose>
-
+      <xsl:apply-templates select="mdb:identificationInfo"/>
+        
       <xsl:copy-of select="mri:contentInfo"/>
 
-
       <xsl:choose>
         <xsl:when
             test="mdb:identificationInfo/srv:SV_ServiceIdentification">
-          <xsl:copy-of select="mri:distributionInfo"/>
+          <xsl:apply-templates select="mdb:distributionInfo"/>
         </xsl:when>
         <!-- In a dataset add a link in the distribution section -->
         <xsl:otherwise>
@@ -192,4 +123,16 @@ attached it to the metadata for data.
       <xsl:apply-templates select="mdb:acquisitionInformation"/>
     </xsl:copy>
   </xsl:template>
+  
+  
+  <!-- Do a copy of every nodes and attributes -->
+  <xsl:template match="@*|node()">
+    <xsl:copy>
+      <xsl:apply-templates select="@*|node()"/>
+    </xsl:copy>
+  </xsl:template>
+  
+  <!-- Remove geonet:* elements. -->
+  <xsl:template match="gn:*"
+    priority="2"/>
 </xsl:stylesheet>
