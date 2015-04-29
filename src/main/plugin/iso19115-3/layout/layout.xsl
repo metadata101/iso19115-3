@@ -15,7 +15,7 @@
   xmlns:dqm="http://standards.iso.org/19157/-2/dqm/1.0"
   xmlns:mrc="http://standards.iso.org/19157/-2/mrc/1.0"
   xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0"
-  xmlns:gco="http://standards.iso.org/19139/gco/1.0"
+  xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0"
   xmlns:gfc="http://standards.iso.org/19110/gfc/1.1"
   xmlns:gmx="http://standards.iso.org/19115/-3/gmx"
   xmlns:gts="http://www.isotc211.org/2005/gts"

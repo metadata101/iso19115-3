@@ -27,7 +27,7 @@
                  xmlns:mai="http://standards.iso.org/19115/-3/mai/1.0"
                  xmlns:mic="http://standards.iso.org/19115/-3/mic/1.0"
                  xmlns:mil="http://standards.iso.org/19115/-3/mil/1.0"
-                 xmlns:gco="http://standards.iso.org/19139/gco/1.0"
+                 xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0"
                  xmlns:gml="http://www.opengis.net/gml/3.2"
                  xmlns:xlink="http://www.w3.org/1999/xlink">
   <mdb:metadataIdentifier>

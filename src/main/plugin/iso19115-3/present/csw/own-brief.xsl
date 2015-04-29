@@ -12,7 +12,7 @@
   xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0"
   xmlns:mrl="http://standards.iso.org/19115/-3/mrl/1.0"
   xmlns:mrs="http://standards.iso.org/19115/-3/mrs/1.0"
-  xmlns:gco="http://standards.iso.org/19139/gco/1.0"
+  xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0"
   xmlns:ows="http://www.opengis.net/ows"
   xmlns:gn="http://www.fao.org/geonetwork"
   exclude-result-prefixes="#all">

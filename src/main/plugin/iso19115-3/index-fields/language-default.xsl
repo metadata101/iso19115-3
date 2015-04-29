@@ -17,7 +17,7 @@
 						xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0"
             xmlns:gfc="http://standards.iso.org/19110/gfc/1.1"
 						xmlns:gml="http://www.opengis.net/gml/3.2"
-            xmlns:gco="http://standards.iso.org/19139/gco/1.0"
+            xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0"
 						xmlns:java="java:org.fao.geonet.util.XslUtil"
 						xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
             exclude-result-prefixes="#all">

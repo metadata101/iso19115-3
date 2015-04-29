@@ -3,7 +3,7 @@
 Stylesheet used to update metadata adding a reference to a source record.
 -->
 <xsl:stylesheet version="2.0" xmlns:gmd="http://standards.iso.org/19115/-3/gmd"
-                xmlns:gco="http://standards.iso.org/19139/gco/1.0"
+                xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0"
                 xmlns:mrl="http://standards.iso.org/19115/-3/mrl/1.0"
                 xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"

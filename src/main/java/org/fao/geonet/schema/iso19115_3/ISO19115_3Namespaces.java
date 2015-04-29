@@ -8,7 +8,7 @@ import org.jdom.Namespace;
 public class ISO19115_3Namespaces {
     public static final Namespace GCO =
             Namespace.getNamespace("gco",
-                    "http://standards.iso.org/19139/gco/1.0");
+                    "http://standards.iso.org/19115/-3/gco/1.0");
     public static final Namespace MDB =
             Namespace.getNamespace("mdb",
                     "http://standards.iso.org/19115/-3/mdb/1.0");

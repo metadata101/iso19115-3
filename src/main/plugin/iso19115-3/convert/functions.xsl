@@ -5,7 +5,7 @@
     xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0"
     xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0"
     xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0"
-    xmlns:gco="http://standards.iso.org/19139/gco/1.0"
+    xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0"
     xmlns:gml="http://www.opengis.net/gml/3.2"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:date="http://exslt.org/dates-and-times"

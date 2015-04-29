@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:exslt="http://exslt.org/common"
                 xmlns:geonet="http://www.fao.org/geonetwork"
-                xmlns:gco="http://standards.iso.org/19139/gco/1.0"
+                xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0"
                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
                 xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0"
                 xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0"

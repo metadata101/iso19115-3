@@ -8,7 +8,7 @@
                 xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0"
                 xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0"
                 xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0"
-                xmlns:gco="http://standards.iso.org/19139/gco/1.0"
+                xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0"
                 xmlns:util="java:org.fao.geonet.util.XslUtil"
                 xmlns:geonet="http://www.fao.org/geonetwork"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"

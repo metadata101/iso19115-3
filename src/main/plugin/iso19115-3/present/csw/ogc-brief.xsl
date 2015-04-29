@@ -12,7 +12,7 @@
   xmlns:mco="http://standards.iso.org/19115/-3/mco/1.0"
   xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0"
   xmlns:mrs="http://standards.iso.org/19115/-3/mrs/1.0"
-  xmlns:gco="http://standards.iso.org/19139/gco/1.0"
+  xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0"
   xmlns:ows="http://www.opengis.net/ows"
   xmlns:geonet="http://www.fao.org/geonetwork"
   exclude-result-prefixes="#all">

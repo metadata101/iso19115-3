@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:gml="http://www.opengis.net/gml/3.2" 
-  xmlns:gco="http://standards.iso.org/19139/gco/1.0"
+  xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0"
   xmlns:mds="http://standards.iso.org/19115/-3/mds/1.0"
   xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0"
   xmlns:mco="http://standards.iso.org/19115/-3/mco/1.0"

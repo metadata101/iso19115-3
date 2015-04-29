@@ -4,7 +4,7 @@
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0"
                 xmlns:dqm="http://standards.iso.org/19157/-2/dqm/1.0"
-                xmlns:gco="http://standards.iso.org/19139/gco/1.0"
+                xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0"
                 xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0"
                 xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0"
                 xmlns:mrc="http://standards.iso.org/19115/-3/mrc/1.0"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <xsl:stylesheet   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" 
-						xmlns:gco="http://standards.iso.org/19139/gco/1.0"
+						xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0"
             xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0"
             xmlns:mds="http://standards.iso.org/19115/-3/mds/1.0"
             xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0"

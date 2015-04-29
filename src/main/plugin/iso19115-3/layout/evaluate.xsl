@@ -16,7 +16,7 @@
                 xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0"
                 xmlns:dqm="http://standards.iso.org/19157/-2/dqm/1.0"
                 xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0"
-                xmlns:gco="http://standards.iso.org/19139/gco/1.0"
+                xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0"
                 xmlns:gfc="http://standards.iso.org/19110/gfc/1.1"
                 xmlns:gts="http://www.isotc211.org/2005/gts"
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

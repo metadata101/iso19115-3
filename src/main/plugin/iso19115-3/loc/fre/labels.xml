@@ -12,7 +12,7 @@
         xmlns:gex="http://www.isotc211.org/2005/gex/1.0"
         xmlns:dqm="http://www.isotc211.org/2005/dqm/1.0"
         xmlns:cit="http://www.isotc211.org/2005/cit/1.0"
-        xmlns:gco="http://standards.iso.org/19139/gco/1.0"
+        xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../../../labels.xsd" >
   <!-- ADD BY AGF -->

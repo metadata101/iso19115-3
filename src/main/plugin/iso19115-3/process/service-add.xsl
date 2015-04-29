@@ -4,7 +4,7 @@ Stylesheet used to link a service to a dataset
 by adding a reference to the distribution section.
 -->
 <xsl:stylesheet version="2.0"
-                xmlns:gco="http://standards.iso.org/19139/gco/1.0"
+                xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0"
                 xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0"
                 xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0"
                 xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0"
