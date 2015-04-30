@@ -7,6 +7,7 @@
   xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0"
   xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0"
   xmlns:gn="http://www.fao.org/geonetwork"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
   exclude-result-prefixes="#all" >
   
   <!-- TODO: could be nice to define the target distributor -->
@@ -19,8 +20,17 @@
   <xsl:param name="desc"/>
 
   <xsl:variable name="separator" select="'\|'"/>
-  
+
+  <xsl:variable name="mainLang"
+                select="/mdb:MD_Metadata/mdb:defaultLocale/*/lan:language/*/@codeListValue"
+                as="xs:string"/>
+
+  <xsl:variable name="useOnlyPTFreeText"
+                select="count(//*[lan:PT_FreeText and not(gco:CharacterString)]) > 0"
+                as="xs:boolean"/>
+
   <xsl:template match="/mdb:MD_Metadata|*[contains(@gco:isoType, 'mdb:MD_Metadata')]">
+
     <xsl:copy>
       <xsl:copy-of select="@*"/>
       <xsl:apply-templates select="mdb:metadataIdentifier"/>
@@ -128,74 +138,119 @@
     
     <!-- Add online source from URL -->
     <xsl:if test="$url">
-      <xsl:for-each select="tokenize($name, ',')">
-        <xsl:variable name="pos" select="position()"/>
-        <mrd:onLine>
-          <cit:CI_OnlineResource>
-            <cit:linkage>
-              <gco:CharacterString>
-                <xsl:value-of select="$url"/>
-              </gco:CharacterString>
-            </cit:linkage>
+      
+      <!-- If a name is provided loop on all languages -->
+      <xsl:choose>
+        <xsl:when test="normalize-space($name) != ''">
+          <xsl:for-each select="tokenize($name, ',')">
+            <mrd:onLine>
+              <cit:CI_OnlineResource>
+                <cit:linkage>
+                  <gco:CharacterString>
+                    <xsl:value-of select="$url"/>
+                  </gco:CharacterString>
+                </cit:linkage>
 
-            <xsl:if test="$protocol != ''">
-              <cit:protocol>
+                <xsl:if test="$protocol != ''">
+                  <cit:protocol>
+                    <gco:CharacterString>
+                      <xsl:value-of select="$protocol"/>
+                    </gco:CharacterString>
+                  </cit:protocol>
+                </xsl:if>
+
+                <xsl:if test="normalize-space($name) != ''">
+                  <cit:name>
+                    <xsl:call-template name="fillTextElement">
+                      <xsl:with-param name="formattedText" select="$name"/>
+                    </xsl:call-template>
+                  </cit:name>
+                </xsl:if>
+
+                <xsl:if test="$desc != ''">
+                  <cit:description>
+                    <xsl:call-template name="fillTextElement">
+                      <xsl:with-param name="formattedText" select="$desc"/>
+                    </xsl:call-template>
+                  </cit:description>
+                </xsl:if>
+              </cit:CI_OnlineResource>
+            </mrd:onLine>
+          </xsl:for-each>
+        </xsl:when>
+        <xsl:otherwise>
+          <mrd:onLine>
+            <cit:CI_OnlineResource>
+              <cit:linkage>
                 <gco:CharacterString>
-                  <xsl:value-of select="$protocol"/>
+                  <xsl:value-of select="$url"/>
                 </gco:CharacterString>
-              </cit:protocol>
-            </xsl:if>
+              </cit:linkage>
 
-            <xsl:if test="$name != ''">
-              <cit:name>
-                <xsl:choose>
-                  <xsl:when test="contains($name, '|')">
-                    <!-- TODO: Should check if only PT_FreeText should be used
-                    even for the default language. -->
-                    <lan:PT_FreeText>
-                      <xsl:for-each select="tokenize($name, $separator)">
-                        <xsl:variable name="nameLang" select="substring-before(., '#')"></xsl:variable>
-                        <xsl:variable name="nameValue" select="substring-after(., '#')"></xsl:variable>
-                        <lan:textGroup>
-                          <lan:LocalisedCharacterString locale="{concat('#', $nameLang)}"><xsl:value-of select="$nameValue" /></lan:LocalisedCharacterString>
-                        </lan:textGroup>
-                      </xsl:for-each>
-                    </lan:PT_FreeText>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <gco:CharacterString>
-                      <xsl:value-of select="substring-after($name, '#')"/>
-                    </gco:CharacterString>
-                  </xsl:otherwise>
-                </xsl:choose>
-              </cit:name>
-            </xsl:if>
+              <xsl:if test="$protocol != ''">
+                <cit:protocol>
+                  <gco:CharacterString>
+                    <xsl:value-of select="$protocol"/>
+                  </gco:CharacterString>
+                </cit:protocol>
+              </xsl:if>
 
-            <xsl:if test="$desc != ''">
-              <cit:description>
-                <xsl:choose>
-                  <xsl:when test="contains($desc, '|')">
-                    <lan:PT_FreeText>
-                      <xsl:for-each select="tokenize($desc, $separator)">
-                        <xsl:variable name="descLang" select="substring-before(., '#')"></xsl:variable>
-                        <xsl:variable name="descValue" select="substring-after(., '#')"></xsl:variable>
-                        <lan:textGroup>
-                          <lan:LocalisedCharacterString locale="{concat('#', $descLang)}"><xsl:value-of select="$descValue" /></lan:LocalisedCharacterString>
-                        </lan:textGroup>
-                      </xsl:for-each>
-                    </lan:PT_FreeText>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <gco:CharacterString>
-                      <xsl:value-of select="substring-after($desc, '#')"/>
-                    </gco:CharacterString>
-                  </xsl:otherwise>
-                </xsl:choose>
-              </cit:description>
-            </xsl:if>
-          </cit:CI_OnlineResource>
-        </mrd:onLine>
-      </xsl:for-each>
+              <xsl:if test="$desc != ''">
+                <cit:description>
+                  <xsl:call-template name="fillTextElement">
+                    <xsl:with-param name="formattedText" select="$desc"/>
+                  </xsl:call-template>
+                </cit:description>
+              </xsl:if>
+            </cit:CI_OnlineResource>
+          </mrd:onLine>
+        </xsl:otherwise>
+      </xsl:choose>
+
     </xsl:if>
+  </xsl:template>
+
+
+  <xsl:template name="fillTextElement">
+    <xsl:param name="formattedText"/>
+    <xsl:choose>
+      <xsl:when test="contains($formattedText, '|')">
+        <lan:PT_FreeText>
+          <xsl:for-each select="tokenize($formattedText, $separator)">
+            <xsl:variable name="descLang"
+                          select="substring-before(., '#')"/>
+            <xsl:variable name="descValue"
+                          select="substring-after(., '#')"/>
+            <xsl:if test="$useOnlyPTFreeText = false() and $descLang = $mainLang">
+              <gco:CharacterString>
+                <xsl:value-of select="$descValue"/>
+              </gco:CharacterString>
+            </xsl:if>
+          </xsl:for-each>
+
+          <xsl:for-each select="tokenize($formattedText, $separator)">
+            <xsl:variable name="descLang"
+                          select="substring-before(., '#')"/>
+            <xsl:variable name="descValue"
+                          select="substring-after(., '#')"/>
+            <xsl:if test="$useOnlyPTFreeText or $descLang != $mainLang">
+              <lan:textGroup>
+                <lan:LocalisedCharacterString locale="{concat('#', $descLang)}">
+                  <xsl:value-of select="$descValue" />
+                </lan:LocalisedCharacterString>
+              </lan:textGroup>
+            </xsl:if>
+          </xsl:for-each>
+        </lan:PT_FreeText>
+      </xsl:when>
+      <xsl:otherwise>
+        <gco:CharacterString>
+          <xsl:value-of select="if (contains($formattedText, '#'))
+                                then substring-after($formattedText, '#')
+                                else $formattedText"/>
+        </gco:CharacterString>
+      </xsl:otherwise>
+    </xsl:choose>
+
   </xsl:template>
 </xsl:stylesheet>
