@@ -5,7 +5,7 @@
        uri="schema/others/xlink/xlink.xsd"/>
   
   <uri name="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco/gco.xsd"
-       uri="schema/standards.iso.org/19139/gco/1.0/gco.xsd"/>
+       uri="schema/standards.iso.org/19115/-3/gco/1.0/gco.xsd"/>
 
   <uri name="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19136_Schemas/gml.xsd"
        uri="schema/others/ISO19136/gml.xsd"/>
@@ -35,7 +35,7 @@
     GeoNetwork edits and validates against a schema it knows about. -->
 
   <system systemId="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco-gml3.2.x/gco.xsd"
-          uri="schema/standards.iso.org/19139/gco/1.0/gco.xsd"/>
+          uri="schema/standards.iso.org/19115/-3/gco/1.0/gco.xsd"/>
 
   <system systemId="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19136_Schemas/gml.xsd"
           uri="schema/others/ISO19136/gml.xsd"/>
