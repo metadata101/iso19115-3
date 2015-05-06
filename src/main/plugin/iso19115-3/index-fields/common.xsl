@@ -764,12 +764,14 @@
   <xsl:template name="translateInspireThemeToEnglish">
     <xsl:param name="keyword"/>
     <xsl:param name="inspireThemes"/>
-    <xsl:for-each select="$inspireThemes/skos:prefLabel">
-      <!-- if this skos:Concept contains a kos:prefLabel with text value equal to keyword -->
-      <xsl:if test="text() = $keyword">
-        <xsl:value-of select="../skos:prefLabel[@xml:lang='en']/text()"/>
-      </xsl:if>
-    </xsl:for-each>
+    <xsl:if test="$inspireThemes">
+      <xsl:for-each select="$inspireThemes/skos:prefLabel">
+        <!-- if this skos:Concept contains a kos:prefLabel with text value equal to keyword -->
+        <xsl:if test="text() = $keyword">
+          <xsl:value-of select="../skos:prefLabel[@xml:lang='en']/text()"/>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template name="determineInspireAnnex">
