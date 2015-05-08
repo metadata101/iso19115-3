@@ -35,7 +35,7 @@
   <xsl:param name="thesauriDir"/>
 
   <!-- Enable INSPIRE or not -->
-  <xsl:param name="inspire" select="false()"/>
+  <xsl:param name="inspire">false</xsl:param>
 
   <!-- If identification citation dates
     should be indexed as a temporal extent information (eg. in INSPIRE
@@ -278,7 +278,7 @@
         <xsl:for-each select="mri:keyword/gco:CharacterString|
                                 mri:keyword/gcx:Anchor|
                                 mri:keyword/lan:PT_FreeText/lan:textGroup/lan:LocalisedCharacterString">
-          <xsl:if test="$inspire">
+          <xsl:if test="$inspire='true'">
             <xsl:if test="string-length(.) &gt; 0">
 
               <xsl:variable name="inspireannex">
@@ -527,7 +527,7 @@
 
 
     <xsl:for-each select="$metadata/mdb:dataQualityInfo/*/dqm:report/*/dqm:result">
-      <xsl:if test="$inspire">
+      <xsl:if test="$inspire='true'">
         <!--
         INSPIRE related dataset could contains a conformity section with:
         * COMMISSION REGULATION (EU) No 1089/2010 of 23 November 2010 implementing Directive 2007/2/EC of the European Parliament and of the Council as regards interoperability of spatial data sets and services
