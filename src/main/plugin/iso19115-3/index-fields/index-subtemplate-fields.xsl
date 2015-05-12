@@ -16,6 +16,7 @@
                 xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0"
                 xmlns:gcx="http://standards.iso.org/19115/-3/gcx/1.0"
                 xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0"
+                xmlns:mdq="http://standards.iso.org/19157/-2/mdq/1.0"
                 xmlns:geonet="http://www.fao.org/geonetwork"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:skos="http://www.w3.org/2004/02/skos/core#">
@@ -57,6 +58,23 @@
            store="true" index="true"/>
     <xsl:call-template name="subtemplate-common-fields"/>
   </xsl:template>
+
+
+  <xsl:template mode="index"
+                match="mdq:*[count(ancestor::node()) =  1]">
+
+    <xsl:variable name="type" select="local-name(.)"/>
+    <xsl:variable name="name"
+                  select="string-join(.//mdq:nameOfMeasure/gco:CharacterString, ', ')"/>
+    <Field name="_title"
+           string="{if ($name != '')
+                    then concat($type, ' / ', $name, '')
+                    else $type}"
+           store="true" index="true"/>
+
+    <xsl:call-template name="subtemplate-common-fields"/>
+  </xsl:template>
+
 
   <xsl:template name="subtemplate-common-fields">
     <Field name="any" string="{normalize-space(string(.))}" store="false" index="true"/>

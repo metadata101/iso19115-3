@@ -295,11 +295,11 @@
     <label>Coverage result</label>
     <description></description>
     <condition></condition>
-  </element> 
-  <element name="mdq:DQ_QuantitativeResult">
+  </element>
+  <element name="mdq:DQ_QuantitativeResult" id="133.0">
     <label>Quantitative result</label>
-    <description></description>
-    <condition></condition>
+    <description>The values or information about the value(s) (or set of values) obtained from
+      applying a data quality measure</description>
   </element>
   <element name="mrl:processedLevel">
     <label>Processed level</label>
@@ -1229,11 +1229,6 @@
   <element name="mdq:DQ_QuantitativeAttributeAccuracy" id="127.0">
     <label>Quantitative attribute accuracy</label>
     <description>Accuracy of quantitative attributes</description>
-  </element>
-  <element name="mri:DQ_QuantitativeResult" id="133.0">
-    <label>Quantitative result</label>
-    <description>The values or information about the value(s) (or set of values) obtained from
-            applying a data quality measure</description>
   </element>
   <element name="mdq:DQ_RelativeInternalPositionalAccuracy" id="119.0">
     <label>Relative internal positional accuracy</label>
@@ -3553,21 +3548,17 @@
     <description>Explanation of the application of the legal constraints or other restrictions
             and legal prerequisites for obtaining and using the resource or metadata</description>
   </element>
-  <element name="mri:value" id="137.0" context="mri:DQ_QuantitativeResult">
+  <element name="mdq:value" id="137.0" context="mdq:DQ_QuantitativeResult">
     <condition>mandatory</condition>
     <label>Value</label>
     <description>Quantitative value or values, content determined by the evaluation procedure
             used</description>
   </element>
-  <element name="mri:value">
+  <element name="mdq:value">
     <label>Value</label>
     <description />
   </element>
-  <element name="mri:value" id="544.0" context="mri:MD_Type">
-    <label>Value</label>
-    <description>Data type value</description>
-  </element>
-  <element name="mri:valueType" id="134.0">
+  <element name="mdq:valueRecordType" id="134.0">
     <label>Value type</label>
     <description>Quantitative conformance quality level value or range of values</description>
     <helper>
@@ -3579,7 +3570,7 @@
       <option value="Measure(s) (value(s) + unit(s))">Measure(s) (value(s) + unit(s))</option>
     </helper>
   </element>
-  <element name="mri:valueUnit" id="135.0">
+  <element name="mdq:valueUnit" id="135.0">
     <label>Value unit</label>
     <description>Value unit for reporting a data quality result</description>
     <condition>mandatory</condition>

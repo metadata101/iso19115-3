@@ -229,12 +229,7 @@
     <label>Résultat de couverture</label>
     <description></description>
     <condition></condition>
-  </element> 
-  <element name="mdq:DQ_QuantitativeResult">
-    <label>Résultat quantitatif</label>
-    <description></description>
-    <condition></condition>
-  </element> 
+  </element>
   <element name="mrl:processedLevel">
     <label>processed Level</label>
     <description></description>
@@ -5186,7 +5181,7 @@ l’IGN (WPS)
     <condition/>
     
   </element>
-  <element name="cit:value" id="137.0" context="cit:DQ_QuantitativeResult">
+  <element name="mdq:value" id="137.0" context="mdq:DQ_QuantitativeResult">
     <label>Valeur</label>
     <description>Valeurs quantitatives, déterminées par la procédure d'évaluation utilisée.</description>
     <help>Valeurs quantitatives définies par le processus d'exploitation.</help>
@@ -5200,7 +5195,7 @@ l’IGN (WPS)
     <condition/>
     
   </element>
-  <element name="cit:valueType" id="134.0">
+  <element name="mdq:valueRecordType" id="134.0">
     <label>Type de valeur</label>
     <description>Valeur quantitative, ou domaine de valeur, pour l'appréciation de qualité</description>
     <help>Valeur (ou domaine de valeurs) quantitative pour l'appréciation de la qualité.</help>
@@ -5215,10 +5210,10 @@ l’IGN (WPS)
     <condition/>
     
   </element>
-  <element name="cit:valueUnit" id="135.0">
-    <label>Unité de valeur</label>
-    <description>Unité de valeur pour la documentation des résultats de qualité sur les données</description>
-    <help>Unité de valeur pour la documentation du résultat de la qualité des données.</help>
+  <element name="mdq:valueUnit" id="135.0">
+    <label>Unité</label>
+    <description>Unité de la valeur pour la documentation des résultats de qualité sur les données</description>
+    <help></help>
     <condition/>
     
   </element>
