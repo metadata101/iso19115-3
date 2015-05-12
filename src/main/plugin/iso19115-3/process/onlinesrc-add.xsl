@@ -138,7 +138,7 @@
     
     <!-- Add online source from URL -->
     <xsl:if test="$url">
-      
+
       <!-- If a name is provided loop on all languages -->
       <xsl:choose>
         <xsl:when test="normalize-space($name) != ''">
