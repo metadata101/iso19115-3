@@ -57,9 +57,13 @@
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
 
+    <xsl:variable name="name" select="concat(@prefix, ':', @name)"/>
+    <xsl:variable name="flatModeException"
+                  select="gn-fn-metadata:isFieldFlatModeException($viewConfig, $name)"/>
+
     <!-- TODO: this should be common to all schemas -->
     <xsl:if test="$isEditing and
-      not($isFlatMode)">
+                  (not($isFlatMode) or $flatModeException)">
 
       <xsl:variable name="name" select="concat(@prefix, ':', @name)"/>
       <xsl:variable name="directive" select="gn-fn-metadata:getFieldAddDirective($editorConfig, $name)"/>
