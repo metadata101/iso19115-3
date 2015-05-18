@@ -325,7 +325,8 @@
 
       <!-- Elements that should not use the "flat" mode -->
       <flatModeExceptions>
-        <for name="mri:descriptiveKeywords" />
+        <for name="mri:descriptiveKeywords"/>
+        <for name="mri:topicCategory"/>
         <for name="mri:pointOfContact"/>
         <for name="mrd:distributor"/>
         <for name="mdb:contact"/>

@@ -17,7 +17,7 @@ public class ISO19115_3Namespaces {
                     "http://standards.iso.org/19115/-3/mri/1.0");
     public static final Namespace SRV =
             Namespace.getNamespace("srv",
-                    "http://standards.iso.org/19115/-3/srv/1.0");
+                    "http://standards.iso.org/19115/-3/srv/2.0");
     public static final Namespace MRC =
             Namespace.getNamespace("mrc",
                     "http://standards.iso.org/19115/-3/mrc/1.0");

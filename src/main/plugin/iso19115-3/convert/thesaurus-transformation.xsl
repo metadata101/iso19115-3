@@ -14,42 +14,42 @@
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 exclude-result-prefixes="#all">
-	
-	
-	<!-- A set of templates use to convert thesaurus concept to 
+
+
+  <!-- A set of templates use to convert thesaurus concept to
        iso19115-3 fragments. -->
-	
+
   <!-- uses functions from schema iso19139/process/process-utility.xsl -->
-	<xsl:include href="../process/process-utility.xsl"/>
-	
-	<!-- Convert a concept to an iso19115-3 fragment with an Anchor 
+  <xsl:include href="../process/process-utility.xsl"/>
+
+  <!-- Convert a concept to an iso19115-3 fragment with an Anchor
         for each keywords pointing to the concept URI-->
-	<xsl:template name="to-iso19115-3-keyword-with-anchor">
-		<xsl:call-template name="to-iso19115-3-keyword">
-			<xsl:with-param name="withAnchor" select="true()"/>
-		</xsl:call-template>
-	</xsl:template>
-	
-	
-	<!-- Convert a concept to an iso19115-3 mri:MD_Keywords with an 
+  <xsl:template name="to-iso19115-3-keyword-with-anchor">
+    <xsl:call-template name="to-iso19115-3-keyword">
+      <xsl:with-param name="withAnchor" select="true()"/>
+    </xsl:call-template>
+  </xsl:template>
+
+
+  <!-- Convert a concept to an iso19115-3 mri:MD_Keywords with an
        XLink which will be resolved by XLink resolver. -->
-	<xsl:template name="to-iso19115-3-keyword-as-xlink">
-		<xsl:call-template name="to-iso19115-3-keyword">
-			<xsl:with-param name="withXlink" select="true()"/>
-		</xsl:call-template>
-	</xsl:template>
-	
-	
-	<!-- Convert a concept to an iso19115-3 keywords.
+  <xsl:template name="to-iso19115-3-keyword-as-xlink">
+    <xsl:call-template name="to-iso19115-3-keyword">
+      <xsl:with-param name="withXlink" select="true()"/>
+    </xsl:call-template>
+  </xsl:template>
+
+
+  <!-- Convert a concept to an iso19115-3 keywords.
     If no keyword is provided, only thesaurus section is adaded.
     -->
-	<xsl:template name="to-iso19115-3-keyword">
-		<xsl:param name="withAnchor" select="false()"/>
-		<xsl:param name="withXlink" select="false()"/>
-		<!-- Add thesaurus identifier using an Anchor which points to the download link. 
+  <xsl:template name="to-iso19115-3-keyword">
+    <xsl:param name="withAnchor" select="false()"/>
+    <xsl:param name="withXlink" select="false()"/>
+    <!-- Add thesaurus identifier using an Anchor which points to the download link.
         It's recommended to use it in order to have the thesaurus widget inline editor
         which use the thesaurus identifier for initialization. -->
-		<xsl:param name="withThesaurusAnchor" select="true()"/>
+    <xsl:param name="withThesaurusAnchor" select="true()"/>
 
     <xsl:variable name="listOfLanguage" select="tokenize(/root/request/lang, ',')"/>
     <xsl:variable name="textgroupOnly" select="/root/request/textgroupOnly"/>
@@ -143,7 +143,6 @@
             <xsl:attribute name="gco:nilReason" select="concat('thesaurus::', $keywordThesaurus)" />
           </xsl:if>
 
-
           <xsl:choose>
             <xsl:when test="/root/request/lang">
               <xsl:variable name="keyword" select="." />
@@ -153,19 +152,20 @@
                   <xsl:value-of select="$keyword/values/value[@language = $listOfLanguage[1]]/text()"></xsl:value-of>
                 </gco:CharacterString>
               </xsl:if>
-
-              <lan:PT_FreeText>
-                <xsl:for-each select="$listOfLanguage">
-                  <xsl:variable name="lang" select="." />
-                  <xsl:if test="$textgroupOnly or $lang != $listOfLanguage[1]">
-                    <lan:textGroup>
-                      <lan:LocalisedCharacterString locale="#{upper-case(util:twoCharLangCode($lang))}">
-                        <xsl:value-of select="$keyword/values/value[@language = $lang]/text()"></xsl:value-of>
-                      </lan:LocalisedCharacterString>
-                    </lan:textGroup>
-                  </xsl:if>
-                </xsl:for-each>
-              </lan:PT_FreeText>
+              <xsl:if test="count($listOfLanguage) > 1">
+                <lan:PT_FreeText>
+                  <xsl:for-each select="$listOfLanguage">
+                    <xsl:variable name="lang" select="." />
+                    <xsl:if test="$textgroupOnly or $lang != $listOfLanguage[1]">
+                      <lan:textGroup>
+                        <lan:LocalisedCharacterString locale="#{upper-case(util:twoCharLangCode($lang))}">
+                          <xsl:value-of select="$keyword/values/value[@language = $lang]/text()"></xsl:value-of>
+                        </lan:LocalisedCharacterString>
+                      </lan:textGroup>
+                    </xsl:if>
+                  </xsl:for-each>
+                </lan:PT_FreeText>
+              </xsl:if>
             </xsl:when>
             <xsl:otherwise>
               <xsl:choose>
@@ -188,7 +188,7 @@
       <xsl:copy-of select="geonet:add-iso19115-3-thesaurus-info($currentThesaurus, $withThesaurusAnchor, /root/gui/thesaurus/thesauri, not(/root/request/keywordOnly))" />
 
     </mri:MD_Keywords>
-	</xsl:template>
+  </xsl:template>
 
 
 
@@ -259,24 +259,24 @@
 
 
   <!-- Convert a concept to an iso19115-3 extent -->
-	<xsl:template name="to-iso19115-3-extent">
-		<xsl:param name="isService" select="false()"/>
-		
-		<xsl:variable name="currentThesaurus" select="thesaurus/key"/>
-		<!-- Loop on all keyword from the same thesaurus -->
-		<xsl:for-each select="//keyword[thesaurus/key = $currentThesaurus]">
-			<xsl:choose>
-				<xsl:when test="$isService">
-					<srv:extent>
-						<xsl:copy-of select="geonet:make-iso-extent(geo/west, geo/south, geo/east, geo/north, value)"/>
-					</srv:extent>
-				</xsl:when>
-				<xsl:otherwise>
-					<mri:extent>
-						<xsl:copy-of select="geonet:make-iso-extent(geo/west, geo/south, geo/east, geo/north, value)"/>
-					</mri:extent>
-				</xsl:otherwise>
-			</xsl:choose>
-		</xsl:for-each>
-	</xsl:template>
+  <xsl:template name="to-iso19115-3-extent">
+    <xsl:param name="isService" select="false()"/>
+
+    <xsl:variable name="currentThesaurus" select="thesaurus/key"/>
+    <!-- Loop on all keyword from the same thesaurus -->
+    <xsl:for-each select="//keyword[thesaurus/key = $currentThesaurus]">
+      <xsl:choose>
+        <xsl:when test="$isService">
+          <srv:extent>
+            <xsl:copy-of select="geonet:make-iso-extent(geo/west, geo/south, geo/east, geo/north, value)"/>
+          </srv:extent>
+        </xsl:when>
+        <xsl:otherwise>
+          <mri:extent>
+            <xsl:copy-of select="geonet:make-iso-extent(geo/west, geo/south, geo/east, geo/north, value)"/>
+          </mri:extent>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
+  </xsl:template>
 </xsl:stylesheet>
