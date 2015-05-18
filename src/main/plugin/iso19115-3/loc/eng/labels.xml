@@ -293,13 +293,20 @@
   </element>  
   <element name="mdq:QE_CoverageResult">
     <label>Coverage result</label>
-    <description></description>
+    <description>Result of a data quality measure organising the measured values as a coverage</description>
     <condition></condition>
   </element>
   <element name="mdq:DQ_QuantitativeResult" id="133.0">
     <label>Quantitative result</label>
     <description>The values or information about the value(s) (or set of values) obtained from
       applying a data quality measure</description>
+  </element>
+  <element name="mdq:deductiveSource">
+    <label>Deductive source</label>
+    <description>Information on which data are used as
+      sources in deductive evaluation method</description>
+    <example>Positional accuracy of the rivers
+      nearby the archaeological camp</example>
   </element>
   <element name="mrl:processedLevel">
     <label>Processed level</label>
@@ -701,11 +708,14 @@
   </element>
   <element name="mdq:DQ_ConformanceResult">
     <label>Conformance result</label>
-    <description></description>
+    <description>Information about the outcome of evaluating
+      the obtained value (or set of values) against a
+      specified acceptable conformance quality
+      level</description>
   </element>
   <element name="mdq:DQ_DescriptiveResult">
     <label>Descriptive result</label>
-    <description></description>
+    <description>Data quality descriptive result</description>
   </element>
   <element name="mdq:resultScope">
     <label>Result scope</label>
@@ -724,16 +734,17 @@
     <description></description>
   </element>
   <element name="mdq:DQ_Confidence">
-    <label>Confidence</label>
-    <description></description>
+    <label>Metaquality / Confidence</label>
+    <description>Trustworthiness of a data quality result.</description>
   </element>
   <element name="mdq:DQ_Homogeneity">
-    <label>Homogeneity</label>
-    <description></description>
+    <label>Metaquality / Homogeneity</label>
+    <description>Expected or tested uniformity of the results obtained for a data quality evaluation.</description>
   </element>
   <element name="mdq:DQ_Representativity">
-    <label>Representativity</label>
-    <description></description>
+    <label>Metaquality / Representativity</label>
+    <description>Degree to which the sample used has produced a result which is representative of the
+      data within the data quality scope</description>
   </element>
   <element name="mdq:explanation">
     <label>Explanation</label>
@@ -747,7 +758,11 @@
     <label>Specification</label>
     <description></description>
   </element>
-  
+  <element name="mdq:relatedElement">
+    <label>Related quality element</label>
+    <description></description>
+  </element>
+
 
 
 

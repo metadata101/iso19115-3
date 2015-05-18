@@ -58,6 +58,7 @@
     <for name="mdq:standaloneQualityReportDetails" use="textarea"/>
     <for name="mdq:abstract" use="textarea"/>
     <for name="mdq:statement" use="textarea"/>
+    <for name="mdq:evaluationMethodDescription" use="textarea"/>
     <for name="mrl:statement" use="textarea"/>
     <for name="mri:response" use="textarea"/>
     <for name="mri:specificUsage" use="textarea"/>

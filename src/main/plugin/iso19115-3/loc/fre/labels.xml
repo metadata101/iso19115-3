@@ -227,13 +227,21 @@
   </element> 
   <element name="mdq:QE_CoverageResult">
     <label>Résultat de couverture</label>
-    <description></description>
+    <description>Result of a data quality measure organising the measured values as a coverage</description>
     <condition></condition>
   </element>
   <element name="mrl:processedLevel">
     <label>processed Level</label>
     <description></description>
     <condition></condition>
+  </element>
+
+  <element name="mdq:deductiveSource">
+    <label>Deductive source</label>
+    <description>Information on which data are used as
+      sources in deductive evaluation method</description>
+    <example>Positional accuracy of the rivers
+      nearby the archaeological camp</example>
   </element>
 
 
@@ -707,7 +715,10 @@
   </element>
   <element name="mdq:DQ_ConformanceResult">
     <label>Résulats de conformité</label>
-    <description></description>
+    <description>Information about the outcome of evaluating
+      the obtained value (or set of values) against a
+      specified acceptable conformance quality
+      level</description>
   </element>
   <element name="mdq:DQ_DescriptiveResult">
     <label>Descriptive result</label>
@@ -729,17 +740,19 @@
     <label>Elément de convivialité</label>
     <description></description>
   </element>
+
   <element name="mdq:DQ_Confidence">
-    <label>Confiance</label>
-    <description></description>
+    <label>Métaqualité / Confiance</label>
+    <description>Trustworthiness of a data quality result.</description>
   </element>
   <element name="mdq:DQ_Homogeneity">
-    <label>Homogénéitéy</label>
-    <description></description>
+    <label>Métaqualité / Homogénéité</label>
+    <description>Expected or tested uniformity of the results obtained for a data quality evaluation.</description>
   </element>
   <element name="mdq:DQ_Representativity">
-    <label>Représentativité</label>
-    <description></description>
+    <label>Métaqualité / Représentativité</label>
+    <description>Degree to which the sample used has produced a result which is representative of the
+      data within the data quality scope</description>
   </element>
   <element name="mdq:explanation">
     <label>Explanation</label>
@@ -751,6 +764,10 @@
   </element>
   <element name="mdq:specification">
     <label>Spécification</label>
+    <description></description>
+  </element>
+  <element name="mdq:relatedElement">
+    <label>Élément qualité associé</label>
     <description></description>
   </element>
 
