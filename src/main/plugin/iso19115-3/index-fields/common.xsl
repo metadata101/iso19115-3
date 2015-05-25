@@ -627,54 +627,59 @@
 
 
     <!-- Metadata scope -->
-    <xsl:choose>
-      <xsl:when test="$metadata/mdb:metadataScope">
-        <xsl:for-each select="$metadata/mdb:metadataScope/mdb:MD_MetadataScope/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue">
-          <Field name="type" string="{string(.)}" store="true" index="true"/>
-        </xsl:for-each>
-      </xsl:when>
-      <xsl:otherwise>
-        <!-- If not defined, record is a dataset -->
-        <Field name="type" string="dataset" store="true" index="true"/>
-      </xsl:otherwise>
-    </xsl:choose>
-
-
-    <!-- TODO need a check -->
     <xsl:variable name="isDataset"
                   select="count($metadata/mdb:metadataScope[mdb:MD_MetadataScope/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='dataset']) > 0"/>
+
+
+    <!-- A map is identified when presentation form is mapDigital
+    in that case, the record is not flagged as a dataset.
+    -->
     <xsl:variable name="isMapDigital"
-                  select="count($metadata/mri:identificationInfo/*/cit:citation/*/
-			                          cit:presentationForm[cit:CI_PresentationFormCode/@codeListValue = 'mapDigital']) > 0"/>
+                  select="count($metadata/mdb:identificationInfo/*/mri:citation/*/
+                                cit:presentationForm[cit:CI_PresentationFormCode/@codeListValue = 'mapDigital']) > 0"/>
     <xsl:variable name="isStatic"
                   select="count($metadata/mdb:distributionInfo/mrd:MD_Distribution/
-			                          mrd:distributionFormat/mrd:MD_Format/mrd:formatSpecificationCitation/*/
-			                            cit:name/gco:CharacterString[
-			                              contains(., 'PDF') or
-			                              contains(., 'PNG') or
-			                              contains(., 'JPEG')]) > 0"/>
+                                mrd:distributionFormat/mrd:MD_Format/mrd:formatSpecificationCitation/*/
+                                  cit:name/gco:CharacterString[
+                                    contains(., 'PDF') or
+                                    contains(., 'PNG') or
+                                    contains(., 'JPEG')]) > 0"/>
     <xsl:variable name="isInteractive"
                   select="count($metadata/mdb:distributionInfo/*/
                                 mrd:distributionFormat/mrd:MD_Format/mrd:formatSpecificationCitation/*/
                                   cit:name/gco:CharacterString[
                                     contains(., 'OGC:WMC') or
                                     contains(., 'OGC:OWS')]) > 0"/>
-    <xsl:variable name="isPublishedWithWMCProtocol"
+    <xsl:variable name="isPublishedWithWMCorOWSProtocol"
                   select="count($metadata/mdb:distributionInfo/*/mrd:transferOptions/*/mrd:onLine/*/cit:protocol[
-                                  starts-with(gco:CharacterString, 'OGC:WMC')]) > 0"/>
+                                  starts-with(gco:CharacterString, 'OGC:WMC') or
+                                  starts-with(gco:CharacterString, 'OGC:OWS')]) > 0"/>
 
-    <xsl:if test="$isDataset and $isMapDigital and ($isStatic or $isInteractive or $isPublishedWithWMCProtocol)">
+    <xsl:if test="$isDataset and $isMapDigital and ($isStatic or $isInteractive or $isPublishedWithWMCorOWSProtocol)">
       <Field name="type" string="map" store="true" index="true"/>
       <xsl:choose>
         <xsl:when test="$isStatic">
-          <Field name="type" string="staticMap" store="true" index="true"/>
+          <Field name="maptype" string="staticMap" store="true" index="true"/>
         </xsl:when>
-        <xsl:when test="$isInteractive or $isPublishedWithWMCProtocol">
-          <Field name="type" string="interactiveMap" store="true" index="true"/>
+        <xsl:when test="$isInteractive or $isPublishedWithWMCorOWSProtocol">
+          <Field name="maptype" string="interactiveMap" store="true" index="true"/>
         </xsl:when>
       </xsl:choose>
     </xsl:if>
 
+    <xsl:choose>
+      <xsl:when test="$metadata/mdb:metadataScope">
+        <xsl:if test="not($isMapDigital)">
+          <xsl:for-each select="$metadata/mdb:metadataScope/mdb:MD_MetadataScope/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue">
+            <Field name="type" string="{string(.)}" store="true" index="true"/>
+          </xsl:for-each>
+        </xsl:if>
+      </xsl:when>
+      <xsl:otherwise>
+        <!-- If not defined, record is a dataset -->
+        <Field name="type" string="dataset" store="true" index="true"/>
+      </xsl:otherwise>
+    </xsl:choose>
 
     <xsl:choose>
       <xsl:when test="$metadata/mdb:identificationInfo/srv:SV_ServiceIdentification">
@@ -705,8 +710,8 @@
 
 
     <xsl:for-each select="
-	    $metadata/mdb:parentMetadata/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code/gco:CharacterString|
-	    $metadata/mdb:parentMetadata/@uuidref">
+      $metadata/mdb:parentMetadata/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code/gco:CharacterString|
+      $metadata/mdb:parentMetadata/@uuidref">
       <Field name="parentUuid" string="{string(.)}" store="true" index="true"/>
     </xsl:for-each>
 
@@ -789,29 +794,29 @@
     <xsl:choose>
       <!-- annex i -->
       <xsl:when test="$englishKeyword='coordinate reference systems' or $englishKeyword='geographical grid systems'
-			            or $englishKeyword='geographical names' or $englishKeyword='administrative units'
-			            or $englishKeyword='addresses' or $englishKeyword='cadastral parcels'
-			            or $englishKeyword='transport networks' or $englishKeyword='hydrography'
-			            or $englishKeyword='protected sites'">
+                  or $englishKeyword='geographical names' or $englishKeyword='administrative units'
+                  or $englishKeyword='addresses' or $englishKeyword='cadastral parcels'
+                  or $englishKeyword='transport networks' or $englishKeyword='hydrography'
+                  or $englishKeyword='protected sites'">
         <xsl:text>i</xsl:text>
       </xsl:when>
       <!-- annex ii -->
       <xsl:when test="$englishKeyword='elevation' or $englishKeyword='land cover'
-			            or $englishKeyword='orthoimagery' or $englishKeyword='geology'">
+                  or $englishKeyword='orthoimagery' or $englishKeyword='geology'">
         <xsl:text>ii</xsl:text>
       </xsl:when>
       <!-- annex iii -->
       <xsl:when test="$englishKeyword='statistical units' or $englishKeyword='buildings'
-			            or $englishKeyword='soil' or $englishKeyword='land use'
-			            or $englishKeyword='human health and safety' or $englishKeyword='utility and governmental services'
-			            or $englishKeyword='environmental monitoring facilities' or $englishKeyword='production and industrial facilities'
-			            or $englishKeyword='agricultural and aquaculture facilities' or $englishKeyword='population distribution - demography'
-			            or $englishKeyword='area management/restriction/regulation zones and reporting units'
-			            or $englishKeyword='natural risk zones' or $englishKeyword='atmospheric conditions'
-			            or $englishKeyword='meteorological geographical features' or $englishKeyword='oceanographic geographical features'
-			            or $englishKeyword='sea regions' or $englishKeyword='bio-geographical regions'
-			            or $englishKeyword='habitats and biotopes' or $englishKeyword='species distribution'
-			            or $englishKeyword='energy resources' or $englishKeyword='mineral resources'">
+                  or $englishKeyword='soil' or $englishKeyword='land use'
+                  or $englishKeyword='human health and safety' or $englishKeyword='utility and governmental services'
+                  or $englishKeyword='environmental monitoring facilities' or $englishKeyword='production and industrial facilities'
+                  or $englishKeyword='agricultural and aquaculture facilities' or $englishKeyword='population distribution - demography'
+                  or $englishKeyword='area management/restriction/regulation zones and reporting units'
+                  or $englishKeyword='natural risk zones' or $englishKeyword='atmospheric conditions'
+                  or $englishKeyword='meteorological geographical features' or $englishKeyword='oceanographic geographical features'
+                  or $englishKeyword='sea regions' or $englishKeyword='bio-geographical regions'
+                  or $englishKeyword='habitats and biotopes' or $englishKeyword='species distribution'
+                  or $englishKeyword='energy resources' or $englishKeyword='mineral resources'">
         <xsl:text>iii</xsl:text>
       </xsl:when>
       <!-- inspire annex cannot be established: leave empty -->

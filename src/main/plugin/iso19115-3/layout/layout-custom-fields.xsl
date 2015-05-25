@@ -43,6 +43,29 @@
   </xsl:template>
 
 
+ <!-- <xsl:template mode="mode-iso19115-3"
+                match="cit:CI_Date"
+                priority="2000">
+    <xsl:param name="schema" select="$schema" required="no"/>
+    <xsl:param name="labels" select="$labels" required="no"/>
+
+    <div class="row">
+      <div class="col-md-8">
+        <xsl:apply-templates mode="mode-iso19115-3" select="cit:date">
+          <xsl:with-param name="schema" select="$schema"/>
+          <xsl:with-param name="labels" select="$labels"/>
+        </xsl:apply-templates>
+      </div>
+      <div class="col-md-4">
+        <xsl:apply-templates mode="mode-iso19115-3" select="cit:dateType">
+          <xsl:with-param name="schema" select="$schema"/>
+          <xsl:with-param name="labels" select="$labels"/>
+        </xsl:apply-templates>
+      </div>
+    </div>
+  </xsl:template>-->
+
+
   <!-- Duration
 
        xsd:duration elements use the following format:
