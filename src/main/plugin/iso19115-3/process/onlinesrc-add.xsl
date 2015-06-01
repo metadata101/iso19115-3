@@ -5,10 +5,11 @@
   xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0"
   xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0"
   xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0"
+  xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0"
   xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0"
   xmlns:gn="http://www.fao.org/geonetwork"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  exclude-result-prefixes="#all" >
+  exclude-result-prefixes="#all">
   
   <!-- TODO: could be nice to define the target distributor -->
   
@@ -18,6 +19,7 @@
   <xsl:param name="url"/>
   <xsl:param name="name"/>
   <xsl:param name="desc"/>
+  <xsl:param name="catalogUrl"/>
 
   <xsl:variable name="separator" select="'\|'"/>
 
@@ -29,8 +31,11 @@
                 select="count(//*[lan:PT_FreeText and not(gco:CharacterString)]) > 0"
                 as="xs:boolean"/>
 
-  <xsl:template match="/mdb:MD_Metadata|*[contains(@gco:isoType, 'mdb:MD_Metadata')]">
+  <xsl:variable name="metadataIdentifier"
+                select="/mdb:MD_Metadata/mdb:metadataIdentifier[position() = 1]/mcc:MD_Identifier/mcc:code/gco:CharacterString"/>
 
+  <xsl:template match="/mdb:MD_Metadata|*[contains(@gco:isoType, 'mdb:MD_Metadata')]">
+<xsl:message>### <xsl:value-of select="$desc"/> </xsl:message>
     <xsl:copy>
       <xsl:copy-of select="@*"/>
       <xsl:apply-templates select="mdb:metadataIdentifier"/>
@@ -147,7 +152,17 @@
               <cit:CI_OnlineResource>
                 <cit:linkage>
                   <gco:CharacterString>
-                    <xsl:value-of select="$url"/>
+                    <xsl:choose>
+                      <xsl:when test="$url = 'filename'">
+                        <xsl:value-of select="concat(
+                                  $catalogUrl, '/resources.get?',
+                                  'uuid=', $metadataIdentifier,
+                                  '&amp;fname=', $name)"/>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:value-of select="$url"/>
+                      </xsl:otherwise>
+                    </xsl:choose>
                   </gco:CharacterString>
                 </cit:linkage>
 
@@ -183,7 +198,17 @@
             <cit:CI_OnlineResource>
               <cit:linkage>
                 <gco:CharacterString>
-                  <xsl:value-of select="$url"/>
+                  <xsl:choose>
+                    <xsl:when test="$url = 'filename'">
+                      <xsl:value-of select="concat(
+                                  $catalogUrl, '/resources.get?',
+                                  'uuid=', $metadataIdentifier,
+                                  '&amp;fname=', $name)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:value-of select="$url"/>
+                    </xsl:otherwise>
+                  </xsl:choose>
                 </gco:CharacterString>
               </cit:linkage>
 
@@ -213,6 +238,8 @@
 
   <xsl:template name="fillTextElement">
     <xsl:param name="formattedText"/>
+
+    <xsl:message>## <xsl:value-of select="$formattedText"/> </xsl:message>
     <xsl:choose>
       <xsl:when test="contains($formattedText, '|')">
         <lan:PT_FreeText>

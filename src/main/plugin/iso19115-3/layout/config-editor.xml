@@ -378,7 +378,8 @@
                  in="/mdb:MD_Metadata"/>
           <field xpath="/mdb:MD_Metadata/mdb:otherLocale" or="otherLocale"
                  in="/mdb:MD_Metadata"/>
-          <field xpath="/mdb:MD_Metadata/mdb:contact" or="contact" in="/mdb:MD_Metadata"/>
+          <field xpath="/mdb:MD_Metadata/mdb:contact" or="contact"
+                 in="/mdb:MD_Metadata"/>
           <field xpath="/mdb:MD_Metadata/mdb:parentMetadata" or="parentMetadata"
                  in="/mdb:MD_Metadata"/>
           <field xpath="/mdb:MD_Metadata/mdb:metadataScope" or="metadataScope"
@@ -387,7 +388,8 @@
                  in="/mdb:MD_Metadata"/>
           <field xpath="/mdb:MD_Metadata/mdb:metadataLinkage" or="metadataLinkage"
                  in="/mdb:MD_Metadata"/>
-          <field xpath="/mdb:MD_Metadata/mdb:dateInfo"/>
+          <field xpath="/mdb:MD_Metadata/mdb:dateInfo" or="dateInfo"
+                 in="/mdb:MD_Metadata"/>
           <field xpath="/mdb:MD_Metadata/mdb:metadataStandard"/>
           <field xpath="/mdb:MD_Metadata/mdb:metadataProfile"/>
         </section>

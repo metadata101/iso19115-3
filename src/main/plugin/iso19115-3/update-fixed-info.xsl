@@ -66,9 +66,15 @@
       <xsl:apply-templates select="mdb:parentMetadata"/>
       <xsl:apply-templates select="mdb:metadataScope"/>
       <xsl:apply-templates select="mdb:contact"/>
-      
-      <!-- Add dateInfo creation and revision if they don't exist -->
-      <xsl:if test="not(mdb:dateInfo/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='creation']) and /root/env/changeDate">
+
+
+      <xsl:variable name="isCreationDateAvailable"
+                    select="mdb:dateInfo/*[cit:dateType/*/@codeListValue = 'creation']"/>
+      <xsl:variable name="isRevisionDateAvailable"
+                    select="mdb:dateInfo/*[cit:dateType/*/@codeListValue = 'revision']"/>
+
+      <!-- Add creation date if it does not exist-->
+      <xsl:if test="not($isCreationDateAvailable)">
         <mdb:dateInfo>
           <cit:CI_Date>
             <cit:date>
@@ -80,7 +86,7 @@
           </cit:CI_Date>
         </mdb:dateInfo>
       </xsl:if>
-      <xsl:if test="not(mdb:dateInfo/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']) and /root/env/changeDate">
+      <xsl:if test="not($isRevisionDateAvailable)">
         <mdb:dateInfo>
           <cit:CI_Date>
             <cit:date>
@@ -92,8 +98,34 @@
           </cit:CI_Date>
         </mdb:dateInfo>
       </xsl:if>
-      <xsl:apply-templates select="mdb:dateInfo"/>
-      
+
+
+      <!-- Preserve date order -->
+      <xsl:for-each select="mdb:dateInfo">
+        <xsl:variable name="currentDateType" select="*/cit:dateType/*/@codeListValue"/>
+
+        <!-- Update revision date-->
+        <xsl:choose>
+          <xsl:when test="$currentDateType = 'revision' and /root/env/changeDate">
+            <mdb:dateInfo>
+              <cit:CI_Date>
+                <cit:date>
+                  <gco:DateTime><xsl:value-of select="/root/env/changeDate"/></gco:DateTime>
+                </cit:date>
+                <cit:dateType>
+                  <cit:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="revision"/>
+                </cit:dateType>
+              </cit:CI_Date>
+            </mdb:dateInfo>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:copy-of select="."/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
+
+
+
       <!-- Add metadataStandard if it doesn't exist -->
       <xsl:choose>
         <xsl:when test="not(mdb:metadataStandard)">
