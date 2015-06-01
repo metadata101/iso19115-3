@@ -75,6 +75,13 @@ Nevertheless, the citation code is also indexed.
 
 
 
+### Validation
+
+Validation steps are first XSD validation made on the schema, then the schematron validation defined in folder  [iso19115-3/schematron](https://github.com/metadata101/iso19115-3/tree/develop/src/main/plugin/iso19115-3/schematron). 2 famillies of rules are available:
+* ISO rules (defined by TC211)
+* INSPIRE rules
+
+
 ## CSW requests:
 
 If requesting an ISO record using the gmd namespace, metadata are converted to ISO19139.
@@ -119,10 +126,6 @@ for the schema:
 
 ### Formatter
 
-
-### Validation
-
-On going work on schematron validation for ISO and INSPIRE.
 
 ### CSW support
 

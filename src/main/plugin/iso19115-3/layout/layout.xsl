@@ -343,7 +343,41 @@
   </xsl:template>
 
 
+  <xsl:template mode="mode-iso19115-3" priority="200"
+                match="gfc:memberName|gfc:typeName">
+    <xsl:param name="schema" select="$schema" required="no"/>
+    <xsl:param name="labels" select="$labels" required="no"/>
 
+    <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
+    <xsl:variable name="value" select="normalize-space(text())"/>
+
+    <xsl:variable name="attributes">
+      <!-- Create form for all existing attribute (not in gn namespace)
+      and all non existing attributes not already present. -->
+      <xsl:apply-templates mode="render-for-field-for-attribute"
+                           select="@*|
+                            gn:attribute[not(@name = parent::node()/@*/name())]">
+        <xsl:with-param name="ref" select="gn:element/@ref"/>
+        <xsl:with-param name="insertRef" select="gn:element/@ref"/>
+      </xsl:apply-templates>
+    </xsl:variable>
+
+
+    <xsl:call-template name="render-element">
+      <xsl:with-param name="label"
+                      select="gn-fn-metadata:getLabel($schema, name(), $labels, name(..), '', $xpath)/label"/>
+      <xsl:with-param name="name" select="gn:element/@ref"/>
+      <xsl:with-param name="value" select="text()"/>
+      <xsl:with-param name="cls" select="local-name()"/>
+      <xsl:with-param name="xpath" select="$xpath"/>
+      <xsl:with-param name="type"
+                      select="gn-fn-metadata:getFieldType($editorConfig, name(), '')"/>
+      <xsl:with-param name="editInfo" select="gn:element"/>
+      <xsl:with-param name="attributesSnippet" select="$attributes"/>
+    </xsl:call-template>
+
+  </xsl:template>
+  
   <!--
   <xsl:template mode="mode-iso19115-3" match="*|@*" priority="0"/>
 -->
