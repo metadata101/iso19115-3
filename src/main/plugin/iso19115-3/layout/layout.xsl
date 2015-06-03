@@ -143,7 +143,7 @@
                 match="*[gco:CharacterString|gco:Integer|gco:Decimal|
        gco:Boolean|gco:Real|gco:Measure|gco:Length|gco:Distance|gco:Angle|gmx:FileName|
        gco:Scale|gco:RecordType|gmx:MimeFileType|gco:LocalName|gco:ScopedName|gco:RecordType|
-       gco:Record|lan:PT_FreeText]">
+       gco:Record|lan:PT_FreeText|mcc:URI]">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
 
@@ -211,7 +211,7 @@
                           gco:Distance|gco:Angle|gmx:FileName|
                           gco:Scale|gco:RecordType|gmx:MimeFileType|
                           gco:LocalName|gco:ScopedName|gco:RecordType|
-                          gco:Record"/>
+                          gco:Record|mcc:URI"/>
     <xsl:variable name="theElement"
                   select="if ($isMultilingualElement and $hasOnlyPTFreeText or not($monoLingualValue))
                           then lan:PT_FreeText
@@ -344,7 +344,7 @@
 
 
   <xsl:template mode="mode-iso19115-3" priority="200"
-                match="gfc:memberName|gfc:typeName">
+                match="gfc:memberName|gfc:typeName|gfc:aliases">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
 

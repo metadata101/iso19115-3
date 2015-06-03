@@ -62,6 +62,7 @@
     <for name="mrl:statement" use="textarea"/>
     <for name="mri:response" use="textarea"/>
     <for name="mri:specificUsage" use="textarea"/>
+    <for name="mrd:orderOptions" use="textarea"/>
 
 
     <for name="gco:Distance" use="number"/>

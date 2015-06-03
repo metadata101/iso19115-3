@@ -232,7 +232,7 @@
   </element>  
   <!-- ISO19115-2 -->
   <element name="mrl:LI_ProcessStep">
-    <label>Process step</label>
+    <label>Process step (imagery)</label>
     <description></description>
     <condition></condition>
   </element>
@@ -242,7 +242,7 @@
     <condition></condition>
   </element>
   <element name="mrl:LE_Source">
-    <label>Source</label>
+    <label>Source (imagery)</label>
     <description></description>
     <condition></condition>
   </element>
@@ -859,6 +859,10 @@
     <description iso="true">URI of concept in the ontology specified by the next element (ontology) and labelled by the previous element (className)</description>
     <_condition>optional</_condition>
   </element>
+  <element name="mri:className">
+    <label>Class name</label>
+    <description>Character string to label the keyword category in natural language</description>
+  </element>
   <element name="mri:ontology" id="76.0">
     <label>Ontology</label>
     <description iso="true">Reference that binds the keyword class to a formal conceptualization of a knowledge domain for use in semantic processing NOTE Keywords in the associated MD_Keywords keyword list must be within the scope of this ontology.</description>
@@ -1126,7 +1130,7 @@
     <help>date and time of the first use or range of uses of the resource and/or resource
             series</help>
   </element>
-  <element name="gco:DateTime" id="300.0" context="mri:MD_StandardOrderProcess">
+  <element name="gco:DateTime" id="300.0" context="mrd:MD_StandardOrderProcess">
     <description>Formatted as 2007-09-12T15:00:00 (YYYY-MM-DDTHH:mm:ss)</description>
     <label>Planned Available Date / Time</label>
     <help>date and time when theresource will be available</help>
@@ -1373,7 +1377,7 @@
     <description>Information about the distributor of and options for obtaining the
             resource</description>
   </element>
-  <element name="mri:MD_Distributor" id="279.0">
+  <element name="mrd:MD_Distributor" id="279.0">
     <label>Distributor</label>
     <description>Information about the distributor</description>
   </element>
@@ -1496,7 +1500,7 @@
             service user through a set of interfaces that define a behaviour - See ISO 19119 -
             Services for further information</description>
   </element>
-  <element name="mri:MD_StandardOrderProcess" id="298.0">
+  <element name="mrd:MD_StandardOrderProcess" id="298.0">
     <label>Standard order process</label>
     <description>Common ways in which the resource may be obtained or received, and related
             instructions and fee information</description>
@@ -1837,6 +1841,10 @@
     <label>Data quality info</label>
     <description>Provides overall assessment of quality of a resource(s)</description>
   </element>
+  <element name="mcc:URI">
+    <label>URI</label>
+    <description></description>
+  </element>
   <element name="mri:dataSetURI" id="11.1">
     <label>Dataset URI</label>
     <description>Uniformed Resource Identifier (URI) of the dataset to which the metadata
@@ -2099,7 +2107,7 @@
             resource(s)</description>
     <label>Distribution Information</label>
   </element>
-  <element name="mri:distributionOrderProcess" id="281.0">
+  <element name="mrd:distributionOrderProcess" id="281.0">
     <label>Distribution / Order Process</label>
     <description>Provides information about how the resource may be obtained, and related
             instructions and fee information</description>
@@ -2108,18 +2116,18 @@
     <label>Distributor</label>
     <description>Provides information about the distributor</description>
   </element>
-  <element name="mri:distributorContact" id="280.0">
+  <element name="mrd:distributorContact" id="280.0">
     <label>Distributor contact</label>
     <description>Party from whom the resource may be obtained. This list need not be
             exhaustive</description>
     <condition>mandatory</condition>
   </element>
-  <element name="mri:distributorFormat" id="282.0">
+  <element name="mrd:distributorFormat" id="282.0">
     <label>Distributor format</label>
     <description>Provides information about the format used by the distributor</description>
     <condition>conditional</condition>
   </element>
-  <element name="mri:distributorTransferOptions" id="283.0">
+  <element name="mrd:distributorTransferOptions" id="283.0">
     <label>Distributor transfer options</label>
     <description>Provides information about the technical means and media used by the
             distributor</description>
@@ -2251,7 +2259,7 @@
     <description>Features to which the information applies</description>
     <condition />
   </element>
-  <element name="mri:fees" id="299.0">
+  <element name="mrd:fees" id="299.0">
     <label>Fees</label>
     <description>Fees and terms for retrieving the resource. Include monetary units (as
             specified in ISO 4217)</description>
@@ -2278,8 +2286,17 @@
   <element name="mcc:fileType" id="440.0">
     <label>File type</label>
     <description>Format in which the illustration is encoded</description>
-    <help>format in which the illustration is encoded Examples: CGM, EPS, GIF, JPEG, PBM, PS,
-            TIFF, XWD</help>
+    <help>Format in which the illustration is encoded Examples: EPS, GIF, JPEG, PBM, PS,
+            TIFF, PDF</help>
+    <helper>
+      <option value="EPS">EPS</option>
+      <option value="GIF">GIF</option>
+      <option value="JPEG">JPEG</option>
+      <option value="PBM">PBM</option>
+      <option value="PS">PS</option>
+      <option value="TIFF">TIFF</option>
+      <option value="PDF">PDF</option>
+    </helper>
   </element>
   <element name="mcc:imageConstraints" id="441.0">
     <label>Image constraints</label>
@@ -2295,7 +2312,7 @@
   </element>
   <element name="cit:protocolRequest" id="412.0">
     <label>Protocol request</label>
-    <description>request used to access the resource depending on the protocol (to be used mainly for POST requests) </description>
+    <description>Request used to access the resource depending on the protocol (to be used mainly for POST requests) </description>
     <help></help>
     <condition/>
   
@@ -2613,6 +2630,14 @@
     <label>Name</label>
     <description>Name of the extended metadata element</description>
     <condition>mandatory</condition>
+  </element>
+  <element name="mri:name" context="mri:MD_AssociatedResource">
+    <label>Name</label>
+    <description>To be provided if no metadata reference provided</description>
+  </element>
+  <element name="mri:name">
+    <label>Name</label>
+    <description></description>
   </element>
   <element name="mas:name" context="mas:MD_ApplicationSchemaInformation"
     id="321.0">
@@ -2965,7 +2990,7 @@
     <description>On-line information that can be used to contact the individual or
             organisation</description>
   </element>
-  <element name="mri:orderingInstructions" id="301.0">
+  <element name="mrd:orderingInstructions" id="301.0">
     <label>Ordering instructions</label>
     <description>General instructions, terms and services provided by the
             distributor</description>
@@ -3036,7 +3061,7 @@
     <description>Telephone numbers at which the organization or individual may be
             contacted</description>
   </element>
-  <element name="mri:plannedAvailableDateTime" id="300.0">
+  <element name="mrd:plannedAvailableDateTime" id="300.0">
     <label>Planned available datetime</label>
     <description>Date and time when the dataset will be available
             (CCYY-MM-DDThh:mm:ss)</description>
@@ -3488,9 +3513,17 @@
     <description>Indication of whether or not triangulation has been performed upon the
             image</description>
   </element>
-  <element name="mri:turnaround" id="302.0">
+  <element name="mrd:turnaround" id="302.0">
     <label>Turnaround</label>
     <description>Typical turnaround time for the filling of an order</description>
+  </element>
+  <element name="mrd:orderOptionsType" id="302.0">
+    <label>Order options type</label>
+    <description>Description of the order options record</description>
+  </element>
+  <element name="mrd:orderOptions" id="302.0">
+    <label>Request/Purchase choices</label>
+    <description></description>
   </element>
   <element name="mri:type" id="54.0">
     <label>Type</label>
@@ -4375,6 +4408,22 @@
     <label>Inherits to</label>
     <description></description>
   </element>
+  <element name="gfc:FC_DefinitionReference">
+    <label>Definition reference</label>
+    <description></description>
+  </element>
+  <element name="gfc:FC_LocalisedDefinitionReference">
+    <label>Multilingual definition reference</label>
+    <description></description>
+  </element>
+  <element name="gfc:sourceIdentifier">
+    <label>Source identifier</label>
+    <description></description>
+  </element>
+  <element name="gfc:translation">
+    <label>Translation</label>
+    <description></description>
+  </element>
   <element name="gfc:FC_InheritanceRelation">
     <label>Heritance relation</label>
     <description></description>
@@ -4494,4 +4543,53 @@
     <description>Field of application</description>
   </element>
 
+
+  <element name="mdq:resultFile">
+    <label>Result file</label>
+    <description></description>
+  </element>
+  <element name="mdq:QualityResultFile">
+    <label>Quality result file</label>
+    <description></description>
+  </element>
+  <element name="mdq:fileName">
+    <label>Result file name</label>
+    <description></description>
+  </element>
+  <element name="mdq:fileFormat">
+    <label>File format</label>
+    <description></description>
+  </element>
+  <element name="mdq:resultFormat">
+    <label>Result format</label>
+    <description></description>
+  </element>
+  <element name="mrc:rangeElementDescription">
+    <label>Range element description</label>
+    <description></description>
+  </element>
+  <element name="mdq:fileType">
+    <label>File type</label>
+    <description></description>
+  </element>
+  <element name="gcx:MimeFileType">
+    <label>Mime file type</label>
+    <description></description>
+  </element>
+  <element name="mdq:fileDescription">
+    <label>File description</label>
+    <description></description>
+  </element>
+  <element name="mdq:resultSpatialRepresentation">
+    <label>Result spatial representation</label>
+    <description></description>
+  </element>
+  <element name="mdq:resultContentDescription">
+    <label>Result content description</label>
+    <description></description>
+  </element>
+  <element name="mdq:spatialRepresentationType">
+    <label>Spatial representation type</label>
+    <description></description>
+  </element>
 </labels>

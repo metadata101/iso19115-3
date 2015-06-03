@@ -247,7 +247,7 @@
 
   <!-- ISO19115-2 -->
   <element name="mrl:LI_ProcessStep">
-    <label>Evénement dans le processus</label>
+    <label>Evénement dans le processus (images)</label>
     <description></description>
     <condition></condition>
   </element>
@@ -262,7 +262,7 @@
     <condition></condition>
   </element>
   <element name="mrl:LE_Source">
-    <label>Source</label>
+    <label>Source (images)</label>
     <description></description>
     <condition></condition>
   </element>
@@ -851,6 +851,10 @@
     <description iso="true">L’URI du concept au sein d’une ontologie, spécifiée par l’élément suivant (ontologie) et étiquetée par l’élément précédent (className).</description>
     <_condition>optional</_condition>
   </element>
+  <element name="mri:className">
+    <label>Nom de la classe</label>
+    <description>Chaîne de caractère définissant la catégorie de mots clés dans un langage naturel.</description>
+  </element>
   <element name="mri:ontology" id="76.0">
     <label>Ontologie</label>
     <description iso="true">Une référence qui lie la classe de mots clés à une conceptualisation formelle d’un domaine de connaissance en vue d’une utilisation dans un traitement sémantique. NOTE Les mots clés dans la liste de mots clés associée MD_Keywords doivent s’inscrire dans le domaine d’application de cette ontologie.</description>
@@ -1121,7 +1125,7 @@
     <condition/>
     
   </element>
-  <element name="gco:DateTime" id="300.0" context="cit:MD_StandardOrderProcess">
+  <element name="gco:DateTime" id="300.0" context="mrd:MD_Stc">
     <label>Disponibilité planifiée des données</label>
     <description>Date et heure à laquelle les donnée seront à disposition</description>
     <help>Date et heure à laquelle les données seront disponibles.</help>
@@ -1589,7 +1593,7 @@ responsable du service.</li>
     <condition/>
     
   </element>
-  <element name="cit:MD_Distributor" id="279.0">
+  <element name="mrd:MD_Distributor" id="279.0">
     <label>Distributeur</label>
     <description>Classe avec l'information sur le distributeur</description>
     <help>Classe contenant les informations relatives au distributeur des données (nom, rôle, adresse, etc.). d'autres informations peuvent être trouvées sous MD_Distribution.</help>
@@ -1807,7 +1811,7 @@ responsable du service.</li>
     <condition/>
     
   </element>
-  <element name="cit:MD_StandardOrderProcess" id="298.0">
+  <element name="mrd:MD_StandardOrderProcess" id="298.0">
     <label>Processus de commande standard</label>
     <description>Classe pour la description des instructions et des modes usuels d'obtention de la ressource, comprenant également les informations sur les coûts</description>
     <help>Classe contenant des informations relatives aux émoluments et à la commande. d'autres informations peuvent être trouvées sous MD_Distribution.</help>
@@ -2467,7 +2471,10 @@ de métadonnées de données « BD Carthage métropole »
     <description>Uniformed Resource Identifier (URI) du jeu de données, que les métadonnées décrivent</description>
     <help>Identifiant URI (Uniformed Resource Identifier) du jeu de données auquel les métadonnées renvoient. Une adresse URL est indiquée ici, par exemple www.cosig.ch.</help>
     <condition/>
-    
+  </element>
+  <element name="mcc:URI">
+    <label>URI</label>
+    <description></description>
   </element>
   <element name="cit:dataType" id="313.0">
     <label>Type de valeur</label>
@@ -2672,6 +2679,31 @@ date de mise en ligne du service, en tant que date de publication.
     <help>Nom de la rue</help>
     <condition/>
     
+  </element>
+  <element name="mri:name" context="mri:MD_AssociatedResource">
+    <label>Nom</label>
+    <description>Si aucune référence à la métadonnée n'est fournie</description>
+  </element>
+  <element name="mri:name">
+    <label>Nom</label>
+    <description></description>
+  </element>
+
+  <element name="gfc:FC_DefinitionReference">
+    <label>Référence de la définition</label>
+    <description></description>
+  </element>
+  <element name="gfc:FC_LocalisedDefinitionReference">
+    <label>Référence de la définition (multilingue)</label>
+    <description></description>
+  </element>
+  <element name="gfc:sourceIdentifier">
+    <label>Identifiant de la source</label>
+    <description></description>
+  </element>
+  <element name="gfc:translation">
+    <label>Traduction</label>
+    <description></description>
   </element>
   <element name="mri:denominator" id="57.0">
     <label>Dénominateur</label>
@@ -2953,7 +2985,7 @@ version en tant que mot-clé complémentaire(s). Le numéro de version doit comp
     <condition/>
     
   </element>
-  <element name="cit:distributionOrderProcess" id="281.0">
+  <element name="mrd:distributionOrderProcess" id="281.0">
     <label>Processus de distribution et de commande</label>
     <description>Informations sur comment les données peuvent êtres commandées, ainsi que sur leur coûts et sur les formatlités de commandes</description>
     <help>Informations relatives au mode de commande des données, à leur coût ainsi qu''à d'autres instructions de commande. Ces informations sont gérées dans la classe MD_StandardOrderProcess.</help>
@@ -2967,21 +2999,21 @@ version en tant que mot-clé complémentaire(s). Le numéro de version doit comp
     <condition/>
     
   </element>
-  <element name="cit:distributorContact" id="280.0">
+  <element name="mrd:distributorContact" id="280.0">
     <label>Contact</label>
     <description>Services depuis lesquels la ressource peut être obtenue. Cette liste n''a pas besoin d'être exhaustive</description>
     <help>Personne ou organisation compétente auprès de laquelle le jeu de données peut être obtenu. Une seule information est permise. La référence est du type de données CI_ResponsibleParty et est gérée dans la classe du même nom.</help>
     <condition>Obligatoire</condition>
     
   </element>
-  <element name="cit:distributorFormat" id="282.0">
+  <element name="mrd:distributorFormat" id="282.0">
     <label>Format du distributeur</label>
     <description>Informations sur le format utilisé par le distributeur</description>
     <help>Informations relatives au format utilisé par le distributeur (nom et version du format, par exemple TIFF, version 6.0). Ces informations sont gérées dans la classe MD_Format.</help>
     <condition>Condition</condition>
     
   </element>
-  <element name="cit:distributorTransferOptions" id="283.0">
+  <element name="mrd:distributorTransferOptions" id="283.0">
     <label>Options de transfert du distributeur</label>
     <description>Informations concernant la technique et le média utilisés par le distributeur</description>
     <help>Informations concernant le mode et le support de diffusion utilisés par le distributeur, par exemple la taille du fichier, la manière de l'obtenir, etc. Ces informations sont gérées dans la classe MD_DigitalTransferOptions.</help>
@@ -3197,7 +3229,7 @@ période de temps couverte par le service.
     <help>Propriétés auxquelles les informations se rapportent.</help>
     <condition/>
   </element>
-  <element name="cit:fees" id="299.0">
+  <element name="mrd:fees" id="299.0">
     <label>Taxes</label>
     <description>Taxes et conditions pour accéder à la ressource. Les unités monétaires sont incluses (comme spécifié dans ISO 4217)</description>
     <help>Emoluments relatifs à l'obtention ou à l'utilisation des données. Indications fournies dans les unités monétaires définies dans la norme ISO 4217.</help>
@@ -3234,10 +3266,16 @@ période de temps couverte par le service.
   </element>
   <element name="mcc:fileType" id="440.0">
     <label>Format de l'illustration</label>
-    
-    <description>Format dans lequel l'illustration est enregistrée. Exemple : CGM, EPS, GIF, JPEG, PBM, PS, TIFF, XWD</description>
     <description iso="true">format dans lequel l’illustration est encodée Exemple: EPS, GIF, JPEG, PBM, PS, TIFF, PDF</description>
-    <help>Format dans lequel la représentation est enregistrée, ex : CGM, EPS, GIF, JPEG, PBM, PS, TIFF, XWD</help>
+    <helper>
+      <option value="EPS">EPS</option>
+      <option value="GIF">GIF</option>
+      <option value="JPEG">JPEG</option>
+      <option value="PBM">PBM</option>
+      <option value="PS">PS</option>
+      <option value="TIFF">TIFF</option>
+      <option value="PDF">PDF</option>
+    </helper>
     <condition/>
     
   </element>
@@ -3257,7 +3295,7 @@ période de temps couverte par le service.
   </element>
   <element name="cit:protocolRequest" id="412.0">
     <label>Requête de protocole</label>
-    <description>requête utilisée pour accéder à la ressource dépendant du protocole (à utiliser essentiellement pour les requêtes POST)</description>
+    <description>Requête utilisée pour accéder à la ressource dépendant du protocole (à utiliser essentiellement pour les requêtes POST)</description>
     <help></help>
     <condition/>
   
@@ -4007,7 +4045,7 @@ période de temps couverte par le service.
     <help/>
     <condition/>
   </element>
-  <element name="cit:orderingInstructions" id="301.0">
+  <element name="mrd:orderingInstructions" id="301.0">
     <label>Instructions de commande</label>
     <description>Instructions générales, conditions et services offerts par le distributeur</description>
     <help>Instructions générales, délais et services offerts par le distributeur</help>
@@ -4143,7 +4181,7 @@ la non-évaluation</b>, dans le cadre de métadonnées INSPIRE
     <condition/>
     
   </element>
-  <element name="cit:plannedAvailableDateTime" id="300.0">
+  <element name="mrd:plannedAvailableDateTime" id="300.0">
     <label>Disponibilité planifiée des données</label>
     <description>Date et heure à laquelle les donnée seront à disposition</description>
     <help>Date et heure à laquelle les données seront disponibles.</help>
@@ -5063,12 +5101,20 @@ l’IGN (WPS)
     <condition/>
     
   </element>
-  <element name="cit:turnaround" id="302.0">
+  <element name="mrd:turnaround" id="302.0">
     <label>Temps d'attente</label>
     <description>Temps d'attente usuel pour la préparation d'une commande</description>
     <help>Temps de traitement usuel d'une commande.</help>
     <condition/>
     
+  </element>
+  <element name="mrd:orderOptionsType" id="302.0">
+    <label>Type de commande</label>
+    <description>Description de l'enregistrement des options d'une commande.</description>
+  </element>
+  <element name="mrd:orderOptions" id="302.0">
+    <label>Choix à la demande / l'achat</label>
+    <description></description>
   </element>
   <element name="mri:type" id="54.0">
     <label>Type de mot clé</label>
@@ -6387,5 +6433,55 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
   </element>
   <element name="gml:remarks">
     <label>Remarque</label>
+  </element>
+
+
+  <element name="mdq:resultFile">
+    <label>Fichier résultat</label>
+    <description></description>
+  </element>
+  <element name="mdq:QualityResultFile">
+    <label>Fichier résultat qualité</label>
+    <description></description>
+  </element>
+  <element name="mdq:fileName">
+    <label>Nom du fichier résultat</label>
+    <description></description>
+  </element>
+  <element name="mdq:fileFormat">
+    <label>Format de fichier</label>
+    <description></description>
+  </element>
+  <element name="mdq:resultFormat">
+    <label>Format des résultats</label>
+    <description></description>
+  </element>
+  <element name="mrc:rangeElementDescription">
+    <label>Description de la plage d'élément</label>
+    <description></description>
+  </element>
+  <element name="mdq:fileType">
+    <label>Type de fichier</label>
+    <description></description>
+  </element>
+  <element name="gcx:MimeFileType">
+    <label>Type MIME</label>
+    <description></description>
+  </element>
+  <element name="mdq:fileDescription">
+    <label>Description du fichier</label>
+    <description></description>
+  </element>
+  <element name="mdq:resultSpatialRepresentation">
+    <label>Représentation spatiale des résultats</label>
+    <description></description>
+  </element>
+  <element name="mdq:resultContentDescription">
+    <label>Description du contenu des résultats</label>
+    <description></description>
+  </element>
+  <element name="mdq:spatialRepresentationType">
+    <label>Type de représentation spatiale</label>
+    <description></description>
   </element>
 </labels>

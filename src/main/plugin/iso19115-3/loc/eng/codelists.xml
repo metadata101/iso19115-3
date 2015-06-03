@@ -687,7 +687,7 @@
 		</entry>
 	</codelist>
 	<!-- ==================================================== -->
-	<codelist name="dqm:DQ_EvaluationMethodTypeCode">
+	<codelist name="mdq:DQ_EvaluationMethodTypeCode">
 		<entry>
 			<code>directInternal</code>
 			<label>Direct internal</label>
@@ -1927,7 +1927,7 @@
 		</entry>
 	</codelist>
 	<!-- ==================================================== -->
-	<codelist name="mri:MD_SpatialRepresentationTypeCode">
+	<codelist name="mcc:MD_SpatialRepresentationTypeCode">
 		<entry>
 			<code>vector</code>
 			<label>Vector</label>
