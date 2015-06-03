@@ -17,33 +17,22 @@
                 exclude-result-prefixes="#all">
 
   <!--
-
-  Date element is composed of one element with the date
-  and one element to describe the type of date.
-
   ```
-   <cit:date>
-      <cit:CI_Date>
-         <cit:date>
-            <gco:DateTime></gco:DateTime>
-         </cit:date>
-         <cit:dateType>
-            <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="creation"/>
-         </cit:dateType>
-      </cit:CI_Date>
-   </cit:date>
+   <cit:phone>
+      <cit:CI_Telephone>
+         <cit:number>
+            <gco:CharacterString>PHONE</gco:CharacterString>
+         </cit:number>
+         <cit:numberType>
+            <cit:CI_TelephoneTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_TelephoneTypeCode"
+                                      codeListValue=""/>
+         </cit:numberType>
+      </cit:CI_Telephone>
+   </cit:phone>
   ```
 
-  These templates hide the complexity of the element
-  in the editor in all view modes in order to only
-  have a dropdown to define the type and one calendar
-  control.
-
-
-  Swallow the complex element having CI_Date
-  to simplify the editor for dates
   -->
-  <xsl:template mode="mode-iso19115-3" match="*[cit:CI_Date]" priority="2000">
+  <xsl:template mode="mode-iso19115-3" match="*[cit:CI_Telephone]" priority="2000">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
 
@@ -53,15 +42,13 @@
     </xsl:apply-templates>
   </xsl:template>
 
-  <!-- Date type is handled in next template -->
-  <xsl:template mode="mode-iso19115-3" match="cit:dateType" priority="2000"/>
+  <!-- Number type is handled in next template -->
+  <xsl:template mode="mode-iso19115-3" match="cit:numberType" priority="2000"/>
 
-  <!-- Rendering date type as a dropdown to select type
-  and the calendar next to it.
-  -->
+  <!-- Rendering number type as a dropdown -->
   <xsl:template mode="mode-iso19115-3"
                 priority="2000"
-                match="*[gco:Date|gco:DateTime]">
+                match="cit:number[parent::node()/name() = 'cit:CI_Telephone']">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
 
@@ -80,18 +67,18 @@
       <div class="col-sm-3 gn-value">
         <xsl:variable name="codelist"
                       select="gn-fn-metadata:getCodeListValues($schema,
-                                  'cit:CI_DateTypeCode',
+                                  'cit:CI_TelephoneTypeCode',
                                   $codelists,
                                   .)"/>
         <xsl:call-template name="render-codelist-as-select">
           <xsl:with-param name="listOfValues" select="$codelist"/>
           <xsl:with-param name="lang" select="$lang"/>
           <xsl:with-param name="isDisabled" select="ancestor-or-self::node()[@xlink:href]"/>
-          <xsl:with-param name="elementRef" select="../cit:dateType/cit:CI_DateTypeCode/gn:element/@ref"/>
+          <xsl:with-param name="elementRef" select="../cit:numberType/cit:CI_TelephoneTypeCode/gn:element/@ref"/>
           <xsl:with-param name="isRequired" select="true()"/>
           <xsl:with-param name="hidden" select="false()"/>
-          <xsl:with-param name="valueToEdit" select="../cit:dateType/cit:CI_DateTypeCode/@codeListValue"/>
-          <xsl:with-param name="name" select="concat(../cit:dateType/cit:CI_DateTypeCode/gn:element/@ref, '_codeListValue')"/>
+          <xsl:with-param name="valueToEdit" select="../cit:numberType/cit:CI_TelephoneTypeCode/@codeListValue"/>
+          <xsl:with-param name="name" select="concat(../cit:numberType/cit:CI_TelephoneTypeCode/gn:element/@ref, '_codeListValue')"/>
         </xsl:call-template>
 
 
@@ -101,11 +88,15 @@
         </xsl:call-template>
       </div>
       <div class="col-sm-6 gn-value">
-        <div data-gn-date-picker="{gco:Date|gco:DateTime}"
-             data-label=""
-             data-element-name="{name(gco:Date|gco:DateTime)}"
-             data-element-ref="{concat('_X', gn:element/@ref)}">
-        </div>
+        <!-- Phone number is not multilingual so display the input -->
+        <input class="form-control"
+               type="tel"
+               name="{concat('_', gco:CharacterString/gn:element/@ref)}"
+               value="{normalize-space(gco:CharacterString)}">
+          <xsl:if test="ancestor-or-self::node()[@xlink:href]">
+            <xsl:attribute name="disabled" select="'disabled'"/>
+          </xsl:if>
+        </input>
 
 
         <!-- Create form for all existing attribute (not in gn namespace)

@@ -31,6 +31,7 @@
   <xsl:include href="utility-tpl.xsl"/>
   <xsl:include href="layout-custom-fields.xsl"/>
   <xsl:include href="layout-custom-fields-date.xsl"/>
+  <xsl:include href="layout-custom-fields-contact.xsl"/>
   <xsl:include href="layout-custom-fields-keywords.xsl"/>
 
   <!-- Visit all XML tree recursively -->
