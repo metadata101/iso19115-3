@@ -1,0 +1,27 @@
+<mco:MD_LegalConstraints
+      xmlns:mco="http://standards.iso.org/19115/-3/mco/1.0"
+      xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0"
+      xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0"
+      xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0">
+  <mco:useLimitation gco:nilReason="missing">
+    <gco:CharacterString/>
+  </mco:useLimitation>
+  <mco:graphic>
+    <mcc:MD_BrowseGraphic>
+      <mcc:fileName>
+        <gco:CharacterString>http://i.creativecommons.org/p/zero/1.0/88x31.png</gco:CharacterString>
+      </mcc:fileName>
+    </mcc:MD_BrowseGraphic>
+  </mco:graphic>
+  <mco:reference>
+    <cit:CI_Citation>
+      <cit:title>
+        <gco:CharacterString>CC0</gco:CharacterString>
+      </cit:title>
+    </cit:CI_Citation>
+  </mco:reference>
+  <mco:accessConstraints>
+    <mco:MD_RestrictionCode codeListValue="unrestricted"
+                            codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_RestrictionCode"/>
+  </mco:accessConstraints>
+</mco:MD_LegalConstraints>

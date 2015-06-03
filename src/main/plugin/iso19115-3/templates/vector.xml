@@ -226,8 +226,12 @@
         <gex:EX_Extent>
           <gex:verticalElement>
             <gex:EX_VerticalExtent>
-              <gex:minimumValue></gex:minimumValue>
-              <gex:maximumValue></gex:maximumValue>
+              <gex:minimumValue>
+                <gco:Real></gco:Real>
+              </gex:minimumValue>
+              <gex:maximumValue>
+                <gco:Real></gco:Real>
+              </gex:maximumValue>
               <gex:verticalCRS>
 
               </gex:verticalCRS>

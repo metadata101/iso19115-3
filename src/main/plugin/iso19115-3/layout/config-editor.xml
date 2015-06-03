@@ -141,6 +141,13 @@
               data-filter='{"_root": "mdq:DQ_*"}'/>
     </for>
 
+    <for name="mri:resourceConstraints" addDirective="data-gn-directory-entry-selector">
+      <directiveAttributes
+              data-template-add-action="true"
+              data-template-type="resourceConstraints"
+              data-filter='{"_root": "mco:MD_*"}'/>
+    </for>
+
     <for name="mri:descriptiveKeywords" addDirective="data-gn-thesaurus-selector">
       <directiveAttributes
               data-transformation="to-iso19115-3-keyword"/>

@@ -10,6 +10,7 @@
   <schemaLocation>http://standards.iso.org/19115/-3/mds/1.0 http://standards.iso.org/19115/-3/mds/1.0/mds.xsd</schemaLocation>
   <autodetect xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0"
               xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0"
+              xmlns:mco="http://standards.iso.org/19115/-3/mco/1.0"
               xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0"
               xmlns:mdq="http://standards.iso.org/19157/-2/mdq/1.0"
               xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0">
@@ -42,6 +43,9 @@
       <mdq:DQ_ThematicClassificationCorrectness/>
       <mdq:DQ_TopologicalConsistency/>
       <mdq:DQ_UsabilityElement/>
+      <mco:MD_Constraints/>
+      <mco:MD_LegalConstraints/>
+      <mco:MD_SecurityConstraints/>
       <!-- TODO: Add subtemplate roots -->
     </elements>
   </autodetect>
