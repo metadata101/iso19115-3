@@ -88,7 +88,7 @@
     <for name="lan:country" use="data-gn-country-picker"/>
     <for name="cit:country" use="data-gn-country-picker"/>
 
-    <for name="mdb:referenceSystemInfo" addDirective="data-gn-crs-selector"/>
+    <for name="mrs:referenceSystemIdentifier" addDirective="data-gn-crs-selector"/>
 
     <for name="mdb:contact" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
