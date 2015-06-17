@@ -700,7 +700,9 @@
     </xsl:for-each>
 
 
-
+    <xsl:for-each select="$metadata/mdb:metadataStandard/cit:CI_Citation/cit:title/gco:CharacterString">
+      <Field name="standardName" string="{string(.)}" store="true" index="true"/>
+    </xsl:for-each>
 
 
     <xsl:for-each select="$metadata/mdb:metadataIdentifier/mcc:MD_Identifier">
