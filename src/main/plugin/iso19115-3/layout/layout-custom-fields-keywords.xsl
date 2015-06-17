@@ -110,7 +110,9 @@
                         then $metadata/mdb:otherLocale/lan:PT_Locale[lan:language/lan:LanguageCode/@codeListValue = $lang]/@id
                         else $metadata/mdb:otherLocale/lan:PT_Locale[lan:language/lan:LanguageCode/@codeListValue = $metadataLanguage]/@id"/>
         <xsl:variable name="keywords" select="string-join(
-                  if ($guiLangId and mri:keyword//*[@locale = concat('#', $guiLangId)]) then mri:keyword//*[@locale = concat('#', $guiLangId)] else mri:keyword/*[1], ',')"/>
+                  if ($guiLangId and mri:keyword//*[@locale = concat('#', $guiLangId)])
+                  then mri:keyword//*[@locale = concat('#', $guiLangId)]/replace(text(), ',', ',,')
+                  else mri:keyword/*[1]/replace(text(), ',', ',,'), ',')"/>
 
         <!-- Define the list of transformation mode available. -->
         <xsl:variable name="transformations"
@@ -136,7 +138,11 @@
               * 'multiplelist' for multiple selection list
         -->
         <xsl:variable name="widgetMode" select="'tagsinput'"/>
-        <xsl:variable name="maxTags" select="''"/>
+        <xsl:variable name="maxTags"
+                      as="xs:string"
+                      select="if ($thesaurusConfig/@maxtags)
+                              then $thesaurusConfig/@maxtags
+                              else ''"/>
         <!--
           Example: to restrict number of keyword to 1 for INSPIRE
           <xsl:variable name="maxTags" 
