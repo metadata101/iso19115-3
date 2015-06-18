@@ -201,7 +201,27 @@
     <label>Plan satisfaisant les besoins</label>
     <description></description>
     <condition></condition>
-  </element>  
+  </element>
+  <element name="gml:BaseUnit">
+    <label>Unité</label>
+    <description></description>
+  </element>
+  <element name="gml:quantityType">
+    <label>Type de quantité</label>
+    <description></description>
+  </element>
+  <element name="gml:quantityTypeReference">
+    <label>Référence du type de quantité</label>
+    <description></description>
+  </element>
+  <element name="gml:catalogSymbol">
+    <label>Symbole</label>
+    <description></description>
+  </element>
+  <element name="gml:unitsSystem">
+    <label>Système d'unité</label>
+    <description></description>
+  </element>
   <element name="gml:TimeEdgeType">
     <label>Information sur le type d'écart</label>
     <description></description>

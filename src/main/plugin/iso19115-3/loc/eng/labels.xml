@@ -201,7 +201,27 @@
     <label>Satisified plan</label>
     <description></description>
     <condition></condition>
-  </element>  
+  </element>
+  <element name="gml:BaseUnit">
+    <label>Base unit</label>
+    <description></description>
+  </element>
+  <element name="gml:quantityType">
+    <label>Quantity type</label>
+    <description></description>
+  </element>
+  <element name="gml:quantityTypeReference">
+    <label>Quantity type reference</label>
+    <description></description>
+  </element>
+  <element name="gml:catalogSymbol">
+    <label>Catalog symbol</label>
+    <description></description>
+  </element>
+  <element name="gml:unitsSystem">
+    <label>Units system</label>
+    <description></description>
+  </element>
   <element name="gml:TimeEdgeType">
     <label>Time edge type</label>
     <description></description>
