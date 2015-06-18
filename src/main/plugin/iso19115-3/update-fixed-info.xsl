@@ -14,6 +14,7 @@
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:java="java:org.fao.geonet.util.XslUtil"
+  xmlns:mime="java:org.fao.geonet.util.MimeTypeFinder"
   xmlns:gn="http://www.fao.org/geonetwork"
   exclude-result-prefixes="#all">
   
@@ -300,15 +301,10 @@
   
   
   <!-- online resources: download -->
-  <xsl:template match="cit:CI_OnlineResource[matches(cit:protocol/gco:CharacterString,'^WWW:DOWNLOAD-.*-http--download.*') and cit:name]">
+  <xsl:template match="cit:CI_OnlineResource[matches(cit:protocol/gco:CharacterString,'^WWW:DOWNLOAD.*') and cit:name]">
     <xsl:variable name="fname" select="cit:name/gco:CharacterString|cit:name/gcx:MimeFileType"/>
-    <xsl:variable name="mimeType">
-      <xsl:call-template name="getMimeTypeFile">
-        <xsl:with-param name="datadir" select="/root/env/datadir"/>
-        <xsl:with-param name="fname" select="$fname"/>
-      </xsl:call-template>
-    </xsl:variable>
-    
+    <xsl:variable name="mimeType" select="mime:detectMimeTypeFile(/root/env/datadir, $fname)"/>
+
     <xsl:copy>
       <xsl:copy-of select="@*"/>
       <cit:linkage>
@@ -341,12 +337,8 @@
   
   <!-- online resources: link-to-downloadable data etc -->
   <xsl:template match="cit:CI_OnlineResource[starts-with(cit:protocol/gco:CharacterString,'WWW:LINK-') and contains(cit:protocol/gco:CharacterString,'http--download')]">
-    <xsl:variable name="mimeType">
-      <xsl:call-template name="getMimeTypeUrl">
-        <xsl:with-param name="linkage" select="cit:linkage/gco:CharacterString"/>
-      </xsl:call-template>
-    </xsl:variable>
-    
+    <xsl:variable name="mimeType" select="mime:detectMimeTypeUrl(cit:linkage/gco:CharacterString)"/>
+
     <xsl:copy>
       <xsl:copy-of select="@*"/>
       <xsl:copy-of select="cit:linkage"/>
