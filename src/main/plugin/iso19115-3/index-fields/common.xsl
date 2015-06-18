@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xsl:stylesheet version="2.0"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0"
                 xmlns:dqm="http://standards.iso.org/19157/-2/dqm/1.0"
                 xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0"
@@ -19,14 +21,12 @@
                 xmlns:gfc="http://standards.iso.org/19110/gfc/1.1"
                 xmlns:geonet="http://www.fao.org/geonetwork"
                 xmlns:util="java:org.fao.geonet.util.XslUtil"
-                xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:joda="java:org.fao.geonet.domain.ISODate"
                 xmlns:gn-fn-iso19115-3="http://geonetwork-opensource.org/xsl/functions/profiles/iso19115-3"
                 xmlns:skos="http://www.w3.org/2004/02/skos/core#"
                 exclude-result-prefixes="#all">
 
 
-  <xsl:include href="../convert/functions.xsl"/>
   <xsl:include href="../layout/utility-tpl-multilingual.xsl"/>
   <xsl:include href="index-subtemplate-fields.xsl"/>
 
@@ -36,6 +36,8 @@
 
   <!-- Enable INSPIRE or not -->
   <xsl:param name="inspire">false</xsl:param>
+
+  <xsl:variable name="df">[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]</xsl:variable>
 
   <!-- If identification citation dates
     should be indexed as a temporal extent information (eg. in INSPIRE
@@ -62,10 +64,16 @@
                             mdb:metadataIdentifier[1]/
                             mcc:MD_Identifier/mcc:code/*"/>
 
-  <!-- Get the language -->
-  <xsl:variable name="documentMainLanguage">
-    <xsl:call-template name="langId19115-3"/>
-  </xsl:variable>
+  <!-- Get the language
+      If not set, the default will be english.
+  -->
+  <xsl:variable name="defaultLang">eng</xsl:variable>
+
+  <xsl:variable name="documentMainLanguage"
+                select="if ($metadata/mdb:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue != '')
+                        then $metadata/mdb:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue
+                        else $defaultLang"/>
+
 
 
 
@@ -148,6 +156,53 @@
     </xsl:if>
   </xsl:function>
 
+
+  <!-- Grab the default title which will
+  be added to all document in the index
+  whatever the langugae. -->
+  <xsl:template name="defaultTitle">
+    <xsl:param name="isoDocLangId"/>
+
+    <xsl:variable name="poundLangId"
+                  select="concat('#',upper-case(util:twoCharLangCode($isoDocLangId)))" />
+
+    <xsl:variable name="identification"
+                  select="$metadata/mdb:identificationInfo/*"/>
+    <xsl:variable name="docLangTitle"
+                  select="$identification/mri:citation/*/cit:title//lan:LocalisedCharacterString[@locale = $poundLangId]"/>
+    <xsl:variable name="charStringTitle"
+                  select="$identification/mri:citation/*/cit:title/gco:CharacterString"/>
+    <xsl:variable name="locStringTitles"
+                  select="$identification/mri:citation/*/cit:title//lan:LocalisedCharacterString"/>
+    <xsl:choose>
+      <xsl:when test="string-length(string($docLangTitle)) != 0">
+        <xsl:value-of select="$docLangTitle[1]"/>
+      </xsl:when>
+      <xsl:when test="string-length(string($charStringTitle[1])) != 0">
+        <xsl:value-of select="string($charStringTitle[1])"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="string($locStringTitles[1])"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+
+  <!-- Format a date. If null, unknown, current, now return
+  the current date time.
+  -->
+  <xsl:function name="gn-fn-iso19115-3:formatDateTime" as="xs:string">
+    <xsl:param name="value" as="xs:string"/>
+
+    <xsl:choose>
+      <xsl:when test="$value='' or lower-case($value)='unknown' or lower-case($value)='current' or lower-case($value)='now'">
+        <xsl:value-of select="format-dateTime(current-dateTime(),$df)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="joda:parseISODateTime($value)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
 
 
   <xsl:template name="CommonFieldsFactory">
@@ -255,15 +310,12 @@
 
         <xsl:for-each select="mri:temporalElement/gex:EX_TemporalExtent/gex:extent">
           <xsl:for-each select="gml:TimePeriod">
-            <xsl:variable name="times">
-              <xsl:call-template name="newGmlTime">
-                <xsl:with-param name="begin" select="gml:beginPosition|gml:begin/gml:TimeInstant/gml:timePosition"/>
-                <xsl:with-param name="end" select="gml:endPosition|gml:end/gml:TimeInstant/gml:timePosition"/>
-              </xsl:call-template>
-            </xsl:variable>
-
-            <Field name="tempExtentBegin" string="{lower-case(substring-before($times,'|'))}" store="true" index="true"/>
-            <Field name="tempExtentEnd" string="{lower-case(substring-after($times,'|'))}" store="true" index="true"/>
+            <Field name="tempExtentBegin"
+                   string="{lower-case(gn-fn-iso19115-3:formatDateTime(gml:beginPosition|gml:begin/gml:TimeInstant/gml:timePosition))}"
+                   store="true" index="true"/>
+            <Field name="tempExtentEnd"
+                   string="{lower-case(gn-fn-iso19115-3:formatDateTime(gml:endPosition|gml:end/gml:TimeInstant/gml:timePosition))}"
+                   store="true" index="true"/>
           </xsl:for-each>
 
         </xsl:for-each>

@@ -13,9 +13,9 @@
             xmlns:mrs="http://standards.iso.org/19115/-3/mrs/1.0"
             xmlns:mrl="http://standards.iso.org/19115/-3/mrl/1.0"
             xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0"
-						xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0"
-						xmlns:gcx="http://standards.iso.org/19115/-3/gcx/1.0"
-						xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0"
+            xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0"
+            xmlns:gcx="http://standards.iso.org/19115/-3/gcx/1.0"
+            xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0"
             xmlns:gfc="http://standards.iso.org/19110/gfc/1.1"
             xmlns:gml="http://www.opengis.net/gml/3.2"
             xmlns:geonet="http://www.fao.org/geonetwork"
@@ -26,20 +26,19 @@
 
   <xsl:include href="common.xsl"/>
 
-	<!--<xsl:include href="../../../xsl/utils-fn.xsl"/>-->
 
-	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
+  <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
 
   <xsl:template match="/">
-		<xsl:call-template name="indexMetadata">
+    <xsl:call-template name="indexMetadata">
       <xsl:with-param name="lang" select="$documentMainLanguage"/>
     </xsl:call-template>
-	</xsl:template>
+  </xsl:template>
 
   <!-- Example on how to catch more element and index them -->
-	<xsl:template mode="index"
-		match="mri:extent/gex:EX_Extent/gex:description">
+  <xsl:template mode="index"
+    match="mri:extent/gex:EX_Extent/gex:description">
     <xsl:copy-of select="gn-fn-iso19115-3:index-field('extentDesc', .)"/>
-	</xsl:template>
+  </xsl:template>
 
 </xsl:stylesheet>
