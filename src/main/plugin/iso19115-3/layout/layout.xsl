@@ -147,6 +147,8 @@
        gco:Record|lan:PT_FreeText|mcc:URI]">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
+    <xsl:param name="overrideLabel" select="''" required="no"/>
+
 
     <xsl:variable name="elementName" select="name()"/>
 
@@ -288,7 +290,7 @@
     </xsl:variable>
 
     <xsl:call-template name="render-element">
-      <xsl:with-param name="label" select="$labelConfig/label"/>
+      <xsl:with-param name="label" select="if ($overrideLabel != '') then $overrideLabel else $labelConfig/label"/>
       <xsl:with-param name="value" select="if ($isMultilingualElement) then $values else *"/>
       <xsl:with-param name="errors" select="$errors"/>
       <xsl:with-param name="cls" select="local-name()"/>
@@ -388,13 +390,15 @@
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
     <xsl:param name="codelists" select="$codelists" required="no"/>
-    <xsl:variable name="elementName" select="name()"/>
+    <xsl:param name="overrideLabel" select="''" required="no"/>
 
+    <xsl:variable name="elementName" select="name()"/>
     <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
     <xsl:variable name="isoType" select="if (../@gco:isoType) then ../@gco:isoType else ''"/>
+
     <xsl:call-template name="render-element">
       <xsl:with-param name="label"
-                      select="gn-fn-metadata:getLabel($schema, name(), $labels, name(..), $isoType, $xpath)/label"/>
+                      select="if ($overrideLabel != '') then $overrideLabel else gn-fn-metadata:getLabel($schema, name(), $labels, name(..), $isoType, $xpath)/label"/>
       <xsl:with-param name="value" select="*/@codeListValue"/>
       <xsl:with-param name="cls" select="local-name()"/>
       <xsl:with-param name="xpath" select="$xpath"/>

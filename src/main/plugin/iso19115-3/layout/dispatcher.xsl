@@ -37,7 +37,11 @@
   <!-- Dispatch to the current profile mode -->
   <xsl:template name="dispatch-iso19115-3">
     <xsl:param name="base" as="node()"/>
-    <xsl:apply-templates mode="mode-iso19115-3" select="$base"/>
+    <xsl:param name="overrideLabel" as="xs:string" required="no" select="''"/>
+
+    <xsl:apply-templates mode="mode-iso19115-3" select="$base">
+      <xsl:with-param name="overrideLabel" select="$overrideLabel"/>
+    </xsl:apply-templates>
   </xsl:template>
 
 </xsl:stylesheet>
