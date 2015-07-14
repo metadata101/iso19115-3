@@ -95,13 +95,7 @@
 		<suggest name="mri:type"/>
 		<suggest name="mri:thesaurusName"/>
 	</field>-->
-	
-	<!--
-		This is not supported because gmd:date is an OR element with Date or DateTime choice.
-		<field name="cit:date">
-		<suggest name="gco:Date"/>
-	</field>-->
-	
+
 	<!-- Control substitute of gco:CharacterString -->
 	<!-- Only propose gco:CharacterString and expand it when gmd:keyword is created. For this,
 	set no suggestion. Adding :

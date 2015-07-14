@@ -1,7 +1,7 @@
 <mrd:MD_Format
-        xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0"
-        xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0"
-        xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0">
+        xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
+        xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+        xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0">
   <mrd:formatSpecificationCitation>
     <cit:CI_Citation>
       <cit:title>

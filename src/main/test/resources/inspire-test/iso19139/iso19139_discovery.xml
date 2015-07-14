@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<gmd:MD_Metadata xmlns:gmd="http://standards.iso.org/19115/-3/gmd" xmlns:srv="http://standards.iso.org/19115/-3/srv" xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gmx="http://standards.iso.org/19115/-3/gmx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gfc="http://standards.iso.org/19115/-3/gfc" xmlns:gml="http://www.opengis.net/gml" xmlns:geonet="http://www.fao.org/geonetwork">
+<gmd:MD_Metadata xmlns:gmd="http://standards.iso.org/iso/19115/-3/gmd" xmlns:srv="http://standards.iso.org/iso/19115/-3/srv" xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gmx="http://standards.iso.org/iso/19115/-3/gmx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gfc="http://standards.iso.org/iso/19115/-3/gfc" xmlns:gml="http://www.opengis.net/gml" xmlns:geonet="http://www.fao.org/geonetwork">
   <gmd:fileIdentifier>
     <gco:CharacterString>2cdeb98f-c90d-4aaa-9143-dd7bea3707ba</gco:CharacterString>
   </gmd:fileIdentifier>
@@ -108,7 +108,7 @@
             <gco:CharacterString>infoCatalogueService</gco:CharacterString>
           </gmd:keyword>
           <gmd:type>
-            <gmd:MD_KeywordTypeCode codeList="http://standards.iso.org/19115/-3/resources/codeList.xml#MD_KeywordTypeCode" codeListValue="theme" />
+            <gmd:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/-3/resources/codeList.xml#MD_KeywordTypeCode" codeListValue="theme" />
           </gmd:type>
           <gmd:thesaurusName>
             <gmd:CI_Citation>
@@ -177,10 +177,10 @@
         </gmd:EX_Extent>
       </srv:extent>
       <srv:couplingType>
-        <srv:SV_CouplingType codeList="http://standards.iso.org/19115/-3/iso19119/resources/Codelist/gmxCodelists.xml#SV_CouplingType" codeListValue="tight" />
+        <srv:SV_CouplingType codeList="http://standards.iso.org/iso/19115/-3/iso19119/resources/Codelist/gmxCodelists.xml#SV_CouplingType" codeListValue="tight" />
       </srv:couplingType>
       <srv:containsOperations />
-      <srv:operatesOn uuidref="-- Identifiant de la série ou les séries de données géographiques cibles du service grâce à leurs identificateurs de ressource uniques (Unique Resource Identifiers, URI) --" xlink:href="http://geosourcetest.brgm-rec.fr/geosource/srv/en/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://standards.iso.org/19115/-3/gmd&amp;elementSetName=full&amp;id=-- Identifiant de la série ou les séries de données géographiques cibles du service grâce à leurs identificateurs de ressource uniques (Unique Resource Identifiers, URI) --" />
+      <srv:operatesOn uuidref="-- Identifiant de la série ou les séries de données géographiques cibles du service grâce à leurs identificateurs de ressource uniques (Unique Resource Identifiers, URI) --" xlink:href="http://geosourcetest.brgm-rec.fr/geosource/srv/en/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://standards.iso.org/iso/19115/-3/gmd&amp;elementSetName=full&amp;id=-- Identifiant de la série ou les séries de données géographiques cibles du service grâce à leurs identificateurs de ressource uniques (Unique Resource Identifiers, URI) --" />
     </srv:SV_ServiceIdentification>
   </gmd:identificationInfo>
   <gmd:distributionInfo>

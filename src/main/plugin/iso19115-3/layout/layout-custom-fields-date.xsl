@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0"
-                xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0"
-                xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0"
-                xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0"
-                xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0"
-                xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0"
-                xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0"
+                xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
+                xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
+                xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
+                xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
+                xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+                xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
+                xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
                 xmlns:gml="http://www.opengis.net/gml/3.2"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -61,7 +61,7 @@
   -->
   <xsl:template mode="mode-iso19115-3"
                 priority="2000"
-                match="*[gco:Date|gco:DateTime]">
+                match="*[(gco:Date|gco:DateTime) and ../cit:dateType]">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
 
@@ -101,6 +101,58 @@
         </xsl:call-template>
       </div>
       <div class="col-sm-6 gn-value">
+        <div data-gn-date-picker="{gco:Date|gco:DateTime}"
+             data-label=""
+             data-element-name="{name(gco:Date|gco:DateTime)}"
+             data-element-ref="{concat('_X', gn:element/@ref)}">
+        </div>
+
+
+        <!-- Create form for all existing attribute (not in gn namespace)
+         and all non existing attributes not already present. -->
+        <div class="well well-sm gn-attr {if ($isDisplayingAttributes) then '' else 'hidden'}">
+          <xsl:apply-templates mode="render-for-field-for-attribute"
+                               select="
+            ../../@*|
+            ../../gn:attribute[not(@name = parent::node()/@*/name())]">
+            <xsl:with-param name="ref" select="../../gn:element/@ref"/>
+            <xsl:with-param name="insertRef" select="../gn:element/@ref"/>
+          </xsl:apply-templates>
+        </div>
+      </div>
+      <div class="col-sm-1 gn-control">
+        <xsl:call-template name="render-form-field-control-remove">
+          <xsl:with-param name="editInfo" select="../gn:element"/>
+          <xsl:with-param name="parentEditInfo" select="../../gn:element"/>
+        </xsl:call-template>
+      </div>
+    </div>
+  </xsl:template>
+
+
+  <!--
+  Date with not date type.
+   eg. cit:editionDate
+  -->
+  <xsl:template mode="mode-iso19115-3"
+                priority="2000"
+                match="*[(gco:Date|gco:DateTime) and not(../cit:dateType)]">
+    <xsl:param name="schema" select="$schema" required="no"/>
+    <xsl:param name="labels" select="$labels" required="no"/>
+
+    <xsl:variable name="labelConfig"
+                  select="gn-fn-metadata:getLabel($schema, name(), $labels)"/>
+
+    <xsl:variable name="dateTypeElementRef"
+                  select="../gn:element/@ref"/>
+
+    <div class="form-group gn-field gn-title gn-required"
+         id="gn-el-{$dateTypeElementRef}"
+         data-gn-field-highlight="">
+      <label class="col-sm-2 control-label">
+        <xsl:value-of select="$labelConfig/label"/>
+      </label>
+      <div class="col-sm-9 gn-value">
         <div data-gn-date-picker="{gco:Date|gco:DateTime}"
              data-label=""
              data-element-name="{name(gco:Date|gco:DateTime)}"

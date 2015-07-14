@@ -12831,7 +12831,7 @@ La liste des changements d'état sont accessibles ici :
       <name plugin="true" schemaConvertDirectory="/home/francois/Workspace/github/core-geonetwork/web/src/main/webapp/WEB-INF/data/config/schema_plugins/iso19115/convert/" namespaces="" edit="true">
         iso19115
         <conversions>
-          <converter name="xml_iso19115to19139" nsUri="http://standards.iso.org/19115/-3/gmd" schemaLocation="http://standards.iso.org/19115/-3/gmd" xslt="" />
+          <converter name="xml_iso19115to19139" nsUri="http://standards.iso.org/iso/19115/-3/gmd" schemaLocation="http://standards.iso.org/iso/19115/-3/gmd" xslt="" />
           <converter name="xml_iso19115toarccatalog8" nsUri="" schemaLocation="" xslt="" />
           <converter name="xml_iso19115Tooai_dc" nsUri="http://www.openarchives.org/OAI/2.0/" schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc.xsd" xslt="oai_dc.xsl" />
         </conversions>
@@ -12843,10 +12843,10 @@ La liste des changements d'état sont accessibles ici :
           <converter name="xml_fgdc-stdTooai_dc" nsUri="http://www.openarchives.org/OAI/2.0/" schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc.xsd" xslt="oai_dc.xsl" />
         </conversions>
       </name>
-      <name plugin="true" schemaConvertDirectory="/home/francois/Workspace/github/core-geonetwork/web/src/main/webapp/WEB-INF/data/config/schema_plugins/iso19139/convert/" namespaces="xmlns:gts=&quot;http://www.isotc211.org/2005/gts&quot; xmlns:gmx=&quot;http://standards.iso.org/19115/-3/gmx&quot; xmlns:gco=&quot;http://standards.iso.org/19115/-3/gco/1.0&quot; xmlns:srv=&quot;http://standards.iso.org/19115/-3/srv&quot; xmlns:gss=&quot;http://standards.iso.org/19115/-3/gss&quot; xmlns:gml=&quot;http://www.opengis.net/gml&quot; xmlns:gsr=&quot;http://standards.iso.org/19115/-3/gsr&quot; xmlns:gmd=&quot;http://standards.iso.org/19115/-3/gmd&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;" edit="true">
+      <name plugin="true" schemaConvertDirectory="/home/francois/Workspace/github/core-geonetwork/web/src/main/webapp/WEB-INF/data/config/schema_plugins/iso19139/convert/" namespaces="xmlns:gts=&quot;http://www.isotc211.org/2005/gts&quot; xmlns:gmx=&quot;http://standards.iso.org/iso/19115/-3/gmx&quot; xmlns:gco=&quot;http://standards.iso.org/iso/19115/-3/gco/1.0&quot; xmlns:srv=&quot;http://standards.iso.org/iso/19115/-3/srv&quot; xmlns:gss=&quot;http://standards.iso.org/iso/19115/-3/gss&quot; xmlns:gml=&quot;http://www.opengis.net/gml&quot; xmlns:gsr=&quot;http://standards.iso.org/iso/19115/-3/gsr&quot; xmlns:gmd=&quot;http://standards.iso.org/iso/19115/-3/gmd&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;" edit="true">
         iso19139
         <conversions>
-          <converter name="xml_iso19139" nsUri="http://standards.iso.org/19115/-3/gmd" schemaLocation="www.isotc211.org/2005/gmd/gmd.xsd" xslt="" />
+          <converter name="xml_iso19139" nsUri="http://standards.iso.org/iso/19115/-3/gmd" schemaLocation="www.isotc211.org/2005/gmd/gmd.xsd" xslt="" />
           <converter name="xml_iso19139Tooai_dc" nsUri="http://www.openarchives.org/OAI/2.0/" schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc.xsd" xslt="oai_dc.xsl" />
         </conversions>
       </name>
@@ -12857,10 +12857,10 @@ La liste des changements d'état sont accessibles ici :
           <converter name="xml_csw-recordTooai_dc" nsUri="http://www.openarchives.org/OAI/2.0/" schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc.xsd" xslt="oai_dc.xsl" />
         </conversions>
       </name>
-      <name plugin="true" schemaConvertDirectory="/home/francois/Workspace/github/core-geonetwork/web/src/main/webapp/WEB-INF/data/config/schema_plugins/iso19110/convert/" namespaces="xmlns:gts=&quot;http://www.isotc211.org/2005/gts&quot; xmlns:gmx=&quot;http://standards.iso.org/19115/-3/gmx&quot; xmlns:gco=&quot;http://standards.iso.org/19115/-3/gco/1.0&quot; xmlns:gfc=&quot;http://standards.iso.org/19115/-3/gfc&quot; xmlns:gss=&quot;http://standards.iso.org/19115/-3/gss&quot; xmlns:gml=&quot;http://www.opengis.net/gml&quot; xmlns:gsr=&quot;http://standards.iso.org/19115/-3/gsr&quot; xmlns:gmd=&quot;http://standards.iso.org/19115/-3/gmd&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;" edit="true">
+      <name plugin="true" schemaConvertDirectory="/home/francois/Workspace/github/core-geonetwork/web/src/main/webapp/WEB-INF/data/config/schema_plugins/iso19110/convert/" namespaces="xmlns:gts=&quot;http://www.isotc211.org/2005/gts&quot; xmlns:gmx=&quot;http://standards.iso.org/iso/19115/-3/gmx&quot; xmlns:gco=&quot;http://standards.iso.org/iso/19115/-3/gco/1.0&quot; xmlns:gfc=&quot;http://standards.iso.org/iso/19115/-3/gfc&quot; xmlns:gss=&quot;http://standards.iso.org/iso/19115/-3/gss&quot; xmlns:gml=&quot;http://www.opengis.net/gml&quot; xmlns:gsr=&quot;http://standards.iso.org/iso/19115/-3/gsr&quot; xmlns:gmd=&quot;http://standards.iso.org/iso/19115/-3/gmd&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;" edit="true">
         iso19110
         <conversions>
-          <converter name="xml_iso19110" nsUri="http://standards.iso.org/19115/-3/gfc" schemaLocation="http://eden.ign.fr/xsd/isotc211/iso19110/20060608/gfc/gfc.xsd" xslt="" />
+          <converter name="xml_iso19110" nsUri="http://standards.iso.org/iso/19115/-3/gfc" schemaLocation="http://eden.ign.fr/xsd/isotc211/iso19110/20060608/gfc/gfc.xsd" xslt="" />
           <converter name="xml_iso19110Tooai_dc" nsUri="http://www.openarchives.org/OAI/2.0/" schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc.xsd" xslt="oai_dc.xsl" />
         </conversions>
       </name>
@@ -12871,10 +12871,10 @@ La liste des changements d'état sont accessibles ici :
           <converter name="xml_dublin-coreTooai_dc" nsUri="http://www.openarchives.org/OAI/2.0/" schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc.xsd" xslt="oai_dc.xsl" />
         </conversions>
       </name>
-      <name plugin="true" schemaConvertDirectory="/home/francois/Workspace/github/core-geonetwork/web/src/main/webapp/WEB-INF/data/config/schema_plugins/iso19115-3/convert/" namespaces="xmlns:cit=&quot;http://standards.iso.org/19115/-3/cit/1.0&quot; xmlns:gco=&quot;http://standards.iso.org/19115/-3/gco/1.0&quot; xmlns:msr=&quot;http://standards.iso.org/19115/-3/msr/1.0&quot; xmlns:mco=&quot;http://standards.iso.org/19115/-3/mco/1.0&quot; xmlns:gcx=&quot;http://standards.iso.org/19115/-3/gcx/1.0&quot; xmlns:lan=&quot;http://standards.iso.org/19115/-3/lan/1.0&quot; xmlns:mrs=&quot;http://standards.iso.org/19115/-3/mrs/1.0&quot; xmlns:mmi=&quot;http://standards.iso.org/19115/-3/mmi/1.0&quot; xmlns:mpc=&quot;http://standards.iso.org/19115/-3/mpc/1.0&quot; xmlns:gfc=&quot;http://standards.iso.org/19115/-3/gfc/0.1&quot; xmlns:gml=&quot;http://www.opengis.net/gml/3.2&quot; xmlns:cat=&quot;http://standards.iso.org/19115/-3/cat/1.0&quot; xmlns:mcc=&quot;http://standards.iso.org/19115/-3/mcc/1.0&quot; xmlns:xml=&quot;http://www.w3.org/XML/1998/namespace&quot; xmlns:mrd=&quot;http://standards.iso.org/19115/-3/mrd/1.0&quot; xmlns:srv=&quot;http://standards.iso.org/19115/-3/srv/2.0&quot; xmlns:gts=&quot;http://www.isotc211.org/2005/gts&quot; xmlns:mdq=&quot;http://standards.iso.org/19115/-3/mdq/1.0&quot; xmlns:dqm=&quot;http://standards.iso.org/19115/-3/dqm/1.0&quot; xmlns:mas=&quot;http://standards.iso.org/19115/-3/mas/1.0&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; xmlns:mrc=&quot;http://standards.iso.org/19115/-3/mrc/1.0&quot; xmlns:mrl=&quot;http://standards.iso.org/19115/-3/mrl/1.0&quot; xmlns:mri=&quot;http://standards.iso.org/19115/-3/mri/1.0&quot; xmlns:gss=&quot;http://standards.iso.org/19115/-3/gss&quot; xmlns:gex=&quot;http://standards.iso.org/19115/-3/gex/1.0&quot; xmlns:mdb=&quot;http://standards.iso.org/19115/-3/mdb/1.0&quot;" edit="true">
+      <name plugin="true" schemaConvertDirectory="/home/francois/Workspace/github/core-geonetwork/web/src/main/webapp/WEB-INF/data/config/schema_plugins/iso19115-3/convert/" namespaces="xmlns:cit=&quot;http://standards.iso.org/iso/19115/-3/cit/1.0&quot; xmlns:gco=&quot;http://standards.iso.org/iso/19115/-3/gco/1.0&quot; xmlns:msr=&quot;http://standards.iso.org/iso/19115/-3/msr/1.0&quot; xmlns:mco=&quot;http://standards.iso.org/iso/19115/-3/mco/1.0&quot; xmlns:gcx=&quot;http://standards.iso.org/iso/19115/-3/gcx/1.0&quot; xmlns:lan=&quot;http://standards.iso.org/iso/19115/-3/lan/1.0&quot; xmlns:mrs=&quot;http://standards.iso.org/iso/19115/-3/mrs/1.0&quot; xmlns:mmi=&quot;http://standards.iso.org/iso/19115/-3/mmi/1.0&quot; xmlns:mpc=&quot;http://standards.iso.org/iso/19115/-3/mpc/1.0&quot; xmlns:gfc=&quot;http://standards.iso.org/iso/19115/-3/gfc/0.1&quot; xmlns:gml=&quot;http://www.opengis.net/gml/3.2&quot; xmlns:cat=&quot;http://standards.iso.org/iso/19115/-3/cat/1.0&quot; xmlns:mcc=&quot;http://standards.iso.org/iso/19115/-3/mcc/1.0&quot; xmlns:xml=&quot;http://www.w3.org/XML/1998/namespace&quot; xmlns:mrd=&quot;http://standards.iso.org/iso/19115/-3/mrd/1.0&quot; xmlns:srv=&quot;http://standards.iso.org/iso/19115/-3/srv/2.0&quot; xmlns:gts=&quot;http://www.isotc211.org/2005/gts&quot; xmlns:mdq=&quot;http://standards.iso.org/iso/19115/-3/mdq/1.0&quot; xmlns:dqm=&quot;http://standards.iso.org/iso/19115/-3/dqm/1.0&quot; xmlns:mas=&quot;http://standards.iso.org/iso/19115/-3/mas/1.0&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; xmlns:mrc=&quot;http://standards.iso.org/iso/19115/-3/mrc/1.0&quot; xmlns:mrl=&quot;http://standards.iso.org/iso/19115/-3/mrl/1.0&quot; xmlns:mri=&quot;http://standards.iso.org/iso/19115/-3/mri/1.0&quot; xmlns:gss=&quot;http://standards.iso.org/iso/19115/-3/gss&quot; xmlns:gex=&quot;http://standards.iso.org/iso/19115/-3/gex/1.0&quot; xmlns:mdb=&quot;http://standards.iso.org/iso/19115/-3/mdb/1.0&quot;" edit="true">
         iso19115-3
         <conversions>
-          <converter name="xml_iso19115-1-2013" nsUri="http://standards.iso.org/19115/-3/mds/1.0/2013-03-28" schemaLocation="http://standards.iso.org/19115/-3/mds/1.0/mds.xsd" xslt="" />
+          <converter name="xml_iso19115-1-2013" nsUri="http://standards.iso.org/iso/19115/-3/mds/1.0/2013-03-28" schemaLocation="http://standards.iso.org/iso/19115/-3/mds/1.0/mds.xsd" xslt="" />
           <converter name="xml_iso19115-1-2013Tooai_dc" nsUri="http://www.openarchives.org/OAI/2.0/" schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc.xsd" xslt="oai_dc.xsl" />
         </conversions>
       </name>
@@ -18888,7 +18888,7 @@ La liste des changements d'état sont accessibles ici :
         </labels>
       </fgdc-std>
       <iso19139>
-        <codelists xmlns:gmd="http://standards.iso.org/19115/-3/gmd">
+        <codelists xmlns:gmd="http://standards.iso.org/iso/19115/-3/gmd">
           <!-- ==================================================== -->
           <codelist name="gmd:CI_DateTypeCode">
             <entry>
@@ -20919,7 +20919,7 @@ Acteur qui a assuré la réalisation de la ressource,éventuellement en faisant 
         </strings>
       </iso19139>
       <iso19139>
-        <labels xmlns:gmd="http://standards.iso.org/19115/-3/gmd" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0" xmlns:gml="http://www.opengis.net/gml" xmlns:srv="http://standards.iso.org/19115/-3/srv" xmlns:gmx="http://standards.iso.org/19115/-3/gmx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <labels xmlns:gmd="http://standards.iso.org/iso/19115/-3/gmd" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0" xmlns:gml="http://www.opengis.net/gml" xmlns:srv="http://standards.iso.org/iso/19115/-3/srv" xmlns:gmx="http://standards.iso.org/iso/19115/-3/gmx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <element name="gmd:MD_ScopeCode">
             <label>Code</label>
             <description />
@@ -25418,7 +25418,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
         </strings>
       </iso19110>
       <iso19110>
-        <labels xmlns:gfc="http://standards.iso.org/19115/-3/gfc" xmlns:gmx="http://standards.iso.org/19115/-3/gmx" xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0" xmlns:gmd="http://standards.iso.org/19115/-3/gmd">
+        <labels xmlns:gfc="http://standards.iso.org/iso/19115/-3/gfc" xmlns:gmx="http://standards.iso.org/iso/19115/-3/gmx" xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0" xmlns:gmd="http://standards.iso.org/iso/19115/-3/gmd">
           <!-- ==================================================== -->
           <element name="gfc:FC_FeatureCatalogue">
             <label>Description du catalogue attributaire associé</label>
@@ -26004,7 +26004,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
         </labels>
       </dublin-core>
       <iso19115-3>
-        <codelists xmlns:gmd="http://standards.iso.org/19115/-3/gmd">
+        <codelists xmlns:gmd="http://standards.iso.org/iso/19115/-3/gmd">
           <!-- ==================================================== -->
           <codelist name="gmd:CI_DateTypeCode">
             <entry>
@@ -27976,7 +27976,7 @@ Acteur qui a assuré la réalisation de la ressource,éventuellement en faisant 
         </strings>
       </iso19115-3>
       <iso19115-3>
-        <labels xmlns:gmd="http://standards.iso.org/19115/-3/gmd" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0" xmlns:gml="http://www.opengis.net/gml" xmlns:srv="http://standards.iso.org/19115/-3/srv" xmlns:gmx="http://standards.iso.org/19115/-3/gmx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <labels xmlns:gmd="http://standards.iso.org/iso/19115/-3/gmd" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0" xmlns:gml="http://www.opengis.net/gml" xmlns:srv="http://standards.iso.org/iso/19115/-3/srv" xmlns:gmx="http://standards.iso.org/iso/19115/-3/gmx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <element name="gmd:MD_ScopeCode">
             <label>Code du sujet</label>
             <description />
@@ -32633,10 +32633,10 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
     <nodeId>srv</nodeId>
     <locService>/geonetwork/srv/fre</locService>
   </gui>
-  <mdb:MD_Metadata xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cat="http://standards.iso.org/19115/-3/cat/1.0" xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0" xmlns:gcx="http://standards.iso.org/19115/-3/gcx/1.0" xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0" xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0" xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0" xmlns:mas="http://standards.iso.org/19115/-3/mas/1.0" xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0" xmlns:mco="http://standards.iso.org/19115/-3/mco/1.0" xmlns:mda="http://standards.iso.org/19115/-3/mda/1.0" xmlns:mds="http://standards.iso.org/19115/-3/mds/1.0" xmlns:mdt="http://standards.iso.org/19115/-3/mdt/1.0" xmlns:mex="http://standards.iso.org/19115/-3/mex/1.0" xmlns:mmi="http://standards.iso.org/19115/-3/mmi/1.0" xmlns:mpc="http://standards.iso.org/19115/-3/mpc/1.0" xmlns:mrc="http://standards.iso.org/19115/-3/mrc/1.0" xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0" xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0" xmlns:mrl="http://standards.iso.org/19115/-3/mrl/1.0" xmlns:mrs="http://standards.iso.org/19115/-3/mrs/1.0" xmlns:msr="http://standards.iso.org/19115/-3/msr/1.0" xmlns:mdq="http://standards.iso.org/19157/-2/mdq/1.0" xmlns:mac="http://standards.iso.org/19115/-3/mac/1.0" xmlns:mai="http://standards.iso.org/19115/-3/mai/1.0" xmlns:mic="http://standards.iso.org/19115/-3/mic/1.0" xmlns:mil="http://standards.iso.org/19115/-3/mil/1.0" xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:geonet="http://www.fao.org/geonetwork">
+  <mdb:MD_Metadata xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cat="http://standards.iso.org/iso/19115/-3/cat/1.0" xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0" xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0" xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0" xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0" xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0" xmlns:mas="http://standards.iso.org/iso/19115/-3/mas/1.0" xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0" xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0" xmlns:mda="http://standards.iso.org/iso/19115/-3/mda/1.0" xmlns:mds="http://standards.iso.org/iso/19115/-3/mds/1.0" xmlns:mdt="http://standards.iso.org/iso/19115/-3/mdt/1.0" xmlns:mex="http://standards.iso.org/iso/19115/-3/mex/1.0" xmlns:mmi="http://standards.iso.org/iso/19115/-3/mmi/1.0" xmlns:mpc="http://standards.iso.org/iso/19115/-3/mpc/1.0" xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/1.0" xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0" xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0" xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/1.0" xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0" xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/1.0" xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0" xmlns:mac="http://standards.iso.org/iso/19115/-3/mac/1.0" xmlns:mai="http://standards.iso.org/iso/19115/-3/mai/1.0" xmlns:mic="http://standards.iso.org/iso/19115/-3/mic/1.0" xmlns:mil="http://standards.iso.org/iso/19115/-3/mil/1.0" xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:geonet="http://www.fao.org/geonetwork">
     <mdb:metadataIdentifier>
       <mcc:MD_Identifier>
-        <geonet:child name="authority" prefix="mcc" namespace="http://standards.iso.org/19115/-3/mcc/1.0" uuid="child_mcc:authority_653ae65f-6247-4c29-b26c-8c78b6681ed9" min="0" max="1" action="replace" />
+        <geonet:child name="authority" prefix="mcc" namespace="http://standards.iso.org/iso/19115/-3/mcc/1.0" uuid="child_mcc:authority_653ae65f-6247-4c29-b26c-8c78b6681ed9" min="0" max="1" action="replace" />
         <mcc:code>
           <gco:CharacterString>
             cecd1ebf-719e-4b1f-b6a7-86c17ed02c62
@@ -32665,11 +32665,11 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
             <geonet:text value="withheld" />
           </geonet:attribute>
         </mcc:codeSpace>
-        <geonet:child name="version" prefix="mcc" namespace="http://standards.iso.org/19115/-3/mcc/1.0" uuid="child_mcc:version_cbadac64-0aaa-49de-a7bf-6b10b7e197ec" min="0" max="1" action="replace">
-          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_0c6aaa10-f270-46b4-8f4c-a310c40cf7c4" min="1" max="1" action="replace" />
+        <geonet:child name="version" prefix="mcc" namespace="http://standards.iso.org/iso/19115/-3/mcc/1.0" uuid="child_mcc:version_cbadac64-0aaa-49de-a7bf-6b10b7e197ec" min="0" max="1" action="replace">
+          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_0c6aaa10-f270-46b4-8f4c-a310c40cf7c4" min="1" max="1" action="replace" />
         </geonet:child>
-        <geonet:child name="description" prefix="mcc" namespace="http://standards.iso.org/19115/-3/mcc/1.0" uuid="child_mcc:description_3ad91845-0b36-4929-95d9-0996b56b1efe" min="0" max="1" action="replace">
-          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_41398346-9386-4072-b6fa-d0f2856ce089" min="1" max="1" action="replace" />
+        <geonet:child name="description" prefix="mcc" namespace="http://standards.iso.org/iso/19115/-3/mcc/1.0" uuid="child_mcc:description_3ad91845-0b36-4929-95d9-0996b56b1efe" min="0" max="1" action="replace">
+          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_41398346-9386-4072-b6fa-d0f2856ce089" min="1" max="1" action="replace" />
         </geonet:child>
         <geonet:element ref="3" parent="2" uuid="mcc:MD_Identifier_0ae84239-fd52-4e04-a986-1490433dae9d" min="1" max="1" />
         <geonet:attribute name="id" add="true" />
@@ -32729,7 +32729,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
             <geonet:text value="withheld" />
           </geonet:attribute>
         </lan:language>
-        <geonet:child name="country" prefix="lan" namespace="http://standards.iso.org/19115/-3/lan/1.0" uuid="child_lan:country_8e49cf21-c5ad-41e2-9a61-d5735e9fa72c" min="0" max="1" action="replace" />
+        <geonet:child name="country" prefix="lan" namespace="http://standards.iso.org/iso/19115/-3/lan/1.0" uuid="child_lan:country_8e49cf21-c5ad-41e2-9a61-d5735e9fa72c" min="0" max="1" action="replace" />
         <lan:characterEncoding>
           <lan:MD_CharacterSetCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_CharacterSetCode" codeListValue="">
             <geonet:element ref="13" parent="12" uuid="lan:MD_CharacterSetCode_64584822-325f-4eaf-b690-da0c185df531" min="1" max="1" />
@@ -32801,17 +32801,17 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
             <geonet:text value="withheld" />
           </geonet:attribute>
         </cit:title>
-        <geonet:child name="alternateTitle" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:alternateTitle_1acc9c48-c912-4a26-ad96-8172d4d835da" min="0" max="10000" action="replace">
-          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_51167761-08ca-4697-9a8b-e7aa03052f7e" min="1" max="1" action="replace" />
+        <geonet:child name="alternateTitle" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:alternateTitle_1acc9c48-c912-4a26-ad96-8172d4d835da" min="0" max="10000" action="replace">
+          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_51167761-08ca-4697-9a8b-e7aa03052f7e" min="1" max="1" action="replace" />
         </geonet:child>
-        <geonet:child name="date" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:date_b6f8fc79-5a2d-41af-b800-6bae5bf1dfdd" min="0" max="10000" action="replace" />
-        <geonet:child name="edition" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:edition_5ecd0046-fe32-4d37-9aba-00a6b06cab6f" min="0" max="1" action="replace">
-          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_df801da1-e89a-43d8-93dd-f0bddc71be38" min="1" max="1" action="replace" />
+        <geonet:child name="date" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:date_b6f8fc79-5a2d-41af-b800-6bae5bf1dfdd" min="0" max="10000" action="replace" />
+        <geonet:child name="edition" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:edition_5ecd0046-fe32-4d37-9aba-00a6b06cab6f" min="0" max="1" action="replace">
+          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_df801da1-e89a-43d8-93dd-f0bddc71be38" min="1" max="1" action="replace" />
         </geonet:child>
-        <geonet:child name="editionDate" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:editionDate_1725c21e-3531-420f-9b1a-47c4e0e5477b" min="0" max="1" action="replace" />
+        <geonet:child name="editionDate" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:editionDate_1725c21e-3531-420f-9b1a-47c4e0e5477b" min="0" max="1" action="replace" />
         <cit:identifier>
           <mcc:MD_Identifier>
-            <geonet:child name="authority" prefix="mcc" namespace="http://standards.iso.org/19115/-3/mcc/1.0" uuid="child_mcc:authority_fc988c6f-693e-47fd-a0c6-c3c2abfe9ed7" min="0" max="1" action="replace" />
+            <geonet:child name="authority" prefix="mcc" namespace="http://standards.iso.org/iso/19115/-3/mcc/1.0" uuid="child_mcc:authority_fc988c6f-693e-47fd-a0c6-c3c2abfe9ed7" min="0" max="1" action="replace" />
             <mcc:code>
               <gco:CharacterString>
                 PARENTID
@@ -32826,14 +32826,14 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                 <geonet:text value="withheld" />
               </geonet:attribute>
             </mcc:code>
-            <geonet:child name="codeSpace" prefix="mcc" namespace="http://standards.iso.org/19115/-3/mcc/1.0" uuid="child_mcc:codeSpace_0f9fc896-b926-4d9c-a607-ce6791db0c6d" min="0" max="1" action="replace">
-              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_c4ec8af2-d3db-4cbe-9a8d-a6db6af40e90" min="1" max="1" action="replace" />
+            <geonet:child name="codeSpace" prefix="mcc" namespace="http://standards.iso.org/iso/19115/-3/mcc/1.0" uuid="child_mcc:codeSpace_0f9fc896-b926-4d9c-a607-ce6791db0c6d" min="0" max="1" action="replace">
+              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_c4ec8af2-d3db-4cbe-9a8d-a6db6af40e90" min="1" max="1" action="replace" />
             </geonet:child>
-            <geonet:child name="version" prefix="mcc" namespace="http://standards.iso.org/19115/-3/mcc/1.0" uuid="child_mcc:version_43356c91-b980-466f-83b1-e9c9125c6d31" min="0" max="1" action="replace">
-              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_b5fa0ae6-1bb5-461a-b45c-be3a7c2683e5" min="1" max="1" action="replace" />
+            <geonet:child name="version" prefix="mcc" namespace="http://standards.iso.org/iso/19115/-3/mcc/1.0" uuid="child_mcc:version_43356c91-b980-466f-83b1-e9c9125c6d31" min="0" max="1" action="replace">
+              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_b5fa0ae6-1bb5-461a-b45c-be3a7c2683e5" min="1" max="1" action="replace" />
             </geonet:child>
-            <geonet:child name="description" prefix="mcc" namespace="http://standards.iso.org/19115/-3/mcc/1.0" uuid="child_mcc:description_2bb73081-f96c-4cae-8f3c-c1f0bf872b33" min="0" max="1" action="replace">
-              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_30e9e47c-f539-4e33-a087-38ca6afe3c71" min="1" max="1" action="replace" />
+            <geonet:child name="description" prefix="mcc" namespace="http://standards.iso.org/iso/19115/-3/mcc/1.0" uuid="child_mcc:description_2bb73081-f96c-4cae-8f3c-c1f0bf872b33" min="0" max="1" action="replace">
+              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_30e9e47c-f539-4e33-a087-38ca6afe3c71" min="1" max="1" action="replace" />
             </geonet:child>
             <geonet:element ref="19" parent="18" uuid="mcc:MD_Identifier_3d6bde94-ef4c-4a21-9e05-52ac6c358e54" min="1" max="1" />
             <geonet:attribute name="id" add="true" />
@@ -32875,21 +32875,21 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
           </geonet:attribute>
           <geonet:attribute name="uuidref" add="true" />
         </cit:identifier>
-        <geonet:child name="identifier" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:identifier_2d1e213c-8a95-4d34-b208-bd7b4857bffa" min="0" max="10000" action="replace" />
-        <geonet:child name="citedResponsibleParty" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:citedResponsibleParty_6c8572b1-a299-48da-98f0-b1e45fbd6d67" min="0" max="10000" action="replace" />
-        <geonet:child name="presentationForm" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:presentationForm_56712c29-b902-4218-91fb-b8f155e28357" min="0" max="10000" action="replace" />
-        <geonet:child name="series" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:series_7e9cbadc-6996-4d36-a95f-0143d85b6624" min="0" max="1" action="replace" />
-        <geonet:child name="otherCitationDetails" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:otherCitationDetails_57a5f2c6-c205-4ce7-80e2-775ff187e5a2" min="0" max="10000" action="replace">
-          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_031852ba-2657-48bb-aad5-23dcf818de19" min="1" max="1" action="replace" />
+        <geonet:child name="identifier" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:identifier_2d1e213c-8a95-4d34-b208-bd7b4857bffa" min="0" max="10000" action="replace" />
+        <geonet:child name="citedResponsibleParty" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:citedResponsibleParty_6c8572b1-a299-48da-98f0-b1e45fbd6d67" min="0" max="10000" action="replace" />
+        <geonet:child name="presentationForm" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:presentationForm_56712c29-b902-4218-91fb-b8f155e28357" min="0" max="10000" action="replace" />
+        <geonet:child name="series" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:series_7e9cbadc-6996-4d36-a95f-0143d85b6624" min="0" max="1" action="replace" />
+        <geonet:child name="otherCitationDetails" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:otherCitationDetails_57a5f2c6-c205-4ce7-80e2-775ff187e5a2" min="0" max="10000" action="replace">
+          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_031852ba-2657-48bb-aad5-23dcf818de19" min="1" max="1" action="replace" />
         </geonet:child>
-        <geonet:child name="ISBN" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:ISBN_12555e53-ee99-4ba9-9896-baa644fb7a5b" min="0" max="1" action="replace">
-          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_77aa9586-3837-415c-9e6a-784661b45fb2" min="1" max="1" action="replace" />
+        <geonet:child name="ISBN" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:ISBN_12555e53-ee99-4ba9-9896-baa644fb7a5b" min="0" max="1" action="replace">
+          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_77aa9586-3837-415c-9e6a-784661b45fb2" min="1" max="1" action="replace" />
         </geonet:child>
-        <geonet:child name="ISSN" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:ISSN_3f796c73-9145-4a7b-8ece-0d1741dc141d" min="0" max="1" action="replace">
-          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_da5f2018-c5f5-4035-b076-08b771829bc3" min="1" max="1" action="replace" />
+        <geonet:child name="ISSN" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:ISSN_3f796c73-9145-4a7b-8ece-0d1741dc141d" min="0" max="1" action="replace">
+          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_da5f2018-c5f5-4035-b076-08b771829bc3" min="1" max="1" action="replace" />
         </geonet:child>
-        <geonet:child name="onlineResource" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:onlineResource_6ea7bc64-2253-4337-82de-3dee7276f345" min="0" max="10000" action="replace" />
-        <geonet:child name="graphic" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:graphic_4a5604e9-353e-4369-b904-49534f32b429" min="0" max="10000" action="replace" />
+        <geonet:child name="onlineResource" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:onlineResource_6ea7bc64-2253-4337-82de-3dee7276f345" min="0" max="10000" action="replace" />
+        <geonet:child name="graphic" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:graphic_4a5604e9-353e-4369-b904-49534f32b429" min="0" max="10000" action="replace" />
         <geonet:element ref="15" parent="14" uuid="cit:CI_Citation_15cf8c57-c050-4bd7-a593-a23b40802a9b" min="1" max="1" />
         <geonet:attribute name="id" add="true" />
         <geonet:attribute name="uuid" add="true" />
@@ -32948,8 +32948,8 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
             <geonet:text value="withheld" />
           </geonet:attribute>
         </mdb:resourceScope>
-        <geonet:child name="name" prefix="mdb" namespace="http://standards.iso.org/19115/-3/mdb/1.0" uuid="child_mdb:name_97dcb902-67e2-49f7-81a9-62d763619527" min="0" max="1" action="replace">
-          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_ece8bca5-649e-42f8-834b-c8dbe3410fee" min="1" max="1" action="replace" />
+        <geonet:child name="name" prefix="mdb" namespace="http://standards.iso.org/iso/19115/-3/mdb/1.0" uuid="child_mdb:name_97dcb902-67e2-49f7-81a9-62d763619527" min="0" max="1" action="replace">
+          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_ece8bca5-649e-42f8-834b-c8dbe3410fee" min="1" max="1" action="replace" />
         </geonet:child>
         <geonet:element ref="23" parent="22" uuid="mdb:MD_MetadataScope_cafd6371-1f6c-4382-9fec-6ca7109d06e0" min="1" max="1" />
         <geonet:attribute name="id" add="true" />
@@ -32991,7 +32991,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
       </geonet:attribute>
       <geonet:attribute name="uuidref" add="true" />
     </mdb:metadataScope>
-    <geonet:child name="metadataScope" prefix="mdb" namespace="http://standards.iso.org/19115/-3/mdb/1.0" uuid="child_mdb:metadataScope_ab354eb0-56e4-4dd8-9607-807779a31ad7" min="0" max="10000" action="replace" />
+    <geonet:child name="metadataScope" prefix="mdb" namespace="http://standards.iso.org/iso/19115/-3/mdb/1.0" uuid="child_mdb:metadataScope_ab354eb0-56e4-4dd8-9607-807779a31ad7" min="0" max="10000" action="replace" />
     <mdb:contact>
       <cit:CI_Responsibility>
         <cit:role>
@@ -33010,7 +33010,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
             <geonet:text value="withheld" />
           </geonet:attribute>
         </cit:role>
-        <geonet:child name="extent" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:extent_279b8e74-4491-437b-9b12-dfd59b3fbe22" min="0" max="10000" action="replace" />
+        <geonet:child name="extent" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:extent_279b8e74-4491-437b-9b12-dfd59b3fbe22" min="0" max="10000" action="replace" />
         <cit:party>
           <cit:CI_Organisation>
             <cit:name gco:nilReason="missing">
@@ -33028,23 +33028,23 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
             </cit:name>
             <cit:contactInfo>
               <cit:CI_Contact>
-                <geonet:child name="phone" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:phone_7822361b-1496-4f32-b2fd-728f444cb740" min="0" max="10000" action="replace" />
+                <geonet:child name="phone" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:phone_7822361b-1496-4f32-b2fd-728f444cb740" min="0" max="10000" action="replace" />
                 <cit:address>
                   <cit:CI_Address>
-                    <geonet:child name="deliveryPoint" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:deliveryPoint_12d91f99-e316-47fc-a093-99b3124808ca" min="0" max="10000" action="replace">
-                      <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_c0b5f576-1b30-4c09-a0cc-629ce0404890" min="1" max="1" action="replace" />
+                    <geonet:child name="deliveryPoint" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:deliveryPoint_12d91f99-e316-47fc-a093-99b3124808ca" min="0" max="10000" action="replace">
+                      <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_c0b5f576-1b30-4c09-a0cc-629ce0404890" min="1" max="1" action="replace" />
                     </geonet:child>
-                    <geonet:child name="city" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:city_a601a152-1b1d-45be-971d-5318bdbf7198" min="0" max="1" action="replace">
-                      <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_08aa0dd2-0cee-4a49-b623-37df9ae9044c" min="1" max="1" action="replace" />
+                    <geonet:child name="city" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:city_a601a152-1b1d-45be-971d-5318bdbf7198" min="0" max="1" action="replace">
+                      <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_08aa0dd2-0cee-4a49-b623-37df9ae9044c" min="1" max="1" action="replace" />
                     </geonet:child>
-                    <geonet:child name="administrativeArea" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:administrativeArea_1e3976fb-7244-4295-88f2-93bee7c2b765" min="0" max="1" action="replace">
-                      <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_024ae7fc-5539-40db-95ea-ada01cc209c8" min="1" max="1" action="replace" />
+                    <geonet:child name="administrativeArea" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:administrativeArea_1e3976fb-7244-4295-88f2-93bee7c2b765" min="0" max="1" action="replace">
+                      <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_024ae7fc-5539-40db-95ea-ada01cc209c8" min="1" max="1" action="replace" />
                     </geonet:child>
-                    <geonet:child name="postalCode" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:postalCode_1930683c-b2e5-461c-a14f-9c0375c91057" min="0" max="1" action="replace">
-                      <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_5b3b71d7-d689-4ebc-b79b-67b02d5d1ecf" min="1" max="1" action="replace" />
+                    <geonet:child name="postalCode" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:postalCode_1930683c-b2e5-461c-a14f-9c0375c91057" min="0" max="1" action="replace">
+                      <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_5b3b71d7-d689-4ebc-b79b-67b02d5d1ecf" min="1" max="1" action="replace" />
                     </geonet:child>
-                    <geonet:child name="country" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:country_3790cf2e-5efe-4394-a4e7-2cf0e138e7aa" min="0" max="1" action="replace">
-                      <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_0eaf24f1-d1e8-4274-9f8f-3f343e0aad9c" min="1" max="1" action="replace" />
+                    <geonet:child name="country" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:country_3790cf2e-5efe-4394-a4e7-2cf0e138e7aa" min="0" max="1" action="replace">
+                      <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_0eaf24f1-d1e8-4274-9f8f-3f343e0aad9c" min="1" max="1" action="replace" />
                     </geonet:child>
                     <cit:electronicMailAddress gco:nilReason="missing">
                       <gco:CharacterString>
@@ -33059,8 +33059,8 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                         <geonet:text value="withheld" />
                       </geonet:attribute>
                     </cit:electronicMailAddress>
-                    <geonet:child name="electronicMailAddress" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:electronicMailAddress_71c5d673-eff7-4c46-88ab-c0c588307920" min="0" max="10000" action="replace">
-                      <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_1c07164d-440f-4b7e-882d-9abff9464930" min="1" max="1" action="replace" />
+                    <geonet:child name="electronicMailAddress" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:electronicMailAddress_71c5d673-eff7-4c46-88ab-c0c588307920" min="0" max="10000" action="replace">
+                      <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_1c07164d-440f-4b7e-882d-9abff9464930" min="1" max="1" action="replace" />
                     </geonet:child>
                     <geonet:element ref="37" parent="36" uuid="cit:CI_Address_d039b736-c5cd-4597-a241-c22390e7510d" min="1" max="1" />
                     <geonet:attribute name="id" add="true" />
@@ -33102,16 +33102,16 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                   </geonet:attribute>
                   <geonet:attribute name="uuidref" add="true" />
                 </cit:address>
-                <geonet:child name="address" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:address_6cb332a7-20a6-4d1f-9f39-7dc0d085e06c" min="0" max="10000" action="replace" />
-                <geonet:child name="onlineResource" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:onlineResource_a7bee9a0-9484-4c0a-a44d-fd7b1bc2127c" min="0" max="10000" action="replace" />
-                <geonet:child name="hoursOfService" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:hoursOfService_fc5ea2f2-9900-4898-a122-b3ab4613defd" min="0" max="10000" action="replace">
-                  <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_b172060f-483c-44d3-977f-3c371219deeb" min="1" max="1" action="replace" />
+                <geonet:child name="address" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:address_6cb332a7-20a6-4d1f-9f39-7dc0d085e06c" min="0" max="10000" action="replace" />
+                <geonet:child name="onlineResource" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:onlineResource_a7bee9a0-9484-4c0a-a44d-fd7b1bc2127c" min="0" max="10000" action="replace" />
+                <geonet:child name="hoursOfService" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:hoursOfService_fc5ea2f2-9900-4898-a122-b3ab4613defd" min="0" max="10000" action="replace">
+                  <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_b172060f-483c-44d3-977f-3c371219deeb" min="1" max="1" action="replace" />
                 </geonet:child>
-                <geonet:child name="contactInstructions" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:contactInstructions_3a9d5cb3-eb27-4120-9b79-0d81176c845c" min="0" max="1" action="replace">
-                  <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_05648fda-540d-4feb-add6-c58401fc16a3" min="1" max="1" action="replace" />
+                <geonet:child name="contactInstructions" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:contactInstructions_3a9d5cb3-eb27-4120-9b79-0d81176c845c" min="0" max="1" action="replace">
+                  <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_05648fda-540d-4feb-add6-c58401fc16a3" min="1" max="1" action="replace" />
                 </geonet:child>
-                <geonet:child name="contactType" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:contactType_089277b9-a37f-48f6-b27b-0a746e554080" min="0" max="1" action="replace">
-                  <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_666a383c-c7c6-4d7b-8b04-f6042e2ecc77" min="1" max="1" action="replace" />
+                <geonet:child name="contactType" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:contactType_089277b9-a37f-48f6-b27b-0a746e554080" min="0" max="1" action="replace">
+                  <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_666a383c-c7c6-4d7b-8b04-f6042e2ecc77" min="1" max="1" action="replace" />
                 </geonet:child>
                 <geonet:element ref="35" parent="34" uuid="cit:CI_Contact_b2d9c68c-cb5e-4770-a6b2-0efc8e5d2032" min="1" max="1" />
                 <geonet:attribute name="id" add="true" />
@@ -33153,8 +33153,8 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
               </geonet:attribute>
               <geonet:attribute name="uuidref" add="true" />
             </cit:contactInfo>
-            <geonet:child name="contactInfo" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:contactInfo_4b1bdcd0-ac09-4456-872d-831783341f0a" min="0" max="10000" action="replace" />
-            <geonet:child name="logo" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:logo_efb85eb2-cf8f-4551-a05c-fde143ea4c21" min="0" max="10000" action="replace" />
+            <geonet:child name="contactInfo" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:contactInfo_4b1bdcd0-ac09-4456-872d-831783341f0a" min="0" max="10000" action="replace" />
+            <geonet:child name="logo" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:logo_efb85eb2-cf8f-4551-a05c-fde143ea4c21" min="0" max="10000" action="replace" />
             <cit:individual>
               <cit:CI_Individual>
                 <cit:name gco:nilReason="missing">
@@ -33170,7 +33170,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                     <geonet:text value="withheld" />
                   </geonet:attribute>
                 </cit:name>
-                <geonet:child name="contactInfo" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:contactInfo_eac3228f-d8d6-4426-81ec-89f86c49b34b" min="0" max="10000" action="replace" />
+                <geonet:child name="contactInfo" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:contactInfo_eac3228f-d8d6-4426-81ec-89f86c49b34b" min="0" max="10000" action="replace" />
                 <cit:positionName gco:nilReason="missing">
                   <gco:CharacterString>
                     <geonet:element ref="45" parent="44" uuid="gco:CharacterString_745c178d-e7be-484b-97b7-d57a60096fd2" min="1" max="1" />
@@ -33224,7 +33224,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
               </geonet:attribute>
               <geonet:attribute name="uuidref" add="true" />
             </cit:individual>
-            <geonet:child name="individual" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:individual_f4592523-a2b4-483e-9d2e-6accd715bbc5" min="0" max="10000" action="replace" />
+            <geonet:child name="individual" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:individual_f4592523-a2b4-483e-9d2e-6accd715bbc5" min="0" max="10000" action="replace" />
             <geonet:element ref="31" parent="30" uuid="cit:CI_Organisation_8cf053d6-7188-4975-b822-75babd833c63" min="1" max="1" />
             <geonet:attribute name="id" add="true" />
             <geonet:attribute name="uuid" add="true" />
@@ -33265,7 +33265,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
           </geonet:attribute>
           <geonet:attribute name="uuidref" add="true" />
         </cit:party>
-        <geonet:child name="party" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:party_5468987b-acc3-4040-bd1a-0c2520897aa0" min="1" max="10000" action="before">
+        <geonet:child name="party" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:party_5468987b-acc3-4040-bd1a-0c2520897aa0" min="1" max="10000" action="before">
           <geonet:choose name="cit:CI_Individual" />
           <geonet:choose name="cit:CI_Organisation" />
         </geonet:child>
@@ -33309,7 +33309,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
       </geonet:attribute>
       <geonet:attribute name="uuidref" add="true" />
     </mdb:contact>
-    <geonet:child name="contact" prefix="mdb" namespace="http://standards.iso.org/19115/-3/mdb/1.0" uuid="child_mdb:contact_a499c53f-8003-4036-a5fc-0e104a8f4747" min="1" max="10000" action="replace" />
+    <geonet:child name="contact" prefix="mdb" namespace="http://standards.iso.org/iso/19115/-3/mdb/1.0" uuid="child_mdb:contact_a499c53f-8003-4036-a5fc-0e104a8f4747" min="1" max="10000" action="replace" />
     <mdb:dateInfo>
       <cit:CI_Date>
         <cit:date>
@@ -33454,7 +33454,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
       </geonet:attribute>
       <geonet:attribute name="uuidref" add="true" />
     </mdb:dateInfo>
-    <geonet:child name="dateInfo" prefix="mdb" namespace="http://standards.iso.org/19115/-3/mdb/1.0" uuid="child_mdb:dateInfo_0e0d360f-6727-4c91-a8ae-858df5b67831" min="1" max="10000" action="replace" />
+    <geonet:child name="dateInfo" prefix="mdb" namespace="http://standards.iso.org/iso/19115/-3/mdb/1.0" uuid="child_mdb:dateInfo_0e0d360f-6727-4c91-a8ae-858df5b67831" min="1" max="10000" action="replace" />
     <mdb:metadataStandard>
       <cit:CI_Citation>
         <cit:title>
@@ -33471,29 +33471,29 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
             <geonet:text value="withheld" />
           </geonet:attribute>
         </cit:title>
-        <geonet:child name="alternateTitle" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:alternateTitle_591e5065-7542-46f7-945f-4e4aceb976ee" min="0" max="10000" action="replace">
-          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_51e57ae5-9139-450e-86ab-ab9f59fa1ee5" min="1" max="1" action="replace" />
+        <geonet:child name="alternateTitle" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:alternateTitle_591e5065-7542-46f7-945f-4e4aceb976ee" min="0" max="10000" action="replace">
+          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_51e57ae5-9139-450e-86ab-ab9f59fa1ee5" min="1" max="1" action="replace" />
         </geonet:child>
-        <geonet:child name="date" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:date_03c534dd-9b2a-4b11-92db-7157a978a522" min="0" max="10000" action="replace" />
-        <geonet:child name="edition" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:edition_80a8c90f-e5b9-4e63-97b5-ab9a2ab869bd" min="0" max="1" action="replace">
-          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_0ceff72f-56c7-42ca-b7e3-3f0723795120" min="1" max="1" action="replace" />
+        <geonet:child name="date" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:date_03c534dd-9b2a-4b11-92db-7157a978a522" min="0" max="10000" action="replace" />
+        <geonet:child name="edition" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:edition_80a8c90f-e5b9-4e63-97b5-ab9a2ab869bd" min="0" max="1" action="replace">
+          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_0ceff72f-56c7-42ca-b7e3-3f0723795120" min="1" max="1" action="replace" />
         </geonet:child>
-        <geonet:child name="editionDate" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:editionDate_791e56d7-272d-4c76-a635-3a70a6d8bacc" min="0" max="1" action="replace" />
-        <geonet:child name="identifier" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:identifier_88089f84-2d98-4a05-9171-bd19c1f098e8" min="0" max="10000" action="replace" />
-        <geonet:child name="citedResponsibleParty" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:citedResponsibleParty_3b4ce76b-e797-48b5-a4cc-daf1ff066032" min="0" max="10000" action="replace" />
-        <geonet:child name="presentationForm" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:presentationForm_bf47b1f0-166e-403f-8343-d41c226287e7" min="0" max="10000" action="replace" />
-        <geonet:child name="series" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:series_edbdfc76-b874-4c05-8d67-9fc164d23c89" min="0" max="1" action="replace" />
-        <geonet:child name="otherCitationDetails" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:otherCitationDetails_68318c56-2f4e-44be-96c6-4562df3d83d8" min="0" max="10000" action="replace">
-          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_ad35a91c-d152-4467-b164-5c070c78ff56" min="1" max="1" action="replace" />
+        <geonet:child name="editionDate" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:editionDate_791e56d7-272d-4c76-a635-3a70a6d8bacc" min="0" max="1" action="replace" />
+        <geonet:child name="identifier" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:identifier_88089f84-2d98-4a05-9171-bd19c1f098e8" min="0" max="10000" action="replace" />
+        <geonet:child name="citedResponsibleParty" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:citedResponsibleParty_3b4ce76b-e797-48b5-a4cc-daf1ff066032" min="0" max="10000" action="replace" />
+        <geonet:child name="presentationForm" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:presentationForm_bf47b1f0-166e-403f-8343-d41c226287e7" min="0" max="10000" action="replace" />
+        <geonet:child name="series" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:series_edbdfc76-b874-4c05-8d67-9fc164d23c89" min="0" max="1" action="replace" />
+        <geonet:child name="otherCitationDetails" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:otherCitationDetails_68318c56-2f4e-44be-96c6-4562df3d83d8" min="0" max="10000" action="replace">
+          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_ad35a91c-d152-4467-b164-5c070c78ff56" min="1" max="1" action="replace" />
         </geonet:child>
-        <geonet:child name="ISBN" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:ISBN_1e68e7b3-6352-4489-96ee-c59794361017" min="0" max="1" action="replace">
-          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_b71bd7ff-8598-40d7-9b3d-f5410b5ee661" min="1" max="1" action="replace" />
+        <geonet:child name="ISBN" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:ISBN_1e68e7b3-6352-4489-96ee-c59794361017" min="0" max="1" action="replace">
+          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_b71bd7ff-8598-40d7-9b3d-f5410b5ee661" min="1" max="1" action="replace" />
         </geonet:child>
-        <geonet:child name="ISSN" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:ISSN_238c24e2-a7ea-45c7-be3c-8527363b4436" min="0" max="1" action="replace">
-          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_f28c5126-772d-4993-befb-68fdfb3674f8" min="1" max="1" action="replace" />
+        <geonet:child name="ISSN" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:ISSN_238c24e2-a7ea-45c7-be3c-8527363b4436" min="0" max="1" action="replace">
+          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_f28c5126-772d-4993-befb-68fdfb3674f8" min="1" max="1" action="replace" />
         </geonet:child>
-        <geonet:child name="onlineResource" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:onlineResource_ffaea592-8077-48e6-a33c-28c07f8bdd0f" min="0" max="10000" action="replace" />
-        <geonet:child name="graphic" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:graphic_a92bf92b-ec4b-484a-ac2a-4ef5cd64244d" min="0" max="10000" action="replace" />
+        <geonet:child name="onlineResource" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:onlineResource_ffaea592-8077-48e6-a33c-28c07f8bdd0f" min="0" max="10000" action="replace" />
+        <geonet:child name="graphic" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:graphic_a92bf92b-ec4b-484a-ac2a-4ef5cd64244d" min="0" max="10000" action="replace" />
         <geonet:element ref="59" parent="58" uuid="cit:CI_Citation_64ee4b36-2b3b-41d4-bd2b-e979f4b51795" min="1" max="1" />
         <geonet:attribute name="id" add="true" />
         <geonet:attribute name="uuid" add="true" />
@@ -33534,15 +33534,15 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
       </geonet:attribute>
       <geonet:attribute name="uuidref" add="true" />
     </mdb:metadataStandard>
-    <geonet:child name="metadataStandard" prefix="mdb" namespace="http://standards.iso.org/19115/-3/mdb/1.0" uuid="child_mdb:metadataStandard_c7960aae-83d3-42f7-ab3c-583db64a7f01" min="0" max="10000" action="replace" />
-    <geonet:child name="metadataProfile" prefix="mdb" namespace="http://standards.iso.org/19115/-3/mdb/1.0" uuid="child_mdb:metadataProfile_e76b46de-1c46-47d5-b7ad-d8ed7f18d498" min="0" max="10000" action="replace" />
-    <geonet:child name="alternativeMetadataReference" prefix="mdb" namespace="http://standards.iso.org/19115/-3/mdb/1.0" uuid="child_mdb:alternativeMetadataReference_30a538c0-a6dc-4d48-9a37-9502a9c1fcc1" min="0" max="10000" action="replace" />
-    <geonet:child name="otherLocale" prefix="mdb" namespace="http://standards.iso.org/19115/-3/mdb/1.0" uuid="child_mdb:otherLocale_63933b78-6c98-426b-af80-26084a7b617b" min="0" max="10000" action="before">
+    <geonet:child name="metadataStandard" prefix="mdb" namespace="http://standards.iso.org/iso/19115/-3/mdb/1.0" uuid="child_mdb:metadataStandard_c7960aae-83d3-42f7-ab3c-583db64a7f01" min="0" max="10000" action="replace" />
+    <geonet:child name="metadataProfile" prefix="mdb" namespace="http://standards.iso.org/iso/19115/-3/mdb/1.0" uuid="child_mdb:metadataProfile_e76b46de-1c46-47d5-b7ad-d8ed7f18d498" min="0" max="10000" action="replace" />
+    <geonet:child name="alternativeMetadataReference" prefix="mdb" namespace="http://standards.iso.org/iso/19115/-3/mdb/1.0" uuid="child_mdb:alternativeMetadataReference_30a538c0-a6dc-4d48-9a37-9502a9c1fcc1" min="0" max="10000" action="replace" />
+    <geonet:child name="otherLocale" prefix="mdb" namespace="http://standards.iso.org/iso/19115/-3/mdb/1.0" uuid="child_mdb:otherLocale_63933b78-6c98-426b-af80-26084a7b617b" min="0" max="10000" action="before">
       <geonet:choose name="lan:PT_LocaleContainer" />
       <geonet:choose name="lan:PT_Locale" />
     </geonet:child>
-    <geonet:child name="metadataLinkage" prefix="mdb" namespace="http://standards.iso.org/19115/-3/mdb/1.0" uuid="child_mdb:metadataLinkage_e34bfea6-b9b0-427a-8cdc-f7f3a6947ed3" min="0" max="10000" action="replace" />
-    <geonet:child name="spatialRepresentationInfo" prefix="mdb" namespace="http://standards.iso.org/19115/-3/mdb/1.0" uuid="child_mdb:spatialRepresentationInfo_e3d10905-8959-4177-b493-694279f518d1" min="0" max="10000" action="before">
+    <geonet:child name="metadataLinkage" prefix="mdb" namespace="http://standards.iso.org/iso/19115/-3/mdb/1.0" uuid="child_mdb:metadataLinkage_e34bfea6-b9b0-427a-8cdc-f7f3a6947ed3" min="0" max="10000" action="replace" />
+    <geonet:child name="spatialRepresentationInfo" prefix="mdb" namespace="http://standards.iso.org/iso/19115/-3/mdb/1.0" uuid="child_mdb:spatialRepresentationInfo_e3d10905-8959-4177-b493-694279f518d1" min="0" max="10000" action="before">
       <geonet:choose name="msr:MD_GridSpatialRepresentation" />
       <geonet:choose name="msr:MD_Georectified" />
       <geonet:choose name="msr:MD_Georeferenceable" />
@@ -33552,7 +33552,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
       <mrs:MD_ReferenceSystem>
         <mrs:referenceSystemIdentifier>
           <mcc:MD_Identifier>
-            <geonet:child name="authority" prefix="mcc" namespace="http://standards.iso.org/19115/-3/mcc/1.0" uuid="child_mcc:authority_82abeae6-fd1a-4900-96f2-9f1ca09ef90e" min="0" max="1" action="replace" />
+            <geonet:child name="authority" prefix="mcc" namespace="http://standards.iso.org/iso/19115/-3/mcc/1.0" uuid="child_mcc:authority_82abeae6-fd1a-4900-96f2-9f1ca09ef90e" min="0" max="1" action="replace" />
             <mcc:code>
               <gco:CharacterString>
                 WGS 1984
@@ -33567,14 +33567,14 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                 <geonet:text value="withheld" />
               </geonet:attribute>
             </mcc:code>
-            <geonet:child name="codeSpace" prefix="mcc" namespace="http://standards.iso.org/19115/-3/mcc/1.0" uuid="child_mcc:codeSpace_fa0d1c95-a468-46ca-8f8e-361f696530ef" min="0" max="1" action="replace">
-              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_50b54faf-49fb-4bae-bfe5-8b2c153d56c8" min="1" max="1" action="replace" />
+            <geonet:child name="codeSpace" prefix="mcc" namespace="http://standards.iso.org/iso/19115/-3/mcc/1.0" uuid="child_mcc:codeSpace_fa0d1c95-a468-46ca-8f8e-361f696530ef" min="0" max="1" action="replace">
+              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_50b54faf-49fb-4bae-bfe5-8b2c153d56c8" min="1" max="1" action="replace" />
             </geonet:child>
-            <geonet:child name="version" prefix="mcc" namespace="http://standards.iso.org/19115/-3/mcc/1.0" uuid="child_mcc:version_2591dd51-c3e2-455c-93ab-29fdb0bdf8c8" min="0" max="1" action="replace">
-              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_26a867c1-9616-4fcc-99de-36824702cf6b" min="1" max="1" action="replace" />
+            <geonet:child name="version" prefix="mcc" namespace="http://standards.iso.org/iso/19115/-3/mcc/1.0" uuid="child_mcc:version_2591dd51-c3e2-455c-93ab-29fdb0bdf8c8" min="0" max="1" action="replace">
+              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_26a867c1-9616-4fcc-99de-36824702cf6b" min="1" max="1" action="replace" />
             </geonet:child>
-            <geonet:child name="description" prefix="mcc" namespace="http://standards.iso.org/19115/-3/mcc/1.0" uuid="child_mcc:description_22e71a3d-65b1-4c7c-a52a-d24f3103ad65" min="0" max="1" action="replace">
-              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_ea6f13c7-0fe1-4d82-be5f-3300dfd1c0f5" min="1" max="1" action="replace" />
+            <geonet:child name="description" prefix="mcc" namespace="http://standards.iso.org/iso/19115/-3/mcc/1.0" uuid="child_mcc:description_22e71a3d-65b1-4c7c-a52a-d24f3103ad65" min="0" max="1" action="replace">
+              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_ea6f13c7-0fe1-4d82-be5f-3300dfd1c0f5" min="1" max="1" action="replace" />
             </geonet:child>
             <geonet:element ref="65" parent="64" uuid="mcc:MD_Identifier_83971a31-b5fd-484e-9b57-5f1c4a7f98ab" min="1" max="1" />
             <geonet:attribute name="id" add="true" />
@@ -33616,7 +33616,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
           </geonet:attribute>
           <geonet:attribute name="uuidref" add="true" />
         </mrs:referenceSystemIdentifier>
-        <geonet:child name="referenceSystemType" prefix="mrs" namespace="http://standards.iso.org/19115/-3/mrs/1.0" uuid="child_mrs:referenceSystemType_079da065-0125-4883-bd62-7de7a094f810" min="0" max="1" action="replace" />
+        <geonet:child name="referenceSystemType" prefix="mrs" namespace="http://standards.iso.org/iso/19115/-3/mrs/1.0" uuid="child_mrs:referenceSystemType_079da065-0125-4883-bd62-7de7a094f810" min="0" max="1" action="replace" />
         <geonet:element ref="63" parent="62" uuid="mrs:MD_ReferenceSystem_16611e37-40ef-4180-a58c-d23847939fe1" min="1" max="1" />
         <geonet:attribute name="id" add="true" />
         <geonet:attribute name="uuid" add="true" />
@@ -33657,8 +33657,8 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
       </geonet:attribute>
       <geonet:attribute name="uuidref" add="true" />
     </mdb:referenceSystemInfo>
-    <geonet:child name="referenceSystemInfo" prefix="mdb" namespace="http://standards.iso.org/19115/-3/mdb/1.0" uuid="child_mdb:referenceSystemInfo_12bf4f25-c205-4ee3-8251-6c7fc23e547e" min="0" max="10000" action="replace" />
-    <geonet:child name="metadataExtensionInfo" prefix="mdb" namespace="http://standards.iso.org/19115/-3/mdb/1.0" uuid="child_mdb:metadataExtensionInfo_2279b0ca-af6d-43be-968f-e2ac6f0987ee" min="0" max="10000" action="replace" />
+    <geonet:child name="referenceSystemInfo" prefix="mdb" namespace="http://standards.iso.org/iso/19115/-3/mdb/1.0" uuid="child_mdb:referenceSystemInfo_12bf4f25-c205-4ee3-8251-6c7fc23e547e" min="0" max="10000" action="replace" />
+    <geonet:child name="metadataExtensionInfo" prefix="mdb" namespace="http://standards.iso.org/iso/19115/-3/mdb/1.0" uuid="child_mdb:metadataExtensionInfo_2279b0ca-af6d-43be-968f-e2ac6f0987ee" min="0" max="10000" action="replace" />
     <mdb:identificationInfo>
       <mri:MD_DataIdentification>
         <mri:citation>
@@ -33677,8 +33677,8 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                 <geonet:text value="withheld" />
               </geonet:attribute>
             </cit:title>
-            <geonet:child name="alternateTitle" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:alternateTitle_ee991019-b133-44bb-bd0b-12e88564247c" min="0" max="10000" action="replace">
-              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_0d935a6c-fa4b-4380-a138-058b8d84eccb" min="1" max="1" action="replace" />
+            <geonet:child name="alternateTitle" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:alternateTitle_ee991019-b133-44bb-bd0b-12e88564247c" min="0" max="10000" action="replace">
+              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_0d935a6c-fa4b-4380-a138-058b8d84eccb" min="1" max="1" action="replace" />
             </geonet:child>
             <cit:date>
               <cit:CI_Date>
@@ -33755,7 +33755,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
             <cit:date>
               <cit:CI_Date>
                 <cit:date>
-                  <geonet:child name="DateTime" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:DateTime_f29b48c2-79c1-4e45-be66-63356a29d6fb" min="1" max="1" action="replace" />
+                  <geonet:child name="DateTime" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:DateTime_f29b48c2-79c1-4e45-be66-63356a29d6fb" min="1" max="1" action="replace" />
                   <gco:Date>
                     2014-05
                     <geonet:element ref="83" parent="82" uuid="gco:Date_801e3eda-6d0d-4a66-aadc-b178702b8c51" />
@@ -33825,12 +33825,12 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
               </geonet:attribute>
               <geonet:attribute name="uuidref" add="true" />
             </cit:date>
-            <geonet:child name="date" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:date_b8751f77-dee2-4684-9cfd-d6dee2495b66" min="0" max="10000" action="replace" />
-            <geonet:child name="edition" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:edition_f44ddd0b-b4ce-4372-84a9-41e37d9e268b" min="0" max="1" action="replace">
-              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_70763885-acbf-4b0a-920b-3d4bddaec11a" min="1" max="1" action="replace" />
+            <geonet:child name="date" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:date_b8751f77-dee2-4684-9cfd-d6dee2495b66" min="0" max="10000" action="replace" />
+            <geonet:child name="edition" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:edition_f44ddd0b-b4ce-4372-84a9-41e37d9e268b" min="0" max="1" action="replace">
+              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_70763885-acbf-4b0a-920b-3d4bddaec11a" min="1" max="1" action="replace" />
             </geonet:child>
-            <geonet:child name="editionDate" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:editionDate_54db7118-cfb9-4fa2-95e7-9fa54d6f722c" min="0" max="1" action="replace" />
-            <geonet:child name="identifier" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:identifier_67195925-0012-443d-b098-c73e81a1496a" min="0" max="10000" action="replace" />
+            <geonet:child name="editionDate" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:editionDate_54db7118-cfb9-4fa2-95e7-9fa54d6f722c" min="0" max="1" action="replace" />
+            <geonet:child name="identifier" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:identifier_67195925-0012-443d-b098-c73e81a1496a" min="0" max="10000" action="replace" />
             <cit:citedResponsibleParty>
               <cit:CI_Responsibility>
                 <cit:role>
@@ -33849,7 +33849,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                     <geonet:text value="withheld" />
                   </geonet:attribute>
                 </cit:role>
-                <geonet:child name="extent" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:extent_4a2707e5-786c-48fa-b76d-af38ee674759" min="0" max="10000" action="replace" />
+                <geonet:child name="extent" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:extent_4a2707e5-786c-48fa-b76d-af38ee674759" min="0" max="10000" action="replace" />
                 <cit:party>
                   <cit:CI_Organisation>
                     <cit:name>
@@ -33866,9 +33866,9 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                         <geonet:text value="withheld" />
                       </geonet:attribute>
                     </cit:name>
-                    <geonet:child name="contactInfo" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:contactInfo_982c26e8-9ba6-44d3-b88a-3db01e6abddc" min="0" max="10000" action="replace" />
-                    <geonet:child name="logo" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:logo_d2941373-6975-4a54-9a62-09178557997f" min="0" max="10000" action="replace" />
-                    <geonet:child name="individual" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:individual_2e0c4e6c-58a7-45ab-b2c2-682bbd8170cb" min="0" max="10000" action="replace" />
+                    <geonet:child name="contactInfo" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:contactInfo_982c26e8-9ba6-44d3-b88a-3db01e6abddc" min="0" max="10000" action="replace" />
+                    <geonet:child name="logo" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:logo_d2941373-6975-4a54-9a62-09178557997f" min="0" max="10000" action="replace" />
+                    <geonet:child name="individual" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:individual_2e0c4e6c-58a7-45ab-b2c2-682bbd8170cb" min="0" max="10000" action="replace" />
                     <geonet:element ref="91" parent="90" uuid="cit:CI_Organisation_a723f561-7b1a-4ffb-ba53-522036f50595" min="1" max="1" />
                     <geonet:attribute name="id" add="true" />
                     <geonet:attribute name="uuid" add="true" />
@@ -33925,9 +33925,9 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                         <geonet:text value="withheld" />
                       </geonet:attribute>
                     </cit:name>
-                    <geonet:child name="contactInfo" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:contactInfo_7436f1f8-2e1c-4030-9547-180561e419ce" min="0" max="10000" action="replace" />
-                    <geonet:child name="logo" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:logo_0a6b2e1c-2973-45fa-be2b-838a6be8ba32" min="0" max="10000" action="replace" />
-                    <geonet:child name="individual" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:individual_05c35cb3-9256-49d6-a0aa-51aac7f920db" min="0" max="10000" action="replace" />
+                    <geonet:child name="contactInfo" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:contactInfo_7436f1f8-2e1c-4030-9547-180561e419ce" min="0" max="10000" action="replace" />
+                    <geonet:child name="logo" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:logo_0a6b2e1c-2973-45fa-be2b-838a6be8ba32" min="0" max="10000" action="replace" />
+                    <geonet:child name="individual" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:individual_05c35cb3-9256-49d6-a0aa-51aac7f920db" min="0" max="10000" action="replace" />
                     <geonet:element ref="95" parent="94" uuid="cit:CI_Organisation_1daa1931-a2d9-480f-bbb5-7fcef6357140" min="1" max="1" />
                     <geonet:attribute name="id" add="true" />
                     <geonet:attribute name="uuid" add="true" />
@@ -33968,7 +33968,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                   </geonet:attribute>
                   <geonet:attribute name="uuidref" add="true" />
                 </cit:party>
-                <geonet:child name="party" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:party_be8e7dd2-f42c-421b-b2e4-6b7b0cf20f91" min="1" max="10000" action="before">
+                <geonet:child name="party" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:party_be8e7dd2-f42c-421b-b2e4-6b7b0cf20f91" min="1" max="10000" action="before">
                   <geonet:choose name="cit:CI_Individual" />
                   <geonet:choose name="cit:CI_Organisation" />
                 </geonet:child>
@@ -34012,20 +34012,20 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
               </geonet:attribute>
               <geonet:attribute name="uuidref" add="true" />
             </cit:citedResponsibleParty>
-            <geonet:child name="citedResponsibleParty" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:citedResponsibleParty_7a05876b-b20e-4a35-b98e-260b3fc79445" min="0" max="10000" action="replace" />
-            <geonet:child name="presentationForm" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:presentationForm_b056ec78-c201-4aeb-b2d3-ef074e0b3c82" min="0" max="10000" action="replace" />
-            <geonet:child name="series" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:series_e7797015-7173-4f38-bb28-d5ba104fb3fe" min="0" max="1" action="replace" />
-            <geonet:child name="otherCitationDetails" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:otherCitationDetails_33ca4704-a964-499a-bdbd-3bc0d802c61e" min="0" max="10000" action="replace">
-              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_aa57dcb1-7284-4968-964c-d80b217e811b" min="1" max="1" action="replace" />
+            <geonet:child name="citedResponsibleParty" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:citedResponsibleParty_7a05876b-b20e-4a35-b98e-260b3fc79445" min="0" max="10000" action="replace" />
+            <geonet:child name="presentationForm" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:presentationForm_b056ec78-c201-4aeb-b2d3-ef074e0b3c82" min="0" max="10000" action="replace" />
+            <geonet:child name="series" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:series_e7797015-7173-4f38-bb28-d5ba104fb3fe" min="0" max="1" action="replace" />
+            <geonet:child name="otherCitationDetails" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:otherCitationDetails_33ca4704-a964-499a-bdbd-3bc0d802c61e" min="0" max="10000" action="replace">
+              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_aa57dcb1-7284-4968-964c-d80b217e811b" min="1" max="1" action="replace" />
             </geonet:child>
-            <geonet:child name="ISBN" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:ISBN_2819fc65-6a03-4e4c-a8c7-24df7bab0072" min="0" max="1" action="replace">
-              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_7dc9979a-e293-467e-adb4-e7fef9b3aeac" min="1" max="1" action="replace" />
+            <geonet:child name="ISBN" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:ISBN_2819fc65-6a03-4e4c-a8c7-24df7bab0072" min="0" max="1" action="replace">
+              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_7dc9979a-e293-467e-adb4-e7fef9b3aeac" min="1" max="1" action="replace" />
             </geonet:child>
-            <geonet:child name="ISSN" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:ISSN_00e5361b-96ef-4481-aa63-d33e7be77119" min="0" max="1" action="replace">
-              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_b00edca7-4c8b-4c93-8a69-8306d9929ec0" min="1" max="1" action="replace" />
+            <geonet:child name="ISSN" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:ISSN_00e5361b-96ef-4481-aa63-d33e7be77119" min="0" max="1" action="replace">
+              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_b00edca7-4c8b-4c93-8a69-8306d9929ec0" min="1" max="1" action="replace" />
             </geonet:child>
-            <geonet:child name="onlineResource" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:onlineResource_0b282bf9-03b5-4c5a-8ba6-3af48c6fe5fc" min="0" max="10000" action="replace" />
-            <geonet:child name="graphic" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:graphic_a145b8c8-5b15-4c70-85c1-bda33b74812c" min="0" max="10000" action="replace" />
+            <geonet:child name="onlineResource" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:onlineResource_0b282bf9-03b5-4c5a-8ba6-3af48c6fe5fc" min="0" max="10000" action="replace" />
+            <geonet:child name="graphic" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:graphic_a145b8c8-5b15-4c70-85c1-bda33b74812c" min="0" max="10000" action="replace" />
             <geonet:element ref="71" parent="70" uuid="cit:CI_Citation_1a8ccc90-6bfe-46e0-b4c3-86170db85737" min="1" max="1" />
             <geonet:attribute name="id" add="true" />
             <geonet:attribute name="uuid" add="true" />
@@ -34093,8 +34093,8 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
             <geonet:text value="withheld" />
           </geonet:attribute>
         </mri:purpose>
-        <geonet:child name="credit" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:credit_920bf97c-492b-4f65-8631-dffa858fe079" min="0" max="10000" action="replace">
-          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_78b274ba-1972-4fc8-bfd9-c5503c935f27" min="1" max="1" action="replace" />
+        <geonet:child name="credit" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:credit_920bf97c-492b-4f65-8631-dffa858fe079" min="0" max="10000" action="replace">
+          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_78b274ba-1972-4fc8-bfd9-c5503c935f27" min="1" max="1" action="replace" />
         </geonet:child>
         <mri:status>
           <mri:MD_ProgressCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ProgressCode" codeListValue="">
@@ -34112,7 +34112,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
             <geonet:text value="withheld" />
           </geonet:attribute>
         </mri:status>
-        <geonet:child name="status" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:status_87761465-73ae-46e1-bd54-1d48cd053d43" min="0" max="10000" action="replace" />
+        <geonet:child name="status" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:status_87761465-73ae-46e1-bd54-1d48cd053d43" min="0" max="10000" action="replace" />
         <mri:pointOfContact>
           <cit:CI_Responsibility>
             <cit:role>
@@ -34131,7 +34131,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                 <geonet:text value="withheld" />
               </geonet:attribute>
             </cit:role>
-            <geonet:child name="extent" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:extent_2d783478-abe6-4e3a-afb6-83792ae24a3a" min="0" max="10000" action="replace" />
+            <geonet:child name="extent" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:extent_2d783478-abe6-4e3a-afb6-83792ae24a3a" min="0" max="10000" action="replace" />
             <cit:party>
               <cit:CI_Organisation>
                 <cit:name gco:nilReason="missing">
@@ -34149,23 +34149,23 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                 </cit:name>
                 <cit:contactInfo>
                   <cit:CI_Contact>
-                    <geonet:child name="phone" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:phone_0c5d88f8-6fc0-4a89-8663-ff20954b3775" min="0" max="10000" action="replace" />
+                    <geonet:child name="phone" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:phone_0c5d88f8-6fc0-4a89-8663-ff20954b3775" min="0" max="10000" action="replace" />
                     <cit:address>
                       <cit:CI_Address>
-                        <geonet:child name="deliveryPoint" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:deliveryPoint_284880a8-7e75-4c4f-b666-ab7898add97a" min="0" max="10000" action="replace">
-                          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_2d605b45-babd-44c6-b061-a513dae5d3ab" min="1" max="1" action="replace" />
+                        <geonet:child name="deliveryPoint" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:deliveryPoint_284880a8-7e75-4c4f-b666-ab7898add97a" min="0" max="10000" action="replace">
+                          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_2d605b45-babd-44c6-b061-a513dae5d3ab" min="1" max="1" action="replace" />
                         </geonet:child>
-                        <geonet:child name="city" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:city_fd9e9be3-e6a8-4999-8b9d-01853c9ff748" min="0" max="1" action="replace">
-                          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_945b9917-af3f-4f4f-8b38-faa4f8090685" min="1" max="1" action="replace" />
+                        <geonet:child name="city" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:city_fd9e9be3-e6a8-4999-8b9d-01853c9ff748" min="0" max="1" action="replace">
+                          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_945b9917-af3f-4f4f-8b38-faa4f8090685" min="1" max="1" action="replace" />
                         </geonet:child>
-                        <geonet:child name="administrativeArea" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:administrativeArea_b82eb5d7-8743-4d66-a3fa-f8a26e8fa51d" min="0" max="1" action="replace">
-                          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_2253ec47-dcc8-46c2-95d9-e6466d191f35" min="1" max="1" action="replace" />
+                        <geonet:child name="administrativeArea" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:administrativeArea_b82eb5d7-8743-4d66-a3fa-f8a26e8fa51d" min="0" max="1" action="replace">
+                          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_2253ec47-dcc8-46c2-95d9-e6466d191f35" min="1" max="1" action="replace" />
                         </geonet:child>
-                        <geonet:child name="postalCode" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:postalCode_db1baf3a-11ba-4b27-b43d-4533b50ec738" min="0" max="1" action="replace">
-                          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_45693dbe-e192-4d1e-a5ba-75715d570d5e" min="1" max="1" action="replace" />
+                        <geonet:child name="postalCode" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:postalCode_db1baf3a-11ba-4b27-b43d-4533b50ec738" min="0" max="1" action="replace">
+                          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_45693dbe-e192-4d1e-a5ba-75715d570d5e" min="1" max="1" action="replace" />
                         </geonet:child>
-                        <geonet:child name="country" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:country_4564171d-d9a2-46c8-8b45-4882f3c94608" min="0" max="1" action="replace">
-                          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_5201d16f-6716-4032-9bdc-03e22d158359" min="1" max="1" action="replace" />
+                        <geonet:child name="country" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:country_4564171d-d9a2-46c8-8b45-4882f3c94608" min="0" max="1" action="replace">
+                          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_5201d16f-6716-4032-9bdc-03e22d158359" min="1" max="1" action="replace" />
                         </geonet:child>
                         <cit:electronicMailAddress gco:nilReason="missing">
                           <gco:CharacterString>
@@ -34180,8 +34180,8 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                             <geonet:text value="withheld" />
                           </geonet:attribute>
                         </cit:electronicMailAddress>
-                        <geonet:child name="electronicMailAddress" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:electronicMailAddress_346f89b4-484b-46ae-8278-d8601a521a76" min="0" max="10000" action="replace">
-                          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_26686023-33a4-4c81-a732-1f33c310b79f" min="1" max="1" action="replace" />
+                        <geonet:child name="electronicMailAddress" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:electronicMailAddress_346f89b4-484b-46ae-8278-d8601a521a76" min="0" max="10000" action="replace">
+                          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_26686023-33a4-4c81-a732-1f33c310b79f" min="1" max="1" action="replace" />
                         </geonet:child>
                         <geonet:element ref="115" parent="114" uuid="cit:CI_Address_f8ad8540-60a2-4ee2-96ee-ae8cb23140c0" min="1" max="1" />
                         <geonet:attribute name="id" add="true" />
@@ -34223,16 +34223,16 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                       </geonet:attribute>
                       <geonet:attribute name="uuidref" add="true" />
                     </cit:address>
-                    <geonet:child name="address" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:address_26df5dea-c17e-4f41-bed4-e845c9ad134a" min="0" max="10000" action="replace" />
-                    <geonet:child name="onlineResource" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:onlineResource_14f90f55-ff09-4dd1-af55-ffe40ef9c407" min="0" max="10000" action="replace" />
-                    <geonet:child name="hoursOfService" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:hoursOfService_48bb286b-9bcf-4bbd-8012-09fe6e4f6939" min="0" max="10000" action="replace">
-                      <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_3552a2e2-57d8-4709-8a6c-e4a2f5729f91" min="1" max="1" action="replace" />
+                    <geonet:child name="address" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:address_26df5dea-c17e-4f41-bed4-e845c9ad134a" min="0" max="10000" action="replace" />
+                    <geonet:child name="onlineResource" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:onlineResource_14f90f55-ff09-4dd1-af55-ffe40ef9c407" min="0" max="10000" action="replace" />
+                    <geonet:child name="hoursOfService" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:hoursOfService_48bb286b-9bcf-4bbd-8012-09fe6e4f6939" min="0" max="10000" action="replace">
+                      <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_3552a2e2-57d8-4709-8a6c-e4a2f5729f91" min="1" max="1" action="replace" />
                     </geonet:child>
-                    <geonet:child name="contactInstructions" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:contactInstructions_6b05e4df-ca47-456a-9d32-2c0fbd92e51e" min="0" max="1" action="replace">
-                      <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_7530a12d-0ab7-418d-9c8c-5b6a9de96633" min="1" max="1" action="replace" />
+                    <geonet:child name="contactInstructions" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:contactInstructions_6b05e4df-ca47-456a-9d32-2c0fbd92e51e" min="0" max="1" action="replace">
+                      <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_7530a12d-0ab7-418d-9c8c-5b6a9de96633" min="1" max="1" action="replace" />
                     </geonet:child>
-                    <geonet:child name="contactType" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:contactType_b2bebd41-d486-4cac-98b1-c2b0861c2ea5" min="0" max="1" action="replace">
-                      <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_12ff35bc-f5c5-4e00-a089-e32d7df1a094" min="1" max="1" action="replace" />
+                    <geonet:child name="contactType" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:contactType_b2bebd41-d486-4cac-98b1-c2b0861c2ea5" min="0" max="1" action="replace">
+                      <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_12ff35bc-f5c5-4e00-a089-e32d7df1a094" min="1" max="1" action="replace" />
                     </geonet:child>
                     <geonet:element ref="113" parent="112" uuid="cit:CI_Contact_f4c947c8-7d5e-4e76-82c6-b72ed0ba7a5f" min="1" max="1" />
                     <geonet:attribute name="id" add="true" />
@@ -34274,8 +34274,8 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                   </geonet:attribute>
                   <geonet:attribute name="uuidref" add="true" />
                 </cit:contactInfo>
-                <geonet:child name="contactInfo" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:contactInfo_4df95c6c-4da0-4f5e-b824-ea4149c6f951" min="0" max="10000" action="replace" />
-                <geonet:child name="logo" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:logo_afee6e88-9009-42be-a6cc-ef079103b5c4" min="0" max="10000" action="replace" />
+                <geonet:child name="contactInfo" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:contactInfo_4df95c6c-4da0-4f5e-b824-ea4149c6f951" min="0" max="10000" action="replace" />
+                <geonet:child name="logo" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:logo_afee6e88-9009-42be-a6cc-ef079103b5c4" min="0" max="10000" action="replace" />
                 <cit:individual>
                   <cit:CI_Individual>
                     <cit:name gco:nilReason="missing">
@@ -34291,7 +34291,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                         <geonet:text value="withheld" />
                       </geonet:attribute>
                     </cit:name>
-                    <geonet:child name="contactInfo" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:contactInfo_fc34a83c-4e73-41f6-b15c-54b9a2718689" min="0" max="10000" action="replace" />
+                    <geonet:child name="contactInfo" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:contactInfo_fc34a83c-4e73-41f6-b15c-54b9a2718689" min="0" max="10000" action="replace" />
                     <cit:positionName gco:nilReason="missing">
                       <gco:CharacterString>
                         <geonet:element ref="123" parent="122" uuid="gco:CharacterString_75f2eba8-0896-4f45-92fa-27574deacbb5" min="1" max="1" />
@@ -34345,7 +34345,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                   </geonet:attribute>
                   <geonet:attribute name="uuidref" add="true" />
                 </cit:individual>
-                <geonet:child name="individual" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:individual_cdcfdb06-ad28-4905-97d2-947cc3f96614" min="0" max="10000" action="replace" />
+                <geonet:child name="individual" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:individual_cdcfdb06-ad28-4905-97d2-947cc3f96614" min="0" max="10000" action="replace" />
                 <geonet:element ref="109" parent="108" uuid="cit:CI_Organisation_d419327d-88af-4073-8fab-8a132d7c28b7" min="1" max="1" />
                 <geonet:attribute name="id" add="true" />
                 <geonet:attribute name="uuid" add="true" />
@@ -34386,7 +34386,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
               </geonet:attribute>
               <geonet:attribute name="uuidref" add="true" />
             </cit:party>
-            <geonet:child name="party" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:party_b97f81e4-2195-4ccd-a5f6-70232e328449" min="1" max="10000" action="before">
+            <geonet:child name="party" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:party_b97f81e4-2195-4ccd-a5f6-70232e328449" min="1" max="10000" action="before">
               <geonet:choose name="cit:CI_Individual" />
               <geonet:choose name="cit:CI_Organisation" />
             </geonet:child>
@@ -34430,7 +34430,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
           </geonet:attribute>
           <geonet:attribute name="uuidref" add="true" />
         </mri:pointOfContact>
-        <geonet:child name="pointOfContact" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:pointOfContact_6b9671bd-595e-46ca-9f29-a8f5e9a5c15d" min="0" max="10000" action="replace" />
+        <geonet:child name="pointOfContact" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:pointOfContact_6b9671bd-595e-46ca-9f29-a8f5e9a5c15d" min="0" max="10000" action="replace" />
         <mri:spatialRepresentationType>
           <mri:MD_SpatialRepresentationTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_SpatialRepresentationTypeCode" codeListValue="vector">
             <geonet:element ref="125" parent="124" uuid="mri:MD_SpatialRepresentationTypeCode_fdca72a7-5714-4fe2-b043-d45e9966b8b4" min="1" max="1" />
@@ -34447,7 +34447,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
             <geonet:text value="withheld" />
           </geonet:attribute>
         </mri:spatialRepresentationType>
-        <geonet:child name="spatialRepresentationType" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:spatialRepresentationType_5bb8abe4-8659-4e7c-bbeb-2a9b82f3cf75" min="0" max="10000" action="replace" />
+        <geonet:child name="spatialRepresentationType" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:spatialRepresentationType_5bb8abe4-8659-4e7c-bbeb-2a9b82f3cf75" min="0" max="10000" action="replace" />
         <mri:spatialResolution>
           <mri:MD_Resolution>
             <mri:MD_Resolution_TypeCHOICE_ELEMENT0>
@@ -34467,7 +34467,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                       <geonet:text value="withheld" />
                     </geonet:attribute>
                   </mri:denominator>
-                  <geonet:child name="equivalentScale" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:equivalentScale_5fafa463-4545-43aa-9658-c9edf34dc2da" min="0" max="10000" action="replace" />
+                  <geonet:child name="equivalentScale" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:equivalentScale_5fafa463-4545-43aa-9658-c9edf34dc2da" min="0" max="10000" action="replace" />
                   <geonet:element ref="130" parent="129" uuid="mri:MD_RepresentativeFraction_7df9d1ac-cb86-4755-821f-6c94f1bb593a" min="1" max="1" />
                   <geonet:attribute name="id" add="true" />
                   <geonet:attribute name="uuid" add="true" />
@@ -34550,8 +34550,8 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
           </geonet:attribute>
           <geonet:attribute name="uuidref" add="true" />
         </mri:spatialResolution>
-        <geonet:child name="spatialResolution" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:spatialResolution_3011e207-bfa3-47e0-9811-77313961282a" min="0" max="10000" action="replace" />
-        <geonet:child name="temporalResolution" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:temporalResolution_77f030e9-a1c4-466c-b636-754f1f733481" min="0" max="10000" action="replace" />
+        <geonet:child name="spatialResolution" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:spatialResolution_3011e207-bfa3-47e0-9811-77313961282a" min="0" max="10000" action="replace" />
+        <geonet:child name="temporalResolution" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:temporalResolution_77f030e9-a1c4-466c-b636-754f1f733481" min="0" max="10000" action="replace" />
         <mri:topicCategory>
           <mri:MD_TopicCategoryCode>
             boundaries
@@ -34624,13 +34624,13 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
             <geonet:text value="withheld" />
           </geonet:attribute>
         </mri:topicCategory>
-        <geonet:child name="topicCategory" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:topicCategory_df6a2c28-6549-4ed5-955d-2ec9d7a73aa0" min="0" max="10000" action="replace" />
+        <geonet:child name="topicCategory" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:topicCategory_df6a2c28-6549-4ed5-955d-2ec9d7a73aa0" min="0" max="10000" action="replace" />
         <mri:extent>
           <gex:EX_Extent>
-            <geonet:child name="description" prefix="gex" namespace="http://standards.iso.org/19115/-3/gex/1.0" uuid="child_gex:description_ce0b5a47-a3ec-4f7f-be64-0ff614c679c6" min="0" max="1" action="replace">
-              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_5fb19f51-215d-45de-8ac3-654d2a8dc71a" min="1" max="1" action="replace" />
+            <geonet:child name="description" prefix="gex" namespace="http://standards.iso.org/iso/19115/-3/gex/1.0" uuid="child_gex:description_ce0b5a47-a3ec-4f7f-be64-0ff614c679c6" min="0" max="1" action="replace">
+              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_5fb19f51-215d-45de-8ac3-654d2a8dc71a" min="1" max="1" action="replace" />
             </geonet:child>
-            <geonet:child name="geographicElement" prefix="gex" namespace="http://standards.iso.org/19115/-3/gex/1.0" uuid="child_gex:geographicElement_984fa579-1e81-45ac-9035-1f8eb3820c32" min="0" max="10000" action="before">
+            <geonet:child name="geographicElement" prefix="gex" namespace="http://standards.iso.org/iso/19115/-3/gex/1.0" uuid="child_gex:geographicElement_984fa579-1e81-45ac-9035-1f8eb3820c32" min="0" max="10000" action="before">
               <geonet:choose name="gex:EX_BoundingPolygon" />
               <geonet:choose name="gex:EX_GeographicBoundingBox" />
               <geonet:choose name="gex:EX_GeographicDescription" />
@@ -34774,11 +34774,11 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
               </geonet:attribute>
               <geonet:attribute name="uuidref" add="true" />
             </gex:temporalElement>
-            <geonet:child name="temporalElement" prefix="gex" namespace="http://standards.iso.org/19115/-3/gex/1.0" uuid="child_gex:temporalElement_e1cba693-a2cb-490a-949f-8cb9f3cb2efa" min="0" max="10000" action="before">
+            <geonet:child name="temporalElement" prefix="gex" namespace="http://standards.iso.org/iso/19115/-3/gex/1.0" uuid="child_gex:temporalElement_e1cba693-a2cb-490a-949f-8cb9f3cb2efa" min="0" max="10000" action="before">
               <geonet:choose name="gex:EX_SpatialTemporalExtent" />
               <geonet:choose name="gex:EX_TemporalExtent" />
             </geonet:child>
-            <geonet:child name="verticalElement" prefix="gex" namespace="http://standards.iso.org/19115/-3/gex/1.0" uuid="child_gex:verticalElement_73d3ed40-b072-48be-80cb-eb43322582c6" min="0" max="10000" action="replace" />
+            <geonet:child name="verticalElement" prefix="gex" namespace="http://standards.iso.org/iso/19115/-3/gex/1.0" uuid="child_gex:verticalElement_73d3ed40-b072-48be-80cb-eb43322582c6" min="0" max="10000" action="replace" />
             <geonet:element ref="138" parent="137" uuid="gex:EX_Extent_4b0d1e47-0b2c-4210-ad8e-5b306ea53a76" min="1" max="1" />
             <geonet:attribute name="id" add="true" />
             <geonet:attribute name="uuid" add="true" />
@@ -34821,12 +34821,12 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
         </mri:extent>
         <mri:extent>
           <gex:EX_Extent>
-            <geonet:child name="description" prefix="gex" namespace="http://standards.iso.org/19115/-3/gex/1.0" uuid="child_gex:description_51e2cbc9-7715-47ba-b12d-c81f20956f3f" min="0" max="1" action="replace">
-              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_34a0dabf-a170-47ee-9aa2-d81ba1925adf" min="1" max="1" action="replace" />
+            <geonet:child name="description" prefix="gex" namespace="http://standards.iso.org/iso/19115/-3/gex/1.0" uuid="child_gex:description_51e2cbc9-7715-47ba-b12d-c81f20956f3f" min="0" max="1" action="replace">
+              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_34a0dabf-a170-47ee-9aa2-d81ba1925adf" min="1" max="1" action="replace" />
             </geonet:child>
             <gex:geographicElement>
               <gex:EX_GeographicBoundingBox>
-                <geonet:child name="extentTypeCode" prefix="gex" namespace="http://standards.iso.org/19115/-3/gex/1.0" uuid="child_gex:extentTypeCode_2feb722b-3164-44ea-b01e-91c5b1ac49e4" min="0" max="1" action="replace" />
+                <geonet:child name="extentTypeCode" prefix="gex" namespace="http://standards.iso.org/iso/19115/-3/gex/1.0" uuid="child_gex:extentTypeCode_2feb722b-3164-44ea-b01e-91c5b1ac49e4" min="0" max="1" action="replace" />
                 <gex:westBoundLongitude>
                   <gco:Decimal>
                     -180
@@ -34923,16 +34923,16 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
               </geonet:attribute>
               <geonet:attribute name="uuidref" add="true" />
             </gex:geographicElement>
-            <geonet:child name="geographicElement" prefix="gex" namespace="http://standards.iso.org/19115/-3/gex/1.0" uuid="child_gex:geographicElement_f2664f42-1a1d-4bab-87ca-fc88ddc4f59c" min="0" max="10000" action="before">
+            <geonet:child name="geographicElement" prefix="gex" namespace="http://standards.iso.org/iso/19115/-3/gex/1.0" uuid="child_gex:geographicElement_f2664f42-1a1d-4bab-87ca-fc88ddc4f59c" min="0" max="10000" action="before">
               <geonet:choose name="gex:EX_BoundingPolygon" />
               <geonet:choose name="gex:EX_GeographicBoundingBox" />
               <geonet:choose name="gex:EX_GeographicDescription" />
             </geonet:child>
-            <geonet:child name="temporalElement" prefix="gex" namespace="http://standards.iso.org/19115/-3/gex/1.0" uuid="child_gex:temporalElement_3af37e86-5d0c-4bb5-a8db-2acddcf3f85d" min="0" max="10000" action="before">
+            <geonet:child name="temporalElement" prefix="gex" namespace="http://standards.iso.org/iso/19115/-3/gex/1.0" uuid="child_gex:temporalElement_3af37e86-5d0c-4bb5-a8db-2acddcf3f85d" min="0" max="10000" action="before">
               <geonet:choose name="gex:EX_SpatialTemporalExtent" />
               <geonet:choose name="gex:EX_TemporalExtent" />
             </geonet:child>
-            <geonet:child name="verticalElement" prefix="gex" namespace="http://standards.iso.org/19115/-3/gex/1.0" uuid="child_gex:verticalElement_a5b46c9e-a78e-405b-975e-5d238993dd7d" min="0" max="10000" action="replace" />
+            <geonet:child name="verticalElement" prefix="gex" namespace="http://standards.iso.org/iso/19115/-3/gex/1.0" uuid="child_gex:verticalElement_a5b46c9e-a78e-405b-975e-5d238993dd7d" min="0" max="10000" action="replace" />
             <geonet:element ref="150" parent="149" uuid="gex:EX_Extent_bc13146e-6f94-411c-b792-e06a2168d4dc" min="1" max="1" />
             <geonet:attribute name="id" add="true" />
             <geonet:attribute name="uuid" add="true" />
@@ -34973,9 +34973,9 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
           </geonet:attribute>
           <geonet:attribute name="uuidref" add="true" />
         </mri:extent>
-        <geonet:child name="extent" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:extent_68287840-2d89-4318-a5dc-b724c605d2b0" min="0" max="10000" action="replace" />
-        <geonet:child name="additionalDocumentation" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:additionalDocumentation_9757c14e-e718-4df8-949f-420c602c3955" min="0" max="10000" action="replace" />
-        <geonet:child name="processingLevel" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:processingLevel_d7373239-c257-484e-9d3e-d19ab49cdf18" min="0" max="1" action="replace" />
+        <geonet:child name="extent" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:extent_68287840-2d89-4318-a5dc-b724c605d2b0" min="0" max="10000" action="replace" />
+        <geonet:child name="additionalDocumentation" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:additionalDocumentation_9757c14e-e718-4df8-949f-420c602c3955" min="0" max="10000" action="replace" />
+        <geonet:child name="processingLevel" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:processingLevel_d7373239-c257-484e-9d3e-d19ab49cdf18" min="0" max="1" action="replace" />
         <mri:resourceMaintenance>
           <mmi:MD_MaintenanceInformation>
             <mmi:maintenanceAndUpdateFrequency>
@@ -34994,13 +34994,13 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                 <geonet:text value="withheld" />
               </geonet:attribute>
             </mmi:maintenanceAndUpdateFrequency>
-            <geonet:child name="maintenanceDate" prefix="mmi" namespace="http://standards.iso.org/19115/-3/mmi/1.0" uuid="child_mmi:maintenanceDate_2a55bf00-136b-4539-bdf3-e673efc564b4" min="0" max="10000" action="replace" />
-            <geonet:child name="userDefinedMaintenanceFrequency" prefix="mmi" namespace="http://standards.iso.org/19115/-3/mmi/1.0" uuid="child_mmi:userDefinedMaintenanceFrequency_0ec102e4-e0c1-47b0-9248-36d3011232b0" min="0" max="1" action="replace" />
-            <geonet:child name="maintenanceScope" prefix="mmi" namespace="http://standards.iso.org/19115/-3/mmi/1.0" uuid="child_mmi:maintenanceScope_7d6ab795-cf33-44b2-9392-bab4a32898a6" min="0" max="10000" action="replace" />
-            <geonet:child name="maintenanceNote" prefix="mmi" namespace="http://standards.iso.org/19115/-3/mmi/1.0" uuid="child_mmi:maintenanceNote_c7c2086c-58a3-4f2c-9630-e35746a8499d" min="0" max="10000" action="replace">
-              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_9a9115b8-6e3c-4a2f-b74b-f073bf6db2de" min="1" max="1" action="replace" />
+            <geonet:child name="maintenanceDate" prefix="mmi" namespace="http://standards.iso.org/iso/19115/-3/mmi/1.0" uuid="child_mmi:maintenanceDate_2a55bf00-136b-4539-bdf3-e673efc564b4" min="0" max="10000" action="replace" />
+            <geonet:child name="userDefinedMaintenanceFrequency" prefix="mmi" namespace="http://standards.iso.org/iso/19115/-3/mmi/1.0" uuid="child_mmi:userDefinedMaintenanceFrequency_0ec102e4-e0c1-47b0-9248-36d3011232b0" min="0" max="1" action="replace" />
+            <geonet:child name="maintenanceScope" prefix="mmi" namespace="http://standards.iso.org/iso/19115/-3/mmi/1.0" uuid="child_mmi:maintenanceScope_7d6ab795-cf33-44b2-9392-bab4a32898a6" min="0" max="10000" action="replace" />
+            <geonet:child name="maintenanceNote" prefix="mmi" namespace="http://standards.iso.org/iso/19115/-3/mmi/1.0" uuid="child_mmi:maintenanceNote_c7c2086c-58a3-4f2c-9630-e35746a8499d" min="0" max="10000" action="replace">
+              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_9a9115b8-6e3c-4a2f-b74b-f073bf6db2de" min="1" max="1" action="replace" />
             </geonet:child>
-            <geonet:child name="contact" prefix="mmi" namespace="http://standards.iso.org/19115/-3/mmi/1.0" uuid="child_mmi:contact_8599c941-f321-4195-80bc-ff3d0e584901" min="0" max="10000" action="replace" />
+            <geonet:child name="contact" prefix="mmi" namespace="http://standards.iso.org/iso/19115/-3/mmi/1.0" uuid="child_mmi:contact_8599c941-f321-4195-80bc-ff3d0e584901" min="0" max="10000" action="replace" />
             <geonet:element ref="162" parent="161" uuid="mmi:MD_MaintenanceInformation_9e08d674-42b1-491c-b6c5-a2266235d702" min="1" max="1" />
             <geonet:attribute name="id" add="true" />
             <geonet:attribute name="uuid" add="true" />
@@ -35041,7 +35041,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
           </geonet:attribute>
           <geonet:attribute name="uuidref" add="true" />
         </mri:resourceMaintenance>
-        <geonet:child name="resourceMaintenance" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:resourceMaintenance_50c83135-a214-439f-98ff-13083461d42b" min="0" max="10000" action="replace" />
+        <geonet:child name="resourceMaintenance" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:resourceMaintenance_50c83135-a214-439f-98ff-13083461d42b" min="0" max="10000" action="replace" />
         <mri:graphicOverview>
           <mcc:MD_BrowseGraphic>
             <mcc:fileName>
@@ -35072,15 +35072,15 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                 <geonet:text value="withheld" />
               </geonet:attribute>
             </mcc:fileDescription>
-            <geonet:child name="fileType" prefix="mcc" namespace="http://standards.iso.org/19115/-3/mcc/1.0" uuid="child_mcc:fileType_47130a44-c587-489d-b6d3-6b4855348a2d" min="0" max="1" action="replace">
-              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_48f75c10-6688-437a-9f77-8d3f90af5ac0" min="1" max="1" action="replace" />
+            <geonet:child name="fileType" prefix="mcc" namespace="http://standards.iso.org/iso/19115/-3/mcc/1.0" uuid="child_mcc:fileType_47130a44-c587-489d-b6d3-6b4855348a2d" min="0" max="1" action="replace">
+              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_48f75c10-6688-437a-9f77-8d3f90af5ac0" min="1" max="1" action="replace" />
             </geonet:child>
-            <geonet:child name="imageConstraints" prefix="mcc" namespace="http://standards.iso.org/19115/-3/mcc/1.0" uuid="child_mcc:imageConstraints_674c4c6f-db94-4901-a68e-b2f5d0d4f92e" min="0" max="10000" action="before">
+            <geonet:child name="imageConstraints" prefix="mcc" namespace="http://standards.iso.org/iso/19115/-3/mcc/1.0" uuid="child_mcc:imageConstraints_674c4c6f-db94-4901-a68e-b2f5d0d4f92e" min="0" max="10000" action="before">
               <geonet:choose name="mco:MD_Constraints" />
               <geonet:choose name="mco:MD_LegalConstraints" />
               <geonet:choose name="mco:MD_SecurityConstraints" />
             </geonet:child>
-            <geonet:child name="linkage" prefix="mcc" namespace="http://standards.iso.org/19115/-3/mcc/1.0" uuid="child_mcc:linkage_c75fef5b-719c-4d16-be38-903a6044b8ad" min="0" max="10000" action="replace" />
+            <geonet:child name="linkage" prefix="mcc" namespace="http://standards.iso.org/iso/19115/-3/mcc/1.0" uuid="child_mcc:linkage_c75fef5b-719c-4d16-be38-903a6044b8ad" min="0" max="10000" action="replace" />
             <geonet:element ref="166" parent="165" uuid="mcc:MD_BrowseGraphic_d081028b-9e77-4996-bfaa-e5ef4265e3b2" min="1" max="1" />
             <geonet:attribute name="id" add="true" />
             <geonet:attribute name="uuid" add="true" />
@@ -35151,15 +35151,15 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                 <geonet:text value="withheld" />
               </geonet:attribute>
             </mcc:fileDescription>
-            <geonet:child name="fileType" prefix="mcc" namespace="http://standards.iso.org/19115/-3/mcc/1.0" uuid="child_mcc:fileType_d21a059f-3fce-4058-a5f6-6ccd284fc5e9" min="0" max="1" action="replace">
-              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_1b9850be-dd60-4c00-b839-008eda31738d" min="1" max="1" action="replace" />
+            <geonet:child name="fileType" prefix="mcc" namespace="http://standards.iso.org/iso/19115/-3/mcc/1.0" uuid="child_mcc:fileType_d21a059f-3fce-4058-a5f6-6ccd284fc5e9" min="0" max="1" action="replace">
+              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_1b9850be-dd60-4c00-b839-008eda31738d" min="1" max="1" action="replace" />
             </geonet:child>
-            <geonet:child name="imageConstraints" prefix="mcc" namespace="http://standards.iso.org/19115/-3/mcc/1.0" uuid="child_mcc:imageConstraints_3c16744e-6f12-420e-ad2e-8c9cfbc60e06" min="0" max="10000" action="before">
+            <geonet:child name="imageConstraints" prefix="mcc" namespace="http://standards.iso.org/iso/19115/-3/mcc/1.0" uuid="child_mcc:imageConstraints_3c16744e-6f12-420e-ad2e-8c9cfbc60e06" min="0" max="10000" action="before">
               <geonet:choose name="mco:MD_Constraints" />
               <geonet:choose name="mco:MD_LegalConstraints" />
               <geonet:choose name="mco:MD_SecurityConstraints" />
             </geonet:child>
-            <geonet:child name="linkage" prefix="mcc" namespace="http://standards.iso.org/19115/-3/mcc/1.0" uuid="child_mcc:linkage_213d3494-d2c3-4809-a158-222d6a69b5f9" min="0" max="10000" action="replace" />
+            <geonet:child name="linkage" prefix="mcc" namespace="http://standards.iso.org/iso/19115/-3/mcc/1.0" uuid="child_mcc:linkage_213d3494-d2c3-4809-a158-222d6a69b5f9" min="0" max="10000" action="replace" />
             <geonet:element ref="172" parent="171" uuid="mcc:MD_BrowseGraphic_a7899a8a-ac0e-4bd3-a86c-a7d2f8154fc3" min="1" max="1" />
             <geonet:attribute name="id" add="true" />
             <geonet:attribute name="uuid" add="true" />
@@ -35200,8 +35200,8 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
           </geonet:attribute>
           <geonet:attribute name="uuidref" add="true" />
         </mri:graphicOverview>
-        <geonet:child name="graphicOverview" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:graphicOverview_3839bddf-3642-49db-a9d9-6d667f8088b1" min="0" max="10000" action="replace" />
-        <geonet:child name="resourceFormat" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:resourceFormat_6c410615-cab5-4a71-bceb-88dd3e9e9ba4" min="0" max="10000" action="replace" />
+        <geonet:child name="graphicOverview" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:graphicOverview_3839bddf-3642-49db-a9d9-6d667f8088b1" min="0" max="10000" action="replace" />
+        <geonet:child name="resourceFormat" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:resourceFormat_6c410615-cab5-4a71-bceb-88dd3e9e9ba4" min="0" max="10000" action="replace" />
         <mri:descriptiveKeywords>
           <mri:MD_Keywords>
             <mri:keyword gco:nilReason="missing">
@@ -35217,8 +35217,8 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                 <geonet:text value="withheld" />
               </geonet:attribute>
             </mri:keyword>
-            <geonet:child name="keyword" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:keyword_639f1e21-59fb-404d-9e14-684f55d2d1e2" min="1" max="10000" action="replace">
-              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_36b45132-7e6e-4351-ad95-fae9c8912cd1" min="1" max="1" action="replace" />
+            <geonet:child name="keyword" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:keyword_639f1e21-59fb-404d-9e14-684f55d2d1e2" min="1" max="10000" action="replace">
+              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_36b45132-7e6e-4351-ad95-fae9c8912cd1" min="1" max="1" action="replace" />
             </geonet:child>
             <mri:type>
               <mri:MD_KeywordTypeCode codeListValue="theme" codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_KeywordTypeCode">
@@ -35236,8 +35236,8 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                 <geonet:text value="withheld" />
               </geonet:attribute>
             </mri:type>
-            <geonet:child name="thesaurusName" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:thesaurusName_673a603d-03bb-496b-ae6b-ddeb81aca0db" min="0" max="1" action="replace" />
-            <geonet:child name="keywordClass" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:keywordClass_d3c25776-dbc7-4bb9-9950-0c1bd6c62770" min="0" max="1" action="replace" />
+            <geonet:child name="thesaurusName" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:thesaurusName_673a603d-03bb-496b-ae6b-ddeb81aca0db" min="0" max="1" action="replace" />
+            <geonet:child name="keywordClass" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:keywordClass_d3c25776-dbc7-4bb9-9950-0c1bd6c62770" min="0" max="1" action="replace" />
             <geonet:element ref="178" parent="177" uuid="mri:MD_Keywords_07381631-d890-483a-99a6-e81579446150" min="1" max="1" />
             <geonet:attribute name="id" add="true" />
             <geonet:attribute name="uuid" add="true" />
@@ -35294,8 +35294,8 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                 <geonet:text value="withheld" />
               </geonet:attribute>
             </mri:keyword>
-            <geonet:child name="keyword" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:keyword_87c9a0e0-d9b0-48e5-b50c-a45e60706ad8" min="1" max="10000" action="replace">
-              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_f9d8c352-fbf4-412d-a49c-d08009055036" min="1" max="1" action="replace" />
+            <geonet:child name="keyword" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:keyword_87c9a0e0-d9b0-48e5-b50c-a45e60706ad8" min="1" max="10000" action="replace">
+              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_f9d8c352-fbf4-412d-a49c-d08009055036" min="1" max="1" action="replace" />
             </geonet:child>
             <mri:type>
               <mri:MD_KeywordTypeCode codeListValue="place" codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_KeywordTypeCode">
@@ -35313,8 +35313,8 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                 <geonet:text value="withheld" />
               </geonet:attribute>
             </mri:type>
-            <geonet:child name="thesaurusName" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:thesaurusName_91b47997-f7b3-45df-8543-6aff1ad6bb9d" min="0" max="1" action="replace" />
-            <geonet:child name="keywordClass" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:keywordClass_a4c33530-b0be-4191-8b42-ea0cae12ba36" min="0" max="1" action="replace" />
+            <geonet:child name="thesaurusName" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:thesaurusName_91b47997-f7b3-45df-8543-6aff1ad6bb9d" min="0" max="1" action="replace" />
+            <geonet:child name="keywordClass" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:keywordClass_a4c33530-b0be-4191-8b42-ea0cae12ba36" min="0" max="1" action="replace" />
             <geonet:element ref="184" parent="183" uuid="mri:MD_Keywords_1a1b9576-eac7-489c-b48e-e9d4705515ad" min="1" max="1" />
             <geonet:attribute name="id" add="true" />
             <geonet:attribute name="uuid" add="true" />
@@ -35355,8 +35355,8 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
           </geonet:attribute>
           <geonet:attribute name="uuidref" add="true" />
         </mri:descriptiveKeywords>
-        <geonet:child name="descriptiveKeywords" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:descriptiveKeywords_3d423497-af57-49bd-8838-d167be90f635" min="0" max="10000" action="replace" />
-        <geonet:child name="resourceSpecificUsage" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:resourceSpecificUsage_9937ca40-3ca8-4bdb-8a02-b80d3a32a195" min="0" max="10000" action="replace" />
+        <geonet:child name="descriptiveKeywords" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:descriptiveKeywords_3d423497-af57-49bd-8838-d167be90f635" min="0" max="10000" action="replace" />
+        <geonet:child name="resourceSpecificUsage" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:resourceSpecificUsage_9937ca40-3ca8-4bdb-8a02-b80d3a32a195" min="0" max="10000" action="replace" />
         <mri:resourceConstraints>
           <mco:MD_LegalConstraints>
             <mco:useLimitation>
@@ -35373,14 +35373,14 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                 <geonet:text value="withheld" />
               </geonet:attribute>
             </mco:useLimitation>
-            <geonet:child name="useLimitation" prefix="mco" namespace="http://standards.iso.org/19115/-3/mco/1.0" uuid="child_mco:useLimitation_de991f55-3e19-45fb-bf78-3a5ede8ff442" min="0" max="10000" action="replace">
-              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_5d9d8ddc-e628-4e38-9c5f-1deef6c7cb09" min="1" max="1" action="replace" />
+            <geonet:child name="useLimitation" prefix="mco" namespace="http://standards.iso.org/iso/19115/-3/mco/1.0" uuid="child_mco:useLimitation_de991f55-3e19-45fb-bf78-3a5ede8ff442" min="0" max="10000" action="replace">
+              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_5d9d8ddc-e628-4e38-9c5f-1deef6c7cb09" min="1" max="1" action="replace" />
             </geonet:child>
-            <geonet:child name="constraintApplicationScope" prefix="mco" namespace="http://standards.iso.org/19115/-3/mco/1.0" uuid="child_mco:constraintApplicationScope_0fe797c8-e5e1-45d0-aabb-ac82960adcb3" min="0" max="1" action="replace" />
-            <geonet:child name="graphic" prefix="mco" namespace="http://standards.iso.org/19115/-3/mco/1.0" uuid="child_mco:graphic_51032725-c8ad-4423-b9a0-e1b3975fbac3" min="0" max="10000" action="replace" />
-            <geonet:child name="reference" prefix="mco" namespace="http://standards.iso.org/19115/-3/mco/1.0" uuid="child_mco:reference_1564651e-d23e-4ae4-bf3e-cfbeaf151fd8" min="0" max="10000" action="replace" />
-            <geonet:child name="releasability" prefix="mco" namespace="http://standards.iso.org/19115/-3/mco/1.0" uuid="child_mco:releasability_4f99a21f-dfe6-40c1-a96f-fc8a55cdf0e5" min="0" max="1" action="replace" />
-            <geonet:child name="responsibleParty" prefix="mco" namespace="http://standards.iso.org/19115/-3/mco/1.0" uuid="child_mco:responsibleParty_3562a1ff-0172-4001-84a4-575ebb6b675b" min="0" max="10000" action="replace" />
+            <geonet:child name="constraintApplicationScope" prefix="mco" namespace="http://standards.iso.org/iso/19115/-3/mco/1.0" uuid="child_mco:constraintApplicationScope_0fe797c8-e5e1-45d0-aabb-ac82960adcb3" min="0" max="1" action="replace" />
+            <geonet:child name="graphic" prefix="mco" namespace="http://standards.iso.org/iso/19115/-3/mco/1.0" uuid="child_mco:graphic_51032725-c8ad-4423-b9a0-e1b3975fbac3" min="0" max="10000" action="replace" />
+            <geonet:child name="reference" prefix="mco" namespace="http://standards.iso.org/iso/19115/-3/mco/1.0" uuid="child_mco:reference_1564651e-d23e-4ae4-bf3e-cfbeaf151fd8" min="0" max="10000" action="replace" />
+            <geonet:child name="releasability" prefix="mco" namespace="http://standards.iso.org/iso/19115/-3/mco/1.0" uuid="child_mco:releasability_4f99a21f-dfe6-40c1-a96f-fc8a55cdf0e5" min="0" max="1" action="replace" />
+            <geonet:child name="responsibleParty" prefix="mco" namespace="http://standards.iso.org/iso/19115/-3/mco/1.0" uuid="child_mco:responsibleParty_3562a1ff-0172-4001-84a4-575ebb6b675b" min="0" max="10000" action="replace" />
             <mco:accessConstraints>
               <mco:MD_RestrictionCode codeListValue="copyright" codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_RestrictionCode">
                 <geonet:element ref="194" parent="193" uuid="mco:MD_RestrictionCode_f4b58313-c139-4552-a4ec-733f572e7ba7" min="1" max="1" />
@@ -35413,7 +35413,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                 <geonet:text value="withheld" />
               </geonet:attribute>
             </mco:accessConstraints>
-            <geonet:child name="accessConstraints" prefix="mco" namespace="http://standards.iso.org/19115/-3/mco/1.0" uuid="child_mco:accessConstraints_16f0fe46-42e0-4c56-b701-3af01ff888e8" min="0" max="10000" action="replace" />
+            <geonet:child name="accessConstraints" prefix="mco" namespace="http://standards.iso.org/iso/19115/-3/mco/1.0" uuid="child_mco:accessConstraints_16f0fe46-42e0-4c56-b701-3af01ff888e8" min="0" max="10000" action="replace" />
             <mco:useConstraints>
               <mco:MD_RestrictionCode codeListValue="" codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_RestrictionCode">
                 <geonet:element ref="198" parent="197" uuid="mco:MD_RestrictionCode_98ff48b7-f502-4414-bcac-40813d5bc2ba" min="1" max="1" />
@@ -35430,7 +35430,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                 <geonet:text value="withheld" />
               </geonet:attribute>
             </mco:useConstraints>
-            <geonet:child name="useConstraints" prefix="mco" namespace="http://standards.iso.org/19115/-3/mco/1.0" uuid="child_mco:useConstraints_e89791ad-c4e4-44f3-870a-73ee208e9e8f" min="0" max="10000" action="replace" />
+            <geonet:child name="useConstraints" prefix="mco" namespace="http://standards.iso.org/iso/19115/-3/mco/1.0" uuid="child_mco:useConstraints_e89791ad-c4e4-44f3-870a-73ee208e9e8f" min="0" max="10000" action="replace" />
             <mco:otherConstraints gco:nilReason="missing">
               <gco:CharacterString>
                 <geonet:element ref="200" parent="199" uuid="gco:CharacterString_2bdc8113-2b8f-4b99-81d4-0d84346cce6c" min="1" max="1" />
@@ -35444,8 +35444,8 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                 <geonet:text value="withheld" />
               </geonet:attribute>
             </mco:otherConstraints>
-            <geonet:child name="otherConstraints" prefix="mco" namespace="http://standards.iso.org/19115/-3/mco/1.0" uuid="child_mco:otherConstraints_a4912d45-5be3-4370-b98e-bb4451ac38e4" min="0" max="10000" action="replace">
-              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_ae0cfd3c-84a4-499d-bcc3-7bcefe14a309" min="1" max="1" action="replace" />
+            <geonet:child name="otherConstraints" prefix="mco" namespace="http://standards.iso.org/iso/19115/-3/mco/1.0" uuid="child_mco:otherConstraints_a4912d45-5be3-4370-b98e-bb4451ac38e4" min="0" max="10000" action="replace">
+              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_ae0cfd3c-84a4-499d-bcc3-7bcefe14a309" min="1" max="1" action="replace" />
             </geonet:child>
             <geonet:element ref="190" parent="189" uuid="mco:MD_LegalConstraints_953fe761-0b90-44d8-abd2-612531af5450" min="1" max="1" />
             <geonet:attribute name="id" add="true" />
@@ -35487,12 +35487,12 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
           </geonet:attribute>
           <geonet:attribute name="uuidref" add="true" />
         </mri:resourceConstraints>
-        <geonet:child name="resourceConstraints" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:resourceConstraints_85aab969-a0e4-4c6b-a955-4381a160db04" min="0" max="10000" action="before">
+        <geonet:child name="resourceConstraints" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:resourceConstraints_85aab969-a0e4-4c6b-a955-4381a160db04" min="0" max="10000" action="before">
           <geonet:choose name="mco:MD_Constraints" />
           <geonet:choose name="mco:MD_LegalConstraints" />
           <geonet:choose name="mco:MD_SecurityConstraints" />
         </geonet:child>
-        <geonet:child name="associatedResource" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:associatedResource_7fc09070-d5c1-4684-842f-0339741b1db6" min="0" max="10000" action="replace" />
+        <geonet:child name="associatedResource" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:associatedResource_7fc09070-d5c1-4684-842f-0339741b1db6" min="0" max="10000" action="replace" />
         <mri:defaultLocale>
           <lan:PT_Locale id="">
             <lan:language>
@@ -35511,7 +35511,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                 <geonet:text value="withheld" />
               </geonet:attribute>
             </lan:language>
-            <geonet:child name="country" prefix="lan" namespace="http://standards.iso.org/19115/-3/lan/1.0" uuid="child_lan:country_802aacbc-a99f-48c6-9865-13f2e1dfa8a5" min="0" max="1" action="replace" />
+            <geonet:child name="country" prefix="lan" namespace="http://standards.iso.org/iso/19115/-3/lan/1.0" uuid="child_lan:country_802aacbc-a99f-48c6-9865-13f2e1dfa8a5" min="0" max="1" action="replace" />
             <lan:characterEncoding>
               <lan:MD_CharacterSetCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8">
                 <geonet:element ref="206" parent="205" uuid="lan:MD_CharacterSetCode_19d1745c-c653-4fce-a2a7-8914e8d8a5b3" min="1" max="1" />
@@ -35568,12 +35568,12 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
           </geonet:attribute>
           <geonet:attribute name="uuidref" add="true" />
         </mri:defaultLocale>
-        <geonet:child name="otherLocale" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:otherLocale_04033985-6f39-478b-b6fa-cf75e6ca3d83" min="0" max="10000" action="before">
+        <geonet:child name="otherLocale" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:otherLocale_04033985-6f39-478b-b6fa-cf75e6ca3d83" min="0" max="10000" action="before">
           <geonet:choose name="lan:PT_LocaleContainer" />
           <geonet:choose name="lan:PT_Locale" />
         </geonet:child>
-        <geonet:child name="environmentDescription" prefix="mri" namespace="http://standards.iso.org/19115/-3/mri/1.0" uuid="child_mri:environmentDescription_bec6a8c4-52d7-4671-9ac5-b4139cdf4ce6" min="0" max="1" action="replace">
-          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_8c7a54b7-c981-4caf-ad7c-067f07309531" min="1" max="1" action="replace" />
+        <geonet:child name="environmentDescription" prefix="mri" namespace="http://standards.iso.org/iso/19115/-3/mri/1.0" uuid="child_mri:environmentDescription_bec6a8c4-52d7-4671-9ac5-b4139cdf4ce6" min="0" max="1" action="replace">
+          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_8c7a54b7-c981-4caf-ad7c-067f07309531" min="1" max="1" action="replace" />
         </geonet:child>
         <mri:supplementalInformation>
           <gco:CharacterString>
@@ -35629,11 +35629,11 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
       </geonet:attribute>
       <geonet:attribute name="uuidref" add="true" />
     </mdb:identificationInfo>
-    <geonet:child name="identificationInfo" prefix="mdb" namespace="http://standards.iso.org/19115/-3/mdb/1.0" uuid="child_mdb:identificationInfo_2d9a9c71-22b5-497f-96b8-ffb0d0289720" min="1" max="10000" action="before">
+    <geonet:child name="identificationInfo" prefix="mdb" namespace="http://standards.iso.org/iso/19115/-3/mdb/1.0" uuid="child_mdb:identificationInfo_2d9a9c71-22b5-497f-96b8-ffb0d0289720" min="1" max="10000" action="before">
       <geonet:choose name="srv:SV_ServiceIdentification" />
       <geonet:choose name="mri:MD_DataIdentification" />
     </geonet:child>
-    <geonet:child name="contentInfo" prefix="mdb" namespace="http://standards.iso.org/19115/-3/mdb/1.0" uuid="child_mdb:contentInfo_bbbe7765-b6eb-4d5e-a3f0-44aca2834245" min="0" max="10000" action="before">
+    <geonet:child name="contentInfo" prefix="mdb" namespace="http://standards.iso.org/iso/19115/-3/mdb/1.0" uuid="child_mdb:contentInfo_bbbe7765-b6eb-4d5e-a3f0-44aca2834245" min="0" max="10000" action="before">
       <geonet:choose name="mrc:MD_CoverageDescription" />
       <geonet:choose name="mrc:MD_ImageDescription" />
       <geonet:choose name="mrc:MD_FeatureCatalogue" />
@@ -35641,12 +35641,12 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
     </geonet:child>
     <mdb:distributionInfo>
       <mrd:MD_Distribution>
-        <geonet:child name="description" prefix="mrd" namespace="http://standards.iso.org/19115/-3/mrd/1.0" uuid="child_mrd:description_ff195023-482f-4f1d-9316-a214514bee6b" min="0" max="1" action="replace">
-          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_994a1cf0-f2b9-4ac8-8606-ca2156dec0c5" min="1" max="1" action="replace" />
+        <geonet:child name="description" prefix="mrd" namespace="http://standards.iso.org/iso/19115/-3/mrd/1.0" uuid="child_mrd:description_ff195023-482f-4f1d-9316-a214514bee6b" min="0" max="1" action="replace">
+          <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_994a1cf0-f2b9-4ac8-8606-ca2156dec0c5" min="1" max="1" action="replace" />
         </geonet:child>
         <mrd:distributionFormat>
           <mrd:MD_Format>
-            <geonet:child name="formatDistributor" prefix="mrd" namespace="http://standards.iso.org/19115/-3/mrd/1.0" uuid="child_mrd:formatDistributor_8f7fbac6-eabb-4a21-99b4-dd6427836af9" min="0" max="10000" action="replace" />
+            <geonet:child name="formatDistributor" prefix="mrd" namespace="http://standards.iso.org/iso/19115/-3/mrd/1.0" uuid="child_mrd:formatDistributor_8f7fbac6-eabb-4a21-99b4-dd6427836af9" min="0" max="10000" action="replace" />
             <mrd:formatSpecificationCitation>
               <cit:CI_Citation>
                 <cit:title>
@@ -35663,29 +35663,29 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                     <geonet:text value="withheld" />
                   </geonet:attribute>
                 </cit:title>
-                <geonet:child name="alternateTitle" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:alternateTitle_883cd650-4752-42fd-bbfd-979ea1450a48" min="0" max="10000" action="replace">
-                  <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_b5126aa4-9b46-4a85-a757-2f5577ad796e" min="1" max="1" action="replace" />
+                <geonet:child name="alternateTitle" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:alternateTitle_883cd650-4752-42fd-bbfd-979ea1450a48" min="0" max="10000" action="replace">
+                  <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_b5126aa4-9b46-4a85-a757-2f5577ad796e" min="1" max="1" action="replace" />
                 </geonet:child>
-                <geonet:child name="date" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:date_512c94d4-3288-4dc1-ada3-32e3a6fb4406" min="0" max="10000" action="replace" />
-                <geonet:child name="edition" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:edition_f93301c1-2baf-4f07-9081-5e1999388387" min="0" max="1" action="replace">
-                  <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_dec91a65-0f7c-4b24-b6e6-37b4b40d3aaa" min="1" max="1" action="replace" />
+                <geonet:child name="date" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:date_512c94d4-3288-4dc1-ada3-32e3a6fb4406" min="0" max="10000" action="replace" />
+                <geonet:child name="edition" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:edition_f93301c1-2baf-4f07-9081-5e1999388387" min="0" max="1" action="replace">
+                  <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_dec91a65-0f7c-4b24-b6e6-37b4b40d3aaa" min="1" max="1" action="replace" />
                 </geonet:child>
-                <geonet:child name="editionDate" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:editionDate_42120eed-e90e-44a5-a050-c8b1bae1c58b" min="0" max="1" action="replace" />
-                <geonet:child name="identifier" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:identifier_c52be87e-36f9-4d66-b141-fc9ccf76a4d5" min="0" max="10000" action="replace" />
-                <geonet:child name="citedResponsibleParty" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:citedResponsibleParty_63ce1da6-f251-4024-9c7f-51bad1d49764" min="0" max="10000" action="replace" />
-                <geonet:child name="presentationForm" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:presentationForm_3a4108a7-a4c4-4e5f-a2f9-c2d7174af8c7" min="0" max="10000" action="replace" />
-                <geonet:child name="series" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:series_37bb9ecb-ac10-4f04-b2ac-5cad1ff5d408" min="0" max="1" action="replace" />
-                <geonet:child name="otherCitationDetails" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:otherCitationDetails_70ae46bc-06a4-448b-8df6-1b9bdb78d981" min="0" max="10000" action="replace">
-                  <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_39e07ce4-ebc5-4cd2-9fe3-6ed6ba547a53" min="1" max="1" action="replace" />
+                <geonet:child name="editionDate" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:editionDate_42120eed-e90e-44a5-a050-c8b1bae1c58b" min="0" max="1" action="replace" />
+                <geonet:child name="identifier" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:identifier_c52be87e-36f9-4d66-b141-fc9ccf76a4d5" min="0" max="10000" action="replace" />
+                <geonet:child name="citedResponsibleParty" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:citedResponsibleParty_63ce1da6-f251-4024-9c7f-51bad1d49764" min="0" max="10000" action="replace" />
+                <geonet:child name="presentationForm" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:presentationForm_3a4108a7-a4c4-4e5f-a2f9-c2d7174af8c7" min="0" max="10000" action="replace" />
+                <geonet:child name="series" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:series_37bb9ecb-ac10-4f04-b2ac-5cad1ff5d408" min="0" max="1" action="replace" />
+                <geonet:child name="otherCitationDetails" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:otherCitationDetails_70ae46bc-06a4-448b-8df6-1b9bdb78d981" min="0" max="10000" action="replace">
+                  <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_39e07ce4-ebc5-4cd2-9fe3-6ed6ba547a53" min="1" max="1" action="replace" />
                 </geonet:child>
-                <geonet:child name="ISBN" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:ISBN_b095ec84-7c15-4ccc-b7a3-09f3f511480c" min="0" max="1" action="replace">
-                  <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_4aa570fb-6ddb-4cd6-97eb-0bde100c2f7b" min="1" max="1" action="replace" />
+                <geonet:child name="ISBN" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:ISBN_b095ec84-7c15-4ccc-b7a3-09f3f511480c" min="0" max="1" action="replace">
+                  <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_4aa570fb-6ddb-4cd6-97eb-0bde100c2f7b" min="1" max="1" action="replace" />
                 </geonet:child>
-                <geonet:child name="ISSN" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:ISSN_abe61180-4edf-463a-ab09-556f571ec086" min="0" max="1" action="replace">
-                  <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_435b8b13-978c-49f9-bb20-7687b22fb72c" min="1" max="1" action="replace" />
+                <geonet:child name="ISSN" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:ISSN_abe61180-4edf-463a-ab09-556f571ec086" min="0" max="1" action="replace">
+                  <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_435b8b13-978c-49f9-bb20-7687b22fb72c" min="1" max="1" action="replace" />
                 </geonet:child>
-                <geonet:child name="onlineResource" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:onlineResource_862a14a5-3bbe-40cd-900d-3383f3cb6e71" min="0" max="10000" action="replace" />
-                <geonet:child name="graphic" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:graphic_17e82724-a635-4420-9c1e-c0567fd2e1c4" min="0" max="10000" action="replace" />
+                <geonet:child name="onlineResource" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:onlineResource_862a14a5-3bbe-40cd-900d-3383f3cb6e71" min="0" max="10000" action="replace" />
+                <geonet:child name="graphic" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:graphic_17e82724-a635-4420-9c1e-c0567fd2e1c4" min="0" max="10000" action="replace" />
                 <geonet:element ref="214" parent="213" uuid="cit:CI_Citation_07ffad48-1ff8-413e-aff5-8890ffe80c96" min="1" max="1" />
                 <geonet:attribute name="id" add="true" />
                 <geonet:attribute name="uuid" add="true" />
@@ -35726,13 +35726,13 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
               </geonet:attribute>
               <geonet:attribute name="uuidref" add="true" />
             </mrd:formatSpecificationCitation>
-            <geonet:child name="amendmentNumber" prefix="mrd" namespace="http://standards.iso.org/19115/-3/mrd/1.0" uuid="child_mrd:amendmentNumber_d75c6405-e67a-4901-b34d-2741bf9a42dc" min="0" max="1" action="replace">
-              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_85585529-8aab-4815-b6ab-f79a87bf8e4f" min="1" max="1" action="replace" />
+            <geonet:child name="amendmentNumber" prefix="mrd" namespace="http://standards.iso.org/iso/19115/-3/mrd/1.0" uuid="child_mrd:amendmentNumber_d75c6405-e67a-4901-b34d-2741bf9a42dc" min="0" max="1" action="replace">
+              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_85585529-8aab-4815-b6ab-f79a87bf8e4f" min="1" max="1" action="replace" />
             </geonet:child>
-            <geonet:child name="fileDecompressionTechnique" prefix="mrd" namespace="http://standards.iso.org/19115/-3/mrd/1.0" uuid="child_mrd:fileDecompressionTechnique_f9bf9989-b50c-4d45-91f3-007d71b69911" min="0" max="1" action="replace">
-              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_07acfe81-3a7f-47c5-a34f-58f61724168b" min="1" max="1" action="replace" />
+            <geonet:child name="fileDecompressionTechnique" prefix="mrd" namespace="http://standards.iso.org/iso/19115/-3/mrd/1.0" uuid="child_mrd:fileDecompressionTechnique_f9bf9989-b50c-4d45-91f3-007d71b69911" min="0" max="1" action="replace">
+              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_07acfe81-3a7f-47c5-a34f-58f61724168b" min="1" max="1" action="replace" />
             </geonet:child>
-            <geonet:child name="medium" prefix="mrd" namespace="http://standards.iso.org/19115/-3/mrd/1.0" uuid="child_mrd:medium_19d21ca8-c358-48c9-abd6-64852572b2fa" min="0" max="10000" action="replace" />
+            <geonet:child name="medium" prefix="mrd" namespace="http://standards.iso.org/iso/19115/-3/mrd/1.0" uuid="child_mrd:medium_19d21ca8-c358-48c9-abd6-64852572b2fa" min="0" max="10000" action="replace" />
             <geonet:element ref="212" parent="211" uuid="mrd:MD_Format_88c348f0-34eb-4a6c-9e84-3adcb9d3d6cd" min="1" max="1" />
             <geonet:attribute name="id" add="true" />
             <geonet:attribute name="uuid" add="true" />
@@ -35773,14 +35773,14 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
           </geonet:attribute>
           <geonet:attribute name="uuidref" add="true" />
         </mrd:distributionFormat>
-        <geonet:child name="distributionFormat" prefix="mrd" namespace="http://standards.iso.org/19115/-3/mrd/1.0" uuid="child_mrd:distributionFormat_6db44943-23e6-4d2e-88fb-7728b4cde30c" min="0" max="10000" action="replace" />
-        <geonet:child name="distributor" prefix="mrd" namespace="http://standards.iso.org/19115/-3/mrd/1.0" uuid="child_mrd:distributor_f2314012-59fb-4b5c-b9df-b969db5fa891" min="0" max="10000" action="replace" />
+        <geonet:child name="distributionFormat" prefix="mrd" namespace="http://standards.iso.org/iso/19115/-3/mrd/1.0" uuid="child_mrd:distributionFormat_6db44943-23e6-4d2e-88fb-7728b4cde30c" min="0" max="10000" action="replace" />
+        <geonet:child name="distributor" prefix="mrd" namespace="http://standards.iso.org/iso/19115/-3/mrd/1.0" uuid="child_mrd:distributor_f2314012-59fb-4b5c-b9df-b969db5fa891" min="0" max="10000" action="replace" />
         <mrd:transferOptions>
           <mrd:MD_DigitalTransferOptions>
-            <geonet:child name="unitsOfDistribution" prefix="mrd" namespace="http://standards.iso.org/19115/-3/mrd/1.0" uuid="child_mrd:unitsOfDistribution_40229b94-f46d-4c2c-852a-e6062f500ca5" min="0" max="1" action="replace">
-              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_6b8fdd66-2016-4536-bf8d-a4fe2ccbf568" min="1" max="1" action="replace" />
+            <geonet:child name="unitsOfDistribution" prefix="mrd" namespace="http://standards.iso.org/iso/19115/-3/mrd/1.0" uuid="child_mrd:unitsOfDistribution_40229b94-f46d-4c2c-852a-e6062f500ca5" min="0" max="1" action="replace">
+              <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_6b8fdd66-2016-4536-bf8d-a4fe2ccbf568" min="1" max="1" action="replace" />
             </geonet:child>
-            <geonet:child name="transferSize" prefix="mrd" namespace="http://standards.iso.org/19115/-3/mrd/1.0" uuid="child_mrd:transferSize_cd051bdb-5552-461b-a1ec-d5049409a6dc" min="0" max="1" action="replace" />
+            <geonet:child name="transferSize" prefix="mrd" namespace="http://standards.iso.org/iso/19115/-3/mrd/1.0" uuid="child_mrd:transferSize_cd051bdb-5552-461b-a1ec-d5049409a6dc" min="0" max="1" action="replace" />
             <mrd:onLine>
               <cit:CI_OnlineResource>
                 <cit:linkage>
@@ -35810,8 +35810,8 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                     <geonet:text value="withheld" />
                   </geonet:attribute>
                 </cit:protocol>
-                <geonet:child name="applicationProfile" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:applicationProfile_ac33d7e1-9f31-4eee-9fb8-8a82d401be70" min="0" max="1" action="replace">
-                  <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_ffa6692c-9b17-459a-914d-5861c06e38a8" min="1" max="1" action="replace" />
+                <geonet:child name="applicationProfile" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:applicationProfile_ac33d7e1-9f31-4eee-9fb8-8a82d401be70" min="0" max="1" action="replace">
+                  <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_ffa6692c-9b17-459a-914d-5861c06e38a8" min="1" max="1" action="replace" />
                 </geonet:child>
                 <cit:name gco:nilReason="missing">
                   <gco:CharacterString>
@@ -35855,8 +35855,8 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                     <geonet:text value="withheld" />
                   </geonet:attribute>
                 </cit:function>
-                <geonet:child name="protocolRequest" prefix="cit" namespace="http://standards.iso.org/19115/-3/cit/1.0" uuid="child_cit:protocolRequest_3c2d39ff-1e09-40a3-817b-b4675b4bb576" min="0" max="1" action="replace">
-                  <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/19115/-3/gco/1.0" uuid="child_gco:CharacterString_ec6aa7e5-5068-4fc4-b63d-ced94450133c" min="1" max="1" action="replace" />
+                <geonet:child name="protocolRequest" prefix="cit" namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" uuid="child_cit:protocolRequest_3c2d39ff-1e09-40a3-817b-b4675b4bb576" min="0" max="1" action="replace">
+                  <geonet:child name="CharacterString" prefix="gco" namespace="http://standards.iso.org/iso/19115/-3/gco/1.0" uuid="child_gco:CharacterString_ec6aa7e5-5068-4fc4-b63d-ced94450133c" min="1" max="1" action="replace" />
                 </geonet:child>
                 <geonet:element ref="220" parent="219" uuid="cit:CI_OnlineResource_60ba9606-c5e3-4843-a38e-672fa746cc56" min="1" max="1" />
                 <geonet:attribute name="id" add="true" />
@@ -35898,10 +35898,10 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
               </geonet:attribute>
               <geonet:attribute name="uuidref" add="true" />
             </mrd:onLine>
-            <geonet:child name="onLine" prefix="mrd" namespace="http://standards.iso.org/19115/-3/mrd/1.0" uuid="child_mrd:onLine_a555aff3-9408-4fa9-987d-4f6d1452daae" min="0" max="10000" action="replace" />
-            <geonet:child name="offLine" prefix="mrd" namespace="http://standards.iso.org/19115/-3/mrd/1.0" uuid="child_mrd:offLine_3db7ec32-1086-4c52-9a5d-bcff29814b3f" min="0" max="10000" action="replace" />
-            <geonet:child name="transferFrequency" prefix="mrd" namespace="http://standards.iso.org/19115/-3/mrd/1.0" uuid="child_mrd:transferFrequency_ecd07f37-9d44-4f9e-9da2-da78e80d1565" min="0" max="1" action="replace" />
-            <geonet:child name="distributionFormat" prefix="mrd" namespace="http://standards.iso.org/19115/-3/mrd/1.0" uuid="child_mrd:distributionFormat_75798d39-f13f-40f1-bda7-a6ce59ac2835" min="0" max="10000" action="replace" />
+            <geonet:child name="onLine" prefix="mrd" namespace="http://standards.iso.org/iso/19115/-3/mrd/1.0" uuid="child_mrd:onLine_a555aff3-9408-4fa9-987d-4f6d1452daae" min="0" max="10000" action="replace" />
+            <geonet:child name="offLine" prefix="mrd" namespace="http://standards.iso.org/iso/19115/-3/mrd/1.0" uuid="child_mrd:offLine_3db7ec32-1086-4c52-9a5d-bcff29814b3f" min="0" max="10000" action="replace" />
+            <geonet:child name="transferFrequency" prefix="mrd" namespace="http://standards.iso.org/iso/19115/-3/mrd/1.0" uuid="child_mrd:transferFrequency_ecd07f37-9d44-4f9e-9da2-da78e80d1565" min="0" max="1" action="replace" />
+            <geonet:child name="distributionFormat" prefix="mrd" namespace="http://standards.iso.org/iso/19115/-3/mrd/1.0" uuid="child_mrd:distributionFormat_75798d39-f13f-40f1-bda7-a6ce59ac2835" min="0" max="10000" action="replace" />
             <geonet:element ref="218" parent="217" uuid="mrd:MD_DigitalTransferOptions_4388963b-7f3d-444e-8cfe-4fb292ed281b" min="1" max="1" />
             <geonet:attribute name="id" add="true" />
             <geonet:attribute name="uuid" add="true" />
@@ -35942,7 +35942,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
           </geonet:attribute>
           <geonet:attribute name="uuidref" add="true" />
         </mrd:transferOptions>
-        <geonet:child name="transferOptions" prefix="mrd" namespace="http://standards.iso.org/19115/-3/mrd/1.0" uuid="child_mrd:transferOptions_c99fd684-4027-4bf5-b62b-7c99bd6f6603" min="0" max="10000" action="replace" />
+        <geonet:child name="transferOptions" prefix="mrd" namespace="http://standards.iso.org/iso/19115/-3/mrd/1.0" uuid="child_mrd:transferOptions_c99fd684-4027-4bf5-b62b-7c99bd6f6603" min="0" max="10000" action="replace" />
         <geonet:element ref="210" parent="209" uuid="mrd:MD_Distribution_f438710c-8e16-4eba-921a-520155c05e20" min="1" max="1" />
         <geonet:attribute name="id" add="true" />
         <geonet:attribute name="uuid" add="true" />
@@ -35983,7 +35983,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
       </geonet:attribute>
       <geonet:attribute name="uuidref" add="true" />
     </mdb:distributionInfo>
-    <geonet:child name="distributionInfo" prefix="mdb" namespace="http://standards.iso.org/19115/-3/mdb/1.0" uuid="child_mdb:distributionInfo_4cc9f954-ae13-4d65-b83a-8dc1ce8ecf89" min="0" max="10000" action="replace" />
+    <geonet:child name="distributionInfo" prefix="mdb" namespace="http://standards.iso.org/iso/19115/-3/mdb/1.0" uuid="child_mdb:distributionInfo_4cc9f954-ae13-4d65-b83a-8dc1ce8ecf89" min="0" max="10000" action="replace" />
     <mdb:dataQualityInfo>
       <mdq:DQ_DataQuality>
         <mdq:scope>
@@ -36004,8 +36004,8 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                 <geonet:text value="withheld" />
               </geonet:attribute>
             </mcc:level>
-            <geonet:child name="extent" prefix="mcc" namespace="http://standards.iso.org/19115/-3/mcc/1.0" uuid="child_mcc:extent_ccc0ea8c-64bd-4ce8-a6b5-ba97864daa13" min="0" max="10000" action="replace" />
-            <geonet:child name="levelDescription" prefix="mcc" namespace="http://standards.iso.org/19115/-3/mcc/1.0" uuid="child_mcc:levelDescription_75ac225a-0406-454f-9949-b9183acb0870" min="0" max="10000" action="replace" />
+            <geonet:child name="extent" prefix="mcc" namespace="http://standards.iso.org/iso/19115/-3/mcc/1.0" uuid="child_mcc:extent_ccc0ea8c-64bd-4ce8-a6b5-ba97864daa13" min="0" max="10000" action="replace" />
+            <geonet:child name="levelDescription" prefix="mcc" namespace="http://standards.iso.org/iso/19115/-3/mcc/1.0" uuid="child_mcc:levelDescription_75ac225a-0406-454f-9949-b9183acb0870" min="0" max="10000" action="replace" />
             <geonet:element ref="234" parent="233" uuid="mcc:MD_Scope_bbbb6f9b-b436-430e-af2b-936c6533a48b" min="1" max="1" />
             <geonet:attribute name="id" add="true" />
             <geonet:attribute name="uuid" add="true" />
@@ -36046,8 +36046,8 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
           </geonet:attribute>
           <geonet:attribute name="uuidref" add="true" />
         </mdq:scope>
-        <geonet:child name="standaloneReport" prefix="mdq" namespace="http://standards.iso.org/19157/-2/mdq/1.0" uuid="child_mdq:standaloneReport_fd0c6e87-16d9-4a5e-93bf-3303c633dc73" min="0" max="1" action="replace" />
-        <geonet:child name="report" prefix="mdq" namespace="http://standards.iso.org/19157/-2/mdq/1.0" uuid="child_mdq:report_3d2e99b5-43ed-4183-a02d-e1f7ad176020" min="0" max="10000" action="before">
+        <geonet:child name="standaloneReport" prefix="mdq" namespace="http://standards.iso.org/iso/19157/-2/mdq/1.0" uuid="child_mdq:standaloneReport_fd0c6e87-16d9-4a5e-93bf-3303c633dc73" min="0" max="1" action="replace" />
+        <geonet:child name="report" prefix="mdq" namespace="http://standards.iso.org/iso/19157/-2/mdq/1.0" uuid="child_mdq:report_3d2e99b5-43ed-4183-a02d-e1f7ad176020" min="0" max="10000" action="before">
           <geonet:choose name="mdq:DQ_CompletenessCommission" />
           <geonet:choose name="mdq:DQ_CompletenessOmission" />
           <geonet:choose name="mdq:DQ_ConceptualConsistency" />
@@ -36108,7 +36108,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
       </geonet:attribute>
       <geonet:attribute name="uuidref" add="true" />
     </mdb:dataQualityInfo>
-    <geonet:child name="dataQualityInfo" prefix="mdb" namespace="http://standards.iso.org/19115/-3/mdb/1.0" uuid="child_mdb:dataQualityInfo_140ba244-5b9c-4491-b4da-85cabbbbae1c" min="0" max="10000" action="replace" />
+    <geonet:child name="dataQualityInfo" prefix="mdb" namespace="http://standards.iso.org/iso/19115/-3/mdb/1.0" uuid="child_mdb:dataQualityInfo_140ba244-5b9c-4491-b4da-85cabbbbae1c" min="0" max="10000" action="replace" />
     <mdb:resourceLineage>
       <mrl:LI_Lineage>
         <mrl:statement>
@@ -36143,8 +36143,8 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
                 <geonet:text value="withheld" />
               </geonet:attribute>
             </mcc:level>
-            <geonet:child name="extent" prefix="mcc" namespace="http://standards.iso.org/19115/-3/mcc/1.0" uuid="child_mcc:extent_781306a3-97ea-4d38-9e7a-2be0c2e25c72" min="0" max="10000" action="replace" />
-            <geonet:child name="levelDescription" prefix="mcc" namespace="http://standards.iso.org/19115/-3/mcc/1.0" uuid="child_mcc:levelDescription_7c12801d-a376-40de-81bb-b83358b38c5d" min="0" max="10000" action="replace" />
+            <geonet:child name="extent" prefix="mcc" namespace="http://standards.iso.org/iso/19115/-3/mcc/1.0" uuid="child_mcc:extent_781306a3-97ea-4d38-9e7a-2be0c2e25c72" min="0" max="10000" action="replace" />
+            <geonet:child name="levelDescription" prefix="mcc" namespace="http://standards.iso.org/iso/19115/-3/mcc/1.0" uuid="child_mcc:levelDescription_7c12801d-a376-40de-81bb-b83358b38c5d" min="0" max="10000" action="replace" />
             <geonet:element ref="242" parent="241" uuid="mcc:MD_Scope_04328261-ebfe-45f5-b562-12427be988a2" min="1" max="1" />
             <geonet:attribute name="id" add="true" />
             <geonet:attribute name="uuid" add="true" />
@@ -36185,9 +36185,9 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
           </geonet:attribute>
           <geonet:attribute name="uuidref" add="true" />
         </mrl:scope>
-        <geonet:child name="additionalDocumentation" prefix="mrl" namespace="http://standards.iso.org/19115/-3/mrl/1.0" uuid="child_mrl:additionalDocumentation_6b92d0f6-d49f-4118-ac29-04fcba3504f5" min="0" max="10000" action="replace" />
-        <geonet:child name="source" prefix="mrl" namespace="http://standards.iso.org/19115/-3/mrl/1.0" uuid="child_mrl:source_4e6ff1d2-6b73-4d73-aae9-c6d025741689" min="0" max="10000" action="replace" />
-        <geonet:child name="processStep" prefix="mrl" namespace="http://standards.iso.org/19115/-3/mrl/1.0" uuid="child_mrl:processStep_ab99f8de-3390-479d-8ddf-176068d17465" min="0" max="10000" action="replace" />
+        <geonet:child name="additionalDocumentation" prefix="mrl" namespace="http://standards.iso.org/iso/19115/-3/mrl/1.0" uuid="child_mrl:additionalDocumentation_6b92d0f6-d49f-4118-ac29-04fcba3504f5" min="0" max="10000" action="replace" />
+        <geonet:child name="source" prefix="mrl" namespace="http://standards.iso.org/iso/19115/-3/mrl/1.0" uuid="child_mrl:source_4e6ff1d2-6b73-4d73-aae9-c6d025741689" min="0" max="10000" action="replace" />
+        <geonet:child name="processStep" prefix="mrl" namespace="http://standards.iso.org/iso/19115/-3/mrl/1.0" uuid="child_mrl:processStep_ab99f8de-3390-479d-8ddf-176068d17465" min="0" max="10000" action="replace" />
         <geonet:element ref="238" parent="237" uuid="mrl:LI_Lineage_68202b44-fbef-4dc5-9bab-5eb9d795648a" min="1" max="1" />
         <geonet:attribute name="id" add="true" />
         <geonet:attribute name="uuid" add="true" />
@@ -36228,15 +36228,15 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
       </geonet:attribute>
       <geonet:attribute name="uuidref" add="true" />
     </mdb:resourceLineage>
-    <geonet:child name="resourceLineage" prefix="mdb" namespace="http://standards.iso.org/19115/-3/mdb/1.0" uuid="child_mdb:resourceLineage_9c3e8250-edf7-42c5-8c64-9d3b7dc1f908" min="0" max="10000" action="replace" />
-    <geonet:child name="portrayalCatalogueInfo" prefix="mdb" namespace="http://standards.iso.org/19115/-3/mdb/1.0" uuid="child_mdb:portrayalCatalogueInfo_1abf8788-e664-4c66-adee-d2feb94b604b" min="0" max="10000" action="replace" />
-    <geonet:child name="metadataConstraints" prefix="mdb" namespace="http://standards.iso.org/19115/-3/mdb/1.0" uuid="child_mdb:metadataConstraints_b10e8421-e667-4998-9836-1791701bd617" min="0" max="10000" action="before">
+    <geonet:child name="resourceLineage" prefix="mdb" namespace="http://standards.iso.org/iso/19115/-3/mdb/1.0" uuid="child_mdb:resourceLineage_9c3e8250-edf7-42c5-8c64-9d3b7dc1f908" min="0" max="10000" action="replace" />
+    <geonet:child name="portrayalCatalogueInfo" prefix="mdb" namespace="http://standards.iso.org/iso/19115/-3/mdb/1.0" uuid="child_mdb:portrayalCatalogueInfo_1abf8788-e664-4c66-adee-d2feb94b604b" min="0" max="10000" action="replace" />
+    <geonet:child name="metadataConstraints" prefix="mdb" namespace="http://standards.iso.org/iso/19115/-3/mdb/1.0" uuid="child_mdb:metadataConstraints_b10e8421-e667-4998-9836-1791701bd617" min="0" max="10000" action="before">
       <geonet:choose name="mco:MD_Constraints" />
       <geonet:choose name="mco:MD_LegalConstraints" />
       <geonet:choose name="mco:MD_SecurityConstraints" />
     </geonet:child>
-    <geonet:child name="applicationSchemaInfo" prefix="mdb" namespace="http://standards.iso.org/19115/-3/mdb/1.0" uuid="child_mdb:applicationSchemaInfo_d7ef4a2a-c3aa-4421-96fd-e86eb64d5202" min="0" max="10000" action="replace" />
-    <geonet:child name="metadataMaintenance" prefix="mdb" namespace="http://standards.iso.org/19115/-3/mdb/1.0" uuid="child_mdb:metadataMaintenance_9b66ae6f-5fc2-4a0a-aa71-3fc811a89ed8" min="0" max="1" action="replace" />
+    <geonet:child name="applicationSchemaInfo" prefix="mdb" namespace="http://standards.iso.org/iso/19115/-3/mdb/1.0" uuid="child_mdb:applicationSchemaInfo_d7ef4a2a-c3aa-4421-96fd-e86eb64d5202" min="0" max="10000" action="replace" />
+    <geonet:child name="metadataMaintenance" prefix="mdb" namespace="http://standards.iso.org/iso/19115/-3/mdb/1.0" uuid="child_mdb:metadataMaintenance_9b66ae6f-5fc2-4a0a-aa71-3fc811a89ed8" min="0" max="1" action="replace" />
     <geonet:element ref="1" parent="0" uuid="mdb:MD_Metadata_9166e184-c50f-46a3-9e3c-fe124cd35471" />
     <geonet:attribute name="id" add="true" />
     <geonet:attribute name="uuid" add="true" />

@@ -7,11 +7,11 @@ import org.jdom.Namespace;
  */
 public class Namespaces {
     public static final Namespace GCO =
-            Namespace.getNamespace("gco", "http://standards.iso.org/19115/-3/gco/1.0");
+            Namespace.getNamespace("gco", "http://standards.iso.org/iso/19115/-3/gco/1.0");
     public static final Namespace MDB =
-            Namespace.getNamespace("mdb", "http://standards.iso.org/19115/-3/mdb/1.0");
+            Namespace.getNamespace("mdb", "http://standards.iso.org/iso/19115/-3/mdb/1.0");
     public static final Namespace CIT =
-            Namespace.getNamespace("cit", "http://standards.iso.org/19115/-3/cit/1.0");
+            Namespace.getNamespace("cit", "http://standards.iso.org/iso/19115/-3/cit/1.0");
     public static final Namespace MCC =
-            Namespace.getNamespace("mcc", "http://standards.iso.org/19115/-3/mcc/1.0");
+            Namespace.getNamespace("mcc", "http://standards.iso.org/iso/19115/-3/mcc/1.0");
 }

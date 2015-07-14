@@ -90,7 +90,7 @@ If requesting an ISO record using the gmd namespace, metadata are converted to I
 <csw:GetRecordById xmlns:csw="http://www.opengis.net/cat/csw/2.0.2"
   service="CSW"
   version="2.0.2"
-  outputSchema="http://standards.iso.org/19115/-3/gmd">
+  outputSchema="http://standards.iso.org/iso/19115/-3/gmd">
     <csw:Id>cecd1ebf-719e-4b1f-b6a7-86c17ed02c62</csw:Id>
     <csw:ElementSetName>brief</csw:ElementSetName>
 </csw:GetRecordById>
@@ -129,7 +129,7 @@ for the schema:
 
 ### CSW support
 
-Current implementation support ISO19115-3 as output format using the "own" parameter which is a specific feature of GeoNetwork. It could be relevant for a schema plugin to define what outputSchema could be used as output for CSW response and define the conversion to apply. http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25 should be added to the list.
+Current implementation support ISO19115-3 as output format using the "own" parameter which is a specific feature of GeoNetwork. It could be relevant for a schema plugin to define what outputSchema could be used as output for CSW response and define the conversion to apply. http://standards.iso.org/iso/19115/-3/mdb/1.0/2014-12-25 should be added to the list.
 
 ### GML support
 

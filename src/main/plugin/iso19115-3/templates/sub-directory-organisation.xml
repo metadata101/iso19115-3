@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cit:CI_Responsibility
-    xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0"
-    xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0"
-    xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0">
+    xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
+    xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+    xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0">
   <cit:role>
     <cit:CI_RoleCode 
       codeList="codeListLocation#CI_RoleCode" 

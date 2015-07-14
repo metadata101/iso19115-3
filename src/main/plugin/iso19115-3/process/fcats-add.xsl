@@ -3,11 +3,11 @@
 Stylesheet used to update metadata for a service and 
 attached it to the metadata for data.
 -->
-<xsl:stylesheet version="2.0" xmlns:gmd="http://standards.iso.org/19115/-3/gmd"
-                xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0"
-                xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0"
-                xmlns:mrc="http://standards.iso.org/19115/-3/mrc/1.0"
-                xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0"
+<xsl:stylesheet version="2.0" xmlns:gmd="http://standards.iso.org/iso/19115/-3/gmd"
+                xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+                xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+                xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/1.0"
+                xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:gn="http://www.fao.org/geonetwork"
                 xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -49,7 +49,7 @@ attached it to the metadata for data.
 
               <!-- Add xlink:href featureCatalogueCitation -->
               <mrc:featureCatalogueCitation uuidref="{$uuidref}"
-                                            xlink:href="{$siteUrl}/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://standards.iso.org/19115/-3/gmd&amp;elementSetName=full&amp;id={$uuidref}">
+                                            xlink:href="{$siteUrl}/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://standards.iso.org/iso/19115/-3/gmd&amp;elementSetName=full&amp;id={$uuidref}">
                 <xsl:copy-of
                     select="mdb:contentInfo/mrc:MD_FeatureCatalogueDescription/mrc:featureCatalogueCitation[@uuidref = $uuidref]/cit:CI_Citation"/>
               </mrc:featureCatalogueCitation>
@@ -64,7 +64,7 @@ attached it to the metadata for data.
             <mrc:MD_FeatureCatalogueDescription>
               <mrc:includedWithDataset/>
               <mrc:featureCatalogueCitation uuidref="{$uuidref}"
-                                            xlink:href="{$siteUrl}/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://standards.iso.org/19115/-3/gmd&amp;elementSetName=full&amp;id={$uuidref}"/>
+                                            xlink:href="{$siteUrl}/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://standards.iso.org/iso/19115/-3/gmd&amp;elementSetName=full&amp;id={$uuidref}"/>
             </mrc:MD_FeatureCatalogueDescription>
           </mdb:contentInfo>
         </xsl:otherwise>

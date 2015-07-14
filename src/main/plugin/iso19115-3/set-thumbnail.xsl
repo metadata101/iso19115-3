@@ -2,11 +2,11 @@
 <!-- FIXME: Use latest mcc:linkage to hold reference to browse graphic -->
 <xsl:stylesheet 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" 
-  xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0"
-  xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0"
-  xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0"
-  xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0"
-  xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0"
+  xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+  xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
+  xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
+  xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
+  xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
   xmlns:gn="http://www.fao.org/geonetwork">
 
   <xsl:template match="/root">

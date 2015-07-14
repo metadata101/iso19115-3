@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gmd:MD_Metadata xmlns:rw="http://metawal.wallonie.be/schemas/3.0" xmlns:gmd="http://standards.iso.org/19115/-3/gmd" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0" xmlns:gml="http://www.opengis.net/gml" xmlns:geonet="http://www.fao.org/geonetwork" xsi:schemaLocation="http://standards.iso.org/19115/-3/gmd http://standards.iso.org/19115/-3/gmd/gmd.xsd">
-  <gmd:fileIdentifier xmlns:gmx="http://standards.iso.org/19115/-3/gmx" xmlns:srv="http://standards.iso.org/19115/-3/srv">
+<gmd:MD_Metadata xmlns:rw="http://metawal.wallonie.be/schemas/3.0" xmlns:gmd="http://standards.iso.org/iso/19115/-3/gmd" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0" xmlns:gml="http://www.opengis.net/gml" xmlns:geonet="http://www.fao.org/geonetwork" xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/gmd http://standards.iso.org/iso/19115/-3/gmd/gmd.xsd">
+  <gmd:fileIdentifier xmlns:gmx="http://standards.iso.org/iso/19115/-3/gmx" xmlns:srv="http://standards.iso.org/iso/19115/-3/srv">
     <gco:CharacterString>f641aff2-fc7b-49b1-99fb-9369b8f491a7</gco:CharacterString>
   </gmd:fileIdentifier>
   <gmd:language>
@@ -10,7 +10,7 @@
     <gmd:MD_CharacterSetCode codeListValue="utf8" codeList="./resources/codeList.xml#MD_CharacterSetCode" />
   </gmd:characterSet>
   <gmd:hierarchyLevel>
-    <gmd:MD_ScopeCode codeList="http://standards.iso.org/19115/-3/resources/codeList.xml#MD_ScopeCode" codeListValue="dataset" />
+    <gmd:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/-3/resources/codeList.xml#MD_ScopeCode" codeListValue="dataset" />
   </gmd:hierarchyLevel>
   <gmd:contact>
     <gmd:CI_ResponsibleParty>
@@ -29,12 +29,12 @@
         </gmd:CI_Contact>
       </gmd:contactInfo>
       <gmd:role>
-        <gmd:CI_RoleCode codeList="http://standards.iso.org/19115/-3/resources/codeList.xml#CI_RoleCode" codeListValue="pointOfContact" />
+        <gmd:CI_RoleCode codeList="http://standards.iso.org/iso/19115/-3/resources/codeList.xml#CI_RoleCode" codeListValue="pointOfContact" />
       </gmd:role>
     </gmd:CI_ResponsibleParty>
   </gmd:contact>
   <gmd:dateStamp>
-    <gco:DateTime xmlns:gmx="http://standards.iso.org/19115/-3/gmx" xmlns:srv="http://standards.iso.org/19115/-3/srv">2013-01-30T14:20:09</gco:DateTime>
+    <gco:DateTime xmlns:gmx="http://standards.iso.org/iso/19115/-3/gmx" xmlns:srv="http://standards.iso.org/iso/19115/-3/srv">2013-01-30T14:20:09</gco:DateTime>
   </gmd:dateStamp>
   <gmd:metadataStandardName>
     <gco:CharacterString>ISO 19115</gco:CharacterString>
@@ -72,7 +72,7 @@
                 <gco:DateTime>1998-12-31</gco:DateTime>
               </gmd:date>
               <gmd:dateType>
-                <gmd:CI_DateTypeCode codeListValue="creation" codeList="http://standards.iso.org/19115/-3/resources/codeList.xml#CI_DateTypeCode" />
+                <gmd:CI_DateTypeCode codeListValue="creation" codeList="http://standards.iso.org/iso/19115/-3/resources/codeList.xml#CI_DateTypeCode" />
               </gmd:dateType>
             </gmd:CI_Date>
           </gmd:date>
@@ -82,7 +82,7 @@
                 <gco:DateTime>2008-06-10</gco:DateTime>
               </gmd:date>
               <gmd:dateType>
-                <gmd:CI_DateTypeCode codeList="http://standards.iso.org/19115/-3/resources/codeList.xml#CI_DateTypeCode" codeListValue="revision" />
+                <gmd:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/-3/resources/codeList.xml#CI_DateTypeCode" codeListValue="revision" />
               </gmd:dateType>
             </gmd:CI_Date>
           </gmd:date>
@@ -126,7 +126,7 @@ Les emplacements des panneaux " fauchage tardif - zone refuge ".</gco:CharacterS
             </gmd:CI_Contact>
           </gmd:contactInfo>
           <gmd:role>
-            <gmd:CI_RoleCode codeList="http://standards.iso.org/19115/-3/resources/codeList.xml#CI_RoleCode" codeListValue="pointOfContact" />
+            <gmd:CI_RoleCode codeList="http://standards.iso.org/iso/19115/-3/resources/codeList.xml#CI_RoleCode" codeListValue="pointOfContact" />
           </gmd:role>
         </gmd:CI_ResponsibleParty>
       </gmd:pointOfContact>
@@ -160,7 +160,7 @@ Les emplacements des panneaux " fauchage tardif - zone refuge ".</gco:CharacterS
             </gmd:CI_Contact>
           </gmd:contactInfo>
           <gmd:role>
-            <gmd:CI_RoleCode codeListValue="owner" codeList="http://standards.iso.org/19115/-3/resources/codeList.xml#CI_RoleCode" />
+            <gmd:CI_RoleCode codeListValue="owner" codeList="http://standards.iso.org/iso/19115/-3/resources/codeList.xml#CI_RoleCode" />
           </gmd:role>
         </gmd:CI_ResponsibleParty>
       </gmd:pointOfContact>
@@ -181,11 +181,11 @@ Les emplacements des panneaux " fauchage tardif - zone refuge ".</gco:CharacterS
             </gmd:CI_Contact>
           </gmd:contactInfo>
           <gmd:role>
-            <gmd:CI_RoleCode codeList="http://standards.iso.org/19115/-3/resources/codeList.xml#CI_RoleCode" codeListValue="custodian" />
+            <gmd:CI_RoleCode codeList="http://standards.iso.org/iso/19115/-3/resources/codeList.xml#CI_RoleCode" codeListValue="custodian" />
           </gmd:role>
         </gmd:CI_ResponsibleParty>
       </gmd:pointOfContact>
-      <gmd:graphicOverview xmlns:srv="http://standards.iso.org/19115/-3/srv">
+      <gmd:graphicOverview xmlns:srv="http://standards.iso.org/iso/19115/-3/srv">
         <gmd:MD_BrowseGraphic>
           <gmd:fileName>
             <gco:CharacterString>bdr_s.png</gco:CharacterString>
@@ -198,7 +198,7 @@ Les emplacements des panneaux " fauchage tardif - zone refuge ".</gco:CharacterS
           </gmd:fileType>
         </gmd:MD_BrowseGraphic>
       </gmd:graphicOverview>
-      <gmd:graphicOverview xmlns:srv="http://standards.iso.org/19115/-3/srv">
+      <gmd:graphicOverview xmlns:srv="http://standards.iso.org/iso/19115/-3/srv">
         <gmd:MD_BrowseGraphic>
           <gmd:fileName>
             <gco:CharacterString>bdr.png</gco:CharacterString>
@@ -220,7 +220,7 @@ Les emplacements des panneaux " fauchage tardif - zone refuge ".</gco:CharacterS
             <gco:CharacterString>Fauchage tardif</gco:CharacterString>
           </gmd:keyword>
           <gmd:type>
-            <gmd:MD_KeywordTypeCode codeList="http://standards.iso.org/19115/-3/resources/codeList.xml#MD_KeywordTypeCode" codeListValue="theme" />
+            <gmd:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/-3/resources/codeList.xml#MD_KeywordTypeCode" codeListValue="theme" />
           </gmd:type>
         </gmd:MD_Keywords>
       </gmd:descriptiveKeywords>
@@ -233,7 +233,7 @@ Les emplacements des panneaux " fauchage tardif - zone refuge ".</gco:CharacterS
             <gco:CharacterString>Installations de suivi environnemental</gco:CharacterString>
           </gmd:keyword>
           <gmd:type>
-            <gmd:MD_KeywordTypeCode codeList="http://standards.iso.org/19115/-3/resources/codeList.xml#MD_KeywordTypeCode" codeListValue="theme" />
+            <gmd:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/-3/resources/codeList.xml#MD_KeywordTypeCode" codeListValue="theme" />
           </gmd:type>
           <gmd:thesaurusName>
             <gmd:CI_Citation>
@@ -246,7 +246,7 @@ Les emplacements des panneaux " fauchage tardif - zone refuge ".</gco:CharacterS
                     <gco:Date>2008-06-01</gco:Date>
                   </gmd:date>
                   <gmd:dateType>
-                    <gmd:CI_DateTypeCode codeList="http://standards.iso.org/19115/-3/resources/codeList.xml#CI_DateTypeCode" codeListValue="publication" />
+                    <gmd:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/-3/resources/codeList.xml#CI_DateTypeCode" codeListValue="publication" />
                   </gmd:dateType>
                 </gmd:CI_Date>
               </gmd:date>
@@ -263,7 +263,7 @@ Les emplacements des panneaux " fauchage tardif - zone refuge ".</gco:CharacterS
             <gco:CharacterString>(1010) Faune et flore</gco:CharacterString>
           </gmd:keyword>
           <gmd:type>
-            <gmd:MD_KeywordTypeCode codeList="http://standards.iso.org/19115/-3/resources/codeList.xml#MD_KeywordTypeCode" codeListValue="theme" />
+            <gmd:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19115/-3/resources/codeList.xml#MD_KeywordTypeCode" codeListValue="theme" />
           </gmd:type>
           <gmd:thesaurusName>
             <gmd:CI_Citation>
@@ -276,7 +276,7 @@ Les emplacements des panneaux " fauchage tardif - zone refuge ".</gco:CharacterS
                     <gco:Date>2012-02-03</gco:Date>
                   </gmd:date>
                   <gmd:dateType>
-                    <gmd:CI_DateTypeCode codeList="http://standards.iso.org/19115/-3/resources/codeList.xml#CI_DateTypeCode" codeListValue="creation" />
+                    <gmd:CI_DateTypeCode codeList="http://standards.iso.org/iso/19115/-3/resources/codeList.xml#CI_DateTypeCode" codeListValue="creation" />
                   </gmd:dateType>
                 </gmd:CI_Date>
               </gmd:date>
@@ -287,7 +287,7 @@ Les emplacements des panneaux " fauchage tardif - zone refuge ".</gco:CharacterS
       <gmd:resourceConstraints>
         <gmd:MD_LegalConstraints>
           <gmd:accessConstraints>
-            <gmd:MD_RestrictionCode codeList="http://standards.iso.org/19115/-3/resources/codeList.xml#MD_RestrictionCode" codeListValue="otherRestrictions" />
+            <gmd:MD_RestrictionCode codeList="http://standards.iso.org/iso/19115/-3/resources/codeList.xml#MD_RestrictionCode" codeListValue="otherRestrictions" />
           </gmd:accessConstraints>
           <gmd:otherConstraints>
             <gco:CharacterString>Aucune contrainte d'accès pour la consultation</gco:CharacterString>
@@ -307,7 +307,7 @@ Les emplacements des panneaux " fauchage tardif - zone refuge ".</gco:CharacterS
       <gmd:resourceConstraints>
         <gmd:MD_LegalConstraints>
           <gmd:useConstraints>
-            <gmd:MD_RestrictionCode codeList="http://standards.iso.org/19115/-3/resources/codeList.xml#MD_RestrictionCode" codeListValue="license" />
+            <gmd:MD_RestrictionCode codeList="http://standards.iso.org/iso/19115/-3/resources/codeList.xml#MD_RestrictionCode" codeListValue="license" />
           </gmd:useConstraints>
           <gmd:otherConstraints>
             <gco:CharacterString>Les termes de la licence s'appliquent. http://environnement.wallonie.be/cartosig/pg_menu/convention.asp</gco:CharacterString>
@@ -318,7 +318,7 @@ Les emplacements des panneaux " fauchage tardif - zone refuge ".</gco:CharacterS
         </gmd:MD_LegalConstraints>
       </gmd:resourceConstraints>
       <gmd:spatialRepresentationType>
-        <gmd:MD_SpatialRepresentationTypeCode codeListValue="vector" codeList="http://standards.iso.org/19115/-3/resources/codeList.xml#MD_SpatialRepresentationTypeCode" />
+        <gmd:MD_SpatialRepresentationTypeCode codeListValue="vector" codeList="http://standards.iso.org/iso/19115/-3/resources/codeList.xml#MD_SpatialRepresentationTypeCode" />
       </gmd:spatialRepresentationType>
       <gmd:spatialResolution>
         <gmd:MD_Resolution>
@@ -335,7 +335,7 @@ Les emplacements des panneaux " fauchage tardif - zone refuge ".</gco:CharacterS
         <gco:CharacterString>fre</gco:CharacterString>
       </gmd:language>
       <gmd:characterSet>
-        <gmd:MD_CharacterSetCode codeListValue="utf8" codeList="http://standards.iso.org/19115/-3/resources/codeList.xml#MD_CharacterSetCode" />
+        <gmd:MD_CharacterSetCode codeListValue="utf8" codeList="http://standards.iso.org/iso/19115/-3/resources/codeList.xml#MD_CharacterSetCode" />
       </gmd:characterSet>
       <gmd:topicCategory>
         <gmd:MD_TopicCategoryCode>biota</gmd:MD_TopicCategoryCode>
@@ -422,7 +422,7 @@ Les emplacements des panneaux " fauchage tardif - zone refuge ".</gco:CharacterS
                 </gmd:CI_Contact>
               </gmd:contactInfo>
               <gmd:role>
-                <gmd:CI_RoleCode codeList="http://standards.iso.org/19115/-3/resources/codeList.xml#CI_RoleCode" codeListValue="distributor" />
+                <gmd:CI_RoleCode codeList="http://standards.iso.org/iso/19115/-3/resources/codeList.xml#CI_RoleCode" codeListValue="distributor" />
               </gmd:role>
             </gmd:CI_ResponsibleParty>
           </gmd:distributorContact>
@@ -491,7 +491,7 @@ Les emplacements des panneaux " fauchage tardif - zone refuge ".</gco:CharacterS
       <gmd:scope>
         <gmd:DQ_Scope>
           <gmd:level>
-            <gmd:MD_ScopeCode codeList="http://standards.iso.org/19115/-3/resources/codeList.xml#MD_ScopeCode" codeListValue="dataset" />
+            <gmd:MD_ScopeCode codeList="http://standards.iso.org/iso/19115/-3/resources/codeList.xml#MD_ScopeCode" codeListValue="dataset" />
           </gmd:level>
         </gmd:DQ_Scope>
       </gmd:scope>
