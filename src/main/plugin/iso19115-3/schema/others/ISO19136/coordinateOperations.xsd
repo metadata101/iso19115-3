@@ -19,7 +19,7 @@ To obtain additional rights of use, visit http://www.opengeospatial.org/legal/ .
 	<include schemaLocation="gml.xsd"/>
 	<include schemaLocation="referenceSystems.xsd"/>
 	<include schemaLocation="measures.xsd"/>
-	<import namespace="http://standards.iso.org/iso/19115/-3/cit/1.0"
+  	<import namespace="http://standards.iso.org/iso/19115/-3/cit/1.0"
           schemaLocation="http://standards.iso.org/iso/19115/-3/cit/1.0/cit.xsd"/>
 	<import namespace="http://standards.iso.org/iso/19157/-2/dqm/1.0"
           schemaLocation="http://standards.iso.org/iso/19157/-2/dqm/1.0/dqm.xsd"/>
@@ -53,9 +53,18 @@ The optional coordinateOperationAccuracy property elements provide estimates of 
 			<documentation>gml:coordinateOperationAccuracy is an association role to a DQ_PositionalAccuracy object as encoded in ISO/TS 19139, either referencing or containing the definition of that positional accuracy. That object contains an estimate of the impact of this coordinate operation on point accuracy. That is, it gives position error estimates for the target coordinates of this coordinate operation, assuming no errors in the source coordinates.</documentation>
 		</annotation>
 		<complexType>
-			<sequence minOccurs="0">
+			<!--
+				Workaround for System ID: /home/francois/dev/sextant-6.1.x/schemas/iso19115-3/src/main/plugin/iso19115-3/schema/others/ISO19136/coordinateOperations.xsd
+Main validation file: /home/francois/dev/sextant-6.1.x/schemas/iso19115-3/src/main/plugin/iso19115-3/schema/others/ISO19136/coordinateOperations.xsd
+Engine name: Xerces
+Severity: error
+Description: src-resolve: Cannot resolve the name 'dqm:AbstractDQ_PositionalAccuracy' to a(n) 'element declaration' component.
+Start location: 59:18
+End location: 59:53
+URL: http://www.w3.org/TR/xmlschema-1/#src-resolve
+				<sequence minOccurs="0">
 				<element ref="dqm:AbstractDQ_PositionalAccuracy"/>
-			</sequence>
+			</sequence>-->
 			<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		</complexType>
 	</element>

@@ -4359,8 +4359,7 @@ la non-évaluation</b>, dans le cadre de métadonnées INSPIRE
       <option value="WWW:DOWNLOAD-1.0-http--download">Fichier à télécharger</option>
       <option value="FILE:GEO">Fichier SIG</option>
       <option value="FILE:RASTER">Fichier SIG RASTER</option>
-      <option value="WWW:LINK-1.0-http--ical">iCalendar (URL)</option>
-      <option value="WWW:LINK-1.0-http--link">Adresse Internet (URL)</option>
+      <option value="WWW:LINK-1.0-http--link" default="">Adresse Internet (URL)</option>
       <option value="WWW:LINK-1.0-http--rss">Fil RSS (URL)</option>
       <option value="DB:POSTGIS">Base de données / Table PostGIS</option>
       <option value="DB:ORACLE">Base de données / ORACLE</option>

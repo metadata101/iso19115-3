@@ -3188,7 +3188,7 @@
       <option value="WWW:DOWNLOAD-1.0-http--download">File for download</option>
       <option value="FILE:GEO">GIS file</option>
       <option value="FILE:RASTER">GIS RASTER file</option>
-      <option value="WWW:LINK-1.0-http--link">Web address (URL)</option>
+      <option value="WWW:LINK-1.0-http--link" default="">Web address (URL)</option>
       <option value="WWW:LINK-1.0-http--rss">RSS News feed (URL)</option>
       <option value="DB:POSTGIS">PostGIS database table</option>
       <option value="DB:ORACLE">ORACLE database table</option>
