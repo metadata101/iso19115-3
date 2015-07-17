@@ -3486,6 +3486,7 @@
             keywords</description>
   </element>
   <element name="cit:title" id="285.0" context="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatSpecificationCitation/cit:CI_Citation/cit:title">
+    <label>Format name</label>
     <description>Name of the data transfer format(s)</description>
     <help>File or link format name</help>
     <helper rel="gmd:version">
