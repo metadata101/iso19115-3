@@ -3485,6 +3485,28 @@
     <description>Name of the formally registered thesaurus or a similar authoritative source of
             keywords</description>
   </element>
+  <element name="cit:title" id="285.0" context="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatSpecificationCitation/cit:CI_Citation/cit:title">
+    <description>Name of the data transfer format(s)</description>
+    <help>File or link format name</help>
+    <helper rel="gmd:version">
+      <option value="ESRI Shapefile">ESRI Shapefile</option>
+      <option value="Mapinfo MIF/MID">Mapinfo MIF/MID</option>
+      <option value="Mapinfo TAB">Mapinfo TAB</option>
+      <option value="CSV">CSV</option>
+      <option value="KML">KML</option>
+      <option value="JSON">JSON</option>
+      <option value="GML">GML</option>
+      <option value="GeoTIFF">GeoTIFF</option>
+      <option value="TIFF">TIFF</option>
+      <option value="ECW">ECW</option>
+      <option value="JPEG">JPEG</option>
+      <option value="JPEG2000">JPEG2000</option>
+      <option value="ZIP">ZIP</option>
+      <option value="PDF">PDF</option>
+      <option value="PNG">PNG</option>
+      <option value="OGC:OWS-C">OGC OWS Context</option>
+    </helper>
+  </element>
   <element name="cit:title" id="360.0">
     <label>Title</label>
     <description>Name by which the cited resource is known</description>

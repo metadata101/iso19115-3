@@ -1944,7 +1944,7 @@ appliquant les mêmes pratiques,</li>
     ]]></help>
     <condition/>
   </element>
-  <element name="cit:abstract" id="25.0" context="cit:MD_Metadata/cit:identificationInfo/srv:SV_ServiceIdentification/cit:abstract">
+  <element name="cit:abstract" id="25.0" context="/mdb:MD_Metadata/mdb:identificationInfo/srv:SV_ServiceIdentification/cit:abstract">
     <label>Résumé de la ressource</label>
     <description>Court résumé explicatif du contenu des ressources</description>
     <help>Court résumé descriptif du contenu du jeu de données. Cet attribut est du type PT_FreeText et est géré dans la classe du même nom.</help>
@@ -2546,7 +2546,7 @@ de métadonnées de données « BD Carthage métropole »
     
   </element>
   
-  <element name="cit:date" id="362.0" context="cit:MD_Metadata/cit:identificationInfo/srv:SV_ServiceIdentification/cit:citation/cit:CI_Citation/cit:date/cit:CI_Date/cit:date">
+  <element name="cit:date" id="362.0" context="/mdb:MD_Metadata/mdb:identificationInfo/srv:SV_ServiceIdentification/cit:citation/cit:CI_Citation/cit:date/cit:CI_Date/cit:date">
     <label>Date de référence</label>
     <description>Date de référence pour la ressource en question</description>
     <help>Date de référence indiquée sous forme de date (jj.mm.aaaa) et de type de date (création, publication, traitement). Ces informations sont du type CI_Date et sont gérées dans la classe du même nom.</help>
@@ -2596,7 +2596,7 @@ date de mise en ligne du service, en tant que date de publication.
       ]]>
     </help>
   </element>
-  <element name="cit:date" id="362.0" context="cit:MD_Metadata/cit:identificationInfo/cit:MD_DataIdentification/cit:citation/cit:CI_Citation/cit:date/cit:CI_Date/cit:date">
+  <element name="cit:date" id="362.0" context="/mdb:MD_Metadata/mdb:identificationInfo/cit:MD_DataIdentification/cit:citation/cit:CI_Citation/cit:date/cit:CI_Date/cit:date">
     <label>Date de référence</label>
     <description>Date de référence pour la ressource en question</description>
     <help>Date de référence indiquée sous forme de date (jj.mm.aaaa) et de type de date (création, publication, traitement). Ces informations sont du type CI_Date et sont gérées dans la classe du même nom.</help>
@@ -4847,7 +4847,32 @@ diffusion restreinte.
     <condition/>
     
   </element>
-  <element name="cit:title" id="360.0" context="cit:MD_Metadata/cit:dataQualityInfo/cit:DQ_DataQuality/cit:report/cit:DQ_DomainConsistency/cit:result/cit:DQ_ConformanceResult/cit:specification/cit:CI_Citation/cit:title">
+  <element name="cit:title" id="285.0" context="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatSpecificationCitation/cit:CI_Citation/cit:title">
+    <label>Format name</label>
+    <description>Nom des formats de transfert des données</description>
+    <help>Nom du format de transfert de données, par exemple TIFF, ZIP, etc.</help>
+    <condition>Obligatoire</condition>
+    <helper rel="gmd:version">
+      <option value="ESRI Shapefile">ESRI Shapefile</option>
+      <option value="Mapinfo MIF/MID">Mapinfo MIF/MID</option>
+      <option value="Mapinfo TAB">Mapinfo TAB</option>
+      <option value="CSV">CSV</option>
+      <option value="KML">KML</option>
+      <option value="JSON">JSON</option>
+      <option value="GML">GML</option>
+      <option value="GeoTIFF">GeoTIFF</option>
+      <option value="TIFF">TIFF</option>
+      <option value="ECW">ECW</option>
+      <option value="JPEG">JPEG</option>
+      <option value="JPEG2000">JPEG2000</option>
+      <option value="ZIP">ZIP</option>
+      <option value="PDF">PDF</option>
+      <option value="PNG">PNG</option>
+      <option value="OGC:OWS-C">OGC OWS Context</option>
+    </helper>
+  </element>
+  <!-- TODO: Check namespace -->
+  <element name="cit:title" id="360.0" context="/mdb:MD_Metadata/mdb:dataQualityInfo/cit:DQ_DataQuality/cit:report/cit:DQ_DomainConsistency/cit:result/cit:DQ_ConformanceResult/cit:specification/cit:CI_Citation/cit:title">
     <label>Spécification</label>
     <description>Nom avec lequel la ressource en question est connue</description>
     <help>
@@ -4960,7 +4985,7 @@ celles des scénarios d’échange du Sandre est possible en complément.
     ]]></help>
     <condition>Obligatoire</condition>
   </element>
-  <element name="cit:title" id="360.0" context="cit:MD_Metadata/cit:identificationInfo/srv:SV_ServiceIdentification/cit:citation/cit:CI_Citation/cit:title">
+  <element name="cit:title" id="360.0" context="/mdb:MD_Metadata/mdb:identificationInfo/srv:SV_ServiceIdentification/cit:citation/cit:CI_Citation/cit:title">
     <label>Intitulé de la ressource</label>
     <description>L’intitulé (ou le titre) de la ressource doit être un nom caractéristique et souvent unique
       sous lequel la ressource est connue.</description>
