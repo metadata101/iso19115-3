@@ -1838,7 +1838,7 @@ responsable du service.</li>
     <condition/>
     
   </element>
-  <element name="cit:MD_ServiceIdentification" id="47.0">
+  <element name="srv:SV_ServiceIdentification" id="47.0">
     <label>Identification des services</label>
     <description>Classe pour l'identification des prestations, disponibles auprès un fournisseur de services, via un ensemble d'interfaces définissant un comportement (cf. ISO 19119 pour obtenir plus d'information).</description>
     <help>Classe destinée à l'identification des services qu''un prestataire propose à l'utilisateur et dont le contenu et l'étendue sont définis par un ensemble d'informations. Dans cette classe, les domaines dans lesquels le prestataire met ses services à la disposition de l'utilisateur peuvent être saisis. l'attribut de type de service (serviceType) définit le nom du service géomatique proposé et l'attribut des propriétés du type de service (ServiceTypProperty) permet la description des caractéristiques qui lui sont associées. Ces deux attributs font appel à l'un des types de données définis dans la norme 19118. On suppose que les services géomatiques concernés sont standardisés et répertoriés au sein d'une liste.</help>
@@ -3875,24 +3875,6 @@ période de temps couverte par le service.
     <description>Nom des formats de transfert des données</description>
     <help>Nom du format de transfert de données, par exemple TIFF, ZIP, etc.</help>
     <condition>Obligatoire</condition>
-    <helper rel="cit:version">
-      <option value="Texte">Texte</option>
-      <option value="ESRI Shapefile" title="1.0">ESRI Shapefile</option>
-      <option value="Mapinfo MIF/MID" title="4.5">Mapinfo MIF/MID</option>
-      <option value="Mapinfo TAB">Mapinfo TAB</option>
-      <option value="KML">KML</option>
-      <option value="GML" title="3.2.1">GML</option>
-      <option value="GeoTIFF" title="1.0">GeoTIFF</option>
-      <option value="TIFF">TIFF</option>
-      <option value="ECW">ECW</option>
-      <option value="JPEG2000">JPEG2000</option>
-      <option value="ZIP">ZIP</option>
-      <option value="PDF">PDF</option>
-      <option value="PNG">PNG</option>
-      <option value="JPEG">JPEG</option>
-      <option value="OGC:WMC">OGC:WMC</option>
-      <option value="OGC:OWS Context">OGC:OWS Context</option>
-    </helper>
   </element>
   <element name="cit:name" id="307.0" context="cit:MD_ExtendedElementInformation">
     <label>Nom</label>
@@ -4852,22 +4834,24 @@ diffusion restreinte.
     <description>Nom des formats de transfert des données</description>
     <help>Nom du format de transfert de données, par exemple TIFF, ZIP, etc.</help>
     <condition>Obligatoire</condition>
-    <helper rel="gmd:version">
+    <helper>
+      <option value="Text">Text</option>
       <option value="ESRI Shapefile">ESRI Shapefile</option>
       <option value="Mapinfo MIF/MID">Mapinfo MIF/MID</option>
       <option value="Mapinfo TAB">Mapinfo TAB</option>
-      <option value="CSV">CSV</option>
       <option value="KML">KML</option>
-      <option value="JSON">JSON</option>
       <option value="GML">GML</option>
+      <option value="Ascii">Ascii</option>
+      <option value="NetCDF">NetCDF</option>
       <option value="GeoTIFF">GeoTIFF</option>
       <option value="TIFF">TIFF</option>
       <option value="ECW">ECW</option>
-      <option value="JPEG">JPEG</option>
       <option value="JPEG2000">JPEG2000</option>
       <option value="ZIP">ZIP</option>
       <option value="PDF">PDF</option>
       <option value="PNG">PNG</option>
+      <option value="JPEG">JPEG</option>
+      <option value="OGC:WMC">OGC:WMC</option>
       <option value="OGC:OWS-C">OGC OWS Context</option>
     </helper>
   </element>

@@ -2640,24 +2640,6 @@
     <description>Name of the data transfer format(s)</description>
     <help>name of the data transfer format(s)</help>
     <condition>mandatory</condition>
-    <helper rel="mri:version">
-      <option value="Text">Text</option>
-      <option value="ESRI Shapefile" title="1.0">ESRI Shapefile</option>
-      <option value="Mapinfo MIF/MID" title="4.5">Mapinfo MIF/MID</option>
-      <option value="Mapinfo TAB">Mapinfo TAB</option>
-      <option value="KML">KML</option>
-      <option value="GML" title="3.2.1">GML</option>
-      <option value="GeoTIFF" title="1.0">GeoTIFF</option>
-      <option value="TIFF">TIFF</option>
-      <option value="ECW">ECW</option>
-      <option value="JPEG2000">JPEG2000</option>
-      <option value="ZIP">ZIP</option>
-      <option value="PDF">PDF</option>
-      <option value="PNG">PNG</option>
-      <option value="JPEG">JPEG</option>
-      <option value="OGC:WMC">OGC:WMC</option>
-      <option value="OGC:OWS Context">OGC:OWS Context</option>
-    </helper>
   </element>
   <element name="mri:name" context="mri:MD_ExtendedElementInformation"
     id="307.0">
@@ -3489,22 +3471,24 @@
     <label>Format name</label>
     <description>Name of the data transfer format(s)</description>
     <help>File or link format name</help>
-    <helper rel="gmd:version">
+    <helper>
+      <option value="Text">Text</option>
       <option value="ESRI Shapefile">ESRI Shapefile</option>
       <option value="Mapinfo MIF/MID">Mapinfo MIF/MID</option>
       <option value="Mapinfo TAB">Mapinfo TAB</option>
-      <option value="CSV">CSV</option>
       <option value="KML">KML</option>
-      <option value="JSON">JSON</option>
       <option value="GML">GML</option>
+      <option value="Ascii">Ascii</option>
+      <option value="NetCDF">NetCDF</option>
       <option value="GeoTIFF">GeoTIFF</option>
       <option value="TIFF">TIFF</option>
       <option value="ECW">ECW</option>
-      <option value="JPEG">JPEG</option>
       <option value="JPEG2000">JPEG2000</option>
       <option value="ZIP">ZIP</option>
       <option value="PDF">PDF</option>
       <option value="PNG">PNG</option>
+      <option value="JPEG">JPEG</option>
+      <option value="OGC:WMC">OGC:WMC</option>
       <option value="OGC:OWS-C">OGC OWS Context</option>
     </helper>
   </element>
@@ -3897,8 +3881,8 @@
 
 
   <element name="srv:SV_ServiceIdentification">
-    <label>Service Identification (19119)</label>
-    <description>ISO 19119-2005 Service Identification</description>
+    <label>Service Identification</label>
+    <description>Service identification section</description>
   </element>
   <element name="srv:SV_ParameterDirection">
     <label>Parameter direction</label>

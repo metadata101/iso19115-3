@@ -3324,4 +3324,23 @@
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
+
+  <codelist name="indeterminatePosition">
+    <entry>
+      <code>after</code>
+      <label>After</label>
+    </entry>
+    <entry>
+      <code>before</code>
+      <label>Before</label>
+    </entry>
+    <entry>
+      <code>now</code>
+      <label>Now</label>
+    </entry>
+    <entry>
+      <code>unknown</code>
+      <label>Unknown</label>
+    </entry>
+  </codelist>
 </codelists>
