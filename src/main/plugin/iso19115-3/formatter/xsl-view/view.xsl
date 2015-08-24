@@ -192,9 +192,10 @@
           <address>
             <strong>
               <xsl:choose>
-                <xsl:when test="$email">
+                <xsl:when test="normalize-space($email) != ''">
                   <a href="mailto:{normalize-space($email)}">
-                    <xsl:value-of select="$displayName"/></a>
+                    <xsl:value-of select="$displayName"/>
+                  </a>
                 </xsl:when>
                 <xsl:otherwise>
                   <xsl:value-of select="$displayName"/>
