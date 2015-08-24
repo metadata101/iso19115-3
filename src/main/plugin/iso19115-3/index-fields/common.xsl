@@ -802,7 +802,7 @@
         <xsl:variable name="crs" select="concat(string(mcc:codeSpace/gco:CharacterString),'::',string(mcc:code/gco:CharacterString))"/>
 
         <xsl:if test="$crs != '::'">
-          <Field name="crs" string="{$crs}" store="false" index="true"/>
+          <Field name="crs" string="{$crs}" store="true" index="true"/>
         </xsl:if>
 
         <Field name="authority" string="{string(mcc:codeSpace/gco:CharacterString)}" store="false" index="true"/>
