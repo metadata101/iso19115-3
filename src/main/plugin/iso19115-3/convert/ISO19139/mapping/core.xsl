@@ -63,6 +63,7 @@
     <xsl:element name="mdb:metadataIdentifier">
       <mcc:MD_Identifier>
         <mcc:code>
+          <xsl:apply-templates select="@*" mode="from19139to19115-3"/>
           <gco:CharacterString>
             <xsl:choose>
               <xsl:when test="contains(gcoold:CharacterString,':')">

@@ -198,7 +198,7 @@
     <complexContent>
       <extension base="mcc:Abstract_TypedDate_Type">
         <sequence>
-          <element name="date" type="gco:DateTime_PropertyType">
+          <element name="date" type="gco:Date_PropertyType">
             <annotation>
               <documentation>reference date for the cited resource</documentation>
             </annotation>

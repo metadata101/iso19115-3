@@ -232,6 +232,7 @@ This gcoBase.xsd schema provides:
 	<!-- =========================== Date & DateTime ================================= -->
 	<!--=============================================-->
 	<xs:element name="DateTime" type="xs:dateTime"/>
+
 	<!-- ........................................................................ -->
 	<xs:complexType name="DateTime_PropertyType">
 		<xs:sequence minOccurs="0">

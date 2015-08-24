@@ -43,6 +43,8 @@
             <xd:p><xd:b>Author:</xd:b>thabermann@hdfgroup.org</xd:p>
         </xd:desc>
     </xd:doc>
+
+
     <xsl:template name="writeCharacterStringElement">
         <!-- Parameters
         elementName = the name of the element (with namespace prefix) that contains the codelist, i.e. cit:name
@@ -57,7 +59,8 @@
                 <xsl:element name="{$elementName}">
                     <!--<xsl:copy-of select="$nodeWithStringToWrite/@*[name() != 'xsi:type']"/>-->
                     <!-- Deal with attributes (may be in the old gco namespace -->
-                    <xsl:apply-templates select="$nodeWithStringToWrite/@*[name() != 'xsi:type']"/>
+                    <xsl:apply-templates select="$nodeWithStringToWrite/@*[name() != 'xsi:type']"
+                                         mode="from19139to19115-3"/>
                     <xsl:if test="$isMultilingual">
                         <xsl:attribute name="xsi:type" select="'lan:PT_FreeText_PropertyType'"/>
                     </xsl:if>
