@@ -4855,19 +4855,13 @@ diffusion restreinte.
       <option value="OGC:OWS-C">OGC OWS Context</option>
     </helper>
   </element>
-  <!-- TODO: Check namespace -->
-  <element name="cit:title" id="360.0" context="/mdb:MD_Metadata/mdb:dataQualityInfo/cit:DQ_DataQuality/cit:report/cit:DQ_DomainConsistency/cit:result/cit:DQ_ConformanceResult/cit:specification/cit:CI_Citation/cit:title">
+  <element name="cit:title" id="360.0" context="/mdb:MD_Metadata/mdb:dataQualityInfo/mdq:DQ_DataQuality/mdq:report/mdq:DQ_DomainConsistency/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:title">
     <label>Spécification</label>
-    <description>Nom avec lequel la ressource en question est connue</description>
-    <help>
-      <!-- [2] -->
-      Nom caractéristique et souvent unique sous lequel la ressource est connue.
-      
-      Titre/nom. Ces informations sont du type PT_FreeText et sont gérées dans la classe du même nom.</help>
+    <description>Titre de la spécification</description>
+    <help></help>
     <helper editorMode="radio_linebreak"
-        displayIf="$p1/ancestor::node()[name()='cit:MD_Metadata']/cit:identificationInfo/cit:MD_DataIdentification or 
-        $p1/ancestor::node()[name()='cit:MD_Metadata']/cit:identificationInfo/*[@gco:isoType='cit:MD_DataIdentification']">
-      <option value="COMMISSION REGULATION (EU) No 1089/2010 of 23 November 2010 implementing Directive 2007/2/EC of the European Parliament and of the Council as regards interoperability of spatial data sets and services">COMMISSION REGULATION (EU) No 1089/2010 of 23 November 2010 implementing Directive 2007/2/EC of the European Parliament and of the Council as regards interoperability of spatial data sets and services</option>
+        displayIf="ancestor::node()[name()='mdb:MD_Metadata']/mdb:identificationInfo/mri:MD_DataIdentification">
+      <option value="RÈGLEMENT (UE) N o 1089/2010 DE LA COMMISSION du 23 novembre 2010 portant modalités d'application de la directive 2007/2/CE du Parlement européen et du Conseil en ce qui concerne l'interopérabilité des séries et des services de données géographiques">RÈGLEMENT (UE) N o 1089/2010 DE LA COMMISSION du 23 novembre 2010 portant modalités d'application de la directive 2007/2/CE du Parlement européen et du Conseil en ce qui concerne l'interopérabilité des séries et des services de données géographiques</option>
       <option value="INSPIRE Data Specification on Administrative Units - Guidelines v3.0.1">Guide INSPIRE sur les unités administratives</option>
       <option value="INSPIRE Data Specification on Cadastral Parcels - Guidelines v 3.0.1">Guide INSPIRE sur les parcelles cadastrales</option>
       <option value="INSPIRE Data Specification on Geographical Names - Guidelines v 3.0.1">Guide INSPIRE sur les dénominations géographiques</option>
@@ -4878,7 +4872,7 @@ diffusion restreinte.
       <option value="INSPIRE Specification on Coordinate Reference Systems - Guidelines v 3.1">Guide INSPIRE sur les référentiels de coordonnées</option>
       <option value="INSPIRE Specification on Geographical Grid Systems - Guidelines v 3.0.1">Guide INSPIRE sur les systèmes de maillage géographique</option>
     </helper>
-    <helper editorMode="radio_linebreak" displayIf="$p1/ancestor::node()[name()='cit:MD_Metadata']/cit:identificationInfo/srv:SV_ServiceIdentification">
+    <helper editorMode="radio_linebreak" displayIf="ancestor::node()[name()='mdb:MD_Metadata']/mdb:identificationInfo/srv:SV_ServiceIdentification">
       <option value="RÈGLEMENT (UE) N° 976/2009">Règlement service en réseau INSPIRE (service de recherche et de consultation) - RÈGLEMENT (UE) N° 976/2009</option>
       <option value="RÈGLEMENT (UE) N° 1088/2010">Règlement service en réseau INSPIRE (service de téléchargement et de transformation) - RÈGLEMENT (UE) N° 1088/2010</option>
       <option value="Technical Guidance for the implementation of INSPIRE Discovery Services – v.3.1">Guide INSPIRE sur les services de recherche</option>

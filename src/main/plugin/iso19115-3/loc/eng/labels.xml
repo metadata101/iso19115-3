@@ -3492,6 +3492,36 @@
       <option value="OGC:OWS-C">OGC OWS Context</option>
     </helper>
   </element>
+
+  <element name="cit:title" id="360.0" context="/mdb:MD_Metadata/mdb:dataQualityInfo/mdq:DQ_DataQuality/mdq:report/mdq:DQ_DomainConsistency/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:title">
+    <label>Specification</label>
+    <description></description>
+    <help></help>
+    <helper editorMode="radio_linebreak"
+            displayIf="ancestor::node()[name()='mdb:MD_Metadata']/mdb:identificationInfo/mri:MD_DataIdentification">
+      <option value="COMMISSION REGULATION (EU) No 1089/2010 of 23 November 2010 implementing Directive 2007/2/EC of the European Parliament and of the Council as regards interoperability of spatial data sets and services">COMMISSION REGULATION (EU) No 1089/2010 of 23 November 2010 implementing Directive 2007/2/EC of the European Parliament and of the Council as regards interoperability of spatial data sets and services</option>
+      <option value="INSPIRE Data Specification on Administrative Units - Guidelines v3.0.1">Guide INSPIRE sur les unités administratives</option>
+      <option value="INSPIRE Data Specification on Cadastral Parcels - Guidelines v 3.0.1">Guide INSPIRE sur les parcelles cadastrales</option>
+      <option value="INSPIRE Data Specification on Geographical Names - Guidelines v 3.0.1">Guide INSPIRE sur les dénominations géographiques</option>
+      <option value="INSPIRE Data Specification on Hydrography - Guidelines v 3.0.1">Guide INSPIRE sur l’hydrographie</option>
+      <option value="INSPIRE Data Specification on Protected Sites - Guidelines v 3.1.0">Guide INSPIRE sur les sites protégés</option>
+      <option value="INSPIRE Data Specification on Transport Networks - Guidelines v 3.1.0">Guide INSPIRE sur les réseaux de transport</option>
+      <option value="INSPIRE Data Specification on Addresses - Guidelines v 3.0.1">Guide INSPIRE sur les adresses</option>
+      <option value="INSPIRE Specification on Coordinate Reference Systems - Guidelines v 3.1">Guide INSPIRE sur les référentiels de coordonnées</option>
+      <option value="INSPIRE Specification on Geographical Grid Systems - Guidelines v 3.0.1">Guide INSPIRE sur les systèmes de maillage géographique</option>
+    </helper>
+    <helper editorMode="radio_linebreak" displayIf="ancestor::node()[name()='mdb:MD_Metadata']/mdb:identificationInfo/srv:SV_ServiceIdentification">
+      <option value="RÈGLEMENT (UE) N° 976/2009">Règlement service en réseau INSPIRE (service de recherche et de consultation) - RÈGLEMENT (UE) N° 976/2009</option>
+      <option value="RÈGLEMENT (UE) N° 1088/2010">Règlement service en réseau INSPIRE (service de téléchargement et de transformation) - RÈGLEMENT (UE) N° 1088/2010</option>
+      <option value="Technical Guidance for the implementation of INSPIRE Discovery Services – v.3.1">Guide INSPIRE sur les services de recherche</option>
+      <option value="Technical Guidance for the implementation of INSPIRE View Services - v3.1 – part 4">Guide INSPIRE sur les services de consultation – profil ISO 19128 (WMS)</option>
+      <option value="Technical Guidance for the implementation of INSPIRE View Services - v3.1 – part 5">Guide INSPIRE sur les services de consultation – profil ISO WMTS 1.0.0</option>
+      <option value="Technical Guidance for the INSPIRE Schema Transformation Network Service - v3.0">Guide INSPIRE sur les services de transformation de schéma</option>
+      <option value="Technical Guidance for the implementation of INSPIRE Download Services – level1 - v3.0">Guide INSPIRE sur les services de téléchargement – classe de conformité 1 (ATOM pré-défini)</option>
+      <option value="Technical Guidance for the implementation of INSPIRE Download Services – level2 - v3.0">Guide INSPIRE sur les services de téléchargement – classe de conformité 2 (WFS pré-défini)</option>
+      <option value="Technical Guidance for the implementation of INSPIRE Download Services – level3 - v3.0">Guide INSPIRE sur les services de téléchargement – classe de conformité 3 (WFS direct)</option>
+    </helper>
+  </element>
   <element name="cit:title" id="360.0">
     <label>Title</label>
     <description>Name by which the cited resource is known</description>
