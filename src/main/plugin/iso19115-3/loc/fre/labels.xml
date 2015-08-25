@@ -1839,7 +1839,7 @@ responsable du service.</li>
     
   </element>
   <element name="srv:SV_ServiceIdentification" id="47.0">
-    <label>Identification des services</label>
+    <label>Identification du service</label>
     <description>Classe pour l'identification des prestations, disponibles auprès un fournisseur de services, via un ensemble d'interfaces définissant un comportement (cf. ISO 19119 pour obtenir plus d'information).</description>
     <help>Classe destinée à l'identification des services qu''un prestataire propose à l'utilisateur et dont le contenu et l'étendue sont définis par un ensemble d'informations. Dans cette classe, les domaines dans lesquels le prestataire met ses services à la disposition de l'utilisateur peuvent être saisis. l'attribut de type de service (serviceType) définit le nom du service géomatique proposé et l'attribut des propriétés du type de service (ServiceTypProperty) permet la description des caractéristiques qui lui sont associées. Ces deux attributs font appel à l'un des types de données définis dans la norme 19118. On suppose que les services géomatiques concernés sont standardisés et répertoriés au sein d'une liste.</help>
     <condition/>
@@ -5563,11 +5563,7 @@ l’IGN (WPS)
     <condition/>
     
   </element>
-  
-  <element name="srv:SV_ServiceIdentification">
-    <label>Identification du service (ISO 19119)</label>
-    <description>Identification du service (ISO 19119)</description>
-  </element>
+
   <element name="srv:serviceType">
     <label>Type de service</label>
     <description>
