@@ -4408,6 +4408,12 @@
   <element name="gfc:cardinality">
     <label>Cardinalities</label>
     <description>Cardinalities</description>
+    <helper>
+      <option value="0..1">0..1</option>
+      <option value="1..n">0..n</option>
+      <option value="1..1">1..1</option>
+      <option value="1..n">1..n</option>
+    </helper>
   </element>
   <element name="gfc:label">
     <label>Label</label>
