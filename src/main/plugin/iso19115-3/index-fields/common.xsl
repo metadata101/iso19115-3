@@ -796,18 +796,17 @@
     </xsl:for-each>
 
 
-    <!-- TODO: Need a check -->
     <xsl:for-each select="$metadata/mdb:referenceSystemInfo/mrs:MD_ReferenceSystem">
       <xsl:for-each select="mrs:referenceSystemIdentifier/mcc:MD_Identifier">
-        <xsl:variable name="crs" select="concat(string(mcc:codeSpace/gco:CharacterString),'::',string(mcc:code/gco:CharacterString))"/>
+        <xsl:variable name="crs"
+                      select="if (normalize-space(mcc:description/gco:CharacterString) != '')
+                              then mcc:description/gco:CharacterString
+                              else mcc:code/gco:CharacterString"/>
 
-        <xsl:if test="$crs != '::'">
+        <xsl:if test="$crs != ''">
           <Field name="crs" string="{$crs}" store="true" index="true"/>
+          <Field name="crsCode" string="{mcc:code/gco:CharacterString}" store="true" index="true"/>
         </xsl:if>
-
-        <Field name="authority" string="{string(mcc:codeSpace/gco:CharacterString)}" store="false" index="true"/>
-        <Field name="crsCode" string="{string(mcc:code/gco:CharacterString)}" store="false" index="true"/>
-        <Field name="crsVersion" string="{string(mcc:version/gco:CharacterString)}" store="false" index="true"/>
       </xsl:for-each>
     </xsl:for-each>
 
