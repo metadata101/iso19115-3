@@ -6205,9 +6205,6 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
     <element name="gml:axis">
       <label>Axe</label>
     </element>
-    <element name="gml:remarks">
-        <label>Remarque</label>
-    </element>
     <element name="gml:domainOfValidity">
         <label>Domaine de validité</label>
     </element>
