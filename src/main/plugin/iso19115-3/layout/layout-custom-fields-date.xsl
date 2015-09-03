@@ -61,7 +61,7 @@
   -->
   <xsl:template mode="mode-iso19115-3"
                 priority="2000"
-                match="*[(gco:Date|gco:DateTime) and ../cit:dateType]">
+                match="cit:CI_Date/cit:date[../cit:dateType]">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
 
