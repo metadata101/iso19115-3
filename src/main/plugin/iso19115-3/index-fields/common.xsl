@@ -752,8 +752,10 @@
       </xsl:otherwise>
     </xsl:choose>
 
+    <!-- Set type as service if scope code not defined. -->
     <xsl:choose>
-      <xsl:when test="$metadata/mdb:identificationInfo/srv:SV_ServiceIdentification">
+      <xsl:when test="$metadata[not(mdb:metadataScope/mdb:MD_MetadataScope/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue)]/
+          mdb:identificationInfo/srv:SV_ServiceIdentification">
         <Field name="type" string="service" store="false" index="true"/>
       </xsl:when>
     </xsl:choose>
