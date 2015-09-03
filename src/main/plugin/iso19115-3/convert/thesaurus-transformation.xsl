@@ -19,9 +19,6 @@
   <!-- A set of templates use to convert thesaurus concept to
        iso19115-3 fragments. -->
 
-  <!-- uses functions from schema iso19139/process/process-utility.xsl -->
-  <xsl:include href="../process/process-utility.xsl"/>
-
   <!-- Convert a concept to an iso19115-3 fragment with an Anchor
         for each keywords pointing to the concept URI-->
   <xsl:template name="to-iso19115-3-keyword-with-anchor">
