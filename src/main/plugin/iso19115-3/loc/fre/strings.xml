@@ -36,4 +36,39 @@
   <add-resource-idHelp>Construit un identifiant en utilisant l'URL du catalogue et l'identifiant de la fiche (eg. http://www.organization.org/catalogue/5391bf69-44bc-4ea0-8cc0-6cf6c3bc81ae).</add-resource-idHelp>
   <add-extent-from-geokeywords>Calculer les emprises à partir des mots clés</add-extent-from-geokeywords>
   <add-extent-from-geokeywordsHelp>Analyse les mots clés de type géographique et ajoute les emprises correspondantes.</add-extent-from-geokeywordsHelp>
+
+  <!-- METAWAL View and tabs for GeoPortail view-->
+  <metawal>Geoportail</metawal>
+  <!--TAB 1-->
+  <metadataInformation>Information Général</metadataInformation>
+  <metadaDefinition>Définition de votre métadonnée</metadaDefinition>
+  <metadaLanguage>Langue de la métadonnée</metadaLanguage>
+  <metadaTitle>Titre la métadonnée</metadaTitle>
+  <metadaAbstract>Résumé descriptif</metadaAbstract>
+  <inspireKeywords>Mots-clés INSPIRE</inspireKeywords>
+  <otherKeywords>Mots-clés</otherKeywords>
+  <metadaOwner>Propriétaire de la métadonnée</metadaOwner>
+  <metadataOrganisationName>Prorpiétaire (Oragnisation)</metadataOrganisationName>
+  <metadataOrganisationDeliveryPoint>Rue</metadataOrganisationDeliveryPoint>
+  <metadataOrganisationCity>Ville</metadataOrganisationCity>
+  <metadataOrganisationPostalCode>Code postal</metadataOrganisationPostalCode>
+  <metadataOrganisationPersonName>Nom du responsable</metadataOrganisationPersonName>
+  <metadaDate>Date</metadaDate>
+  <!--TAB 2-->
+  <dataDescription>Description de la donnée</dataDescription>
+  <datadefinition>Définition de la donnée</datadefinition>
+  <scale>Echelle</scale>
+  <constraints>Définition des contraintes</constraints>
+  <extent>Définition des emprises (temporelles et géographiques)</extent>
+  <!--TAB 3-->
+  <dataDistribution>Accès à la donnée</dataDistribution>
+  <!--TAB 4-->
+  <links>Ressources associées à la donnée</links>
+  <contact>contact</contact>
+  <originator>originator</originator>
+  <!--TAB 5-->
+  <keywordsInpire>Mots-clés</keywordsInpire>
+  <conformityInpire>Conformité</conformityInpire>
+
+  
 </strings>

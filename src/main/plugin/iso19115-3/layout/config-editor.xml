@@ -98,6 +98,7 @@
               data-template-type="contact"
               data-filter='{"_root": "cit:CI_Responsibility"}'
               data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
+              <!--data-transformation="contact-from-iso19139-to-iso19115-3"/ ADDED IN MEDSEA-->
     </for>
     <for name="mri:pointOfContact" addDirective="data-gn-directory-entry-selector">
       <!--<directiveAttributes
@@ -120,6 +121,7 @@
               data-template-type="contact"
               data-filter='{"_root": "cit:CI_Responsibility"}'
               data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
+              <!--data-transformation="contact-from-iso19139-to-iso19115-3"/ ADDED IN MEDSEA-->
     </for>
     <for name="mrl:processor" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
@@ -127,6 +129,7 @@
               data-template-type="contact"
               data-filter='{"_root": "cit:CI_Responsibility"}'
               data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
+              <!--data-transformation="contact-from-iso19139-to-iso19115-3"/ ADDED IN MEDSEA-->
     </for>
     <for name="cit:citedResponsibleParty" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
@@ -134,6 +137,7 @@
               data-template-type="contact"
               data-filter='{"_root": "cit:CI_Responsibility"}'
               data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
+              <!--data-transformation="contact-from-iso19139-to-iso19115-3"/ ADDED IN MEDSEA-->
     </for>
 
 
@@ -184,6 +188,8 @@
     <name>mdb:spatialRepresentationInfo</name>
     <name>mri:pointOfContact</name>
     <name>mdb:dataQualityInfo</name>
+    <!--name>mdq:result</name ADDED IN MEDSEA-->
+    <!--name>mdq:report</name ADDED IN MEDSEA-->
     <name>mdb:resourceLineage</name>
     <name>cit:citedResponsibleParty</name>
     <name>cit:party</name>
@@ -354,6 +360,192 @@
         <for name="cit:CI_Organisation"/>
       </flatModeExceptions>
     </view>
+
+    <view name="metawal" default="true">
+      <tab id="metadataInformation" default="true">
+        <section name="metadaDefinition">
+          <field name="metadaLanguage" xpath="/mdb:MD_Metadata/mdb:defaultLocale/lan:PT_Locale/lan:language"/>
+          <field name="metadaTitle" xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:title"/>
+          <field name="metadaAbstract" xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:abstract"/>
+        </section>
+        <section name="metadaOwner">
+          <field name="metadataOrganisationName" xpath="/mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name"/>
+          <field name="metadataOrganisationDeliveryPoint" xpath="/mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:contactInfo/*/cit:address/cit:CI_Address/cit:deliveryPoint"/>
+          <field name="metadataOrganisationCity" xpath="/mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:contactInfo/*/cit:address/cit:CI_Address/cit:city"/>
+          <field name="metadataOrganisationPostalCode" xpath="/mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:contactInfo/*/cit:address/cit:CI_Address/cit:postalCode"/>
+          <field name="metadataOrganisationMailAddress" xpath="/mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:contactInfo/*/cit:address/cit:CI_Address/cit:electronicMailAddress"/>
+          <field name="metadataOrganisationPersonName" xpath="/mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:individual/*/cit:name"/>
+        </section>
+        <section name="metadaDate">
+          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:date/cit:CI_Date/cit:date"/>
+          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/
+                            mri:citation/*/cit:date[
+                              */cit:dateType/*/@codeListValue = 'creation']"/>
+          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/
+                            mri:citation/*/cit:date[
+                              */cit:dateType/*/@codeListValue = 'revision']"/>
+        </section>
+        <section name="keywords">
+          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,'Thèmes du géoportail wallon')]"/>
+          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,'Thèmes du géoportail wallon')]"/>
+          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords"/>
+        </section>
+          
+        
+      </tab>
+      <tab id="dataDescription" mode="flat">
+        <section name="datadefinition">
+          <field name="metadaTitle" xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:codeSpace"/>             
+          <field xpath="/mdb:MD_Metadata/mdb:resourceLineage/mrl:LI_Lineage/mrl:scope/mcc:MD_Scope/mcc:level"/>
+          <field xpath="/mdb:MD_Metadata/mdb:resourceLineage/mrl:LI_Lineage/mrl:statement"/>
+
+        </section>
+        <section name="constraints">
+          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceConstraints/mco:MD_LegalConstraints/mco:accessConstraints"/>
+          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceConstraints/mco:MD_LegalConstraints/mco:useConstraints"/>
+          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceConstraints/mco:MD_LegalConstraints/mco:otherConstraints"/>
+        </section>
+        <section name="">
+          <field name="scale" xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:spatialResolution"/>          
+          <field xpath="/mdb:MD_Metadata/mdb:referenceSystemInfo/mrs:MD_ReferenceSystem/mrs:referenceSystemIdentifier"/>
+        </section>
+        <section name="extent">
+        <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent"/>
+        <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:geographicElement/gex:EX_GeographicBoundingBox"/>
+        </section>
+
+      </tab>
+
+<!--
+      <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:spatialResolution>/mri:MD_Resolution/mri:equivalentScale/mri:MD_RepresentativeFraction/mri:denominator"/>
+        
+        <section name="">
+          <field xpath="/mdb:MD_Metadata/mdb:referenceSystemInfo/mrs:MD_ReferenceSystem/mrs:referenceSystemIdentifier"/>
+        </section>
+
+      -->
+      <tab id="dataDistribution" mode="flat">
+        <section name="">
+        </section>
+      </tab>
+      <tab id="contact" mode="flat">
+        <section name="originator">
+          <field name="dataProvider" templateModeOnly="true"
+                 xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:pointOfContact[
+                 */cit:role/*/@codeListValue = 'resourceProvider']">
+            <template>
+              <values>
+                <key label="organisationName"
+                     xpath="*/cit:party/*/cit:name/gco:CharacterString"/>
+              </values>
+              <snippet>
+
+                <mri:pointOfContact>
+                  <cit:CI_Responsibility>
+                    <gn:copy select="cit:role"/>
+                    <gn:copy select="cit:extent"/>
+                    <cit:party>
+                      <cit:CI_Organisation>
+                        <cit:name>
+                          <gco:CharacterString>{{organisationName}}</gco:CharacterString>
+                        </cit:name>
+                        <gn:copy select="cit:contactInfo"/>
+                        <gn:copy select="cit:logo"/>
+                        <cit:individual>
+                          <cit:CI_Individual>
+                            <cit:name>
+                              <gco:CharacterString>{{acronym}}</gco:CharacterString>
+                            </cit:name>
+                            <gn:copy select="cit:contactInfo"/>
+                          </cit:CI_Individual>
+                        </cit:individual>
+                      </cit:CI_Organisation>
+                    </cit:party>
+                  </cit:CI_Responsibility>
+                </mri:pointOfContact>
+              </snippet>
+            </template>
+          </field>
+          
+        </section>
+        <section name="distributor">
+        </section>
+      </tab>
+      <tab id="inspire" mode="flat">
+        <section name="keywordsInpire">
+          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,'INSPIRE themes')]"/>
+        </section>
+        <section name="conformityInpire">
+          <field xpath="/mdb:MD_Metadata/mdb:dataQualityInfo/*/mdq:report/*/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:title" />
+        </section>
+      </tab>
+
+
+
+
+      <tab id="dataDistribution1">
+        <section>
+          <!--
+          + Date de création
+          + Date de validité
+          -->
+          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/
+                          mri:citation/*/cit:date[
+                            */cit:dateType/*/@codeListValue = 'creation']"/>
+
+          <field name="temporalExtent" templateModeOnly="true"
+                 xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:extent/*/gex:temporalElement"
+                 if="count(mdb:MD_Metadata/mdb:identificationInfo/*) > 0">
+            <template>
+              <values>
+                <!-- -Need a * for gml:TimePeriodTypeCHOICE_ELEMENT2 added by editor enumerated tree -->
+                <key label="beginPosition"
+                     xpath="gex:EX_TemporalExtent/gex:extent/gml:TimePeriod/*/gml:beginPosition"
+                     use="gn-date-picker"
+                     tooltip="gex:extent|gex:EX_TemporalExtent">
+                  <directiveAttributes data-tag-name="gml:beginPosition"/>
+                </key>
+                <key label="endPosition"
+                     xpath="gex:EX_TemporalExtent/gex:extent/gml:TimePeriod/*/gml:endPosition"
+                     use="gn-date-picker"
+                     tooltip="gex:extent|gex:EX_TemporalExtent"
+                        >
+                  <directiveAttributes
+                          data-tag-name="gml:endPosition"
+                          data-indeterminate-position="eval#gex:EX_TemporalExtent/gex:extent/gml:TimePeriod/*/gml:endPosition/@indeterminatePosition"/>
+                </key>
+              </values>
+              <snippet>
+                <gex:temporalElement>
+                  <gex:EX_TemporalExtent>
+                    <gex:extent>
+                      <gml:TimePeriod gml:id="">
+                        {{beginPosition}}
+                        {{endPosition}}
+                      </gml:TimePeriod>
+                    </gex:extent>
+                  </gex:EX_TemporalExtent>
+                </gex:temporalElement>
+              </snippet>
+            </template>
+          </field>
+
+
+          <field
+                  name="timeResolution"
+                  xpath="/mdb:MD_Metadata/mdb:spatialRepresentationInfo/msr:MD_Georectified/
+                            msr:axisDimensionProperties/msr:MD_Dimension/msr:resolution"/>
+          <field
+                  xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceMaintenance/*/mmi:maintenanceAndUpdateFrequency"/>
+
+        </section>
+      </tab>
+    </view>
+
+
+
+
+
     <view name="advanced">
       <tab id="identificationInfo" default="true">
         <section xpath="/mdb:MD_Metadata/mdb:identificationInfo" or="identificationInfo"
