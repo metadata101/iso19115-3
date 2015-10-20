@@ -18,5 +18,5 @@ Stylesheet used to remove a reference to a source record.
   </xsl:template>
 
   <!-- Remove geonet:* elements and the target source. -->
-  <xsl:template match="gn:*|mrl:source[@uuidref=$sourceUuid]" priority="2"/>
+  <xsl:template match="gn:*|mrl:source[@uuidref = $sourceUuid]" priority="2"/>
 </xsl:stylesheet>
