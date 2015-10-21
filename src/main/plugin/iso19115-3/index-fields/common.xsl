@@ -22,11 +22,13 @@
                 xmlns:geonet="http://www.fao.org/geonetwork"
                 xmlns:util="java:org.fao.geonet.util.XslUtil"
                 xmlns:joda="java:org.fao.geonet.domain.ISODate"
+                xmlns:gn-fn-core="http://geonetwork-opensource.org/xsl/functions/core"
                 xmlns:gn-fn-iso19115-3="http://geonetwork-opensource.org/xsl/functions/profiles/iso19115-3"
                 xmlns:skos="http://www.w3.org/2004/02/skos/core#"
                 exclude-result-prefixes="#all">
 
 
+  <xsl:include href="common/functions-core.xsl"/>
   <xsl:include href="../layout/utility-tpl-multilingual.xsl"/>
   <xsl:include href="index-subtemplate-fields.xsl"/>
 
@@ -532,9 +534,8 @@
                         select="normalize-space(cit:description/gco:CharacterString)"/>
           <xsl:variable name="protocol"
                         select="normalize-space(cit:protocol/gco:CharacterString)"/>
-          <xsl:variable name="mimetype"
-                        select="''"/>
-          <!--<xsl:variable name="mimetype" select="geonet:protocolMimeType($linkage, $protocol, cit:name/gcx:MimeFileType/@type)"/>-->
+          <xsl:variable name="mimetype" select="gn-fn-core:protocolMimeType($linkage, $protocol, cit:name/gcx:MimeFileType/@type)"/>
+
 
           <!-- If the linkage points to WMS service and no protocol specified, manage as protocol OGC:WMS -->
           <xsl:variable name="wmsLinkNoProtocol"
