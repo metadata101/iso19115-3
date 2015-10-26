@@ -325,8 +325,42 @@
 
 
       <xsl:for-each select="//mri:MD_Keywords">
+        <xsl:variable name="thesaurusTitle"
+                      select="replace(mri:thesaurusName/*/cit:title/gco:CharacterString/text(), ' ', '')"/>
+        <xsl:variable name="thesaurusIdentifier"
+                      select="mri:thesaurusName/*/cit:identifier/*/mcc:code/*/text()"/>
+        <xsl:if test="$thesaurusIdentifier != ''">
+          <Field name="thesaurusIdentifier"
+                 string="{substring-after(
+                              $thesaurusIdentifier,
+                              'geonetwork.thesaurus.')}"
+                 store="true" index="true"/>
+        </xsl:if>
+        <xsl:if test="mri:thesaurusName/*/cit:title/gco:CharacterString/text() != ''">
+          <Field name="thesaurusName"
+                 string="{mri:thesaurusName/*/cit:title/gco:CharacterString/text()}"
+                 store="true" index="true"/>
+        </xsl:if>
+
+        <xsl:variable name="fieldName"
+                      select="if ($thesaurusIdentifier != '')
+                              then $thesaurusIdentifier
+                              else $thesaurusTitle"/>
+        <xsl:variable name="fieldNameTemp"
+                      select="if (starts-with($fieldName, 'geonetwork.thesaurus'))
+                                then substring-after($fieldName, 'geonetwork.thesaurus.')
+                                else $fieldName"/>
+
         <xsl:for-each select="mri:keyword">
           <xsl:copy-of select="gn-fn-iso19115-3:index-field('keyword', ., $langId)"/>
+
+          <xsl:if test="$fieldNameTemp != ''">
+            <!-- field thesaurus-{{thesaurusIdentifier}}={{keyword}} allows
+            to group all keywords of same thesaurus in a field -->
+
+            <xsl:copy-of select="gn-fn-iso19115-3:index-field(
+                                  concat('thesaurus-', $fieldNameTemp), ., $langId)"/>
+          </xsl:if>
         </xsl:for-each>
 
         <xsl:for-each select="mri:keyword/gco:CharacterString|
