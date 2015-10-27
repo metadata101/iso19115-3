@@ -39,7 +39,8 @@
 
   <!-- METAWAL View and tabs for GeoPortail view-->
   <metawal>Geoportail</metawal>
-  <!--TAB 1-->
+  <!--TAB 1 - Metadata-->
+  <metadatamainsection>Informations relatives à la métadonnée</metadatamainsection>
   <metadataInformation>Information Général</metadataInformation>
   <metadaDefinition>Définition de votre métadonnée</metadaDefinition>
   <metadaLanguage>Langue de la métadonnée</metadaLanguage>
@@ -54,21 +55,29 @@
   <metadataOrganisationPostalCode>Code postal</metadataOrganisationPostalCode>
   <metadataOrganisationPersonName>Nom du responsable</metadataOrganisationPersonName>
   <metadaDate>Date</metadaDate>
-  <!--TAB 2-->
+  <!--TAB 2 - Data-->
+  <datamainsection>Informations relatives à la donnée</datamainsection>
   <dataDescription>Description de la donnée</dataDescription>
   <datadefinition>Définition de la donnée</datadefinition>
   <scale>Echelle</scale>
   <constraints>Définition des contraintes</constraints>
   <extent>Définition des emprises (temporelles et géographiques)</extent>
-  <!--TAB 3-->
+  <!--TAB 3 - Distribution-->
   <dataDistribution>Accès à la donnée</dataDistribution>
-  <!--TAB 4-->
+  <distributionmainsection>Informations relatives à la distribution</distributionmainsection>
+  <description>Description</description>
+  <distributionformat>Format de distribution</distributionformat>
+  <distributor>Coordonnées du distributeur</distributor>
+  <distributionorder>Procédure d'acquisition</distributionorder>
+  <distributiononline>Ressources en ligne</distributiononline>
+  <!--TAB 4 - Contact-->
   <links>Ressources associées à la donnée</links>
   <contact>contact</contact>
   <originator>originator</originator>
-  <!--TAB 5-->
-  <keywordsInpire>Mots-clés</keywordsInpire>
-  <conformityInpire>Conformité</conformityInpire>
+  <!--TAB 5 - Inspire-->
+  <inspiremainsection>INSPIRE</inspiremainsection>
+  <keywordsInpire>Mots-clés relatifs à la directive INSPIRE</keywordsInpire>
+  <conformityInpire>Conformité à la directive INSPIRE</conformityInpire>
 
   
 </strings>

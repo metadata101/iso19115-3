@@ -78,7 +78,7 @@
     <for name="gco:DateTime" use="data-gn-date-picker"/>
 
 
-
+    <for name="role" use="data-gn-role"/>
     <!-- gmx:FileName/@src attribute -->
     <for name="src" use="data-gn-logo-selector"/>
 
@@ -363,6 +363,7 @@
 
     <view name="metawal" default="true">
       <tab id="metadataInformation" default="true">
+        <section name="metadatamainsection">
         <section name="metadaDefinition">
           <field name="metadaLanguage" xpath="/mdb:MD_Metadata/mdb:defaultLocale/lan:PT_Locale/lan:language"/>
           <field name="metadaTitle" xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:title"/>
@@ -389,16 +390,51 @@
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,'Thèmes du géoportail wallon')]"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,'Thèmes du géoportail wallon')]"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords"/>
+          <field name="metadaLanguage" xpath="/mdb:MD_Metadata/mdb:defaultLocale/lan:PT_Locale/lan:language"/>
+          <action type="add"
+                  name="descriptiveKeywords" or="descriptiveKeywords"
+                  in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification">
+            <template>
+              <snippet>
+                <mri:descriptiveKeywords>
+                  <mri:MD_Keywords>
+                     <mri:keyword>
+                        <gco:CharacterString></gco:CharacterString>
+                     </mri:keyword>
+                     <mri:type>
+                        <mri:MD_KeywordTypeCode codeListValue=""
+                                                codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_KeywordTypeCode"/>
+                     </mri:type>
+                     <mri:thesaurusName>
+                  <cit:CI_Citation>
+                     <cit:title gco:nilReason="missing">
+                        <gco:CharacterString/>
+                     </cit:title>
+                  </cit:CI_Citation>
+               </mri:thesaurusName>
+               <mri:keywordClass>
+                  <cit:CI_Citation>
+                     <cit:title gco:nilReason="missing">
+                        <gco:CharacterString/>
+                     </cit:title>
+                  </cit:CI_Citation>
+               </mri:keywordClass>
+                     
+                  </mri:MD_Keywords>
+                </mri:descriptiveKeywords>
+              </snippet>
+            </template>
+          </action>
         </section>
-          
+       </section>   
         
       </tab>
       <tab id="dataDescription" mode="flat">
+        <section name="datamainsection">
         <section name="datadefinition">
           <field name="metadaTitle" xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:codeSpace"/>             
           <field xpath="/mdb:MD_Metadata/mdb:resourceLineage/mrl:LI_Lineage/mrl:scope/mcc:MD_Scope/mcc:level"/>
           <field xpath="/mdb:MD_Metadata/mdb:resourceLineage/mrl:LI_Lineage/mrl:statement"/>
-
         </section>
         <section name="constraints">
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceConstraints/mco:MD_LegalConstraints/mco:accessConstraints"/>
@@ -413,7 +449,7 @@
         <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent"/>
         <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:geographicElement/gex:EX_GeographicBoundingBox"/>
         </section>
-
+        </section>
       </tab>
 
 <!--
@@ -425,58 +461,83 @@
 
       -->
       <tab id="dataDistribution" mode="flat">
-        <section name="">
+        <section name="distributionmainsection">
+          <section name="distributionformat">
+          <field name="format" xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatSpecificationCitation"/>
+          <action type="add" name="encoding" or="distributionFormat"
+            in="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution">
+            <template>
+              <snippet>
+                <mrd:distributionFormat>
+                  <mrd:MD_Format>
+                    <mrd:formatSpecificationCitation>
+                      <cit:CI_Citation>
+                     <cit:title>
+                        <gco:CharacterString></gco:CharacterString>
+                     </cit:title>
+                      </cit:CI_Citation>
+                    </mrd:formatSpecificationCitation>
+                  </mrd:MD_Format>
+                </mrd:distributionFormat>
+              </snippet>
+            </template>
+          </action>
+          </section>
+          <section name="distributor">
+          <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatDistributor/mrd:MD_Distributor/mrd:distributorContact/cit:CI_Responsibility"/>
+          </section>
+          <section name="distributionorder">
+          <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatDistributor/mrd:MD_Distributor/mrd:distributionOrderProcess"/>
+          </section>
+          <section name="distributiononline">
+          <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource"/>
+          <action type="add" name="url" or="onLine"
+            in="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions">
+            <template>
+              <snippet>
+                 <mrd:onLine>
+                  <cit:CI_OnlineResource>
+                     <cit:linkage>
+                        <gco:CharacterString/>
+                     </cit:linkage>
+                     <cit:protocol>
+                        <gco:CharacterString/>
+                     </cit:protocol>
+                     <cit:name>
+                        <gco:CharacterString/>
+                     </cit:name>
+                     <cit:description>
+                        <gco:CharacterString/>
+                     </cit:description>
+                     <cit:function>
+                        <cit:CI_OnLineFunctionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_OnLineFunctionCode"
+                                                   codeListValue=""/>
+                     </cit:function>
+                  </cit:CI_OnlineResource>
+               </mrd:onLine>
+              </snippet>
+            </template>
+          </action>
+          </section>
+          <!--field name="format" xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource/cit:protocol"/-->
         </section>
       </tab>
       <tab id="contact" mode="flat">
-        <section name="originator">
-          <field name="dataProvider" templateModeOnly="true"
-                 xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:pointOfContact[
-                 */cit:role/*/@codeListValue = 'resourceProvider']">
-            <template>
-              <values>
-                <key label="organisationName"
-                     xpath="*/cit:party/*/cit:name/gco:CharacterString"/>
-              </values>
-              <snippet>
-
-                <mri:pointOfContact>
-                  <cit:CI_Responsibility>
-                    <gn:copy select="cit:role"/>
-                    <gn:copy select="cit:extent"/>
-                    <cit:party>
-                      <cit:CI_Organisation>
-                        <cit:name>
-                          <gco:CharacterString>{{organisationName}}</gco:CharacterString>
-                        </cit:name>
-                        <gn:copy select="cit:contactInfo"/>
-                        <gn:copy select="cit:logo"/>
-                        <cit:individual>
-                          <cit:CI_Individual>
-                            <cit:name>
-                              <gco:CharacterString>{{acronym}}</gco:CharacterString>
-                            </cit:name>
-                            <gn:copy select="cit:contactInfo"/>
-                          </cit:CI_Individual>
-                        </cit:individual>
-                      </cit:CI_Organisation>
-                    </cit:party>
-                  </cit:CI_Responsibility>
-                </mri:pointOfContact>
-              </snippet>
-            </template>
-          </field>
-          
-        </section>
-        <section name="distributor">
+        <section name="distributionmainsection">
+                role
+                 <field xpath="role"/>
+                 <gn:copy select="role"/>
         </section>
       </tab>
       <tab id="inspire" mode="flat">
+        <section name="inspiremainsection">
         <section name="keywordsInpire">
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,'INSPIRE themes')]"/>
+          <!--field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,'INSPIRE themes')]/mri:MD_Keywords"/-->
         </section>
         <section name="conformityInpire">
           <field xpath="/mdb:MD_Metadata/mdb:dataQualityInfo/*/mdq:report/*/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:title" />
+        </section>
         </section>
       </tab>
 
