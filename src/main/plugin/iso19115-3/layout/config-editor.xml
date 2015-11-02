@@ -3,6 +3,8 @@
   xsi:noNamespaceSchemaLocation="../../config-editor.xsd"
   xmlns:gn="http://www.fao.org/geonetwork"
   xmlns:gml="http://www.opengis.net/gml/3.2"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
   xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
   xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
   xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
@@ -435,45 +437,65 @@
           <section name="resourceDate">
             <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:date"/>
           </section>
-          <section name="keywords">
-            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,'Thèmes du géoportail wallon')]"/>
-            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,'Thèmes du géoportail wallon')]"/>
-            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords"/>
-            <field name="metadaLanguage" xpath="/mdb:MD_Metadata/mdb:defaultLocale/lan:PT_Locale/lan:language"/>
+          <section name="otherKeywords">
+            <!-- Wallonia theme selector
+            No need for a name, the thesaurus title will be used. -->
+            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                            contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,
+                                     'Thèmes du géoportail wallon')]"/>
+            <!-- Display a add action if no Wallonia theme in the record
+            FIXME: walloniaTheme label is not displayed. Probably due to siblings of same type ie. mri:descriptiveKeywords
+            -->
             <action type="add"
-                    name="descriptiveKeywords" or="descriptiveKeywords"
-                    in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification">
+                    name="walloniaTheme"
+                    or="descriptiveKeywords"
+                    in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"
+                    if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                            contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,
+                                     'Thèmes du géoportail wallon')]) = 0">
               <template>
                 <snippet>
                   <mri:descriptiveKeywords>
                     <mri:MD_Keywords>
-                       <mri:keyword>
-                          <gco:CharacterString></gco:CharacterString>
-                       </mri:keyword>
-                       <mri:type>
-                          <mri:MD_KeywordTypeCode codeListValue=""
-                                                  codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_KeywordTypeCode"/>
-                       </mri:type>
-                       <mri:thesaurusName>
-                    <cit:CI_Citation>
-                       <cit:title gco:nilReason="missing">
-                          <gco:CharacterString/>
-                       </cit:title>
-                    </cit:CI_Citation>
-                 </mri:thesaurusName>
-                 <mri:keywordClass>
-                    <cit:CI_Citation>
-                       <cit:title gco:nilReason="missing">
-                          <gco:CharacterString/>
-                       </cit:title>
-                    </cit:CI_Citation>
-                 </mri:keywordClass>
-
+                      <mri:type>
+                        <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_KeywordTypeCode"
+                                                codeListValue="theme"/>
+                      </mri:type>
+                      <mri:thesaurusName>
+                        <cit:CI_Citation>
+                          <cit:title>
+                            <gco:CharacterString>Thèmes du géoportail wallon</gco:CharacterString>
+                          </cit:title>
+                          <cit:date>
+                            <cit:CI_Date>
+                              <cit:date>
+                                <gco:Date>2012-06-19</gco:Date>
+                              </cit:date>
+                              <cit:dateType>
+                                <cit:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode"
+                                                     codeListValue="publication"/>
+                              </cit:dateType>
+                            </cit:CI_Date>
+                          </cit:date>
+                          <cit:identifier>
+                            <mcc:MD_Identifier>
+                              <mcc:code>
+                                <gcx:Anchor xlink:href="http://metawal.wallonie.be/geonetwork/srv/fre/thesaurus.download?ref=external.theme.Themes_geoportail_wallon">geonetwork.thesaurus.external.theme.Themes_geoportail_wallon</gcx:Anchor>
+                              </mcc:code>
+                            </mcc:MD_Identifier>
+                          </cit:identifier>
+                        </cit:CI_Citation>
+                      </mri:thesaurusName>
                     </mri:MD_Keywords>
                   </mri:descriptiveKeywords>
                 </snippet>
               </template>
             </action>
+
+            <!-- All other keywords -->
+            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                            not(contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,
+                                         'Thèmes du géoportail wallon'))]"/>
           </section>
         </section>
         
