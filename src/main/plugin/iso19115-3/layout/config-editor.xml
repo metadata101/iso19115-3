@@ -362,7 +362,16 @@
     </view>
 
     <view name="metawal" default="true">
-      <tab id="metadataInformation" default="true">
+      <flatModeExceptions>
+        <for name="mri:descriptiveKeywords"/>
+        <for name="mri:topicCategory"/>
+        <for name="mrd:distributor"/>
+        <for name="mri:pointOfContact"/>
+        <for name="mdb:contact"/>
+        <for name="mrd:distributorContact"/>
+        <for name="mcc:processor"/>
+      </flatModeExceptions>
+      <tab id="metadataInformation" default="true" mode="flat">
         <section name="metadatamainsection">
           <section name="metadaDefinition">
             <!-- Metadata language -->
@@ -395,12 +404,32 @@
                    xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:title"/>
             <field name="metadaAbstract"
                    xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:abstract"
-                    or="abstract"
-                    in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
+                   or="abstract"
+                   in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
           </section>
           <section name="metadaOwner">
-            <field xpath="/mdb:MD_Metadata/mdb:contact"/>
-            <!-- Display full metadata contact information.
+            <!-- View all type of contacts and
+            allows to add one if not present with or and in attribute and
+            allows adding more than one by adding flatModeException.
+            -->
+            <field xpath="/mdb:MD_Metadata/mdb:contact"
+                   or="contact"
+                   in="/mdb:MD_Metadata"/>
+            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:pointOfContact"
+                   in="pointOfContact"
+                   or="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
+            <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributor"
+                   or="distributor"
+                   in="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution"/>
+            <!-- Maybe other in DQ section ? -->
+
+            <!-- TODO: Display full metadata contact information.
+            This section will list all CI_Responsibility from the metadata document
+            and will allow to manage their roles (which will be a combination of
+            element location (eg. metadata contact, resource contact, resource distributor) +
+            codeListValue for role.
+
+            This will probably be displayed in a dedicated tab.
              -->
           </section>
           <section name="metadataDate">
