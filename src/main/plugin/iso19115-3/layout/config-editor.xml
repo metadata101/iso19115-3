@@ -364,76 +364,89 @@
     <view name="metawal" default="true">
       <tab id="metadataInformation" default="true">
         <section name="metadatamainsection">
-        <section name="metadaDefinition">
-          <field name="metadaLanguage"
-                 xpath="/mdb:MD_Metadata/mdb:defaultLocale"
-                 or="defaultLocale"
-                 in="/mdb:MD_Metadata"/>
-          <field name="metadaTitle"
-                 xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:title"/>
-          <field name="metadaAbstract"
-                 xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:abstract"
-                  or="abstract"
-                  in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
+          <section name="metadaDefinition">
+            <!-- Metadata language -->
+            <field name="metadaLanguage"
+                   xpath="/mdb:MD_Metadata/mdb:defaultLocale/lan:PT_Locale/lan:language"/>
+            <!-- If not defined, add action will add French -->
+            <action type="add"
+                    name="metadaLanguage" or="defaultLocale"
+                    in="/mdb:MD_Metadata">
+              <template>
+                <snippet>
+                  <mdb:defaultLocale>
+                    <lan:PT_Locale>
+                      <lan:language>
+                        <lan:LanguageCode codeList="codeListLocation#LanguageCode" codeListValue="fre"/>
+                      </lan:language>
+                      <lan:characterEncoding>
+                        <lan:MD_CharacterSetCode codeList="codeListLocation#MD_CharacterSetCode"
+                                                 codeListValue="utf8"/>
+                      </lan:characterEncoding>
+                    </lan:PT_Locale>
+                  </mdb:defaultLocale>
+                </snippet>
+              </template>
+            </action>
+
+
+
+            <field name="metadaTitle"
+                   xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:title"/>
+            <field name="metadaAbstract"
+                   xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:abstract"
+                    or="abstract"
+                    in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
+          </section>
+          <section name="metadaOwner">
+            <field xpath="/mdb:MD_Metadata/mdb:contact"/>
+            <!-- Display full metadata contact information.
+             -->
+          </section>
+          <section name="metadataDate">
+            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:date"/>
+          </section>
+          <section name="keywords">
+            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,'Thèmes du géoportail wallon')]"/>
+            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,'Thèmes du géoportail wallon')]"/>
+            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords"/>
+            <field name="metadaLanguage" xpath="/mdb:MD_Metadata/mdb:defaultLocale/lan:PT_Locale/lan:language"/>
+            <action type="add"
+                    name="descriptiveKeywords" or="descriptiveKeywords"
+                    in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification">
+              <template>
+                <snippet>
+                  <mri:descriptiveKeywords>
+                    <mri:MD_Keywords>
+                       <mri:keyword>
+                          <gco:CharacterString></gco:CharacterString>
+                       </mri:keyword>
+                       <mri:type>
+                          <mri:MD_KeywordTypeCode codeListValue=""
+                                                  codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_KeywordTypeCode"/>
+                       </mri:type>
+                       <mri:thesaurusName>
+                    <cit:CI_Citation>
+                       <cit:title gco:nilReason="missing">
+                          <gco:CharacterString/>
+                       </cit:title>
+                    </cit:CI_Citation>
+                 </mri:thesaurusName>
+                 <mri:keywordClass>
+                    <cit:CI_Citation>
+                       <cit:title gco:nilReason="missing">
+                          <gco:CharacterString/>
+                       </cit:title>
+                    </cit:CI_Citation>
+                 </mri:keywordClass>
+
+                    </mri:MD_Keywords>
+                  </mri:descriptiveKeywords>
+                </snippet>
+              </template>
+            </action>
+          </section>
         </section>
-        <section name="metadaOwner">
-          <field name="metadataOrganisationName" xpath="/mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name"/>
-          <field name="metadataOrganisationDeliveryPoint" xpath="/mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:contactInfo/*/cit:address/cit:CI_Address/cit:deliveryPoint"/>
-          <field name="metadataOrganisationCity" xpath="/mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:contactInfo/*/cit:address/cit:CI_Address/cit:city"/>
-          <field name="metadataOrganisationPostalCode" xpath="/mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:contactInfo/*/cit:address/cit:CI_Address/cit:postalCode"/>
-          <field name="metadataOrganisationMailAddress" xpath="/mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:contactInfo/*/cit:address/cit:CI_Address/cit:electronicMailAddress"/>
-          <field name="metadataOrganisationPersonName" xpath="/mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:individual/*/cit:name"/>
-        </section>
-        <section name="metadaDate">
-          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:date/cit:CI_Date/cit:date"/>
-          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/
-                            mri:citation/*/cit:date[
-                              */cit:dateType/*/@codeListValue = 'creation']"/>
-          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/
-                            mri:citation/*/cit:date[
-                              */cit:dateType/*/@codeListValue = 'revision']"/>
-        </section>
-        <section name="keywords">
-          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,'Thèmes du géoportail wallon')]"/>
-          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,'Thèmes du géoportail wallon')]"/>
-          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords"/>
-          <field name="metadaLanguage" xpath="/mdb:MD_Metadata/mdb:defaultLocale/lan:PT_Locale/lan:language"/>
-          <action type="add"
-                  name="descriptiveKeywords" or="descriptiveKeywords"
-                  in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification">
-            <template>
-              <snippet>
-                <mri:descriptiveKeywords>
-                  <mri:MD_Keywords>
-                     <mri:keyword>
-                        <gco:CharacterString></gco:CharacterString>
-                     </mri:keyword>
-                     <mri:type>
-                        <mri:MD_KeywordTypeCode codeListValue=""
-                                                codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_KeywordTypeCode"/>
-                     </mri:type>
-                     <mri:thesaurusName>
-                  <cit:CI_Citation>
-                     <cit:title gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </cit:title>
-                  </cit:CI_Citation>
-               </mri:thesaurusName>
-               <mri:keywordClass>
-                  <cit:CI_Citation>
-                     <cit:title gco:nilReason="missing">
-                        <gco:CharacterString/>
-                     </cit:title>
-                  </cit:CI_Citation>
-               </mri:keywordClass>
-                     
-                  </mri:MD_Keywords>
-                </mri:descriptiveKeywords>
-              </snippet>
-            </template>
-          </action>
-        </section>
-       </section>   
         
       </tab>
       <tab id="dataDescription" mode="flat">
