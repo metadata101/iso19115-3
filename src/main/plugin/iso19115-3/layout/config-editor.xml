@@ -545,6 +545,8 @@
         <section name="distributionmainsection">
           <section name="distributionformat">
             <field name="format" xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatSpecificationCitation"/>
+
+            <!-- TODO: Probably provide a format directory list using subtemplates ? -->
             <action type="add" name="encoding" or="distributionFormat"
               in="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution">
               <template>
@@ -563,14 +565,14 @@
                 </snippet>
               </template>
             </action>
-            </section>
-            <section name="distributor">
+          </section>
+          <section name="distributor">
             <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatDistributor/mrd:MD_Distributor/mrd:distributorContact/cit:CI_Responsibility"/>
-            </section>
-            <section name="distributionorder">
+          </section>
+          <section name="distributionorder">
             <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatDistributor/mrd:MD_Distributor/mrd:distributionOrderProcess"/>
-            </section>
-            <section name="distributiononline">
+          </section>
+          <section name="distributiononline">
             <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource"/>
             <action type="add" name="url" or="onLine"
               in="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions">
