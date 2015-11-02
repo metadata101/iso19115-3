@@ -622,10 +622,13 @@
         </section>
       </tab>
       <tab id="dataDistribution1">
+        <!-- TODO: Tab title is unset. -->
         <section>
           <!--
           + Date de création
           + Date de validité
+          FIXME: Those dates are already displayed. We should not displayed same field
+          in different tab.
           -->
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/
                           mri:citation/*/cit:date[
@@ -673,16 +676,13 @@
                   name="timeResolution"
                   xpath="/mdb:MD_Metadata/mdb:spatialRepresentationInfo/msr:MD_Georectified/
                             msr:axisDimensionProperties/msr:MD_Dimension/msr:resolution"/>
+          <!-- TODO: Add action is missing. User can't add it if not defined -->
           <field
                   xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceMaintenance/*/mmi:maintenanceAndUpdateFrequency"/>
-
+          <!-- TODO: Add action is missing. User can't add it if not defined -->
         </section>
       </tab>
     </view>
-
-
-
-
 
     <view name="advanced">
       <tab id="identificationInfo" default="true">
