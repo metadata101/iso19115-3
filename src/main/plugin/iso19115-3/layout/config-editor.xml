@@ -572,6 +572,9 @@
           <section name="distributionorder">
             <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatDistributor/mrd:MD_Distributor/mrd:distributionOrderProcess"/>
           </section>
+          <!--
+          This is mainly managed by the associated resource panel on the right.
+          TODO: Maybe some interactions from the main panel with the associated resource panel should be created ?
           <section name="distributiononline">
             <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource"/>
             <action type="add" name="url" or="onLine"
@@ -601,32 +604,23 @@
                 </snippet>
               </template>
             </action>
-          </section>
+          </section>-->
           <!--field name="format" xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource/cit:protocol"/-->
-        </section>
-      </tab>
-      <tab id="contact" mode="flat">
-        <section name="distributionmainsection">
-                role
-                 <field xpath="role"/>
-                 <gn:copy select="role"/>
         </section>
       </tab>
       <tab id="inspire" mode="flat">
         <section name="inspiremainsection">
-        <section name="keywordsInpire">
-          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,'INSPIRE themes')]"/>
-          <!--field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,'INSPIRE themes')]/mri:MD_Keywords"/-->
-        </section>
-        <section name="conformityInpire">
-          <field xpath="/mdb:MD_Metadata/mdb:dataQualityInfo/*/mdq:report/*/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:title" />
-        </section>
+          <section name="keywordsInpire">
+            <!-- TODO: Those keywords are already displayed in previous tab. Should we remove them from previous and keep them here only ?-->
+            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,'INSPIRE themes')]"/>
+            <!--field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,'INSPIRE themes')]/mri:MD_Keywords"/-->
+          </section>
+          <section name="conformityInpire">
+            <!-- TODO: That is not enough, a add action needs to be added to provide a default report. -->
+            <field xpath="/mdb:MD_Metadata/mdb:dataQualityInfo/*/mdq:report/*/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:title" />
+          </section>
         </section>
       </tab>
-
-
-
-
       <tab id="dataDistribution1">
         <section>
           <!--
