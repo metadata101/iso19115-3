@@ -22,11 +22,13 @@
                 xmlns:geonet="http://www.fao.org/geonetwork"
                 xmlns:util="java:org.fao.geonet.util.XslUtil"
                 xmlns:joda="java:org.fao.geonet.domain.ISODate"
+                xmlns:gn-fn-core="http://geonetwork-opensource.org/xsl/functions/core"
                 xmlns:gn-fn-iso19115-3="http://geonetwork-opensource.org/xsl/functions/profiles/iso19115-3"
                 xmlns:skos="http://www.w3.org/2004/02/skos/core#"
                 exclude-result-prefixes="#all">
 
 
+  <xsl:include href="common/functions-core.xsl"/>
   <xsl:include href="../layout/utility-tpl-multilingual.xsl"/>
   <xsl:include href="index-subtemplate-fields.xsl"/>
 
@@ -323,8 +325,42 @@
 
 
       <xsl:for-each select="//mri:MD_Keywords">
+        <xsl:variable name="thesaurusTitle"
+                      select="replace(mri:thesaurusName/*/cit:title/gco:CharacterString/text(), ' ', '')"/>
+        <xsl:variable name="thesaurusIdentifier"
+                      select="mri:thesaurusName/*/cit:identifier/*/mcc:code/*/text()"/>
+        <xsl:if test="$thesaurusIdentifier != ''">
+          <Field name="thesaurusIdentifier"
+                 string="{substring-after(
+                              $thesaurusIdentifier,
+                              'geonetwork.thesaurus.')}"
+                 store="true" index="true"/>
+        </xsl:if>
+        <xsl:if test="mri:thesaurusName/*/cit:title/gco:CharacterString/text() != ''">
+          <Field name="thesaurusName"
+                 string="{mri:thesaurusName/*/cit:title/gco:CharacterString/text()}"
+                 store="true" index="true"/>
+        </xsl:if>
+
+        <xsl:variable name="fieldName"
+                      select="if ($thesaurusIdentifier != '')
+                              then $thesaurusIdentifier
+                              else $thesaurusTitle"/>
+        <xsl:variable name="fieldNameTemp"
+                      select="if (starts-with($fieldName, 'geonetwork.thesaurus'))
+                                then substring-after($fieldName, 'geonetwork.thesaurus.')
+                                else $fieldName"/>
+
         <xsl:for-each select="mri:keyword">
           <xsl:copy-of select="gn-fn-iso19115-3:index-field('keyword', ., $langId)"/>
+
+          <xsl:if test="$fieldNameTemp != ''">
+            <!-- field thesaurus-{{thesaurusIdentifier}}={{keyword}} allows
+            to group all keywords of same thesaurus in a field -->
+
+            <xsl:copy-of select="gn-fn-iso19115-3:index-field(
+                                  concat('thesaurus-', $fieldNameTemp), ., $langId)"/>
+          </xsl:if>
         </xsl:for-each>
 
         <xsl:for-each select="mri:keyword/gco:CharacterString|
@@ -532,9 +568,8 @@
                         select="normalize-space(cit:description/gco:CharacterString)"/>
           <xsl:variable name="protocol"
                         select="normalize-space(cit:protocol/gco:CharacterString)"/>
-          <xsl:variable name="mimetype"
-                        select="''"/>
-          <!--<xsl:variable name="mimetype" select="geonet:protocolMimeType($linkage, $protocol, cit:name/gcx:MimeFileType/@type)"/>-->
+          <xsl:variable name="mimetype" select="gn-fn-core:protocolMimeType($linkage, $protocol, cit:name/gcx:MimeFileType/@type)"/>
+
 
           <!-- If the linkage points to WMS service and no protocol specified, manage as protocol OGC:WMS -->
           <xsl:variable name="wmsLinkNoProtocol"
