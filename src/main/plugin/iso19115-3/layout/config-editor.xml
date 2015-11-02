@@ -544,61 +544,61 @@
       <tab id="dataDistribution" mode="flat">
         <section name="distributionmainsection">
           <section name="distributionformat">
-          <field name="format" xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatSpecificationCitation"/>
-          <action type="add" name="encoding" or="distributionFormat"
-            in="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution">
-            <template>
-              <snippet>
-                <mrd:distributionFormat>
-                  <mrd:MD_Format>
-                    <mrd:formatSpecificationCitation>
-                      <cit:CI_Citation>
-                     <cit:title>
-                        <gco:CharacterString></gco:CharacterString>
-                     </cit:title>
-                      </cit:CI_Citation>
-                    </mrd:formatSpecificationCitation>
-                  </mrd:MD_Format>
-                </mrd:distributionFormat>
-              </snippet>
-            </template>
-          </action>
-          </section>
-          <section name="distributor">
-          <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatDistributor/mrd:MD_Distributor/mrd:distributorContact/cit:CI_Responsibility"/>
-          </section>
-          <section name="distributionorder">
-          <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatDistributor/mrd:MD_Distributor/mrd:distributionOrderProcess"/>
-          </section>
-          <section name="distributiononline">
-          <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource"/>
-          <action type="add" name="url" or="onLine"
-            in="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions">
-            <template>
-              <snippet>
-                 <mrd:onLine>
-                  <cit:CI_OnlineResource>
-                     <cit:linkage>
-                        <gco:CharacterString/>
-                     </cit:linkage>
-                     <cit:protocol>
-                        <gco:CharacterString/>
-                     </cit:protocol>
-                     <cit:name>
-                        <gco:CharacterString/>
-                     </cit:name>
-                     <cit:description>
-                        <gco:CharacterString/>
-                     </cit:description>
-                     <cit:function>
-                        <cit:CI_OnLineFunctionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_OnLineFunctionCode"
-                                                   codeListValue=""/>
-                     </cit:function>
-                  </cit:CI_OnlineResource>
-               </mrd:onLine>
-              </snippet>
-            </template>
-          </action>
+            <field name="format" xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatSpecificationCitation"/>
+            <action type="add" name="encoding" or="distributionFormat"
+              in="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution">
+              <template>
+                <snippet>
+                  <mrd:distributionFormat>
+                    <mrd:MD_Format>
+                      <mrd:formatSpecificationCitation>
+                        <cit:CI_Citation>
+                       <cit:title>
+                          <gco:CharacterString></gco:CharacterString>
+                       </cit:title>
+                        </cit:CI_Citation>
+                      </mrd:formatSpecificationCitation>
+                    </mrd:MD_Format>
+                  </mrd:distributionFormat>
+                </snippet>
+              </template>
+            </action>
+            </section>
+            <section name="distributor">
+            <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatDistributor/mrd:MD_Distributor/mrd:distributorContact/cit:CI_Responsibility"/>
+            </section>
+            <section name="distributionorder">
+            <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatDistributor/mrd:MD_Distributor/mrd:distributionOrderProcess"/>
+            </section>
+            <section name="distributiononline">
+            <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource"/>
+            <action type="add" name="url" or="onLine"
+              in="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions">
+              <template>
+                <snippet>
+                   <mrd:onLine>
+                    <cit:CI_OnlineResource>
+                       <cit:linkage>
+                          <gco:CharacterString/>
+                       </cit:linkage>
+                       <cit:protocol>
+                          <gco:CharacterString/>
+                       </cit:protocol>
+                       <cit:name>
+                          <gco:CharacterString/>
+                       </cit:name>
+                       <cit:description>
+                          <gco:CharacterString/>
+                       </cit:description>
+                       <cit:function>
+                          <cit:CI_OnLineFunctionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_OnLineFunctionCode"
+                                                     codeListValue=""/>
+                       </cit:function>
+                    </cit:CI_OnlineResource>
+                 </mrd:onLine>
+                </snippet>
+              </template>
+            </action>
           </section>
           <!--field name="format" xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource/cit:protocol"/-->
         </section>
