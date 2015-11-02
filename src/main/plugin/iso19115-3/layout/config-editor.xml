@@ -365,9 +365,16 @@
       <tab id="metadataInformation" default="true">
         <section name="metadatamainsection">
         <section name="metadaDefinition">
-          <field name="metadaLanguage" xpath="/mdb:MD_Metadata/mdb:defaultLocale/lan:PT_Locale/lan:language"/>
-          <field name="metadaTitle" xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:title"/>
-          <field name="metadaAbstract" xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:abstract"/>
+          <field name="metadaLanguage"
+                 xpath="/mdb:MD_Metadata/mdb:defaultLocale"
+                 or="defaultLocale"
+                 in="/mdb:MD_Metadata"/>
+          <field name="metadaTitle"
+                 xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:title"/>
+          <field name="metadaAbstract"
+                 xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:abstract"
+                  or="abstract"
+                  in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
         </section>
         <section name="metadaOwner">
           <field name="metadataOrganisationName" xpath="/mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name"/>
