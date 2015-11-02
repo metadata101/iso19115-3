@@ -432,7 +432,7 @@
             This will probably be displayed in a dedicated tab.
              -->
           </section>
-          <section name="metadataDate">
+          <section name="resourceDate">
             <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:date"/>
           </section>
           <section name="keywords">
