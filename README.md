@@ -144,7 +144,7 @@ Add the module to the webapp in web/pom.xml:
   <phase>process-resources</phase>
   ...
   <resource>
-    <directory>${project.basedir}/../schemas/dublin-core/src/main/plugin</directory>
+    <directory>${project.basedir}/../schemas/iso19115-3/src/main/plugin</directory>
     <targetPath>${basedir}/src/main/webapp/WEB-INF/data/config/schema_plugins</targetPath>
   </resource>
 ```
