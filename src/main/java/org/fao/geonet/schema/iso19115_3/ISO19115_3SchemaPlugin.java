@@ -2,8 +2,10 @@ package org.fao.geonet.schema.iso19115_3;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import org.fao.geonet.kernel.schema.AssociatedResource;
 import org.fao.geonet.kernel.schema.AssociatedResourcesSchemaPlugin;
@@ -29,6 +31,8 @@ public class ISO19115_3SchemaPlugin
     public static final String IDENTIFIER = "iso19115-3";
 
     private static ImmutableSet<Namespace> allNamespaces;
+    private static Map<String, Namespace> allTypenames;
+
     static {
         allNamespaces = ImmutableSet.<Namespace>builder()
                 .add(ISO19115_3Namespaces.GCO)
@@ -37,6 +41,12 @@ public class ISO19115_3SchemaPlugin
                 .add(ISO19115_3Namespaces.MRL)
                 .add(ISO19115_3Namespaces.MRI)
                 .add(ISO19115_3Namespaces.SRV)
+                .build();
+
+        allTypenames = ImmutableMap.<String, Namespace>builder()
+                .put("csw:Record", Namespace.getNamespace("csw", "http://www.opengis.net/cat/csw/2.0.2"))
+                .put("mdb:MD_Metadata", Namespace.getNamespace("mdb", "http://standards.iso.org/iso/19115/-3/mdb/1.0"))
+                .put("gmd:MD_Metadata", Namespace.getNamespace("gmd", "http://www.isotc211.org/2005/gmd"))
                 .build();
     }
 
@@ -174,5 +184,10 @@ public class ISO19115_3SchemaPlugin
     @Override
     public Element createBasicTypeCharacterString() {
         return new Element("CharacterString", ISO19115_3Namespaces.GCO);
+    }
+
+    @Override
+    public Map<String, Namespace> getCswTypeNames() {
+        return allTypenames;
     }
 }
