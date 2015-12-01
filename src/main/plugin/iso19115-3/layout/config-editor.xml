@@ -373,9 +373,13 @@
         <for name="mrd:distributorContact"/>
         <for name="mcc:processor"/>
       </flatModeExceptions>
+      <field name="metadaTitle"
+                   xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:title"/>
       <tab id="metadataInformation" default="true" mode="flat">
         <section name="metadatamainsection">
           <section name="metadaDefinition">
+             <field name="metadaTitle"
+                   xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:title"/>
             <!-- Metadata language -->
             <field name="metadaLanguage"
                    xpath="/mdb:MD_Metadata/mdb:defaultLocale/lan:PT_Locale/lan:language"/>
@@ -402,42 +406,42 @@
 
 
 
+           
+            
+          </section>
+          <section name="resourceDate">
+            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:date"/>
+          </section>
+          <field xpath="/mdb:MD_Metadata/mdb:metadataIdentifier/mcc:MD_Identifier/mcc:code"/>
+          <!-- FIXME: Not sure why this does not work ? -->
+           <field name="resourceIdentifier"
+                   xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code"/>
+            <!-- TODO: If no resource identifier defined, we should add a default ? Any rules ? -->
+            <field xpath="/mdb:MD_Metadata/mdb:metadataScope/mdb:MD_MetadataScope/mdb:resourceScope"/>
+
+          
+          
+
+        </section>
+        
+      </tab>
+      <tab id="dataDescription" mode="flat">
+        <section name="datamainsection">
+          <section name="datadefinition">
             <field name="metadaTitle"
                    xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:title"/>
             <field name="metadaAbstract"
                    xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:abstract"
                    or="abstract"
                    in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
-          </section>
-          <section name="metadaOwner">
-            <!-- View all type of contacts and
-            allows to add one if not present with or and in attribute and
-            allows adding more than one by adding flatModeException.
-            -->
-            <field xpath="/mdb:MD_Metadata/mdb:contact"
-                   or="contact"
-                   in="/mdb:MD_Metadata"/>
-            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:pointOfContact"
-                   in="pointOfContact"
-                   or="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
-            <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributor"
-                   or="distributor"
-                   in="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution"/>
-            <!-- Maybe other in DQ section ? -->
+           
 
-            <!-- TODO: Display full metadata contact information.
-            This section will list all CI_Responsibility from the metadata document
-            and will allow to manage their roles (which will be a combination of
-            element location (eg. metadata contact, resource contact, resource distributor) +
-            codeListValue for role.
+            
 
-            This will probably be displayed in a dedicated tab.
-             -->
+            
           </section>
-          <section name="resourceDate">
-            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:date"/>
-          </section>
-          <section name="otherKeywords">
+          
+           <section name="otherKeywords">
             <!-- Wallonia theme selector
             No need for a name, the thesaurus title will be used. -->
             <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
@@ -497,39 +501,29 @@
                             not(contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,
                                          'Thèmes du géoportail wallon'))]"/>
           </section>
-        </section>
-        
-      </tab>
-      <tab id="dataDescription" mode="flat">
-        <section name="datamainsection">
-          <section name="datadefinition">
-            <field name="resourceIdentifier"
-                   xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code"/>
-            <!-- TODO: If no resource identifier defined, we should add a default ? Any rules ? -->
-
-            <!-- FIXME: Not sure why this does not work ? -->
-            <field xpath="/mdb:MD_Metadata/mdb:metadataScope/mdb:MD_MetadataScope/mdb:resourceScope"/>
-
-            <!-- FIXME: Not sure this is the appropriate level ? Adding first resource type -->
-            <field xpath="/mdb:MD_Metadata/mdb:resourceLineage/mrl:LI_Lineage/mrl:scope/mcc:MD_Scope/mcc:level"/>
-            <field xpath="/mdb:MD_Metadata/mdb:resourceLineage/mrl:LI_Lineage/mrl:statement"/>
-            <!-- TODO: Probably provide a add action to add a default value if none defined. -->
-          </section>
-          <section name="constraints">
-            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceConstraints/mco:MD_LegalConstraints/mco:accessConstraints"/>
-            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceConstraints/mco:MD_LegalConstraints/mco:useConstraints"/>
-            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceConstraints/mco:MD_LegalConstraints/mco:otherConstraints"/>
-            <!-- TODO: Probably provide a add action to add a default value if none defined. -->
-          </section>
-          <section name="">
-            <field name="scale"
-                   xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:spatialResolution"/>
-            <field xpath="/mdb:MD_Metadata/mdb:referenceSystemInfo/mrs:MD_ReferenceSystem/mrs:referenceSystemIdentifier"/>
-          </section>
+          
           <section name="extent">
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:geographicElement/gex:EX_GeographicBoundingBox"/>
           </section>
+          <section name="">
+            <field name="scale"
+                   xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:spatialResolution"/>
+           
+          </section>
+        </section>
+        <section name="quality">
+        <!-- FIXME: Not sure this is the appropriate level ? Adding first resource type -->
+            <field xpath="/mdb:MD_Metadata/mdb:resourceLineage/mrl:LI_Lineage/mrl:scope/mcc:MD_Scope/mcc:level"/>
+            <field xpath="/mdb:MD_Metadata/mdb:resourceLineage/mrl:LI_Lineage/mrl:statement"/>
+            <!-- TODO: Probably provide a add action to add a default value if none defined. -->
+            <section name="completenessOmission">
+            <field name="completenessOmission" xpath="/mdb:MD_Metadata/mdb:dataQualityInfo/*/mdq:report/mdq:DQ_CompletenessOmission" />
+            </section>
+            <!--field xpath="/mdb:MD_Metadata/mdb:dataQualityInfo/*/mdq:report/*/mdq:result/mdq:DQ_QuantitativeResult" /-->
+            <section name="absoluteExternalPositionalAccuracy">
+            <field name="absoluteExternalPositionalAccuracy" xpath="/mdb:MD_Metadata/mdb:dataQualityInfo/*/mdq:report/mdq:DQ_AbsoluteExternalPositionalAccuracy" />
+            </section>
         </section>
       </tab>
 
@@ -543,6 +537,14 @@
       -->
       <tab id="dataDistribution" mode="flat">
         <section name="distributionmainsection">
+          <section name="constraints">
+            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceConstraints/mco:MD_LegalConstraints/mco:accessConstraints"/>
+            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceConstraints/mco:MD_LegalConstraints/mco:useConstraints"/>
+            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceConstraints/mco:MD_LegalConstraints/mco:otherConstraints"/>
+            <!-- TODO: Probably provide a add action to add a default value if none defined. -->
+          </section>
+
+          <field xpath="/mdb:MD_Metadata/mdb:referenceSystemInfo/mrs:MD_ReferenceSystem/mrs:referenceSystemIdentifier"/>
           <section name="distributionformat">
             <field name="format" xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatSpecificationCitation"/>
 
@@ -608,6 +610,63 @@
           <!--field name="format" xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource/cit:protocol"/-->
         </section>
       </tab>
+      <tab  name="tbc">
+        <section name="metadaOwner">
+            <!-- View all type of contacts and
+            allows to add one if not present with or and in attribute and
+            allows adding more than one by adding flatModeException.
+            -->
+            <field xpath="/mdb:MD_Metadata/mdb:contact"
+                   or="contact"
+                   in="/mdb:MD_Metadata"/>
+            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:pointOfContact"
+                   in="pointOfContact"
+                   or="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
+            <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributor"
+                   or="distributor"
+                   in="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution"/>
+            <!-- Maybe other in DQ section ? -->
+
+            <!-- TODO: Display full metadata contact information.
+            This section will list all CI_Responsibility from the metadata document
+            and will allow to manage their roles (which will be a combination of
+            element location (eg. metadata contact, resource contact, resource distributor) +
+            codeListValue for role.
+
+            This will probably be displayed in a dedicated tab.
+             -->
+          </section>
+        <section name="metadaOwner">
+            <!-- View all type of contacts and
+            allows to add one if not present with or and in attribute and
+            allows adding more than one by adding flatModeException.
+            -->
+            <field xpath="/mdb:MD_Metadata/mdb:contact"
+                   or="contact"
+                   in="/mdb:MD_Metadata"/>
+            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:pointOfContact"
+                   in="pointOfContact"
+                   or="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
+            <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributor"
+                   or="distributor"
+                   in="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution"/>
+            <!-- Maybe other in DQ section ? -->
+
+            <!-- TODO: Display full metadata contact information.
+            This section will list all CI_Responsibility from the metadata document
+            and will allow to manage their roles (which will be a combination of
+            element location (eg. metadata contact, resource contact, resource distributor) +
+            codeListValue for role.
+
+            This will probably be displayed in a dedicated tab.
+             -->
+          </section>
+      </tab>
+
+
+
+
+
       <tab id="inspire" mode="flat">
         <section name="inspiremainsection">
           <section name="keywordsInpire">

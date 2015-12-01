@@ -65,6 +65,8 @@
   <scale>Echelle</scale>
   <constraints>Définition des contraintes</constraints>
   <extent>Définition des emprises (temporelles et géographiques)</extent>
+  <completenessOmission>Données manquantes</completenessOmission>
+  <absoluteExternalPositionalAccuracy>Précision absolue de la position</absoluteExternalPositionalAccuracy>
   <!--TAB 3 - Distribution-->
   <dataDistribution>Accès à la donnée</dataDistribution>
   <distributionmainsection>Informations relatives à la distribution</distributionmainsection>
