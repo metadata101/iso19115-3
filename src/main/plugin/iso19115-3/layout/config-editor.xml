@@ -38,7 +38,7 @@
     <for name="mco:userNote" use="textarea"/>
     <for name="mco:handlingDescription" use="textarea"/>
     <for name="mrl:description" use="textarea"/>
-    <for name="mri:abstract" use="textarea"/>
+    <!--for name="mri:abstract" use="textarea"/-->
     <for name="gmd:checkPointDescription" use="textarea"/>
     <for name="mri:credit" use="textarea"/>
     <for name="mrd:description" use="textarea"/>
@@ -79,6 +79,7 @@
     <for name="gco:Date" use="data-gn-date-picker"/>
     <for name="gco:DateTime" use="data-gn-date-picker"/>
 
+    <for name="mri:abstract" use="data-gn-textarea-abstract-builder"/>
 
     <for name="role" use="data-gn-role"/>
     <!-- gmx:FileName/@src attribute -->
