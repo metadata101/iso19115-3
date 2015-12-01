@@ -377,13 +377,13 @@
       <field name="metadaTitle"
                    xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:title"/>
       <tab id="metadataInformation" default="true" mode="flat">
-        <section name="metadatamainsection">
           <section name="metadaDefinition">
              <field name="metadaTitle"
                    xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:title"/>
             <!-- Metadata language -->
             <field name="metadaLanguage"
                    xpath="/mdb:MD_Metadata/mdb:defaultLocale/lan:PT_Locale/lan:language"/>
+
             <!-- If not defined, add action will add French -->
             <action type="add"
                     name="metadaLanguage" or="defaultLocale"
@@ -403,43 +403,60 @@
                   </mdb:defaultLocale>
                 </snippet>
               </template>
-            </action>
-
-
-
-           
-            
+            </action> 
           </section>
-          <section name="resourceDate">
-            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:date"/>
+          <section name="metadataDate">
+            <field name="metadaDate" xpath="/mdb:MD_Metadata/mdb:dateInfo"
+              or="dateInfo" 
+              in="/mdb:MD_Metadata"/>
           </section>
-          <field xpath="/mdb:MD_Metadata/mdb:metadataIdentifier/mcc:MD_Identifier/mcc:code"/>
-          <!-- FIXME: Not sure why this does not work ? -->
-           <field name="resourceIdentifier"
-                   xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code"/>
-            <!-- TODO: If no resource identifier defined, we should add a default ? Any rules ? -->
-            <field xpath="/mdb:MD_Metadata/mdb:metadataScope/mdb:MD_MetadataScope/mdb:resourceScope"/>
+          <section name="metadataOther">
+          <field name="resourceIdentifier" xpath="/mdb:MD_Metadata/mdb:metadataIdentifier/mcc:MD_Identifier/mcc:code"/>
+          <field xpath="/mdb:MD_Metadata/mdb:metadataScope"/>
+          <action type="add"
+              name="metadaType" or="metadataScope"
+                    in="/mdb:MD_Metadata" if="count(mdb:MD_Metadata/mdb:metadataScope) = 0">
+              <template>
+                <snippet>
+                  <mdb:metadataScope>
+                    <mdb:MD_MetadataScope>
+                       <mdb:resourceScope>
+                          <mcc:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"
+                                            codeListValue="dataset"/>
+                       </mdb:resourceScope>
+                    </mdb:MD_MetadataScope>
+                  </mdb:metadataScope>
+                </snippet>
+              </template>
+            </action> 
 
-          
-          
+          </section>
+          <section name="metadataLinks">
+            <action type="associatedResource"
+                  name="linkToSibling"
+                  process="sibling"/>
 
-        </section>
-        
+          </section>
       </tab>
       <tab id="dataDescription" mode="flat">
         <section name="datamainsection">
           <section name="datadefinition">
             <field name="metadaTitle"
                    xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:title"/>
-            <field name="metadaAbstract"
+                   <!-- fails when more than one TODO -->
+            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:citation/*/cit:alternateTitle"
+                   or="alternateTitle"
+                   in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation"/>
+            <!--field name="metadaAlternateTitle"
+                   xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:alternateTitle" or="alternateTitle" 
+              in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation"/-->
+              <field name="metadaAbstract"
                    xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:abstract"
                    or="abstract"
                    in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
-           
-
-            
-
-            
+            <action type="associatedResource"
+                  name="addThumbnail"
+                  process="thumbnail"/>
           </section>
           
            <section name="otherKeywords">
@@ -519,13 +536,48 @@
             <field xpath="/mdb:MD_Metadata/mdb:resourceLineage/mrl:LI_Lineage/mrl:statement"/>
             <!-- TODO: Probably provide a add action to add a default value if none defined. -->
             <section name="completenessOmission">
-            <field name="completenessOmission" xpath="/mdb:MD_Metadata/mdb:dataQualityInfo/*/mdq:report/mdq:DQ_CompletenessOmission" />
+              <!-- TODO: no element in xml -->
+            <field name="completenessOmission" xpath="/mdb:MD_Metadata/mdb:dataQualityInfo/*/mdq:report/mdq:DQ_CompletenessOmission" 
+                   or="DQ_CompletenessOmission"
+                   in="/mdb:MD_Metadata/mdb:dataQualityInfo/*/mdq:report/mdq:DQ_CompletenessOmission"/>
             </section>
             <!--field xpath="/mdb:MD_Metadata/mdb:dataQualityInfo/*/mdq:report/*/mdq:result/mdq:DQ_QuantitativeResult" /-->
             <section name="absoluteExternalPositionalAccuracy">
             <field name="absoluteExternalPositionalAccuracy" xpath="/mdb:MD_Metadata/mdb:dataQualityInfo/*/mdq:report/mdq:DQ_AbsoluteExternalPositionalAccuracy" />
             </section>
-        </section>
+            <section name="resourceDate">
+            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:date"
+              or="date" 
+              in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation"/>
+              <section name="upDate">
+                <!-- TODO: no element in xml -->
+              <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceMaintenance/mmi:MD_MaintenanceInformation/mmi:maintenanceAndUpdateFrequency" or="maintenanceAndUpdateFrequency"
+                   in="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceMaintenance/mmi:MD_MaintenanceInformation"/>
+                   <!-- TODO: no element in xml -->
+              <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceMaintenance/mmi:MD_MaintenanceInformation/mmi:maintenanceNote" or="maintenanceNote"
+                   in="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceMaintenance/mmi:MD_MaintenanceInformation"/>
+              </section>
+          </section>
+          <section name="datalinks">
+            <action type="associatedResource"
+                  name="linkToFeatureCatalog"
+                  process="fcats"/>
+            <action type="associatedResource"
+                  name="linkToDataset"
+                  process="dataset"/>
+            <action type="associatedResource"
+                  name="linkToSource"
+                  process="source"/>
+            <action type="associatedResource"
+                  name="linkToParent"
+                  process="parent"/>
+            <action type="associatedResource"
+                  process="onlinesrc"/>
+         </section>
+         </section>
+         
+          <field 
+                   xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code"/>  
       </tab>
 
 <!--
