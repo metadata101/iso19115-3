@@ -84,29 +84,79 @@ Validation steps are first XSD validation made on the schema, then the schematro
 
 ## CSW requests:
 
-If requesting an ISO record using the gmd namespace, metadata are converted to ISO19139.
+If requesting using output schema http://www.isotc211.org/2005/gmd an ISO19139 record is returned. 
+To retrieve the record in ISO19115-3, use http://standards.iso.org/iso/19115/-3/mdb/1.0 output schema.
 ```
 <?xml version="1.0"?>
 <csw:GetRecordById xmlns:csw="http://www.opengis.net/cat/csw/2.0.2"
   service="CSW"
   version="2.0.2"
-  outputSchema="http://standards.iso.org/iso/19115/-3/gmd">
+  outputSchema="http://standards.iso.org/iso/19115/-3/mdb/1.0">
     <csw:Id>cecd1ebf-719e-4b1f-b6a7-86c17ed02c62</csw:Id>
     <csw:ElementSetName>brief</csw:ElementSetName>
 </csw:GetRecordById>
 ```
-
-To retrieve the record in ISO19115-3, use outputSchema = own to not to apply conversion.
-
+Note: outputSchema = own will also return the record in ISO19115-3.
 
 
 
-## GeoNetwork version to use with this plugin
 
-This is a draft implementation for testing mainly. It'll not be supported in 2.10.x series
-so don't plug it into it! develop branch should support it.
+## Installing the plugin
 
-In 2.11+ version, in catalog settings, add to metadata/editor/schemaConfig the editor configuration
+### GeoNetwork version to use with this plugin
+
+This is an implementation of the latest XSD published by ISO-TC211. 
+It'll not be supported in 2.10.x series so don't plug it into it!
+Use GeoNetwork 3.0.3+ version.
+
+### Adding the plugin to the source code
+
+The best approach is to add the plugin as a submodule into GeoNetwork schema module.
+
+```
+cd schemas
+git submodule add https://github.com/metadata101/iso19115-3.git iso19115-3
+```
+
+Add the new module to the schema/pom.xml:
+
+```
+  <module>iso19139</module>
+  <module>iso19115-3</module>
+</modules>
+```
+
+Add the dependency in the web module in web/pom.xml:
+
+```
+<dependency>
+  <groupId>${project.groupId}</groupId>
+  <artifactId>schema-iso19115-3</artifactId>
+  <version>${project.version}</version>
+</dependency>
+```
+
+Add the module to the webapp in web/pom.xml:
+
+```
+<execution>
+  <id>copy-schemas</id>
+  <phase>process-resources</phase>
+  ...
+  <resource>
+    <directory>${project.basedir}/../schemas/iso19115-3/src/main/plugin</directory>
+    <targetPath>${basedir}/src/main/webapp/WEB-INF/data/config/schema_plugins</targetPath>
+  </resource>
+```
+
+
+Build the application.
+
+
+### Adding editor configuration
+
+Once the application started, check the plugin is loaded in the admin > standard page. 
+Then in admin > Settings, add to metadata/editor/schemaConfig the editor configuration
 for the schema:
 
 ```
@@ -127,10 +177,6 @@ for the schema:
 ### Formatter
 
 
-### CSW support
-
-Current implementation support ISO19115-3 as output format using the "own" parameter which is a specific feature of GeoNetwork. It could be relevant for a schema plugin to define what outputSchema could be used as output for CSW response and define the conversion to apply. http://standards.iso.org/iso/19115/-3/mdb/1.0/2014-12-25 should be added to the list.
-
 ### GML support
 
 Polygon or line editing and view.
@@ -147,4 +193,3 @@ Comments and questions to geonetwork-developers or geonetwork-users mailing list
 * François Prunayre (titellus)
 * Arnaud De Groof (Spacebel)
 * Ted Habermann (hdfgroup)
-

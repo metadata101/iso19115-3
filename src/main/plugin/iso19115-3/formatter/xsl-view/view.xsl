@@ -433,7 +433,7 @@
 
   <!-- Date -->
   <xsl:template mode="render-field"
-                match="cit:date"
+                match="cit:date|mdb:dateInfo"
                 priority="100">
     <dl class="gn-date">
       <dt>
@@ -531,7 +531,7 @@
   <!-- Render values for text ... -->
   <xsl:template mode="render-value"
                 match="gco:CharacterString|gco:Integer|gco:Decimal|
-       gco:Boolean|gco:Real|gco:Measure|gco:Length|gco:Distance|gco:Angle|
+       gco:Boolean|gco:Real|gco:Measure|gco:Length|gco:Angle|
        gco:Scale|gco:Record|gco:RecordType|
        gco:LocalName|gml:beginPosition|gml:endPosition">
     <xsl:value-of select="normalize-space(.)"/>
@@ -542,6 +542,11 @@
     <xsl:apply-templates mode="localised" select="../node()">
       <xsl:with-param name="langId" select="$language"/>
     </xsl:apply-templates>
+  </xsl:template>
+
+  <xsl:template mode="render-value"
+                match="gco:Distance">
+    <span><xsl:value-of select="."/>&#10;<xsl:value-of select="@uom"/></span>
   </xsl:template>
 
   <!-- ... URL -->
