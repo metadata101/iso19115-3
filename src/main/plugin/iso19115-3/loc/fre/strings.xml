@@ -81,7 +81,7 @@
   <quality>Qualité</quality>
   <resourceDate>Cycle de vie de la ressource</resourceDate>
   <datalinks>Liens</datalinks>
-  <upDate>Mise à jour</upDate>
+  <upDate>Paramètres de mise à jour</upDate>
   
   <scale>Echelle</scale>
   <constraints>Définition des contraintes</constraints>
@@ -89,6 +89,8 @@
   <completenessOmission>Données manquantes</completenessOmission>
   <absoluteExternalPositionalAccuracy>Précision absolue de la position</absoluteExternalPositionalAccuracy>
   <!--TAB 3 - Distribution-->
+  <access>Distribution de la ressource</access>
+  <epsgCode>Code EPSG</epsgCode>
   <dataDistribution>Accès à la donnée</dataDistribution>
   <distributionmainsection>Informations relatives à la distribution</distributionmainsection>
   <description>Description</description>
@@ -100,7 +102,12 @@
   <links>Ressources associées à la donnée</links>
   <contact>contact</contact>
   <originator>originator</originator>
-  <!--TAB 5 - Inspire-->
+
+  <!--TAB 5 - Accès en ligne-->
+  <onlineAccess>Accès en ligne</onlineAccess>
+  <Service>Service ou applications</Service>
+  <Source>Ressource en ligne</Source>
+  <!--TAB 6 - Inspire-->
   <inspiremainsection>INSPIRE</inspiremainsection>
   <keywordsInpire>Mots-clés relatifs à la directive INSPIRE</keywordsInpire>
   <conformityInpire>Conformité à la directive INSPIRE</conformityInpire>
