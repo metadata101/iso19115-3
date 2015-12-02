@@ -434,7 +434,49 @@
                    xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:abstract"
                    or="abstract"
                    in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
-           
+
+            <!-- Free theme keyword / Add action if not existing -->
+            <!-- Free theme keyword / Add suggestion to explode comma or ; -->
+            <!-- Suggestion / Contextualize comma exploder to keyword without thesaurus. -->
+            <!-- Temporal extent / Add action. -->
+            <!-- DQ / scope = hierarchylevel -->
+            <!-- DQ / Add action Précision planimétrique / altimétrique, Absence -->
+            <!-- DQ / Template for DQ planimétrique -->
+            <!-- Add action from associated resource drop/list/add -->
+            <!-- Distribution
+            * Use constraint from directory
+            * Add action from directory
+            * SRS
+            * Add action for format
+            * Distributor - bloc dynamique ? > Format - migration pas de version
+            * Fix orderingInstruction
+            -->
+            <!-- INSPIRE
+             * This record has one INSPIRE theme
+             * Is in scope
+             * Is valid or not
+             * Add the view service
+             -->
+            <!-- Contact
+             * Editeur = me
+             * entry-selector with a role and xpath
+            -->
+          </section>
+          <section name="metadaOwner">
+            <!-- View all type of contacts and
+            allows to add one if not present with or and in attribute and
+            allows adding more than one by adding flatModeException.
+            -->
+            <field xpath="/mdb:MD_Metadata/mdb:contact"
+                   or="contact"
+                   in="/mdb:MD_Metadata"/>
+            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:pointOfContact"
+                   in="pointOfContact"
+                   or="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
+            <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributor"
+                   or="distributor"
+                   in="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution"/>
+            <!-- Maybe other in DQ section ? -->
 
             
 
