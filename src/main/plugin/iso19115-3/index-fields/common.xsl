@@ -482,21 +482,14 @@
       </xsl:for-each>
 
 
-      <xsl:for-each select="mri:pointOfContact/cit:CI_Responsibility">
-        <xsl:variable name="orgName" select="string(cit:party/cit:CI_Organisation/cit:name/*)"/>
+      <xsl:for-each select="mri:pointOfContact/cit:CI_Responsibility/cit:party/cit:CI_Organisation">
+        <xsl:variable name="orgName" select="string(cit:name/*)"/>
+        <xsl:copy-of select="gn-fn-iso19115-3:index-field('orgName', cit:name, $langId)"/>
 
-        <xsl:copy-of select="gn-fn-iso19115-3:index-field('orgName', cit:party/cit:CI_Organisation/cit:name, $langId)"/>
-
-        <xsl:variable name="role" select="cit:role/*/@codeListValue"/>
-        <xsl:variable name="email" select="cit:contactInfo/cit:CI_Contact/
-                                              cit:address/cit:CI_Address/
-                                              cit:electronicMailAddress/gco:CharacterString"/>
-        <xsl:variable name="logo" select="cit/party/cit:CI_Organisation/
-                                              cit:logo/mcc:MD_BrowseGraphic/mcc:fileName/gco:CharacterString"/>
-
-        <Field name="responsibleParty"
-               string="{concat($role, '|resource|', $orgName, '|', $logo, '|', $email)}"
-               store="true" index="false"/>
+        <xsl:call-template name="ContactIndexing">
+          <xsl:with-param name="lang" select="$lang"/>
+          <xsl:with-param name="langId" select="$langId"/>
+        </xsl:call-template>
       </xsl:for-each>
 
 
@@ -676,22 +669,6 @@
 
 
 
-
-    <xsl:for-each select="$metadata/mdb:contact/cit:CI_Responsibility">
-      <xsl:variable name="orgName" select="string(cit:party/cit:CI_Organisation/cit:name/*)"/>
-      <xsl:copy-of select="gn-fn-iso19115-3:index-field('orgName', cit:party/cit:CI_Organisation/cit:name, $langId)"/>
-
-      <xsl:variable name="role" select="cit:role/*/@codeListValue"/>
-      <xsl:variable name="logo" select="cit/party/cit:CI_Organisation/
-                                              cit:logo/mcc:MD_BrowseGraphic/mcc:fileName/gco:CharacterString"/>
-
-      <Field name="responsibleParty" string="{concat($role, '|metadata|', $orgName, '|', $logo)}" store="true" index="false"/>
-    </xsl:for-each>
-
-
-
-
-
     <xsl:for-each select="$metadata/mdb:contentInfo/mrc:MD_FeatureCatalogueDescription/mrc:featureCatalogueCitation[@uuidref]">
       <Field  name="hasfeaturecat" string="{string(@uuidref)}" store="false" index="true"/>
     </xsl:for-each>
@@ -827,6 +804,17 @@
 
 
 
+    <xsl:for-each select="$metadata/mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation">
+      <xsl:variable name="orgName" select="string(cit:name/*)"/>
+      <!--<xsl:copy-of select="gn-fn-iso19115-3:index-field('orgName', cit:name, $langId)"/>-->
+
+      <xsl:call-template name="ContactIndexing">
+        <xsl:with-param name="type" select="'metadata'"/>
+        <xsl:with-param name="lang" select="$lang"/>
+        <xsl:with-param name="langId" select="$langId"/>
+      </xsl:call-template>
+    </xsl:for-each>
+
 
     <xsl:for-each select="$metadata/mdb:dateInfo/cit:date/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']/cit:date/*">
       <Field name="changeDate" string="{string(.)}" store="true" index="true"/>
@@ -863,6 +851,35 @@
 
 
 
+  <xsl:template name="ContactIndexing">
+    <xsl:param name="type" select="'resource'" required="no" as="xs:string"/>
+    <xsl:param name="lang"/>
+    <xsl:param name="langId"/>
+
+    <xsl:variable name="orgName" select="string(cit:name/*)"/>
+    <xsl:copy-of select="gn-fn-iso19115-3:index-field('orgName', cit:name, $langId)"/>
+    <xsl:variable name="role" select="../../cit:role/*/@codeListValue"/>
+    <xsl:variable name="email" select="cit:contactInfo/cit:CI_Contact/
+                                              cit:address/cit:CI_Address/
+                                              cit:electronicMailAddress/gco:CharacterString"/>
+    <xsl:variable name="roleTranslation" select="util:getCodelistTranslation('cit:CI_RoleCode', string($role), string($lang))"/>
+    <xsl:variable name="logo" select="cit:logo/mcc:MD_BrowseGraphic/mcc:fileName/gco:CharacterString"/>
+    <xsl:variable name="phones"
+                  select="cit:contactInfo/cit:CI_Contact/cit:phone/*/cit:number/gco:CharacterString"/>
+    <!--<xsl:variable name="phones"
+                  select="cit:contactInfo/cit:CI_Contact/cit:phone/concat(*/cit:numberType/*/@codeListValue, ':', */cit:number/gco:CharacterString)"/>-->
+    <xsl:variable name="address" select="string-join(cit:contactInfo/*/cit:address/*/(
+                                          cit:deliveryPoint|cit:postalCode|cit:city|
+                                          cit:administrativeArea|cit:country)/gco:CharacterString/text(), ', ')"/>
+    <xsl:variable name="individualNames" select="''"/>
+    <xsl:variable name="positionName" select="''"/>
+
+    <Field name="responsibleParty"
+           string="{concat($roleTranslation, '|', $type, '|', $orgName, '|', $logo, '|',
+                              string-join($email, ','), '|', $individualNames, '|', $positionName, '|',
+                              $address, '|', string-join($phones, ','))}"
+           store="true" index="false"/>
+  </xsl:template>
 
 
   <!-- Traverse the tree in index mode -->
