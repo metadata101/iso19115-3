@@ -38,7 +38,7 @@
     <for name="mco:userNote" use="textarea"/>
     <for name="mco:handlingDescription" use="textarea"/>
     <for name="mrl:description" use="textarea"/>
-    <for name="mri:abstract" use="textarea"/>
+    <!--for name="mri:abstract" use="textarea"/-->
     <for name="gmd:checkPointDescription" use="textarea"/>
     <for name="mri:credit" use="textarea"/>
     <for name="mrd:description" use="textarea"/>
@@ -79,6 +79,7 @@
     <for name="gco:Date" use="data-gn-date-picker"/>
     <for name="gco:DateTime" use="data-gn-date-picker"/>
 
+    <for name="mri:abstract" use="data-gn-textarea-abstract-builder"/>
 
     <for name="role" use="data-gn-role"/>
     <!-- gmx:FileName/@src attribute -->
@@ -373,16 +374,14 @@
         <for name="mrd:distributorContact"/>
         <for name="mcc:processor"/>
       </flatModeExceptions>
-      <field name="metadaTitle"
-                   xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:title"/>
       <tab id="metadataInformation" default="true" mode="flat">
-        <section name="metadatamainsection">
           <section name="metadaDefinition">
              <field name="metadaTitle"
                    xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:title"/>
             <!-- Metadata language -->
             <field name="metadaLanguage"
                    xpath="/mdb:MD_Metadata/mdb:defaultLocale/lan:PT_Locale/lan:language"/>
+
             <!-- If not defined, add action will add French -->
             <action type="add"
                     name="metadaLanguage" or="defaultLocale"
@@ -402,35 +401,54 @@
                   </mdb:defaultLocale>
                 </snippet>
               </template>
-            </action>
-
-
-
-           
-            
+            </action> 
           </section>
-          <section name="resourceDate">
-            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:date"/>
+          <section name="metadataDate">
+            <field name="metadaDate" xpath="/mdb:MD_Metadata/mdb:dateInfo"
+              or="dateInfo" 
+              in="/mdb:MD_Metadata"/>
           </section>
-          <field xpath="/mdb:MD_Metadata/mdb:metadataIdentifier/mcc:MD_Identifier/mcc:code"/>
-          <!-- FIXME: Not sure why this does not work ? -->
-           <field name="resourceIdentifier"
-                   xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code"/>
-            <!-- TODO: If no resource identifier defined, we should add a default ? Any rules ? -->
-            <field xpath="/mdb:MD_Metadata/mdb:metadataScope/mdb:MD_MetadataScope/mdb:resourceScope"/>
+          <section name="metadataOther">
+          <field name="resourceIdentifier" xpath="/mdb:MD_Metadata/mdb:metadataIdentifier/mcc:MD_Identifier/mcc:code"/>
+          <field xpath="/mdb:MD_Metadata/mdb:metadataScope"/>
+          <action type="add"
+              name="metadaType" or="metadataScope"
+                    in="/mdb:MD_Metadata" if="count(mdb:MD_Metadata/mdb:metadataScope) = 0">
+              <template>
+                <snippet>
+                  <mdb:metadataScope>
+                    <mdb:MD_MetadataScope>
+                       <mdb:resourceScope>
+                          <mcc:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"
+                                            codeListValue="dataset"/>
+                       </mdb:resourceScope>
+                    </mdb:MD_MetadataScope>
+                  </mdb:metadataScope>
+                </snippet>
+              </template>
+            </action> 
 
-          
-          
+          </section>
+          <section name="metadataLinks">
+            <action type="associatedResource"
+                  name="linkToSibling"
+                  process="sibling"/>
 
-        </section>
-        
+          </section>
       </tab>
       <tab id="dataDescription" mode="flat">
         <section name="datamainsection">
           <section name="datadefinition">
             <field name="metadaTitle"
                    xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:title"/>
-            <field name="metadaAbstract"
+                   <!-- fails when more than one TODO -->
+            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:citation/*/cit:alternateTitle"
+                   or="alternateTitle"
+                   in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation"/>
+            <!--field name="metadaAlternateTitle"
+                   xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:alternateTitle" or="alternateTitle" 
+              in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation"/-->
+              <field name="metadaAbstract"
                    xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:abstract"
                    or="abstract"
                    in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
@@ -461,26 +479,9 @@
              * Editeur = me
              * entry-selector with a role and xpath
             -->
-          </section>
-          <section name="metadaOwner">
-            <!-- View all type of contacts and
-            allows to add one if not present with or and in attribute and
-            allows adding more than one by adding flatModeException.
-            -->
-            <field xpath="/mdb:MD_Metadata/mdb:contact"
-                   or="contact"
-                   in="/mdb:MD_Metadata"/>
-            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:pointOfContact"
-                   in="pointOfContact"
-                   or="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
-            <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributor"
-                   or="distributor"
-                   in="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution"/>
-            <!-- Maybe other in DQ section ? -->
-
-            
-
-            
+            <action type="associatedResource"
+                  name="addThumbnail"
+                  process="thumbnail"/>
           </section>
           
            <section name="otherKeywords">
@@ -556,28 +557,52 @@
         </section>
         <section name="quality">
         <!-- FIXME: Not sure this is the appropriate level ? Adding first resource type -->
-            <field xpath="/mdb:MD_Metadata/mdb:resourceLineage/mrl:LI_Lineage/mrl:scope/mcc:MD_Scope/mcc:level"/>
-            <field xpath="/mdb:MD_Metadata/mdb:resourceLineage/mrl:LI_Lineage/mrl:statement"/>
+          <field xpath="/mdb:MD_Metadata/mdb:resourceLineage/mrl:LI_Lineage/mrl:scope/mcc:MD_Scope/mcc:level"/>
+          <field xpath="/mdb:MD_Metadata/mdb:resourceLineage/mrl:LI_Lineage/mrl:statement"/>
             <!-- TODO: Probably provide a add action to add a default value if none defined. -->
-            <section name="completenessOmission">
-            <field name="completenessOmission" xpath="/mdb:MD_Metadata/mdb:dataQualityInfo/*/mdq:report/mdq:DQ_CompletenessOmission" />
+          <section name="completenessOmission">
+              <!-- TODO: Provide an add button if no element in xml -->
+            <field name="completenessOmission" xpath="/mdb:MD_Metadata/mdb:dataQualityInfo/*/mdq:report/mdq:DQ_CompletenessOmission" 
+                   or="report"
+                   in="/mdb:MD_Metadata/mdb:dataQualityInfo/*"/>
+          </section>
+          <section name="absoluteExternalPositionalAccuracy">
+              <!-- TODO: Provide an add button if no element in xml -->
+            <field name="absoluteExternalPositionalAccuracy" xpath="/mdb:MD_Metadata/mdb:dataQualityInfo/*/mdq:report/mdq:DQ_AbsoluteExternalPositionalAccuracy" or="report"
+                   in="/mdb:MD_Metadata/mdb:dataQualityInfo/*"/>
+          </section>
+          <section name="resourceDate">
+            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:date"
+              or="date" 
+              in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation"/>
+            <section name="upDate">
+                <!-- TODO: Limit to one element (hide the button if element exists) -->
+              <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceMaintenance/mmi:MD_MaintenanceInformation/mmi:maintenanceAndUpdateFrequency" or="maintenanceAndUpdateFrequency"
+                   in="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceMaintenance/mmi:MD_MaintenanceInformation" if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceMaintenance/mmi:MD_MaintenanceInformation/mmi:maintenanceAndUpdateFrequency) = 0"/>
+                   <!-- TODO: Limit to one element (hide the button if element exists) -->
+              <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceMaintenance/mmi:MD_MaintenanceInformation/mmi:maintenanceNote" or="maintenanceNote"
+                   in="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceMaintenance/mmi:MD_MaintenanceInformation" if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceMaintenance/mmi:MD_MaintenanceInformation/mmi:maintenanceNote) = 0"/>
             </section>
-            <!--field xpath="/mdb:MD_Metadata/mdb:dataQualityInfo/*/mdq:report/*/mdq:result/mdq:DQ_QuantitativeResult" /-->
-            <section name="absoluteExternalPositionalAccuracy">
-            <field name="absoluteExternalPositionalAccuracy" xpath="/mdb:MD_Metadata/mdb:dataQualityInfo/*/mdq:report/mdq:DQ_AbsoluteExternalPositionalAccuracy" />
-            </section>
-        </section>
+          </section>
+          <section name="datalinks">
+            <action type="associatedResource"
+                  name="linkToFeatureCatalog"
+                  process="fcats"/>
+            <action type="associatedResource"
+                  name="linkToDataset"
+                  process="dataset"/>
+            <action type="associatedResource"
+                  name="linkToSource"
+                  process="source"/>
+            <action type="associatedResource"
+                  name="linkToParent"
+                  process="parent"/>
+            <action type="associatedResource"
+                  process="onlinesrc"/>
+         </section>
+        </section> 
       </tab>
-
-<!--
-      <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:spatialResolution>/mri:MD_Resolution/mri:equivalentScale/mri:MD_RepresentativeFraction/mri:denominator"/>
-        
-        <section name="">
-          <field xpath="/mdb:MD_Metadata/mdb:referenceSystemInfo/mrs:MD_ReferenceSystem/mrs:referenceSystemIdentifier"/>
-        </section>
-
-      -->
-      <tab id="dataDistribution" mode="flat">
+      <tab id="access" mode="flat">
         <section name="distributionmainsection">
           <section name="constraints">
             <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceConstraints/mco:MD_LegalConstraints/mco:accessConstraints"/>
@@ -585,8 +610,10 @@
             <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceConstraints/mco:MD_LegalConstraints/mco:otherConstraints"/>
             <!-- TODO: Probably provide a add action to add a default value if none defined. -->
           </section>
-
-          <field xpath="/mdb:MD_Metadata/mdb:referenceSystemInfo/mrs:MD_ReferenceSystem/mrs:referenceSystemIdentifier"/>
+          <section name="epsgCode">
+            <field xpath="/mdb:MD_Metadata/mdb:referenceSystemInfo/*/mrs:referenceSystemIdentifier" or="referenceSystemIdentifier"
+                   in="/mdb:MD_Metadata/mdb:referenceSystemInfo/*"/>
+          </section>
           <section name="distributionformat">
             <field name="format" xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatSpecificationCitation"/>
 
@@ -610,49 +637,28 @@
               </template>
             </action>
           </section>
-          <section name="distributor">
+          <!--section name="distributor">
             <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatDistributor/mrd:MD_Distributor/mrd:distributorContact/cit:CI_Responsibility"/>
-          </section>
+          </section-->
           <section name="distributionorder">
-            <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatDistributor/mrd:MD_Distributor/mrd:distributionOrderProcess"/>
+            <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatDistributor/mrd:MD_Distributor/mrd:distributionOrderProcess" or="distributionOrderProcess"
+                   in="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatDistributor/mrd:MD_Distributor"/>
           </section>
-          <!--
-          This is mainly managed by the associated resource panel on the right.
-          TODO: Maybe some interactions from the main panel with the associated resource panel should be created ?
-          <section name="distributiononline">
-            <field xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource"/>
-            <action type="add" name="url" or="onLine"
-              in="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions">
-              <template>
-                <snippet>
-                   <mrd:onLine>
-                    <cit:CI_OnlineResource>
-                       <cit:linkage>
-                          <gco:CharacterString/>
-                       </cit:linkage>
-                       <cit:protocol>
-                          <gco:CharacterString/>
-                       </cit:protocol>
-                       <cit:name>
-                          <gco:CharacterString/>
-                       </cit:name>
-                       <cit:description>
-                          <gco:CharacterString/>
-                       </cit:description>
-                       <cit:function>
-                          <cit:CI_OnLineFunctionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_OnLineFunctionCode"
-                                                     codeListValue=""/>
-                       </cit:function>
-                    </cit:CI_OnlineResource>
-                 </mrd:onLine>
-                </snippet>
-              </template>
-            </action>
-          </section>-->
-          <!--field name="format" xpath="/mdb:MD_Metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource/cit:protocol"/-->
         </section>
       </tab>
-      <tab  name="tbc">
+      <tab id="onlineAccess" mode="flat">
+        <section name="Service">  
+          <action type="associatedResource"
+                  name="linkToService"
+                  process="service"/>
+        </section>
+        <section name="Source">
+          <action type="associatedResource"
+                  name="linkToSource"
+                  process="source"/>
+        </section>
+      </tab>
+      <tab  id="contact" mode="flat">
         <section name="metadaOwner">
             <!-- View all type of contacts and
             allows to add one if not present with or and in attribute and
@@ -704,11 +710,6 @@
              -->
           </section>
       </tab>
-
-
-
-
-
       <tab id="inspire" mode="flat">
         <section name="inspiremainsection">
           <section name="keywordsInpire">
@@ -720,67 +721,6 @@
             <!-- TODO: That is not enough, a add action needs to be added to provide a default report. -->
             <field xpath="/mdb:MD_Metadata/mdb:dataQualityInfo/*/mdq:report/*/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:title" />
           </section>
-        </section>
-      </tab>
-      <tab id="dataDistribution1">
-        <!-- TODO: Tab title is unset. -->
-        <section>
-          <!--
-          + Date de création
-          + Date de validité
-          FIXME: Those dates are already displayed. We should not displayed same field
-          in different tab.
-          -->
-          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/
-                          mri:citation/*/cit:date[
-                            */cit:dateType/*/@codeListValue = 'creation']"/>
-
-          <field name="temporalExtent" templateModeOnly="true"
-                 xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:extent/*/gex:temporalElement"
-                 if="count(mdb:MD_Metadata/mdb:identificationInfo/*) > 0">
-            <template>
-              <values>
-                <!-- -Need a * for gml:TimePeriodTypeCHOICE_ELEMENT2 added by editor enumerated tree -->
-                <key label="beginPosition"
-                     xpath="gex:EX_TemporalExtent/gex:extent/gml:TimePeriod/*/gml:beginPosition"
-                     use="gn-date-picker"
-                     tooltip="gex:extent|gex:EX_TemporalExtent">
-                  <directiveAttributes data-tag-name="gml:beginPosition"/>
-                </key>
-                <key label="endPosition"
-                     xpath="gex:EX_TemporalExtent/gex:extent/gml:TimePeriod/*/gml:endPosition"
-                     use="gn-date-picker"
-                     tooltip="gex:extent|gex:EX_TemporalExtent"
-                        >
-                  <directiveAttributes
-                          data-tag-name="gml:endPosition"
-                          data-indeterminate-position="eval#gex:EX_TemporalExtent/gex:extent/gml:TimePeriod/*/gml:endPosition/@indeterminatePosition"/>
-                </key>
-              </values>
-              <snippet>
-                <gex:temporalElement>
-                  <gex:EX_TemporalExtent>
-                    <gex:extent>
-                      <gml:TimePeriod gml:id="">
-                        {{beginPosition}}
-                        {{endPosition}}
-                      </gml:TimePeriod>
-                    </gex:extent>
-                  </gex:EX_TemporalExtent>
-                </gex:temporalElement>
-              </snippet>
-            </template>
-          </field>
-
-
-          <field
-                  name="timeResolution"
-                  xpath="/mdb:MD_Metadata/mdb:spatialRepresentationInfo/msr:MD_Georectified/
-                            msr:axisDimensionProperties/msr:MD_Dimension/msr:resolution"/>
-          <!-- TODO: Add action is missing. User can't add it if not defined -->
-          <field
-                  xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:resourceMaintenance/*/mmi:maintenanceAndUpdateFrequency"/>
-          <!-- TODO: Add action is missing. User can't add it if not defined -->
         </section>
       </tab>
     </view>

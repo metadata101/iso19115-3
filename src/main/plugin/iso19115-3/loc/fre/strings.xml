@@ -40,34 +40,57 @@
   <!-- METAWAL View and tabs for GeoPortail view-->
   <metawal>Geoportail</metawal>
   <!--TAB 1 - Metadata-->
-  <metadatamainsection>Informations relatives à la métadonnée</metadatamainsection>
-  <metadataInformation>Information Général</metadataInformation>
-  <metadaDefinition>Définition de votre métadonnée</metadaDefinition>
-  <metadaLanguage>Langue de la métadonnée</metadaLanguage>
+  <metadataInformation>Description de la métadonnée</metadataInformation>
+  <metadaDefinition>Informations générales</metadaDefinition>
   <metadaTitle>Titre la métadonnée</metadaTitle>
+  <metadaDate>Ajouter une date spécifique</metadaDate>
+  <metadataDate>Cycle de vie de la métadonnée</metadataDate>
+  <metadataOther>Autres informations</metadataOther>
+  <resourceIdentifier>Identifiant</resourceIdentifier>
+  <metadaType>Domaine d’application de la ressource</metadaType>
+  <metadataLinks>Liens</metadataLinks>
+
+
+
+
+
+  <metadatamainsection>Informations relatives à la métadonnée</metadatamainsection>
+  
+  
+  <metadaLanguage>Langue de la métadonnée</metadaLanguage>
+  
   <metadaAbstract>Résumé descriptif</metadaAbstract>
   <inspireKeywords>Mots-clés INSPIRE</inspireKeywords>
   <otherKeywords>Mots-clés</otherKeywords>
   <dataDistribution1>TODO</dataDistribution1>
   <walloniaTheme>Ajouter un thème du géoportail</walloniaTheme>
-  <resourceDate>Principales dates</resourceDate>
+  
   <metadaOwner>Propriétaire de la métadonnée</metadaOwner>
   <metadataOrganisationName>Prorpiétaire (Organisation)</metadataOrganisationName>
   <metadataOrganisationDeliveryPoint>Rue</metadataOrganisationDeliveryPoint>
   <metadataOrganisationCity>Ville</metadataOrganisationCity>
   <metadataOrganisationPostalCode>Code postal</metadataOrganisationPostalCode>
   <metadataOrganisationPersonName>Nom du responsable</metadataOrganisationPersonName>
-  <metadaDate>Date</metadaDate>
+  
   <!--TAB 2 - Data-->
+  <dataDescription>Description de la ressource</dataDescription>
   <datamainsection>Informations relatives à la donnée</datamainsection>
-  <dataDescription>Description de la donnée</dataDescription>
-  <datadefinition>Définition de la donnée</datadefinition>
+  <datadefinition>Informations générales</datadefinition>
+
+  <alternateTitle>Ajouter un titre alternatif</alternateTitle>
+  <quality>Qualité</quality>
+  <resourceDate>Cycle de vie de la ressource</resourceDate>
+  <datalinks>Liens</datalinks>
+  <upDate>Paramètres de mise à jour</upDate>
+  
   <scale>Echelle</scale>
   <constraints>Définition des contraintes</constraints>
   <extent>Définition des emprises (temporelles et géographiques)</extent>
   <completenessOmission>Données manquantes</completenessOmission>
   <absoluteExternalPositionalAccuracy>Précision absolue de la position</absoluteExternalPositionalAccuracy>
   <!--TAB 3 - Distribution-->
+  <access>Distribution de la ressource</access>
+  <epsgCode>Code EPSG</epsgCode>
   <dataDistribution>Accès à la donnée</dataDistribution>
   <distributionmainsection>Informations relatives à la distribution</distributionmainsection>
   <description>Description</description>
@@ -79,7 +102,12 @@
   <links>Ressources associées à la donnée</links>
   <contact>contact</contact>
   <originator>originator</originator>
-  <!--TAB 5 - Inspire-->
+
+  <!--TAB 5 - Accès en ligne-->
+  <onlineAccess>Accès en ligne</onlineAccess>
+  <Service>Service ou applications</Service>
+  <Source>Ressource en ligne</Source>
+  <!--TAB 6 - Inspire-->
   <inspiremainsection>INSPIRE</inspiremainsection>
   <keywordsInpire>Mots-clés relatifs à la directive INSPIRE</keywordsInpire>
   <conformityInpire>Conformité à la directive INSPIRE</conformityInpire>
