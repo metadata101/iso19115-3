@@ -79,7 +79,8 @@
                         <cit:date>
                             <xsl:choose>
                                 <xsl:when test="descendant::gmd:date/@gcoold:nilReason">
-                                    <xsl:apply-templates select="descendant::gmd:date/@gcoold:nilReason"/>
+                                    <!-- added this to get gmd:dates with gco:nilReason and dateTypes -->
+                                    <xsl:attribute name="gco:nilReason" select="descendant::gmd:date/@gcoold:nilReason"/>
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:call-template name="writeDateTime"/>
@@ -90,7 +91,7 @@
                             <xsl:call-template name="writeCodelistElement">
                                 <xsl:with-param name="elementName" select="'cit:dateType'"/>
                                 <xsl:with-param name="codeListName" select="'cit:CI_DateTypeCode'"/>
-                                <xsl:with-param name="codeListValue" select="gmd:CI_DateTypeCode"/>
+                                <xsl:with-param name="codeListValue" select="gmd:CI_DateTypeCode/@codeListValue"/>
                             </xsl:call-template>
                         </xsl:for-each>
                     </cit:CI_Date>
