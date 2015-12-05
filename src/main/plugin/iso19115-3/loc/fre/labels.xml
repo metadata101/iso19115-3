@@ -358,6 +358,11 @@
     <description iso="true">Code pour le domaine d’application.</description>
     <condition>mandatory</condition>
   </element>
+  <element name="mdb:name" id="41.0" context="mdb:MD_MetadataScope">
+    <label>Précision sur le type de ressource</label>
+    <description iso="true">Description du domaine d’application.</description>
+    <condition>optional</condition>
+  </element>
   <element name="mdb:name" id="41.0">
     <label>Nom</label>
     <description iso="true">Description du domaine d’application.</description>
@@ -789,11 +794,16 @@
       data within the data quality scope</description>
   </element>
   <element name="mdq:explanation">
-    <label>Explanation</label>
-    <description></description>
+    <label>Explication</label>
+    <description>Explication de la signification de conformance pour ces résultats</description>
   </element>
   <element name="mdq:pass">
-    <label>Taux de revisite</label>
+    <label>Degré de conformité</label>
+    <description>Indication sur le résultat de conformité à la spécification où 0 = non conforme et 1= conforme</description>
+    <help for="inspire"><![CDATA[<b>Exigence INSPIRE :</b>
+    Degré de conformité de la ressource par rapport à la spécification citée ci-dessus.
+    ]]>
+    </help>
     <description></description>
   </element>
   <element name="mdq:specification">
@@ -842,7 +852,7 @@
     <_condition>optional</_condition>
   </element>
   <element name="mdb:metadataScope" id="38.0">
-    <label>Metadata scope</label>
+    <label>Type de ressource</label>
     <description iso="true">The scope/type of resource for which metadata is provided</description>
     <_condition>conditional / ifMetadata is about a resource other than a dataset?</_condition>
   </element>
@@ -1438,7 +1448,7 @@
     
   </element>
   <element name="gex:EX_GeographicBoundingBox" id="343.0">
-    <label>Emprise géographique</label>
+    <label>Territoire couvert</label>
     <description>Type de données pour la description de la position géographique du jeu de données. Il s'agit ici d'une référence approximative de telle sorte qu''il n''est pas nécessaire de spécifier le système de coordonnées</description>
     <help>Type de données destiné à la description de la position géographique du jeu de données. Il s'agit ici de la définition d'une enveloppe sommaire (délimitation en latitude et en longitude). Des informations supplémentaires peuvent être trouvées sous EX_Extent et EX_GeographicExtent.</help>
     <help for="inspire"><![CDATA[<b>Exigence INSPIRE :</b> Étendue de la ressource dans l’espace 
@@ -2974,7 +2984,7 @@ version en tant que mot-clé complémentaire(s). Le numéro de version doit comp
     <condition>Obligatoire</condition>
     
   </element>
-  <element name="cit:distance" id="61.0">
+  <element name="mri:distance" id="61.0" context="mri:MD_Resolution">
     <label>Distance de résolution</label>
     <description>Distance de référence, mesurée au sol</description>
     <help>Résolution au sol</help>

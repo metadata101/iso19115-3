@@ -40,41 +40,102 @@
   <!-- METAWAL View and tabs for GeoPortail view-->
   <metawal>Geoportail</metawal>
   <!--TAB 1 - Metadata-->
-  <metadataInformation>Description de la métadonnée</metadataInformation>
-  <metadaDefinition>Informations générales</metadaDefinition>
-  <metadaTitle>Titre la métadonnée</metadaTitle>
-  <metadaDate>Ajouter une date spécifique</metadaDate>
-  <metadataDate>Cycle de vie de la métadonnée</metadataDate>
-  <metadataOther>Autres informations</metadataOther>
-  <resourceIdentifier>Identifiant</resourceIdentifier>
-  <metadaType>Domaine d’application de la ressource</metadaType>
-  <metadataLinks>Liens</metadataLinks>
+  <mw-metadata>Métadonnée</mw-metadata>
+  <metadataDefinition>Informations générales</metadataDefinition>
+  <metadataTitle>Titre de la ressource</metadataTitle>
 
+  <noMetadataScopeFound>
+    <div class="row">
+      <div class="col-xs-offset-2 col-xs-8">
+        <div class="alert alert-warning">
+          Le type de ressource n'est pas précisé. Sélectionner un des types ci-dessous:
+        </div>
+      </div>
+    </div>
+  </noMetadataScopeFound>
+  <thisIsADataset>C'est une Géodonnée</thisIsADataset>
+  <thisIsAnApp>C'est une Application</thisIsAnApp>
+  <thisIsAMap>C'est une Carte statique (eg. PDF, TIFF)</thisIsAMap>
+  <thisIsADynMap>C'est une Carte dynamique (eg. OWS, WMC, MXQ, QGS)</thisIsADynMap>
+  <thisIsAService>C'est un Géoservice</thisIsAService>
+  <thisIsASerie>C'est une Série</thisIsASerie>
+  <thisIsANonGeographicDataset>C'est une donnée non géographique</thisIsANonGeographicDataset>
 
+  <metadataIdentification>Identification de la fiche descriptive</metadataIdentification>
+  <metadataDate>Ajouter un autre événement</metadataDate>
+  <metadataDate-help>
+    <div class="row">
+      <div class="col-xs-offset-2 col-xs-8">
+        <p class="help-block">
+          La date de révision est mise à jour à chaque sauvegarde de la fiche.
+        </p>
+      </div>
+    </div>
+  </metadataDate-help>
+  <resourceIdentifier>Identifiant de la fiche descriptive</resourceIdentifier>
+  <metadataType>Domaine d’application de la ressource</metadataType>
+  <metadataLinks>Documents, Géodonnées et Géoservices associés</metadataLinks>
+  <linkToSibling>Attacher à une collection ou faire une référence à une autre fiche</linkToSibling>
+  <linkToService>Indiquer le ou les géoservices diffusant cette donnée</linkToService>
+  <linkToDataset>Indiquer le ou les géodonnées diffusées par ce service</linkToDataset>
+  <metadataLanguage>Langue de la fiche</metadataLanguage>
+  <infraSIGCat>Classification Infra SIG</infraSIGCat>
 
-
-
-  <metadatamainsection>Informations relatives à la métadonnée</metadatamainsection>
-  
-  
+  <resourceDescription>Intitulé de la ressource</resourceDescription>
+  <resourceTags>Classification de la ressource</resourceTags>
+  <keywordGeoportail>Thèmes du géoportail Wallon</keywordGeoportail>
+  <keywordINSPIREtheme>Thèmes INSPIRE</keywordINSPIREtheme>
+  <keywordGEMET>Mots clés GEMET</keywordGEMET>
+  <metawalExtent>Territoire couvert</metawalExtent>
+  <metawalTemporalCoverage>Période couverte par les données</metawalTemporalCoverage>
   <metadaLanguage>Langue de la métadonnée</metadaLanguage>
   
   <metadaAbstract>Résumé descriptif</metadaAbstract>
   <inspireKeywords>Mots-clés INSPIRE</inspireKeywords>
-  <otherKeywords>Mots-clés</otherKeywords>
+  <otherKeywords>Autres mots-clés</otherKeywords>
+  <addOtherKeyword>Ajouter d'autres mots-clés</addOtherKeyword>
+  <mw-feature-catalogue-help>
+    <div class="row">
+      <div class="col-xs-offset-2 col-xs-8">
+        <p class="help-block">
+          Pour décrire le modèle de données, vous avez 2 options:
+          <ul>
+            <li>Associer à la fiche un fichier PDF décrivant le modèle</li>
+            <li>Décrire dans la fiche le modèle.</li>
+          </ul>
+        </p>
+      </div>
+    </div>
+  </mw-feature-catalogue-help>
+  <mw-content>Modèle</mw-content>
   <dataDistribution1>TODO</dataDistribution1>
   <walloniaTheme>Ajouter un thème du géoportail</walloniaTheme>
-  
+  <metawalTemporalExtent>Étendue temporelle</metawalTemporalExtent>
+  <addTemporalElement>Définir une étendue temporelle (Date début > Date de fin)</addTemporalElement>
+  <addUpdateFrequency>Définir la fréquence de mise à jour</addUpdateFrequency>
+  <mw-quality>Qualité</mw-quality>
+  <metawalUpdate>Mise à jour</metawalUpdate>
+  <metawalScaleAndResolution>Échelle de référence et précisions</metawalScaleAndResolution>
+  <addAHResolution>Ajouter une résolution horizontale (eg. .5m)</addAHResolution>
+  <addAScale>Ajouter une échelle (eg. 1:2000)</addAScale>
+  <addAnotherScale>Ajouter une autre échelle</addAnotherScale>
+  <addDQReportOnAbsoluteExternalPositionalAccuracy>Décrire la précision planimétrique et altimétrique</addDQReportOnAbsoluteExternalPositionalAccuracy>
+  <addDQReportOnDQ_CompletenessOmission>Décrire le nombre d'objets manquants (s'il y en a)</addDQReportOnDQ_CompletenessOmission>
+  <metawalLineage>Généalogie</metawalLineage>
+
+  <isINSPIREConform>Indiquer que la ressource est conforme à INSPIRE</isINSPIREConform>
+  <isNotINSPIREConform>ou ne l'est pas</isNotINSPIREConform>
+  <mw-feature-catalogue>Modèle de données</mw-feature-catalogue>
+  <addAFeatureCatalogue>Décrire le modèle de données dans la fiche</addAFeatureCatalogue>
+  <addALinkToFeatureCatalogue>Ajouter un lien vers un document présentant le modèle de données</addALinkToFeatureCatalogue>
   <metadaOwner>Propriétaire de la métadonnée</metadaOwner>
   <metadataOrganisationName>Prorpiétaire (Organisation)</metadataOrganisationName>
   <metadataOrganisationDeliveryPoint>Rue</metadataOrganisationDeliveryPoint>
   <metadataOrganisationCity>Ville</metadataOrganisationCity>
   <metadataOrganisationPostalCode>Code postal</metadataOrganisationPostalCode>
   <metadataOrganisationPersonName>Nom du responsable</metadataOrganisationPersonName>
-  
-  <!--TAB 2 - Data-->
-  <dataDescription>Description de la ressource</dataDescription>
-  <datamainsection>Informations relatives à la donnée</datamainsection>
+
+  <mw-data>Description de la ressource</mw-data>
   <datadefinition>Informations générales</datadefinition>
 
   <alternateTitle>Ajouter un titre alternatif</alternateTitle>
@@ -88,29 +149,47 @@
   <extent>Définition des emprises (temporelles et géographiques)</extent>
   <completenessOmission>Données manquantes</completenessOmission>
   <absoluteExternalPositionalAccuracy>Précision absolue de la position</absoluteExternalPositionalAccuracy>
-  <!--TAB 3 - Distribution-->
-  <access>Distribution de la ressource</access>
+  <mw-access>Accès</mw-access>
   <epsgCode>Code EPSG</epsgCode>
   <dataDistribution>Accès à la donnée</dataDistribution>
-  <distributionmainsection>Informations relatives à la distribution</distributionmainsection>
+  <mw-data-access>Obtenir une copie de la donnée</mw-data-access>
+  <mw-data-access-help>
+    <div class="row">
+      <div class="col-xs-offset-2 col-xs-8">
+        <p class="help-block">
+          Décrire ici le format et les caractéristiques de la donnée.
+        </p>
+      </div>
+    </div>
+  </mw-data-access-help>
+  <addAnotherFormat>Ajouter un autre format (eg. Shapefile)</addAnotherFormat>
+  <mw-data-online-access>Consulter la donnée en ligne</mw-data-online-access>
+  <mw-data-online-access-help>
+    <div class="row">
+      <div class="col-xs-offset-2 col-xs-8">
+        <p class="help-block">
+          Décrire ici les modes d'accès en ligne à la donnée (WMS, Geoportail, ...).
+        </p>
+      </div>
+    </div>
+  </mw-data-online-access-help>
   <description>Description</description>
   <distributionformat>Format de distribution</distributionformat>
   <distributor>Coordonnées du distributeur</distributor>
   <distributionorder>Procédure d'acquisition</distributionorder>
   <distributiononline>Ressources en ligne</distributiononline>
-  <!--TAB 4 - Contact-->
   <links>Ressources associées à la donnée</links>
-  <contact>contact</contact>
+  <mw-contact>Contact</mw-contact>
+  <mw-contact-details>Qui contacter ?</mw-contact-details>
+  <mw-inspire>INSPIRE</mw-inspire>
   <originator>originator</originator>
-
-  <!--TAB 5 - Accès en ligne-->
-  <onlineAccess>Accès en ligne</onlineAccess>
+  <mw-access-contact>Accès et distribution</mw-access-contact>
+  <mw-metadata-contact>Contact pour la fiche</mw-metadata-contact>
+  <iamthecontact>M'assigner comme auteur de la fiche</iamthecontact>
+  <mw-data-contact>Contenu, responsable et helpdesk</mw-data-contact>
+  <mw-online>Accès en ligne</mw-online>
   <Service>Service ou applications</Service>
   <Source>Ressource en ligne</Source>
-  <!--TAB 6 - Inspire-->
   <inspiremainsection>INSPIRE</inspiremainsection>
   <keywordsInpire>Mots-clés relatifs à la directive INSPIRE</keywordsInpire>
-  <conformityInpire>Conformité à la directive INSPIRE</conformityInpire>
-
-  
 </strings>
