@@ -853,7 +853,7 @@
   </element>
   <element name="mdb:metadataScope" id="38.0">
     <label>Type de ressource</label>
-    <description iso="true">The scope/type of resource for which metadata is provided</description>
+    <description>Domaine auquel les métadonnées s'appliquent (voir l'annexe C pour plus d'information au sujet des niveaux de hiérarchie des métadonnées)</description>
     <_condition>conditional / ifMetadata is about a resource other than a dataset?</_condition>
   </element>
   <element name="mdb:resourceLineage" id="37.0">
@@ -2315,9 +2315,6 @@ de métadonnées de données « BD Carthage métropole »
     <description iso="true">Valeur alphanumérique identifiant une instance dans l’espace de noms. NOTE Eviter les caractères qui ne sont pas admis dans les URL. EXEMPLE EPSG::4326</description>
     <help>Code alphanumérique de l'identifiant. Ces informations sont du type PT_FreeText et sont gérées dans la classe du même nom.</help>
     <condition>Obligatoire</condition>
-    <helper>
-      <option value="http://URL/CODE">http://URL/CODE</option>
-    </helper>
   </element>
   <element name="mcc:code" id="207.0">
     <label>Code</label>
