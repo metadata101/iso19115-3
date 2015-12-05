@@ -187,5 +187,11 @@
     </textarea>
   </xsl:template>
 
+  <!-- Those elements MUST be ignored in the editor layout -->
+  <xsl:template mode="mode-iso19115-3"
+                match="*[contains(name(), 'GROUP_ELEMENT')]"
+                priority="2000">
+    <xsl:apply-templates mode="mode-iso19115-3" select="*"/>
+  </xsl:template>
 
 </xsl:stylesheet>
