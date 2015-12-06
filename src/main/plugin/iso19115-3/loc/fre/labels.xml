@@ -3329,7 +3329,7 @@ période de temps couverte par le service.
     <condition/>
     
   </element>
-  <element name="cit:protocolRequest" id="412.0">
+  <element name="cit:protocolRequest" id="412.0" alias="protocol">
     <label>Requête de protocole</label>
     <description>Requête utilisée pour accéder à la ressource dépendant du protocole (à utiliser essentiellement pour les requêtes POST)</description>
     <help></help>
