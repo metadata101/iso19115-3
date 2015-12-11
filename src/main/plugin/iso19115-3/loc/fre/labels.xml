@@ -6521,4 +6521,40 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
     <label>Type de représentation spatiale</label>
     <description></description>
   </element>
+  <element name="rbc:CD_PixelinCell">
+    <label>Positionnemet de l'origine du pixel</label>
+    <description></description>
+  </element>
+  <element name="rbc:CS_AxisDirection">
+    <label>Direction de l'axe</label>
+    <description></description>
+  </element>
+  <element name="rbc:CS_RangeMeaning">
+    <label>Signification de la plage de valeur de l'axe</label>
+    <description></description>
+  </element>
+  <element name="reg:RE_AmendmentType">
+    <label>Type d'amendement</label>
+    <description></description>
+  </element>
+  <element name="reg:RE_DecisionStatus">
+    <label>Statut de décision</label>
+    <description></description>
+  </element>
+  <element name="reg:RE_Disposition">
+    <label>Disposition</label>
+    <description></description>
+  </element>
+  <element name="reg:RE_ItemStatus">
+    <label>Statut d'un élément de l'inventaire</label>
+    <description></description>
+  </element>
+  <element name="rbc:SC_DerivedCRSType">
+    <label>Type de CRS dérivé</label>
+    <description></description>
+  </element>
+  <element name="mdt:MX_ScopeCode">
+    <label>Scope code</label>
+    <description></description>
+  </element>
 </labels>
