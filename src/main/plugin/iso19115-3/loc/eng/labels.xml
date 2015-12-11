@@ -3136,7 +3136,7 @@
     <description>Identification of, and means of communication with, person(s) and
             organization(s) associated with the process step</description>
   </element>
-  <element name="cit:protocol" id="398.0">
+  <element name="cit:protocol" id="398.0" alias="protocol">
     <label>Protocol</label>
     <description>Connection protocol to be used</description>
     <helper sort="true">
@@ -4667,6 +4667,42 @@
   </element>
   <element name="mdq:spatialRepresentationType">
     <label>Spatial representation type</label>
+    <description></description>
+  </element>
+  <element name="rbc:CD_PixelinCell">
+    <label>Pixel in cell</label>
+    <description>Specification of the way the image grid is associated with the image data attributes</description>
+  </element>
+  <element name="rbc:CS_AxisDirection">
+    <label>Axis direction</label>
+    <description></description>
+  </element>
+  <element name="rbc:CS_RangeMeaning">
+    <label>Meaning of the axis value range</label>
+    <description>Meaning of the axis value range specified through minimum value and maximum value</description>
+  </element>
+  <element name="reg:RE_AmendmentType">
+    <label>Amendment Type</label>
+    <description></description>
+  </element>
+  <element name="reg:RE_DecisionStatus">
+    <label>Decision status</label>
+    <description></description>
+  </element>
+  <element name="reg:RE_Disposition">
+    <label>Disposition</label>
+    <description></description>
+  </element>
+  <element name="reg:RE_ItemStatus">
+    <label>Item status</label>
+    <description></description>
+  </element>
+  <element name="rbc:SC_DerivedCRSType">
+    <label>The type of the derived CRS</label>
+    <description></description>
+  </element>
+  <element name="mdt:MX_ScopeCode">
+    <label>Scope code</label>
     <description></description>
   </element>
 </labels>
