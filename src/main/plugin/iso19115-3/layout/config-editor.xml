@@ -202,6 +202,7 @@
     <name>cit:party</name>
     <name>cit:individual</name>
     <name>cit:logo</name>
+    <name>mdb:contact</name>
     <name>mrd:onLine</name>
     <name>mdb:referenceSystemInfo</name>
     <name>mri:graphicOverview</name>
