@@ -25,9 +25,10 @@
   xmlns:gn="http://www.fao.org/geonetwork"
   xmlns:gn-fn-core="http://geonetwork-opensource.org/xsl/functions/core" 
   xmlns:gn-fn-metadata="http://geonetwork-opensource.org/xsl/functions/metadata"
-  xmlns:gn-fn-iso19139="http://geonetwork-opensource.org/xsl/functions/profiles/iso19139"
+  xmlns:gn-fn-iso19115-3="http://geonetwork-opensource.org/xsl/functions/profiles/iso19115-3"
   exclude-result-prefixes="#all">
 
+  <xsl:include href="utility-fn.xsl"/>
   <xsl:include href="utility-tpl.xsl"/>
   <xsl:include href="layout-custom-fields.xsl"/>
   <xsl:include href="layout-custom-fields-date.xsl"/>
@@ -401,7 +402,7 @@
       <xsl:with-param name="value" select="*/@codeListValue"/>
       <xsl:with-param name="cls" select="local-name()"/>
       <xsl:with-param name="xpath" select="$xpath"/>
-      <xsl:with-param name="type" select="gn-fn-iso19139:getCodeListType(name())"/>
+      <xsl:with-param name="type" select="gn-fn-iso19115-3:getCodeListType(name(), $editorConfig)"/>
       <xsl:with-param name="name"
                       select="concat(*/gn:element/@ref, '_codeListValue')"/>
       <xsl:with-param name="editInfo" select="*/gn:element"/>
@@ -435,7 +436,7 @@
                       select="gn-fn-metadata:getLabel($schema, name(), $labels, name(..), '', '')/label"/>
       <xsl:with-param name="value" select="text()"/>
       <xsl:with-param name="cls" select="local-name()"/>
-      <xsl:with-param name="type" select="gn-fn-iso19139:getCodeListType(name())"/>
+      <xsl:with-param name="type" select="gn-fn-iso19115-3:getCodeListType(name(), $editorConfig)"/>
       <xsl:with-param name="name" select="gn:element/@ref"/>
       <xsl:with-param name="editInfo" select="*/gn:element"/>
       <xsl:with-param name="listOfValues"

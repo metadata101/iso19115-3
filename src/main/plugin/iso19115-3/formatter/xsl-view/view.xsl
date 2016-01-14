@@ -17,6 +17,7 @@
                 xmlns:mex="http://standards.iso.org/iso/19115/-3/mex/1.0"
                 xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/1.0"
                 xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
+                xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0"
                 xmlns:gml="http://www.opengis.net/gml/3.2"
                 xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
                 xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
@@ -75,25 +76,30 @@
   </xsl:template>
 
 
+  <xsl:template mode="getMetadataHeader" match="mdb:MD_Metadata">
+  </xsl:template>
 
 
 
   <!-- Most of the elements are ... -->
   <xsl:template mode="render-field"
-                match="*[gco:CharacterString|gco:Integer|gco:Decimal|
-       gco:Boolean|gco:Real|gco:Measure|gco:Length|gco:Distance|
-       gco:Angle|
-       gco:Scale|gco:Record|gco:RecordType|
-       gco:LocalName|lan:PT_FreeText|gml:beginPosition|gml:endPosition|
-       gco:Date|gco:DateTime|*/@codeListValue]"
+                match="*[gco:CharacterString != '']|*[gco:Integer != '']|
+                       *[gco:Decimal != '']|*[gco:Boolean != '']|
+                       *[gco:Real != '']|*[gco:Measure != '']|*[gco:Length != '']|
+                       *[gco:Distance != '']|*[gco:Angle != '']|*[gco:Scale != '']|
+                       *[gco:Record != '']|*[gco:RecordType != '']|
+                       *[gco:LocalName != '']|*[lan:PT_FreeText != '']|
+                       *[gml:beginPosition != '']|*[gml:endPosition != '']|
+                       *[gco:Date != '']|*[gco:DateTime != '']|*[*/@codeListValue]|*[@codeListValue]"
                 priority="50">
     <xsl:param name="fieldName" select="''" as="xs:string"/>
 
+    <xsl:variable name="elementName" select="if (@codeListValue) then name(..) else name(.)"/>
     <dl>
       <dt>
         <xsl:value-of select="if ($fieldName)
                                 then $fieldName
-                                else tr:node-label(tr:create($schema), name(), null)"/>
+                                else tr:node-label(tr:create($schema), $elementName, null)"/>
       </dt>
       <dd>
         <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
@@ -106,12 +112,15 @@
 
   <!-- Some elements are only containers so bypass them -->
   <xsl:template mode="render-field"
-                match="*[count(mri:*|mcc:*|dqm:*|mco:*|mrc:*|
+                match="*[count(mdb:*|mri:*|mcc:*|dqm:*|mco:*|mrc:*|
                         mrs:*|mrl:*|mrd:*|gml:*|gex:*|gfc:*) = 1]"
                 priority="50">
+    <xsl:param name="fieldName" select="''" as="xs:string"/>
 
     <xsl:apply-templates mode="render-value" select="@*"/>
-    <xsl:apply-templates mode="render-field" select="*"/>
+    <xsl:apply-templates mode="render-field" select="*">
+      <xsl:with-param name="fieldName" select="$fieldName"/>
+    </xsl:apply-templates>
   </xsl:template>
 
 
@@ -122,11 +131,11 @@
       *[$isFlatMode = false() and not(gco:CharacterString)]">
 
     <div class="entry name">
-      <h3>
+      <h4>
         <xsl:value-of select="tr:node-label(tr:create($schema), name(), null)"/>
         <xsl:apply-templates mode="render-value"
                              select="@*"/>
-      </h3>
+      </h4>
       <div class="target">
         <xsl:apply-templates mode="render-field" select="*"/>
       </div>
@@ -181,11 +190,11 @@
     </xsl:variable>
 
     <div class="gn-contact">
-      <h3>
-        <i class="fa fa-envelope"></i>
+      <h4>
+        <i class="fa fa-envelope">&#160;</i>
         <xsl:apply-templates mode="render-value"
                              select="*/cit:role/*/@codeListValue"/>
-      </h3>
+      </h4>
       <div class="row">
         <div class="col-md-6">
           <!-- Needs improvements as contact/org are more flexible in ISO19115-3 -->
@@ -202,18 +211,20 @@
                 </xsl:otherwise>
               </xsl:choose>
             </strong><br/>
-            <xsl:for-each select="*/cit:contactInfo/*">
+            <xsl:for-each select="*//cit:contactInfo/*">
               <xsl:for-each select="cit:address/*/(
                                           cit:deliveryPoint|cit:city|
                                           cit:administrativeArea|cit:postalCode|cit:country)">
-                <xsl:apply-templates mode="render-value" select="."/><br/>
+                <xsl:if test="normalize-space(.) != ''">
+                  <xsl:apply-templates mode="render-value" select="."/><br/>
+                </xsl:if>
               </xsl:for-each>
             </xsl:for-each>
           </address>
         </div>
         <div class="col-md-6">
-          <address>
-            <xsl:for-each select="*/cit:contactInfo/*">
+          <xsl:for-each select="*//cit:contactInfo/*">
+            <address>
               <xsl:for-each select="cit:phone/*/cit:voice[normalize-space(.) != '']">
                 <xsl:variable name="phoneNumber">
                   <xsl:apply-templates mode="render-value" select="."/>
@@ -232,14 +243,21 @@
                   <xsl:value-of select="normalize-space($phoneNumber)"/>
                 </a>
               </xsl:for-each>
-
+              <xsl:for-each select="cit:onlineResource/*/cit:linkage[normalize-space(.) != '']">
+                <xsl:variable name="linkage">
+                  <xsl:apply-templates mode="render-value" select="."/>
+                </xsl:variable>
+                <i class="fa fa-link"></i>
+                <a href="{normalize-space($linkage)}">
+                  <xsl:value-of select="if (../cit:name)
+                                        then ../cit:name/* else
+                                        normalize-space(linkage)"/>
+                </a>
+              </xsl:for-each>
               <xsl:apply-templates mode="render-field"
                                    select="cit:hoursOfService|cit:contactInstructions"/>
-              <xsl:apply-templates mode="render-field"
-                                   select="cit:onlineResource"/>
-
-            </xsl:for-each>
-          </address>
+            </address>
+          </xsl:for-each>
         </div>
       </div>
     </div>
@@ -318,17 +336,27 @@
 
   <!-- Display thesaurus name and the list of keywords -->
   <xsl:template mode="render-field"
-                match="mri:descriptiveKeywords[*/mri:thesaurusName/cit:CI_Citation/cit:title]"
+                match="mri:descriptiveKeywords[count(*/mri:keyword) = 0]" priority="200"/>
+  <xsl:template mode="render-field"
+                match="mri:descriptiveKeywords[
+                        */mri:thesaurusName/cit:CI_Citation/cit:title]"
                 priority="100">
+    <xsl:param name="fieldName"/>
+
     <dl class="gn-keyword">
       <dt>
-        <xsl:apply-templates mode="render-value"
-                             select="*/mri:thesaurusName/cit:CI_Citation/cit:title/*"/>
+        <xsl:choose>
+          <xsl:when test="$fieldName != ''"><xsl:value-of select="$fieldName"/></xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates mode="render-value"
+                                 select="*/mri:thesaurusName/cit:CI_Citation/cit:title/*"/>
+          </xsl:otherwise>
+        </xsl:choose>
 
-        <xsl:if test="*/mri:type/*[@codeListValue != '']">
+        <!--<xsl:if test="*/mri:type/*[@codeListValue != '']">
           (<xsl:apply-templates mode="render-value"
                                 select="*/mri:type/*/@codeListValue"/>)
-        </xsl:if>
+        </xsl:if>-->
       </dt>
       <dd>
         <div>
@@ -518,7 +546,10 @@
   <!-- Traverse the tree -->
   <xsl:template mode="render-field"
                 match="*">
-    <xsl:apply-templates mode="render-field"/>
+    <xsl:param name="fieldName" select="''" as="xs:string"/>
+    <xsl:apply-templates mode="render-field">
+      <xsl:with-param name="fieldName" select="$fieldName"/>
+    </xsl:apply-templates>
   </xsl:template>
 
 
@@ -534,7 +565,24 @@
        gco:Boolean|gco:Real|gco:Measure|gco:Length|gco:Angle|
        gco:Scale|gco:Record|gco:RecordType|
        gco:LocalName|gml:beginPosition|gml:endPosition">
-    <xsl:value-of select="normalize-space(.)"/>
+    <xsl:choose>
+      <xsl:when test="contains(., 'http')">
+        <!-- Replace hyperlink in text by an hyperlink -->
+        <xsl:variable name="textWithLinks"
+                      select="replace(., '([a-z][\w-]+:/{1,3}[^\s()&gt;&lt;]+[^\s`!()\[\]{};:'&apos;&quot;.,&gt;&lt;?«»“”‘’])',
+                                    '&lt;a href=''$1''&gt;$1&lt;/a&gt;')"/>
+
+        <xsl:if test="$textWithLinks != ''">
+          <xsl:copy-of select="saxon:parse(
+                          concat('&lt;p&gt;',
+                          replace($textWithLinks, '&amp;', '&amp;amp;'),
+                          '&lt;/p&gt;'))"/>
+        </xsl:if>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="normalize-space(.)"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template mode="render-value"
@@ -544,16 +592,10 @@
     </xsl:apply-templates>
   </xsl:template>
 
+
   <xsl:template mode="render-value"
                 match="gco:Distance">
     <span><xsl:value-of select="."/>&#10;<xsl:value-of select="@uom"/></span>
-  </xsl:template>
-
-  <!-- ... URL -->
-  <xsl:template mode="render-value"
-                match="cit:linkage">
-    <!-- TODO: Multilingual URL -->
-    <a href="{gco:CharacterString}"><xsl:value-of select="gco:CharacterString"/></a>
   </xsl:template>
 
   <!-- ... Dates - formatting is made on the client side by the directive  -->
@@ -574,12 +616,12 @@
 
   <xsl:template mode="render-value"
                 match="gco:DateTime[matches(., '[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}')]">
-    <span data-gn-humanize-time="{.}"></span>
+    <span data-gn-humanize-time="{.}"><xsl:value-of select="."/></span>
   </xsl:template>
 
   <xsl:template mode="render-value"
                 match="gco:Date|gco:DateTime">
-    <span data-gn-humanize-time="{.}"></span>
+    <span data-gn-humanize-time="{.}"><xsl:value-of select="."/></span>
   </xsl:template>
 
   <!-- TODO -->

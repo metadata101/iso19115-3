@@ -9,12 +9,14 @@
   <xsl:include href="process/add-extent-from-geokeywords.xsl"/>
   <xsl:include href="process/add-resource-id.xsl"/>
   <xsl:include href="process/add-contact.xsl"/>
+  <xsl:include href="process/create-featurecatalogue-from-wfs.xsl"/>
   <!--<xsl:include href="process/inspire-add-conformity.xsl"/>-->
 
   <xsl:variable name="processes">
     <p>add-extent-from-geokeywords</p>
     <p>add-resource-id</p>
     <p>add-contact</p>
+    <p>create-featurecatalogue-from-wfs</p>
     <!--<p>inspire-add-conformity</p>-->
   </xsl:variable>
   

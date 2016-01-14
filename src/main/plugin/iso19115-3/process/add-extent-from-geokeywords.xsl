@@ -11,7 +11,7 @@
                 xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
                 version="2.0" exclude-result-prefixes="#all">
 
-  <xsl:import href="../../iso19139/process/process-utility.xsl"/>
+  <xsl:import href="process-utility.xsl"/>
 
   <!-- i18n information -->
   <xsl:variable name="add-extent-loc">

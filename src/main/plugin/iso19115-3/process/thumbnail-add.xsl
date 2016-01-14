@@ -4,19 +4,34 @@
   xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
   xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
   xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+  xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
+  xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:gn="http://www.fao.org/geonetwork"
+  xmlns:gn-fn-iso19115-3="http://geonetwork-opensource.org/xsl/functions/profiles/iso19115-3"
   exclude-result-prefixes="#all" version="2.0">
 
   <!-- 
       Usage: 
         thumbnail-from-url-add?thumbnail_url=http://geonetwork.org/thumbnails/image.png
     -->
+  <xsl:import href="../layout/utility-fn.xsl"/>
 
   <!-- Thumbnail base url (mandatory) -->
   <xsl:param name="thumbnail_url"/>
   <!-- Element to use for the file name. -->
   <xsl:param name="thumbnail_desc" select="''"/>
   <xsl:param name="thumbnail_type" select="''"/>
+
+
+  <xsl:variable name="mainLang"
+                select="/mdb:MD_Metadata/mdb:defaultLocale/*/lan:language/*/@codeListValue"
+                as="xs:string"/>
+
+  <xsl:variable name="useOnlyPTFreeText"
+                select="count(//*[lan:PT_FreeText and not(gco:CharacterString)]) > 0"
+                as="xs:boolean"/>
+
 
   <xsl:template match="mri:MD_DataIdentification|
                       *[@gco:isoType='mri:MD_DataIdentification']|
@@ -68,9 +83,7 @@
           </mcc:fileName>
           <xsl:if test="$thumbnail_desc!=''">
             <mcc:fileDescription>
-              <gco:CharacterString>
-                <xsl:value-of select="$thumbnail_desc"/>
-              </gco:CharacterString>
+              <xsl:copy-of select="gn-fn-iso19115-3:fillTextElement($thumbnail_desc, $mainLang, $useOnlyPTFreeText)"/>
             </mcc:fileDescription>
           </xsl:if>
           <xsl:if test="$thumbnail_type!=''">
