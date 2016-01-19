@@ -400,7 +400,7 @@
   <!-- Set local identifier to the first 3 letters of iso code. Locale ids
     are used for multilingual charcterString using #iso2code for referencing.
   -->
-  <xsl:template match="lan:PT_Locale">
+  <xsl:template match="mdb:MD_Metadata/mdb:defaultLocale/lan:PT_Locale">
     <xsl:element name="lan:{local-name()}">
       <xsl:variable name="id"
                     select="upper-case(java:twoCharLangCode(lan:language/lan:LanguageCode/@codeListValue))"/>
