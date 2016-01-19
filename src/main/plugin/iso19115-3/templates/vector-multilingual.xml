@@ -243,8 +243,8 @@
         </cit:CI_Responsibility>
       </mri:pointOfContact>
       <mri:spatialRepresentationType>
-        <mri:MD_SpatialRepresentationTypeCode codeList="codeListLocation#MD_SpatialRepresentationTypeCode"
-          codeListValue="anyValidURI"/>
+        <mcc:MD_SpatialRepresentationTypeCode codeList=""
+                                              codeListValue="vector"/>
       </mri:spatialRepresentationType>
       <mri:spatialResolution>
         <mri:MD_Resolution>
