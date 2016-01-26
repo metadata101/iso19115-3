@@ -5,20 +5,17 @@ detach a dataset metadata
 -->
 <xsl:stylesheet version="2.0"
                 xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/1.0"
+                xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:gn="http://www.fao.org/geonetwork">
 
   <xsl:param name="uuidref"/>
 
-  <!-- Detach -->
-  <!-- Remove attributes uuidref and xlink:href -->
+  <!-- Detach ref or links -->
   <xsl:template
-      match="mrc:featureCatalogueCitation[@uuidref = $uuidref]"
-      priority="20">
-    <xsl:copy>
-      <xsl:apply-templates select="node()"/>
-    </xsl:copy>
-  </xsl:template>
+      match="mrc:featureCatalogueCitation[@uuidref = $uuidref or
+                                          */cit:onlineResource/*/cit:linkage/* = $uuidref]"
+      priority="20"/>
 
 
   <!-- Do a copy of every nodes and attributes -->

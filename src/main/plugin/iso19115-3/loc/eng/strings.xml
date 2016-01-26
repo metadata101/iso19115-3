@@ -9,11 +9,10 @@
   <temporalRef>Temporal information</temporalRef>
   <constraintInfo>Access constraint information</constraintInfo>
   <xml_iso19139>Save this metadata as an ISO19139 XML file</xml_iso19139>
-  <xml_iso19139Tooai_dc>Save this metadata as an OAI Dublin Core XML file</xml_iso19139Tooai_dc>
+  <xml_iso19139Tooai_dc>Save this metadata as an OAI Dublin Core XML file
+  </xml_iso19139Tooai_dc>
   <resourceLineageTab>Lineage</resourceLineageTab>
 
-  <!-- New strings added for the AngularJS editor -->
-  <!-- View and tabs -->
   <advanced>Full</advanced>
   <default>Simple</default>
   <simple>Simple</simple>
@@ -36,7 +35,13 @@
 
 
   <add-resource-id>Compute resource identifier</add-resource-id>
-  <add-resource-idHelp>Compose the resource identifier using the catalog URL and the metadata identifier (eg. http://www.organization.org/catalogue/5391bf69-44bc-4ea0-8cc0-6cf6c3bc81ae).</add-resource-idHelp>
-  <add-extent-from-geokeywords>Compute extent from keyword</add-extent-from-geokeywords>
-  <add-extent-from-geokeywordsHelp>Analyze each keyword of type place and add matching extent.</add-extent-from-geokeywordsHelp>
+  <add-resource-idHelp>Compose the resource identifier using the catalog URL and
+    the metadata identifier (eg.
+    http://www.organization.org/catalogue/5391bf69-44bc-4ea0-8cc0-6cf6c3bc81ae).
+  </add-resource-idHelp>
+  <add-extent-from-geokeywords>Compute extent from keyword
+  </add-extent-from-geokeywords>
+  <add-extent-from-geokeywordsHelp>Analyze each keyword of type place and add
+    matching extent.
+  </add-extent-from-geokeywordsHelp>
 </strings>

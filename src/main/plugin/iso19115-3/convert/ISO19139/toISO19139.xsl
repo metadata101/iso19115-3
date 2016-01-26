@@ -54,6 +54,9 @@
       </xd:p>
     </xd:desc>
   </xd:doc>
+
+  <!-- TODO: properly dispatch feature catalogue,
+       quality report in distribution section -->
   
   <xsl:output method="xml" indent="yes"/>
   

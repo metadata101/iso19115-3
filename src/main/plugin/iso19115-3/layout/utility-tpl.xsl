@@ -50,24 +50,25 @@
   <xsl:template name="get-iso19115-3-online-source-config">
     <xsl:param name="pattern"/>
     <config>
-      <!--<xsl:for-each select="$metadata/descendant::gmd:onLine[
+      <xsl:for-each select="$metadata/descendant::mrd:onLine[
         matches(
-        gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString,
+        cit:CI_OnlineResource/cit:protocol/gco:CharacterString,
         $pattern) and
-        normalize-space(gmd:CI_OnlineResource/gmd:linkage/gmd:URL) != '']">
-        <xsl:variable name="protocol" select="gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString"/>
+        normalize-space(cit:CI_OnlineResource/cit:linkage/gco:CharacterString) != '']">
+
+        <xsl:variable name="protocol" select="cit:CI_OnlineResource/cit:protocol/gco:CharacterString"/>
+
         <xsl:variable name="fileName">
           <xsl:choose>
             <xsl:when test="matches($protocol, '^DB:.*')">
-              <xsl:value-of select="concat(gmd:CI_OnlineResource/gmd:linkage/gmd:URL, '#',
-                gmd:CI_OnlineResource/gmd:name/gco:CharacterString)"/>
+              <xsl:value-of select="concat(cit:CI_OnlineResource/cit:linkage/gco:CharacterString, '#',
+                cit:CI_OnlineResource/cit:name/gco:CharacterString)"/>
             </xsl:when>
             <xsl:when test="matches($protocol, '^FILE:.*')">
-              <xsl:value-of select="gmd:CI_OnlineResource/gmd:linkage/gmd:URL"/>
+              <xsl:value-of select="cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:value-of select="gmd:CI_OnlineResource/gmd:name/gmx:MimeFileType|
-                gmd:CI_OnlineResource/gmd:name/gco:CharacterString"/>
+              <xsl:value-of select="cit:CI_OnlineResource/cit:name/gco:CharacterString"/>
             </xsl:otherwise>
           </xsl:choose>
         </xsl:variable>
@@ -77,15 +78,15 @@
             <ref><xsl:value-of select="gn:element/@ref"/></ref>
             <refParent><xsl:value-of select="gn:element/@parent"/></refParent>
             <name><xsl:value-of select="$fileName"/></name>
-            <url><xsl:value-of select="gmd:CI_OnlineResource/gmd:linkage/gmd:URL"/></url>
-            <title><xsl:value-of select="normalize-space($metadata/gmd:identificationInfo/*/
-              gmd:citation/gmd:CI_Citation/gmd:title/gco:CharacterString)"/></title>
+            <url><xsl:value-of select="cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/></url>
+            <title><xsl:value-of select="normalize-space($metadata/mdb:identificationInfo/*/
+              mri:citation/cit:CI_Citation/cit:title/gco:CharacterString)"/></title>
             <abstract><xsl:value-of select="normalize-space($metadata/
-              gmd:identificationInfo/*/gmd:abstract)"/></abstract>
-            <protocol><xsl:value-of select="gmd:CI_OnlineResource/gmd:protocol/gco:CharacterString"/></protocol>
+              mdb:identificationInfo/*/mri:abstract)"/></abstract>
+            <protocol><xsl:value-of select="cit:CI_OnlineResource/cit:protocol/gco:CharacterString"/></protocol>
           </resource>
         </xsl:if>
-      </xsl:for-each>-->
+      </xsl:for-each>
     </config>
   </xsl:template>
 </xsl:stylesheet>

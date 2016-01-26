@@ -35,40 +35,14 @@ attached it to the metadata for data.
       <xsl:apply-templates select="mdb:metadataExtensionInfo"/>
       <xsl:apply-templates select="mdb:identificationInfo"/>
 
-
-      <xsl:choose>
-        <!-- Check if featureCatalogueCitation for uuidref -->
-        <xsl:when
-            test="mdb:contentInfo/mrc:MD_FeatureCatalogueDescription/gmd:featureCatalogueCitation[@uuidref = $uuidref]">
-          <mdb:contentInfo>
-            <mrc:MD_FeatureCatalogueDescription>
-              <xsl:copy-of select="mdb:contentInfo/mrc:MD_FeatureCatalogueDescription/mrc:featureCatalogueCitation[@uuidref = $uuidref]/../mrc:complianceCode|
-                                mdb:contentInfo/mrc:MD_FeatureCatalogueDescription/mrc:featureCatalogueCitation[@uuidref = $uuidref]/../mrc:language|
-                                mdb:contentInfo/mrc:MD_FeatureCatalogueDescription/mrc:featureCatalogueCitation[@uuidref = $uuidref]/../mrc:includedWithDataset|
-                                mdb:contentInfo/mrc:MD_FeatureCatalogueDescription/mrc:featureCatalogueCitation[@uuidref = $uuidref]/../mrc:featureTypes"/>
-
-              <!-- Add xlink:href featureCatalogueCitation -->
-              <mrc:featureCatalogueCitation uuidref="{$uuidref}"
-                                            xlink:href="{$siteUrl}/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://standards.iso.org/iso/19115/-3/gmd&amp;elementSetName=full&amp;id={$uuidref}">
-                <xsl:copy-of
-                    select="mdb:contentInfo/mrc:MD_FeatureCatalogueDescription/mrc:featureCatalogueCitation[@uuidref = $uuidref]/cit:CI_Citation"/>
-              </mrc:featureCatalogueCitation>
-
-            </mrc:MD_FeatureCatalogueDescription>
-          </mdb:contentInfo>
-        </xsl:when>
-
-        <xsl:otherwise>
-          <xsl:copy-of select="gmd:contentInfo"/>
-          <mdb:contentInfo>
-            <mrc:MD_FeatureCatalogueDescription>
-              <mrc:includedWithDataset/>
-              <mrc:featureCatalogueCitation uuidref="{$uuidref}"
-                                            xlink:href="{$siteUrl}/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://standards.iso.org/iso/19115/-3/gmd&amp;elementSetName=full&amp;id={$uuidref}"/>
-            </mrc:MD_FeatureCatalogueDescription>
-          </mdb:contentInfo>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:apply-templates select="mdb:contentInfo"/>
+      <mdb:contentInfo>
+        <mrc:MD_FeatureCatalogueDescription>
+          <mrc:includedWithDataset/>
+          <mrc:featureCatalogueCitation uuidref="{$uuidref}"
+                                        xlink:href="{$siteUrl}csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/2005/gfc&amp;elementSetName=full&amp;id={$uuidref}"/>
+        </mrc:MD_FeatureCatalogueDescription>
+      </mdb:contentInfo>
 
       <xsl:apply-templates select="mdb:distributionInfo"/>
       <xsl:apply-templates select="mdb:dataQualityInfo"/>

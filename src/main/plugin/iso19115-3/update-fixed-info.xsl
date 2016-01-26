@@ -299,79 +299,7 @@
     </xsl:copy>
   </xsl:template>
   
-  
-  <!-- online resources: download -->
-  <xsl:template match="cit:CI_OnlineResource[matches(cit:protocol/gco:CharacterString,'^WWW:DOWNLOAD.*') and cit:name]">
-    <xsl:variable name="fname" select="cit:name/gco:CharacterString|cit:name/gcx:MimeFileType"/>
-    <xsl:variable name="mimeType" select="mime:detectMimeTypeFile(/root/env/datadir, $fname)"/>
 
-    <xsl:copy>
-      <xsl:copy-of select="@*"/>
-      <cit:linkage>
-        <gco:CharacterString>
-          <xsl:choose>
-            <xsl:when test="/root/env/config/downloadservice/simple='true'">
-              <xsl:value-of select="concat(/root/env/siteURL,'resources.get?uuid=',/root/env/uuid,'&amp;fname=',$fname,'&amp;access=private')"/>
-            </xsl:when>
-            <xsl:when test="/root/env/config/downloadservice/withdisclaimer='true'">
-              <xsl:value-of select="concat(/root/env/siteURL,'file.disclaimer?uuid=',/root/env/uuid,'&amp;fname=',$fname,'&amp;access=private')"/>
-            </xsl:when>
-            <xsl:otherwise> <!-- /root/env/config/downloadservice/leave='true' -->
-              <xsl:value-of select="cit:linkage/gco:CharacterString"/>
-            </xsl:otherwise>
-          </xsl:choose>
-        </gco:CharacterString>
-      </cit:linkage>
-      <xsl:copy-of select="cit:protocol"/>
-      <xsl:copy-of select="cit:applicationProfile"/>
-      <cit:name>
-        <gcx:MimeFileType type="{$mimeType}">
-          <xsl:value-of select="$fname"/>
-        </gcx:MimeFileType>
-      </cit:name>
-      <xsl:copy-of select="cit:description"/>
-      <xsl:copy-of select="cit:function"/>
-    </xsl:copy>
-  </xsl:template>
-  
-  
-  <!-- online resources: link-to-downloadable data etc -->
-  <xsl:template match="cit:CI_OnlineResource[starts-with(cit:protocol/gco:CharacterString,'WWW:LINK-') and contains(cit:protocol/gco:CharacterString,'http--download')]">
-    <xsl:variable name="mimeType" select="mime:detectMimeTypeUrl(cit:linkage/gco:CharacterString)"/>
-
-    <xsl:copy>
-      <xsl:copy-of select="@*"/>
-      <xsl:copy-of select="cit:linkage"/>
-      <xsl:copy-of select="cit:protocol"/>
-      <xsl:copy-of select="cit:applicationProfile"/>
-      <cit:name>
-        <gcx:MimeFileType type="{$mimeType}"/>
-      </cit:name>
-      <xsl:copy-of select="cit:description"/>
-      <xsl:copy-of select="cit:function"/>
-    </xsl:copy>
-  </xsl:template>
-  
-  <xsl:template match="gcx:FileName[name(..)!='cit:contactInstructions']">
-    <xsl:copy>
-      <xsl:attribute name="src">
-        <xsl:choose>
-          <xsl:when test="/root/env/config/downloadservice/simple='true'">
-            <xsl:value-of select="concat(/root/env/siteURL,'resources.get?uuid=',/root/env/uuid,'&amp;fname=',.,'&amp;access=private')"/>
-          </xsl:when>
-          <xsl:when test="/root/env/config/downloadservice/withdisclaimer='true'">
-            <xsl:value-of select="concat(/root/env/siteURL,'file.disclaimer?uuid=',/root/env/uuid,'&amp;fname=',.,'&amp;access=private')"/>
-          </xsl:when>
-          <xsl:otherwise> <!-- /root/env/config/downloadservice/leave='true' -->
-            <xsl:value-of select="@src"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:attribute>
-      <xsl:value-of select="."/>
-    </xsl:copy>
-  </xsl:template>
-  
-  
   <!-- Do not allow to expand operatesOn sub-elements 
     and constrain users to use uuidref attribute to link
     service metadata to datasets. This will avoid to have
