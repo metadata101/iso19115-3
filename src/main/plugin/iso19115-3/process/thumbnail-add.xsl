@@ -1,27 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
-  xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
-  xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
-  xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
-  xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
-  xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
-  xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  xmlns:gn="http://www.fao.org/geonetwork"
-  xmlns:gn-fn-iso19115-3="http://geonetwork-opensource.org/xsl/functions/profiles/iso19115-3"
-  exclude-result-prefixes="#all" version="2.0">
+                xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
+                xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
+                xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
+                xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+                xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
+                xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:gn="http://www.fao.org/geonetwork"
+                xmlns:gn-fn-iso19115-3="http://geonetwork-opensource.org/xsl/functions/profiles/iso19115-3"
+                exclude-result-prefixes="#all" version="2.0">
 
-  <!-- 
-      Usage: 
-        thumbnail-from-url-add?thumbnail_url=http://geonetwork.org/thumbnails/image.png
-    -->
   <xsl:import href="../layout/utility-fn.xsl"/>
 
-  <!-- Thumbnail base url (mandatory) -->
-  <xsl:param name="thumbnail_url"/>
-  <!-- Element to use for the file name. -->
-  <xsl:param name="thumbnail_desc" select="''"/>
-  <xsl:param name="thumbnail_type" select="''"/>
+  <xsl:param name="url"/>
+  <xsl:param name="desc" select="''"/>
+  <xsl:param name="type" select="''"/>
 
 
   <xsl:variable name="mainLang"
@@ -73,23 +67,24 @@
   </xsl:template>
 
   <xsl:template name="fill">
-    <xsl:if test="$thumbnail_url != ''">
+    <xsl:if test="$url != ''">
       <mri:graphicOverview>
         <mcc:MD_BrowseGraphic>
           <mcc:fileName>
             <gco:CharacterString>
-              <xsl:value-of select="$thumbnail_url"/>
+              <xsl:value-of select="$url"/>
             </gco:CharacterString>
           </mcc:fileName>
-          <xsl:if test="$thumbnail_desc!=''">
+          <xsl:if test="$desc!=''">
             <mcc:fileDescription>
-              <xsl:copy-of select="gn-fn-iso19115-3:fillTextElement($thumbnail_desc, $mainLang, $useOnlyPTFreeText)"/>
+              <xsl:copy-of
+                      select="gn-fn-iso19115-3:fillTextElement($desc, $mainLang, $useOnlyPTFreeText)"/>
             </mcc:fileDescription>
           </xsl:if>
-          <xsl:if test="$thumbnail_type!=''">
+          <xsl:if test="$type!=''">
             <mcc:fileType>
               <gco:CharacterString>
-                <xsl:value-of select="$thumbnail_type"/>
+                <xsl:value-of select="$type"/>
               </gco:CharacterString>
             </mcc:fileType>
           </xsl:if>

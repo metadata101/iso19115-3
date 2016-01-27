@@ -13,7 +13,6 @@
   xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
   xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
   xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
-  xmlns:util="java:org.fao.geonet.util.XslUtil"
   exclude-result-prefixes="#all" >
   
   
@@ -28,10 +27,47 @@
         <title><xsl:value-of select="mcc:fileDescription/gco:CharacterString"/></title>
       </relation>
     </xsl:for-each>
+
+    <xsl:for-each select="*/descendant::*[
+                            local-name() = 'portrayalCatalogueCitation'
+                            ]/*[cit:onlineResource/*/cit:linkage/gco:CharacterString != '']">
+      <relation type="onlinesrc" subtype="portrayal">
+        <id><xsl:value-of select="cit:onlineResource/cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/></id>
+        <url><xsl:value-of select="cit:onlineResource/cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/></url>
+        <title><xsl:value-of select="cit:title/gco:CharacterString"/></title>
+      </relation>
+    </xsl:for-each>
+
+    <xsl:for-each select="*/descendant::*[
+                            local-name() = 'additionalDocumentation' or
+                            local-name() = 'specification' or
+                            local-name() = 'reportReference'
+                            ]/*[cit:onlineResource/*/cit:linkage/gco:CharacterString != '']">
+      <relation type="onlinesrc" subtype="dq">
+        <id><xsl:value-of select="cit:onlineResource/cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/></id>
+        <url><xsl:value-of select="cit:onlineResource/cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/></url>
+        <title><xsl:value-of select="cit:title/gco:CharacterString"/></title>
+      </relation>
+    </xsl:for-each>
+
+    <xsl:for-each select="*/descendant::*[
+                            local-name() = 'featureCatalogueCitation'
+                            ]/*[cit:onlineResource/*/cit:linkage/gco:CharacterString != '']">
+      <relation type="fcats" subtype="{parent::node()/local-name()}">
+        <id><xsl:value-of select="cit:onlineResource/cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/></id>
+        <url><xsl:value-of select="cit:onlineResource/cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/></url>
+        <title><xsl:value-of select="cit:title/gco:CharacterString"/></title>
+      </relation>
+    </xsl:for-each>
+
     
-    <xsl:for-each select="*/descendant::*[name(.) = 'mrd:onLine']/*[cit:linkage/gco:CharacterString!='']">
+    <xsl:for-each select="*/descendant::*[
+                            local-name() = 'onLine'
+                            ]/*[cit:linkage/gco:CharacterString != '']">
       <relation type="onlinesrc">
-        
+        <xsl:if test="cit:function/*">
+          <xsl:attribute name="subtype" select="cit:function/*/@codeListValue"/>
+        </xsl:if>
         <!-- Compute title based on online source info-->
         <xsl:variable name="title">
           <xsl:variable name="title" select="''"/>

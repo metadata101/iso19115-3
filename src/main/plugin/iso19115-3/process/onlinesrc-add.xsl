@@ -21,6 +21,8 @@
   <xsl:param name="url"/>
   <xsl:param name="name"/>
   <xsl:param name="desc"/>
+  <xsl:param name="function"/>
+  <xsl:param name="applicationProfile"/>
   <xsl:param name="catalogUrl"/>
 
 
@@ -146,14 +148,12 @@
 
       <!-- If a name is provided loop on all languages -->
       <xsl:choose>
-        <xsl:when test="normalize-space($name) != ''">
+        <xsl:when test="contains($name, ',')">
           <xsl:for-each select="tokenize($name, ',')">
             <mrd:onLine>
               <cit:CI_OnlineResource>
                 <cit:linkage>
-                  <gco:CharacterString>
-                    <xsl:value-of select="$url"/>
-                  </gco:CharacterString>
+                  <xsl:copy-of select="gn-fn-iso19115-3:fillTextElement($url, $mainLang, $useOnlyPTFreeText)"/>
                 </cit:linkage>
 
                 <xsl:if test="$protocol != ''">
@@ -164,16 +164,32 @@
                   </cit:protocol>
                 </xsl:if>
 
-                <xsl:if test="normalize-space($name) != ''">
-                  <cit:name>
-                    <xsl:copy-of select="gn-fn-iso19115-3:fillTextElement($name, $mainLang, $useOnlyPTFreeText)"/>
-                  </cit:name>
+                <xsl:if test="$applicationProfile != ''">
+                  <cit:applicationProfile>
+                    <gco:CharacterString>
+                      <xsl:value-of select="$applicationProfile"/>
+                    </gco:CharacterString>
+                  </cit:applicationProfile>
                 </xsl:if>
 
-                <xsl:if test="$desc != ''">
+                <xsl:if test="normalize-space(.) != ''">
+                  <cit:name>
+                    <xsl:copy-of select="gn-fn-iso19115-3:fillTextElement(., $mainLang, $useOnlyPTFreeText)"/>
+                  </cit:name>
+                </xsl:if>
+                <xsl:variable name="pos" select="position()"/>
+                <xsl:variable name="description" select="tokenize($desc, ',')[position() = $pos]"/>
+                <xsl:if test="$description != ''">
                   <cit:description>
-                    <xsl:copy-of select="gn-fn-iso19115-3:fillTextElement($desc, $mainLang, $useOnlyPTFreeText)"/>
+                    <xsl:copy-of select="gn-fn-iso19115-3:fillTextElement($description, $mainLang, $useOnlyPTFreeText)"/>
                   </cit:description>
+                </xsl:if>
+
+                <xsl:if test="$function != ''">
+                  <cit:function>
+                    <cit:CI_OnLineFunctionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_OnLineFunctionCode"
+                                               codeListValue="{$function}"/>
+                  </cit:function>
                 </xsl:if>
               </cit:CI_OnlineResource>
             </mrd:onLine>
@@ -183,9 +199,7 @@
           <mrd:onLine>
             <cit:CI_OnlineResource>
               <cit:linkage>
-                <gco:CharacterString>
-                    <xsl:value-of select="$url"/>
-                </gco:CharacterString>
+                <xsl:copy-of select="gn-fn-iso19115-3:fillTextElement($url, $mainLang, $useOnlyPTFreeText)"/>
               </cit:linkage>
 
               <xsl:if test="$protocol != ''">
@@ -196,10 +210,31 @@
                 </cit:protocol>
               </xsl:if>
 
+              <xsl:if test="$applicationProfile != ''">
+                <cit:applicationProfile>
+                  <gco:CharacterString>
+                    <xsl:value-of select="$applicationProfile"/>
+                  </gco:CharacterString>
+                </cit:applicationProfile>
+              </xsl:if>
+
+              <xsl:if test="normalize-space($name) != ''">
+                <cit:name>
+                  <xsl:copy-of select="gn-fn-iso19115-3:fillTextElement($name, $mainLang, $useOnlyPTFreeText)"/>
+                </cit:name>
+              </xsl:if>
+
               <xsl:if test="$desc != ''">
                 <cit:description>
                   <xsl:copy-of select="gn-fn-iso19115-3:fillTextElement($desc, $mainLang, $useOnlyPTFreeText)"/>
                 </cit:description>
+              </xsl:if>
+
+              <xsl:if test="$function != ''">
+                <cit:function>
+                  <cit:CI_OnLineFunctionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_OnLineFunctionCode"
+                                             codeListValue="{$function}"/>
+                </cit:function>
               </xsl:if>
             </cit:CI_OnlineResource>
           </mrd:onLine>

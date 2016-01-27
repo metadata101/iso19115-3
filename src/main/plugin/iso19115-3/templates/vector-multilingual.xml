@@ -161,7 +161,7 @@
       <mri:citation>
         <cit:CI_Citation>
           <cit:title xsi:type="lan:PT_FreeText_PropertyType">
-            <gco:CharacterString>Multilingual template for Vector data</gco:CharacterString>
+            <gco:CharacterString>Template for Vector data (multilingual)</gco:CharacterString>
             <lan:PT_FreeText>
               <lan:textGroup>
                 <lan:LocalisedCharacterString locale="#FR">Modèle pour les données vecteur (multilingue)</lan:LocalisedCharacterString>
@@ -243,8 +243,8 @@
         </cit:CI_Responsibility>
       </mri:pointOfContact>
       <mri:spatialRepresentationType>
-        <mri:MD_SpatialRepresentationTypeCode codeList="codeListLocation#MD_SpatialRepresentationTypeCode"
-          codeListValue="anyValidURI"/>
+        <mcc:MD_SpatialRepresentationTypeCode codeList=""
+                                              codeListValue="vector"/>
       </mri:spatialRepresentationType>
       <mri:spatialResolution>
         <mri:MD_Resolution>

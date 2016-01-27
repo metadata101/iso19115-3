@@ -9,6 +9,7 @@
                 xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
                 xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
                 xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                 xmlns:util="java:org.fao.geonet.util.XslUtil"
                 xmlns:geonet="http://www.fao.org/geonetwork"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -138,6 +139,9 @@
             -->
             <xsl:variable name="keywordThesaurus" select="replace(./uri, 'http://org.fao.geonet.thesaurus.all/([^@]+)@@@.+', '$1')" />
             <xsl:attribute name="gco:nilReason" select="concat('thesaurus::', $keywordThesaurus)" />
+          </xsl:if>
+          <xsl:if test="count($listOfLanguage) > 1">
+            <xsl:attribute name="xsi:type" select="'lan:PT_FreeText_PropertyType'"/>
           </xsl:if>
 
           <xsl:choose>

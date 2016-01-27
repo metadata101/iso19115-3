@@ -10,7 +10,6 @@
   <constraintInfo>Contraintes d'accès et d'utilisation</constraintInfo>
   <resourceLineageTab>Lineage</resourceLineageTab>
 
-  <!-- View and tabs -->
   <advanced>Complète</advanced>
   <default>Simple</default>
   <simple>Simple</simple>

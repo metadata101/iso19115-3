@@ -11,8 +11,7 @@ detach the related service
   <xsl:param name="uuidref"/>
 
   <!-- Detach -->
-  <xsl:template match="mrd:onLine[cit:CI_OnlineResource/cit:linkage/gco:CharacterString = $uuidref]|
-                       gn:*" priority="2"/>
+  <xsl:template match="mrd:onLine[cit:CI_OnlineResource/cit:linkage/gco:CharacterString = $uuidref]|gn:*" priority="2"/>
 
   <!-- Do a copy of every nodes and attributes -->
   <xsl:template match="@*|node()">
