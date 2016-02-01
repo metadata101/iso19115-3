@@ -384,11 +384,6 @@
     <label>Verticale</label>
     <description iso="true">Distance d’échantillonnage verticale</description>
   </element>
-  <element name="mri:distance" id="81.0">
-    <label>Distance</label>
-    <description iso="true">Distance échantillon par rapport au sol horizontal
-    </description>
-  </element>
   <element name="mri:angularDistance" id="83.0">
     <label>Distance angulaire</label>
     <description iso="true">Mesure d’échantillonnage angulaire</description>
