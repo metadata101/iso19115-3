@@ -54,7 +54,7 @@ public class ISO19115_3SchemaPlugin
     }
 
     public ISO19115_3SchemaPlugin() {
-        super(IDENTIFIER);
+        super(IDENTIFIER, allNamespaces);
     }
 
     public Set<AssociatedResource> getAssociatedResourcesUUIDs(Element metadata) {
