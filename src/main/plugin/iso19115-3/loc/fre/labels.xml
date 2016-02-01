@@ -1256,7 +1256,7 @@
     </description>
   </element>
   <element name="cit:CI_Responsibility" id="376.0">
-    <label>Responsibilité</label>
+    <label>Responsabilité</label>
     <description iso="true">Type de données pour l'informations concernant
       l’acteur et son rôle
     </description>
