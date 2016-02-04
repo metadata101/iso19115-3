@@ -855,7 +855,6 @@
     <xsl:param name="lang"/>
     <xsl:param name="langId"/>
 
-    <xsl:variable name="orgName" select="string(cit:name/*)"/>
     <xsl:copy-of select="gn-fn-iso19115-3:index-field('orgName', cit:name, $langId)"/>
     <xsl:variable name="role" select="../../cit:role/*/@codeListValue"/>
     <xsl:variable name="email" select="cit:contactInfo/cit:CI_Contact/
@@ -873,9 +872,17 @@
     <xsl:variable name="individualNames" select="''"/>
     <xsl:variable name="positionName" select="''"/>
 
+    <xsl:variable name="orgName">
+      <xsl:apply-templates mode="localised" select="cit:name">
+        <xsl:with-param name="langId" select="concat('#', $langId)"/>
+      </xsl:apply-templates>
+    </xsl:variable>
+
     <Field name="responsibleParty"
-           string="{concat($roleTranslation, '|', $type, '|', $orgName, '|', $logo, '|',
-                              string-join($email, ','), '|', $individualNames, '|', $positionName, '|',
+           string="{concat($roleTranslation, '|', $type, '|',
+                              $orgName, '|', $logo, '|',
+                              string-join($email, ','), '|', $individualNames,
+                              '|', $positionName, '|',
                               $address, '|', string-join($phones, ','))}"
            store="true" index="false"/>
   </xsl:template>
