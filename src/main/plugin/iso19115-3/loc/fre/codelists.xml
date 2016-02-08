@@ -682,7 +682,7 @@
       <description>Indicates a UML composition (part role).</description>
     </entry>
   </codelist>
-  <codelist name="gmd:MD_ClassificationCode">
+  <codelist name="mco:MD_ClassificationCode">
     <entry>
       <code>unclassified</code>
       <label>Non classifié</label>
@@ -743,7 +743,7 @@
     </entry>
 
   </codelist>
-  <codelist name="gmd:MD_CoverageContentTypeCode">
+  <codelist name="mrc:MD_CoverageContentTypeCode">
     <entry>
       <code>image</code>
       <label>Image</label>
@@ -807,7 +807,7 @@
       </description>
     </entry>
   </codelist>
-  <codelist name="gmd:MD_DatatypeCode">
+  <codelist name="mex:MD_DatatypeCode">
     <entry>
       <code>class</code>
       <label>Classe</label>
@@ -903,7 +903,7 @@
       <description>Relation entre deux classes</description>
     </entry>
   </codelist>
-  <codelist name="gmd:MD_DimensionNameTypeCode">
+  <codelist name="msr:MD_DimensionNameTypeCode">
     <entry>
       <code>row</code>
       <label>Axe - Y</label>
@@ -948,7 +948,7 @@
       <description>Durée</description>
     </entry>
   </codelist>
-  <codelist name="gmd:MD_GeometricObjectTypeCode">
+  <codelist name="msr:MD_GeometricObjectTypeCode">
     <entry>
       <code>complex</code>
       <label>Complexe</label>
@@ -990,7 +990,7 @@
       </description>
     </entry>
   </codelist>
-  <codelist name="gmd:MD_ImagingConditionCode">
+  <codelist name="mrc:MD_ImagingConditionCode">
     <entry>
       <code>blurredImage</code>
       <label>Flou</label>
@@ -1234,12 +1234,11 @@
       <description>La ressource est mise à jour tous les deux ans</description>
     </entry>
   </codelist>
-  <codelist name="gmd:MD_MediumFormatCode">
+  <codelist name="mrd:MD_MediumFormatCode">
     <entry>
       <code>cpio</code>
       <label>Cpio</label>
-      <description>Copie en entrée /sortie (commande et fichier au format
-        UNIX)
+      <description>Copie en entrée /sortie (commande et fichier au format UNIX)
       </description>
     </entry>
     <entry>
@@ -1273,7 +1272,7 @@
       <description>Format de disque universel</description>
     </entry>
   </codelist>
-  <codelist name="gmd:MD_ObligationCode">
+  <codelist name="mex:MD_ObligationCode">
     <entry>
       <code>mandatory</code>
       <label>Obligatoire</label>
@@ -1290,7 +1289,7 @@
       <description>Conditionnel</description>
     </entry>
   </codelist>
-  <codelist name="gmd:MD_PixelOrientationCode">
+  <codelist name="msr:MD_PixelOrientationCode">
     <entry>
       <code>center</code>
       <label>Centre</label>
@@ -1711,24 +1710,6 @@
         de matériel et accessible sur un réseau
       </description>
     </entry>
-    <!-- ISO PROFIL CHE ONLY
-<entry>
-  <code>project</code>
-  <label>Projet</label>
-  <description>Le projet décrit le cadre organisationnel défini pour l'accomplissement d'une tâche: il intègre la description des tenants et des aboutissants du problème, les objectifs, les activités prévues, les étapes de réalisation, les délais, les ressources...</description>
-</entry>
-<entry>
-  <code>stationSite</code>
-  <label>Station</label>
-  <description>Cet élément décrit les activités d'acquisition de données des stations de mesure ; il ne décrit pas les données mais la manière dont elles ont été saisies (paramètres de saisie, méthodes, instruments)</description>
-</entry>
-<entry>
-  <code>publication</code>
-  <label>Publication</label>
-  <description>Ce sont des produits finis tels que les ouvrages, brochures, articles, rapports, matériel audiovisuel...</description>
-</entry>-->
-
-
     <entry hideInEditMode="true">
       <code>map</code>
       <label>Carte</label>
@@ -2047,31 +2028,6 @@
       <code>wayPoint</code>
       <label>Way Point</label>
       <description>Event related to general collectio</description>
-    </entry>
-  </codelist>
-  <codelist name="msr:MD_GeometricObjectTypeCode">
-    <entry>
-      <code>areal</code>
-      <label>Areal</label>
-      <description>Collection of a geographic area definded by a polygon
-        (coverage)
-      </description>
-    </entry>
-    <entry>
-      <code>strip</code>
-      <label>Strip</label>
-      <description>Series of linear collections grouped by way points
-      </description>
-    </entry>
-    <entry>
-      <code>linear</code>
-      <label>Linear</label>
-      <description></description>
-    </entry>
-    <entry>
-      <code>point</code>
-      <label>Point</label>
-      <description></description>
     </entry>
   </codelist>
   <codelist name="mac:MI_ObjectiveTypeCode">
@@ -2561,7 +2517,7 @@
       </description>
     </entry>
   </codelist>
-  <codelist name="gmd:MD_CellGeometryCode">
+  <codelist name="msr:MD_CellGeometryCode">
     <entry>
       <code>point</code>
       <label>Point</label>
@@ -2789,7 +2745,7 @@
   </codelist>
 
 
-  <codelist name="gmd:MD_MediumNameCode">
+  <codelist name="mrd:MD_MediumNameCode">
     <entry>
       <code>cdRom</code>
       <label>CD-ROM</label>
@@ -2879,173 +2835,6 @@
       <code>hardcopy</code>
       <label>Papier</label>
       <description>Document papier</description>
-    </entry>
-  </codelist>
-
-
-  <codelist name="gmd:MX_ScopeCode">
-    <entry>
-      <code>attribute</code>
-      <label>Attribut</label>
-      <description>Informations appliquées aux caractéristiques de l’attribut
-      </description>
-    </entry>
-    <entry>
-      <code>attributeType</code>
-      <label>Type d'attribut</label>
-      <description>Informations appliquées aux caractéristiques de l’entité
-      </description>
-    </entry>
-    <entry>
-      <code>collectionHardware</code>
-      <label>Collection matérielle</label>
-      <description>Informations appliquées aux caractéristiques d’une collection
-        matérielle
-      </description>
-    </entry>
-    <entry>
-      <code>collectionSession</code>
-      <label>Collection de session</label>
-      <description>Informations appliquées aux caractéristiques d’une collection
-        de session
-      </description>
-    </entry>
-    <entry>
-      <code>dataset</code>
-      <label>Jeu de données</label>
-      <description>Informations appliquées aux caractéristiques de jeu de
-        données
-      </description>
-    </entry>
-    <entry>
-      <code>series</code>
-      <label>Collection de données</label>
-      <description>Informations appliquées aux caractéristiques de la collection
-        de données
-      </description>
-    </entry>
-    <entry>
-      <code>nonGeographicDataset</code>
-      <label>Jeux de données non géographiques</label>
-      <description>Informations appliquées aux caractéristiques de jeux de
-        données non géographiques
-      </description>
-    </entry>
-    <entry>
-      <code>dimensionGroup</code>
-      <label>Dimension d'un groupe</label>
-      <description>Informations appliquées à un groupe</description>
-    </entry>
-    <entry>
-      <code>feature</code>
-      <label>Entité</label>
-      <description>Informations appliquées à une entité</description>
-    </entry>
-    <entry>
-      <code>featureType</code>
-      <label>Type d’entité</label>
-      <description>Informations appliquées à un type d’entité</description>
-    </entry>
-    <entry>
-      <code>propertyType</code>
-      <label>Type de propriété</label>
-      <description>Informations appliquées à un type de propriété</description>
-    </entry>
-    <entry>
-      <code>fieldSession</code>
-      <label>Champ de session</label>
-      <description>Informations appliquées aux caractéristiques d’un champ de
-        session
-      </description>
-    </entry>
-    <entry>
-      <code>software</code>
-      <label>Logiciel</label>
-      <description>Informations appliquées à programme ou à une routine
-      </description>
-    </entry>
-    <entry>
-      <code>service</code>
-      <label>Service</label>
-      <description>Informations appliquées à un service Internet</description>
-    </entry>
-    <entry>
-      <code>model</code>
-      <label>Modèle</label>
-      <description>Informations appliquées à modèle décrivant les objets ou un
-        ensemble d'objets
-      </description>
-    </entry>
-    <entry>
-      <code>tile</code>
-      <label>Tile</label>
-      <description>Tile</description>
-    </entry>
-    <entry>
-      <code>initiative</code>
-      <label>Initiative</label>
-      <description>The referencing entity applies to a transfer aggregate which
-        was originally
-        identified as an initiative (DS_Initiative)
-      </description>
-    </entry>
-    <entry>
-      <code>stereomate</code>
-      <label>Stereomate</label>
-      <description>The referencing entity applies to a transfer aggregate which
-        was originally
-        identified as a stereo mate (DS_StereoMate)
-      </description>
-    </entry>
-    <entry>
-      <code>sensor</code>
-      <label>Sensor</label>
-      <description>The referencing entity applies to a transfer aggregate which
-        was originally
-        identified as a sensor (DS_Sensor)
-      </description>
-    </entry>
-    <entry>
-      <code>platformSeries</code>
-      <label>PlatformSeries</label>
-      <description>The referencing entity applies to a transfer aggregate which
-        was originally
-        identified as a platform series (DS_PlatformSeries)
-      </description>
-    </entry>
-    <entry>
-      <code>sensorSeries</code>
-      <label>SensorSeries</label>
-      <description>The referencing entity applies to a transfer aggregate which
-        was originally
-        identified as a sensor series (DS_SensorSeries)
-      </description>
-    </entry>
-    <entry>
-      <code>productionSeries</code>
-      <label>ProductionSeries</label>
-      <description>The referencing entity applies to a transfer aggregate which
-        was originally
-        identified as a production series (DS_ProductionSeries)
-      </description>
-    </entry>
-    <entry>
-      <code>transferAggregate</code>
-      <label>TransferAggregate</label>
-      <description>The referencing entity applies to a transfer aggregate which
-        has no existence
-        outside of the transfer context
-      </description>
-    </entry>
-    <entry>
-      <code>otherAggregate</code>
-      <label>OtherAggregate</label>
-      <description>The referencing entity applies to a transfer aggregate which
-        has an existence
-        outside of the transfer context, but which does not pertains to a
-        specific aggregate
-        type.
-      </description>
     </entry>
   </codelist>
   <codelist name="srv:DCPList">
