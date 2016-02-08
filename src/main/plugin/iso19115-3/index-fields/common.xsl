@@ -24,6 +24,7 @@
                 xmlns:joda="java:org.fao.geonet.domain.ISODate"
                 xmlns:gn-fn-core="http://geonetwork-opensource.org/xsl/functions/core"
                 xmlns:gn-fn-iso19115-3="http://geonetwork-opensource.org/xsl/functions/profiles/iso19115-3"
+                xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
                 xmlns:skos="http://www.w3.org/2004/02/skos/core#"
                 exclude-result-prefixes="#all">
 
@@ -366,11 +367,10 @@
         <xsl:for-each select="mri:keyword/gco:CharacterString|
                                 mri:keyword/gcx:Anchor|
                                 mri:keyword/lan:PT_FreeText/lan:textGroup/lan:LocalisedCharacterString">
-          <xsl:if test="$inspire='true'">
+          <xsl:if test="$inspire = 'true'">
             <xsl:if test="string-length(.) &gt; 0">
-
               <xsl:variable name="inspireannex">
-                <xsl:call-template name="determineInspireAnnex">
+                <xsl:call-template name="findInspireAnnex">
                   <xsl:with-param name="keyword" select="string(.)"/>
                   <xsl:with-param name="inspireThemes" select="$inspire-theme"/>
                 </xsl:call-template>
@@ -378,7 +378,18 @@
 
               <!-- Add the inspire field if it's one of the 34 themes -->
               <xsl:if test="normalize-space($inspireannex)!=''">
+                <xsl:variable name="keyword" select="."/>
+                <xsl:variable name="inspireThemeAcronym">
+                  <xsl:call-template name="findInspireThemeAcronym">
+                    <xsl:with-param name="keyword" select="$keyword"/>
+                  </xsl:call-template>
+                </xsl:variable>
+
                 <Field name="inspiretheme" string="{string(.)}" store="false" index="true"/>
+                <Field name="inspirethemewithac"
+                       string="{concat($inspireThemeAcronym, '|', $keyword)}"
+                       store="true" index="true"/>
+                <Field name="inspirethemeuri" string="{$inspire-theme[skos:prefLabel = $keyword]/@rdf:about}" store="true" index="true"/>
                 <Field name="inspireannex" string="{$inspireannex}" store="false" index="true"/>
                 <Field name="inspirecat" string="true" store="false" index="true"/>
               </xsl:if>
@@ -387,7 +398,7 @@
         </xsl:for-each>
       </xsl:for-each>
 
-      <xsl:for-each select="mri:topicCategory/mri:MD_TopicCategoryCode">
+      <xsl:for-each select="mri:topicCategory/mri:MD_TopicCategoryCode[text() != '']">
         <Field name="topicCat" string="{string(.)}" store="true" index="true"/>
 
         <!--FIXME <Field name="keyword"
@@ -911,7 +922,12 @@
     </xsl:if>
   </xsl:template>
 
-  <xsl:template name="determineInspireAnnex">
+  <xsl:template name="findInspireThemeAcronym">
+    <xsl:param name="keyword"/>
+    <xsl:value-of select="$inspire-theme/skos:altLabel[../skos:prefLabel = $keyword]/text()"/>
+  </xsl:template>
+
+  <xsl:template name="findInspireAnnex">
     <xsl:param name="keyword"/>
     <xsl:param name="inspireThemes"/>
     <xsl:variable name="englishKeywordMixedCase">
@@ -942,7 +958,7 @@
                   or $englishKeyword='soil' or $englishKeyword='land use'
                   or $englishKeyword='human health and safety' or $englishKeyword='utility and governmental services'
                   or $englishKeyword='environmental monitoring facilities' or $englishKeyword='production and industrial facilities'
-                  or $englishKeyword='agricultural and aquaculture facilities' or $englishKeyword='population distribution - demography'
+                  or $englishKeyword='agricultural and aquaculture facilities' or $englishKeyword='population distribution — demography'
                   or $englishKeyword='area management/restriction/regulation zones and reporting units'
                   or $englishKeyword='natural risk zones' or $englishKeyword='atmospheric conditions'
                   or $englishKeyword='meteorological geographical features' or $englishKeyword='oceanographic geographical features'

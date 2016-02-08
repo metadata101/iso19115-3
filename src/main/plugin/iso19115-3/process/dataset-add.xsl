@@ -84,7 +84,8 @@ a coupledResource reference.
                 select="mdb:identificationInfo/*/srv:operatedDataset|
                 mdb:identificationInfo/*/srv:profile|
                 mdb:identificationInfo/*/srv:serviceStandard|
-                mdb:identificationInfo/*/srv:containsOperations"/>
+                mdb:identificationInfo/*/srv:containsOperations|
+                mdb:identificationInfo/*/srv:operatesOn[@uuidref != $uuidref]"/>
               
               <xsl:if test="$uuidref">
                 <srv:operatesOn uuidref="{$uuidref}"
