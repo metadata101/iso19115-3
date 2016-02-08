@@ -398,7 +398,7 @@
         </xsl:for-each>
       </xsl:for-each>
 
-      <xsl:for-each select="mri:topicCategory/mri:MD_TopicCategoryCode">
+      <xsl:for-each select="mri:topicCategory/mri:MD_TopicCategoryCode[text() != '']">
         <Field name="topicCat" string="{string(.)}" store="true" index="true"/>
 
         <!--FIXME <Field name="keyword"
