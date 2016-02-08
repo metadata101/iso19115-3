@@ -4333,6 +4333,12 @@ version en tant que mot-clé complémentaire(s). Le numéro de version doit comp
       extent.geographicElement.EX_GeographicDescription is required
     </_condition>
   </element>
+  <element name="mri:extent" id="45.0" context="srv:SV_ServiceIdentification">
+    <label>Étendue</label>
+    <description>Type de données pour l'information sur l'étendue horizontale,
+      verticale et temporelle du service
+    </description>
+  </element>
 
   <element name="mri:environmentDescription" id="44.0">
     <label>Description de l'environnement de travail</label>
@@ -8121,6 +8127,30 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
   <element name="srv:keywords">
     <label>Mots-clés</label>
     <description>Mots-clés décrivant le service</description>
+  </element>
+  <element name="srv:operatedDataset">
+    <label>Jeu de données utilisé</label>
+    <description>Fournit une référence à la ressource sur laquelle le service fonctionne. Note : Pour une resource donnée, il est possible d'utiliser soit operatedDataset, soit operatesOn (mais pas les deux).</description>
+  </element>
+  <element name="srv:profile">
+    <label>Profil</label>
+    <description></description>
+  </element>
+  <element name="srv:serviceStandard">
+    <label>Standard du service</label>
+    <description></description>
+  </element>
+  <element name="srv:distributedComputingPlatform">
+    <label>Plateformes de calcul distribuées</label>
+    <description>Plateformes de calcul distribuées sur lesquelles l'opération a été mise en oeuvre</description>
+  </element>
+  <element name="srv:parameter">
+    <label>Paramètre</label>
+    <description></description>
+  </element>
+  <element name="srv:containsChain">
+    <label>Contient une chaîne</label>
+    <description>Fournit des informations concernant la chaîne appliquée par le service.</description>
   </element>
   <element name="mrc:locale">
     <label>Autre langue</label>

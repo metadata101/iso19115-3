@@ -4983,6 +4983,30 @@
     <label>Keywords</label>
     <description>Keywords describing service</description>
   </element>
+  <element name="srv:operatedDataset">
+    <label>Operated dataset</label>
+    <description>Provides a reference to the resource on which the service operates. Note: For one resource either operated dataset or operates on may be used (not both).</description>
+  </element>
+  <element name="srv:profile">
+    <label>Profile</label>
+    <description>Profile to which the service adheres</description>
+  </element>
+  <element name="srv:serviceStandard">
+    <label>Service standard</label>
+    <description>Standard to which the service adheres</description>
+  </element>
+  <element name="srv:distributedComputingPlatform">
+    <label>Distributed computing platform (DCP)</label>
+    <description>DCP on which the operation has been implemented</description>
+  </element>
+  <element name="srv:parameter">
+    <label>Parameter</label>
+    <description></description>
+  </element>
+  <element name="srv:containsChain">
+    <label>Contains chain</label>
+    <description>Provide information about the chain applied by the service</description>
+  </element>
   <element name="mrc:locale">
     <label>Other language</label>
     <description>Use this section to define other metadata language
