@@ -686,6 +686,9 @@
                           contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
                                    'Thèmes du géoportail wallon')]/*"/>
 
+          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:topicCategory"
+                 or="topicCategory"
+                 in="/mdb:MD_Metadata/mdb:identificationInfo/*"/>
 
           <!-- All other keywords -->
           <field name="keywordINSPIREtheme"
