@@ -99,7 +99,7 @@
                      select="mrd:MD_Distribution/mrd:transferOptions[position() > 1]"/>
                  </xsl:when>
                  <xsl:otherwise>
-                   <xsl:apply-templates select="mrd:transferOptions"/>
+                   <xsl:apply-templates select="mrd:MD_Distribution/mrd:transferOptions"/>
                  </xsl:otherwise>
                </xsl:choose>
               </mrd:MD_Distribution>
