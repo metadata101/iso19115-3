@@ -358,6 +358,10 @@
     </description>
     <condition></condition>
   </element>
+  <element name="mdb:metadataProfile">
+    <label>Profil des métadonnées</label>
+    <description>Citation du/des profil(s) de la norme de métadonnées</description>
+  </element>
   <element name="mdb:MD_MetadataScoperd" id="39.0">
     <label>Domaine d’application des métadonnées</label>
     <description iso="true">Informations concernant le domaine d’application de

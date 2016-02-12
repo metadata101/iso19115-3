@@ -51,6 +51,7 @@
   <mw-metadata>Métadonnée</mw-metadata>
   <metadataDefinition>Informations générales</metadataDefinition>
   <metadataTitle>Titre de la ressource</metadataTitle>
+  <metadataAbstract>Abstract</metadataAbstract>
 
   <noMetadataScopeFound>
     <div class="row">
@@ -181,6 +182,7 @@
       </div>
     </div>
   </mw-data-online-access-help>
+  <format>Format</format>
   <description>Description</description>
   <distributionformat>Format de distribution</distributionformat>
   <distributor>Coordonnées du distributeur</distributor>

@@ -11,11 +11,14 @@
   <resourceLineageTab>Lineage</resourceLineageTab>
 
   <advanced>Complète</advanced>
+  <advanced-help>La vue complète permet d'ajouter tous les descripteurs définis dans le standard. Les champs sont groupés par onglet.</advanced-help>
   <default>Simple</default>
   <simple>Simple</simple>
+  <simple-help>La vue simple affiche toutes les informations présentes dans la fiche.</simple-help>
   <inspire>INSPIRE</inspire>
   <resource>Ressource</resource>
   <xml>XML</xml>
+  <xml-help>La vue XML permet de modifier directement le XML de la fiche.</xml-help>
   <metadata>Métadonnées</metadata>
   <identificationInfo>Identification</identificationInfo>
   <distributionInfo>Distribution</distributionInfo>
@@ -38,8 +41,10 @@
 
   <!-- METAWAL View and tabs for GeoPortail view-->
   <metawal>Geoportail</metawal>
+  <metawal-help>La vue Géoportail présente les informations qui seront affichés dans Metawal et dans le Géoportail.</metawal-help>
   <!--TAB 1 - Metadata-->
   <mw-metadata>Métadonnée</mw-metadata>
+  <mw-metadata-help>Cette onglet permet de décrire la fiche.</mw-metadata-help>
   <metadataDefinition>Informations générales</metadataDefinition>
   <metadataTitle>Titre de la ressource</metadataTitle>
 
@@ -89,7 +94,7 @@
   <metawalTemporalCoverage>Période couverte par les données</metawalTemporalCoverage>
   <metadaLanguage>Langue de la métadonnée</metadaLanguage>
   
-  <metadaAbstract>Résumé descriptif</metadaAbstract>
+  <metadataAbstract>Résumé descriptif</metadataAbstract>
   <inspireKeywords>Mots-clés INSPIRE</inspireKeywords>
   <otherKeywords>Autres mots-clés</otherKeywords>
   <addOtherKeyword>Ajouter d'autres mots-clés</addOtherKeyword>
@@ -107,6 +112,8 @@
     </div>
   </mw-feature-catalogue-help>
   <mw-content>Modèle</mw-content>
+  <format>Format</format>
+  <mw-content-help>Cet onglet permet de décrire le modèle de données</mw-content-help>
   <dataDistribution1>TODO</dataDistribution1>
   <walloniaTheme>Ajouter un thème du géoportail</walloniaTheme>
   <metawalTemporalExtent>Étendue temporelle</metawalTemporalExtent>
@@ -135,6 +142,7 @@
   <metadataOrganisationPersonName>Nom du responsable</metadataOrganisationPersonName>
 
   <mw-data>Description de la ressource</mw-data>
+  <mw-data-help>Cet onglet décrit les caractéristiques principales de la ressource</mw-data-help>
   <datadefinition>Informations générales</datadefinition>
 
   <alternateTitle>Ajouter un titre alternatif</alternateTitle>

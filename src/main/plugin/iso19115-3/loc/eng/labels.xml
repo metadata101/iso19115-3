@@ -366,6 +366,10 @@
     </description>
     <condition></condition>
   </element>
+  <element name="mdb:metadataProfile">
+    <label>Metadata profile</label>
+    <description>Citation for the profile(s) of the metadata standard.</description>
+  </element>
   <element name="mdb:MD_MetadataScoperd" id="39.0">
     <label>Resource scope</label>
     <description iso="true">Information about the scope of the resource.
