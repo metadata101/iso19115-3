@@ -100,6 +100,8 @@
     <for name="mdb:contact" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
               data-template-add-action="true"
+              data-search-action="false"
+              data-popup-action="true"
               data-template-type="contact"
               data-filter='{"_root": "cit:CI_Responsibility"}'
               data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
@@ -115,6 +117,8 @@
       use the following configuration: -->
       <directiveAttributes
               data-template-add-action="true"
+              data-search-action="false"
+              data-popup-action="true"
               data-template-type="contact"
               data-filter='{"_root": "gmd:CI_ResponsibleParty"}'
               data-variables="gmd:role/gmd:CI_RoleCode/@codeListValue~{role}"
@@ -123,6 +127,8 @@
     <for name="mrd:distributor" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
               data-template-add-action="true"
+              data-search-action="false"
+              data-popup-action="true"
               data-template-type="contact"
               data-filter='{"_root": "cit:CI_Responsibility"}'
               data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
@@ -131,6 +137,8 @@
     <for name="mrl:processor" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
               data-template-add-action="true"
+              data-search-action="false"
+              data-popup-action="true"
               data-template-type="contact"
               data-filter='{"_root": "cit:CI_Responsibility"}'
               data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
@@ -139,6 +147,8 @@
     <for name="cit:citedResponsibleParty" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
               data-template-add-action="true"
+              data-search-action="false"
+              data-popup-action="true"
               data-template-type="contact"
               data-filter='{"_root": "cit:CI_Responsibility"}'
               data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
@@ -149,6 +159,8 @@
     <for name="cit:logo" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
               data-template-add-action="true"
+              data-search-action="true"
+              data-popup-action="false"
               data-template-type="logo"
               data-filter='{"_root": "mcc:MD_BrowseGraphic"}'/>
     </for>
@@ -156,6 +168,8 @@
     <for name="mdq:report" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
               data-template-add-action="true"
+              data-search-action="true"
+              data-popup-action="false"
               data-template-type="report"
               data-filter='{"_root": "mdq:DQ_*"}'/>
     </for>
@@ -163,6 +177,8 @@
     <for name="mri:resourceConstraints" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
               data-template-add-action="true"
+              data-search-action="true"
+              data-popup-action="false"
               data-template-type="resourceConstraints"
               data-filter='{"_root": "mco:MD_*"}'/>
     </for>
