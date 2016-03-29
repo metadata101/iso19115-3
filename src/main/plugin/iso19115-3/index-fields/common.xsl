@@ -811,6 +811,7 @@
       $metadata/mdb:parentMetadata/@uuidref">
       <Field name="parentUuid" string="{string(.)}" store="true" index="true"/>
     </xsl:for-each>
+    <Field name="isChild" string="{exists($metadata/mdb:parentMetadata)}" store="true" index="true"/>
 
 
 
