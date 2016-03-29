@@ -238,12 +238,6 @@
             <xsl:with-param name="codeListName" select="'gmd:MD_ProgressCode'"/>
           </xsl:call-template>
           <xsl:apply-templates select="mri:pointOfContact"/>
-          <xsl:call-template name="writeCodelistElement">
-            <xsl:with-param name="elementName" select="'gmd:spatialRepresentationType'"/>
-            <xsl:with-param name="codeListName" select="'gmd:MD_SpatialRepresentationTypeCode'"/>
-            <xsl:with-param name="codeListValue" select="mri:spatialRepresentationType/mcc:MD_SpatialRepresentationTypeCode/@codeListValue"/>
-          </xsl:call-template>
-
           <xsl:apply-templates select="mri:resourceMaintenance"/>
           <xsl:apply-templates select="mri:graphicOverview"/>
           <xsl:apply-templates select="mri:resourceFormat"/>
@@ -251,6 +245,11 @@
           <xsl:apply-templates select="mri:resourceSpecificUsage"/>
           <xsl:apply-templates select="mri:resourceConstraints"/>
           <xsl:apply-templates select="mri:associatedResource"/>
+          <xsl:call-template name="writeCodelistElement">
+            <xsl:with-param name="elementName" select="'gmd:spatialRepresentationType'"/>
+            <xsl:with-param name="codeListName" select="'gmd:MD_SpatialRepresentationTypeCode'"/>
+            <xsl:with-param name="codeListValue" select="mri:spatialRepresentationType/mcc:MD_SpatialRepresentationTypeCode/@codeListValue"/>
+          </xsl:call-template>
           <xsl:apply-templates select="mri:spatialResolution"/>
           <!-- This is here to handle early adopters of temporalResolution -->
           <xsl:apply-templates select="mri:temporalResolution"/>
@@ -304,9 +303,10 @@
 
 
   <xsl:template match="mdb:distributionInfo">
-    <xsl:copy>
+    <gmd:distributionInfo>
+      <xsl:apply-templates select="@*"/>
       <xsl:apply-templates select="*"/>
-    </xsl:copy>
+    </gmd:distributionInfo>
 
     <!-- Add a new distribution section after existing one with
     documents referenced in other sections of the record. -->
@@ -321,47 +321,55 @@
         <entry key="reportReference" value="information.qualityReport"/>
         <entry key="featureCatalogueCitation" value="information.content"/>
       </xsl:variable>
-      <gmd:distributionInfo>
-        <gmd:MD_Distribution>
-          <gmd:transferOptions>
-            <gmd:MD_DigitalTransferOptions>
-              <xsl:for-each select="ancestor::mdb:MD_Metadata/descendant::*[
-                  local-name() = $functionMap/entry/@key
-                  ]/*[cit:onlineResource/*/cit:linkage/gco2:CharacterString != '']">
-                <gmd:onLine>
-                  <gmd:CI_OnlineResource>
-                    <gmd:linkage>
-                      <xsl:apply-templates select="cit:onlineResource/cit:CI_OnlineResource/cit:linkage/gco2:CharacterString"/>
-                    </gmd:linkage>
-                    <gmd:protocol>
-                      <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
-                    </gmd:protocol>
-                    <xsl:call-template name="writeCharacterStringElement">
-                      <xsl:with-param name="elementName" select="'gmd:name'"/>
-                      <xsl:with-param name="nodeWithStringToWrite" select="cit:title"/>
-                    </xsl:call-template>
 
-                    <xsl:call-template name="writeCharacterStringElement">
-                      <xsl:with-param name="elementName" select="'gmd:description'"/>
-                      <xsl:with-param name="nodeWithStringToWrite" select="cit:onlineResource/cit:CI_OnlineResource/cit:description"/>
-                    </xsl:call-template>
+      <xsl:variable name="hasRelation"
+                    select="count(ancestor::mdb:MD_Metadata/descendant::*[
+                              local-name() = $functionMap/entry/@key]/
+                                *[cit:onlineResource/*/cit:linkage/
+                                  gco2:CharacterString != '']) > 0"/>
+      <xsl:if test="$hasRelation">
+        <gmd:distributionInfo>
+          <gmd:MD_Distribution>
+            <gmd:transferOptions>
+              <gmd:MD_DigitalTransferOptions>
+                <xsl:for-each select="ancestor::mdb:MD_Metadata/descendant::*[
+                    local-name() = $functionMap/entry/@key
+                    ]/*[cit:onlineResource/*/cit:linkage/gco2:CharacterString != '']">
+                  <gmd:onLine>
+                    <gmd:CI_OnlineResource>
+                      <gmd:linkage>
+                        <xsl:apply-templates select="cit:onlineResource/cit:CI_OnlineResource/cit:linkage/gco2:CharacterString"/>
+                      </gmd:linkage>
+                      <gmd:protocol>
+                        <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
+                      </gmd:protocol>
+                      <xsl:call-template name="writeCharacterStringElement">
+                        <xsl:with-param name="elementName" select="'gmd:name'"/>
+                        <xsl:with-param name="nodeWithStringToWrite" select="cit:title"/>
+                      </xsl:call-template>
 
-                    <xsl:variable name="type" select="local-name(..)"/>
-                    <xsl:variable name="function" select="$functionMap/entry[@key = $type]/@value"/>
-                    <xsl:if test="$function">
-                      <gmd:function>
-                        <gmd:CI_OnLineFunctionCode
-                          codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_OnLineFunctionCode"
-                          codeListValue="{$function}"/>
-                      </gmd:function>
-                    </xsl:if>
-                  </gmd:CI_OnlineResource>
-                </gmd:onLine>
-              </xsl:for-each>
-            </gmd:MD_DigitalTransferOptions>
-          </gmd:transferOptions>
-        </gmd:MD_Distribution>
-      </gmd:distributionInfo>
+                      <xsl:call-template name="writeCharacterStringElement">
+                        <xsl:with-param name="elementName" select="'gmd:description'"/>
+                        <xsl:with-param name="nodeWithStringToWrite" select="cit:onlineResource/cit:CI_OnlineResource/cit:description"/>
+                      </xsl:call-template>
+
+                      <xsl:variable name="type" select="local-name(..)"/>
+                      <xsl:variable name="function" select="$functionMap/entry[@key = $type]/@value"/>
+                      <xsl:if test="$function">
+                        <gmd:function>
+                          <gmd:CI_OnLineFunctionCode
+                            codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_OnLineFunctionCode"
+                            codeListValue="{$function}"/>
+                        </gmd:function>
+                      </xsl:if>
+                    </gmd:CI_OnlineResource>
+                  </gmd:onLine>
+                </xsl:for-each>
+              </gmd:MD_DigitalTransferOptions>
+            </gmd:transferOptions>
+          </gmd:MD_Distribution>
+        </gmd:distributionInfo>
+      </xsl:if>
     </xsl:if>
   </xsl:template>
 
