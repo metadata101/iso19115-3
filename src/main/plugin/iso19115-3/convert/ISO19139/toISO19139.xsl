@@ -405,14 +405,10 @@
       <gmd:DQ_DataQuality>
         <xsl:if test="mdq:DQ_DataQuality/mdq:scope">
           <gmd:scope>
-            <xsl:choose>
-              <xsl:when test="mdq:DQ_DataQuality/mdq:scope/@*">
-                <xsl:apply-templates select="mdq:DQ_DataQuality/mdq:scope/@*"/>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:apply-templates select="mdq:DQ_DataQuality/mdq:scope/mcc:DQ_Scope/*"/>
-              </xsl:otherwise>
-            </xsl:choose>
+            <gmd:DQ_Scope>
+             <xsl:apply-templates select="mdq:DQ_DataQuality/mdq:scope/@*"/>
+             <xsl:apply-templates select="mdq:DQ_DataQuality/mdq:scope/mcc:MD_Scope/*"/>
+            </gmd:DQ_Scope>
           </gmd:scope>
         </xsl:if>
         
