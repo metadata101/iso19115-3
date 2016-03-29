@@ -274,7 +274,7 @@
           <xsl:if test="srv2:serviceType">
             <srv:serviceType>
               <gco:LocalName>
-                <xsl:value-of select="srv2:serviceType/gco:ScopedName"/>
+                <xsl:value-of select="srv2:serviceType/gco2:ScopedName"/>
               </gco:LocalName>
             </srv:serviceType>
           </xsl:if>
@@ -405,14 +405,10 @@
       <gmd:DQ_DataQuality>
         <xsl:if test="mdq:DQ_DataQuality/mdq:scope">
           <gmd:scope>
-            <xsl:choose>
-              <xsl:when test="mdq:DQ_DataQuality/mdq:scope/@*">
-                <xsl:apply-templates select="mdq:DQ_DataQuality/mdq:scope/@*"/>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:apply-templates select="mdq:DQ_DataQuality/mdq:scope/mcc:DQ_Scope/*"/>
-              </xsl:otherwise>
-            </xsl:choose>
+            <gmd:DQ_Scope>
+             <xsl:apply-templates select="mdq:DQ_DataQuality/mdq:scope/@*"/>
+             <xsl:apply-templates select="mdq:DQ_DataQuality/mdq:scope/mcc:MD_Scope/*"/>
+            </gmd:DQ_Scope>
           </gmd:scope>
         </xsl:if>
         
@@ -520,30 +516,19 @@
   <xsl:template match="cit:CI_Citation/cit:date">
     <gmd:date>
       <xsl:apply-templates select="@*"/>
-      <xsl:choose>
-        <xsl:when test="@gco2:nilReason"/>
-        <xsl:otherwise>
-          <gmd:CI_Date>
-            <gmd:date>
-              <xsl:choose>
-                <xsl:when test="descendant::gmd:date/@gco2:nilReason">
-                  <xsl:copy-of select="descendant::gmd:date/@gco2:nilReason"/>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:call-template name="writeDateTime"/>
-                </xsl:otherwise>
-              </xsl:choose>
-            </gmd:date>
-            <xsl:for-each select="descendant::cit:dateType">
-              <xsl:call-template name="writeCodelistElement">
-                <xsl:with-param name="elementName" select="'gmd:dateType'"/>
-                <xsl:with-param name="codeListName" select="'gmd:CI_DateTypeCode'"/>
-                <xsl:with-param name="codeListValue" select="cit:CI_DateTypeCode/@codeListValue"/>
-              </xsl:call-template>
-            </xsl:for-each>
-          </gmd:CI_Date>
-        </xsl:otherwise>
-      </xsl:choose>
+      <gmd:CI_Date>
+        <gmd:date>
+          <xsl:copy-of select="descendant::gmd:date/@gco2:nilReason"/>
+          <xsl:call-template name="writeDateTime"/>
+        </gmd:date>
+        <xsl:for-each select="descendant::cit:dateType">
+          <xsl:call-template name="writeCodelistElement">
+            <xsl:with-param name="elementName" select="'gmd:dateType'"/>
+            <xsl:with-param name="codeListName" select="'gmd:CI_DateTypeCode'"/>
+            <xsl:with-param name="codeListValue" select="cit:CI_DateTypeCode/@codeListValue"/>
+          </xsl:call-template>
+        </xsl:for-each>
+      </gmd:CI_Date>
     </gmd:date>
   </xsl:template>
   <xsl:template match="cit:CI_Citation/cit:editionDate">
