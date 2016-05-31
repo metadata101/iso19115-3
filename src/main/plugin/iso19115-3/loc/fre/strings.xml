@@ -199,4 +199,71 @@
   <Source>Ressource en ligne</Source>
   <inspiremainsection>INSPIRE</inspiremainsection>
   <keywordsInpire>Mots-clés relatifs à la directive INSPIRE</keywordsInpire>
+    <!-- FORMATTER GEOPORTAIL -->
+  <wallonia>Wallonie</wallonia>
+  <lastupdate>Dernière mise à jour de la donnée</lastupdate>
+  <proprietary>Propriétaire</proprietary>
+  <overview>Résumé</overview>
+  <access>Accès</access>
+  <use>Qualité</use>
+  <associatedressources>Ressources associées</associatedressources>
+  <keywords>Mots-clés</keywords>
+  <geoportailTheme>Thème(s) Géoportail</geoportailTheme>
+  <inspireTheme>Thème(s) INSPIRE</inspireTheme>
+  <gemetTheme>Thème(s) GEMET</gemetTheme>
+  <othersTheme>Autre(s)</othersTheme>
+  <thumbnails>Aperçu</thumbnails>
+  <notfilledin>Non renseigné</notfilledin>
+  <viewing>Consultation</viewing>
+  <thematicmap>Dans une carte thématique</thematicmap>
+  <walonmap>Dans WalOnMap</walonmap>
+  <arcgis>Dans ArcGIS</arcgis>
+  <googleearth>Dans Gooogle Earth</googleearth>
+  <otherstools>Dans d'autres outils</otherstools>
+  <applicationview>Consulter la donnée dans une application</applicationview>
+  <descriptivesheet>Fiche descriptive</descriptivesheet>
+  <view>view</view>
+  <arcgismapping>ArcGIS Mapping Service</arcgismapping>
+  <copyurl>Copier l'URL</copyurl>
+  <webserviceview>Consulter la donnée via un webservice</webserviceview>
+  <copy>Obtenir une copie de la donnée</copy>
+  <formatter-distributor>Distributeur</formatter-distributor>
+  <formatter-format>Format de distribution</formatter-format>
+  <conditions>Conditions pour télécharger et utiliser la donnée</conditions>
+  <contact>Contacter</contact>
+  <aoi>Territoire couvert</aoi>
+  <spatialreference>Système de référence spatiale</spatialreference>
+  <toi>Étendue temporelle</toi>
+  <model>Modèle de la donnée</model>
+  <legend>Légende</legend>
+  <mtdidentification>Identification de la fiche descriptive</mtdidentification>
+  <mtdid>Identifiant de la fiche descriptive</mtdid>
+  <mtdlastupdate>Date de mise à jour de la fiche descriptive</mtdlastupdate>
+  <dataidentification>Identification de la donnée</dataidentification>
+  <dataid>Identifiant de la donnée</dataid>
+  <datalastdiffusion>Date de la dernière diffusion</datalastdiffusion>
+  <language>Langue de la donnée</language>
+  <document>Document</document>
+  <open>Ouvrir</open>
+  <referencescale>Échelle de référence</referencescale>
+  <resolution>Résolution spatiale</resolution>
+  <precision>Précision en X et Y</precision>
+  <precisionz>Précision en Z</precisionz>
+  <genealogy>Généalogie de la donnée</genealogy>
+  <qualityreport>Rapport de qualité</qualityreport>
+  <conformitytest>Tests de conformité</conformitytest>
+  <testname>Nom du test</testname>
+  <status>État de validation</status>
+  <associateddocument>Documents associés</associateddocument>
+  <associatedsite>Sites web associés</associatedsite>
+  <associateddata>Données associées</associateddata>
+  <name>Nom</name>
+  <question>Vous avez une question sur...</question>
+  <distributioninfo>L'accès et la distribution de la donnée ?</distributioninfo>
+  <contentinfo>Le contenu de la donnée ?</contentinfo>
+  <whishes>Vous souhaitez...</whishes>
+  <responsable>Contacter le responsable de la donnée ?</responsable>
+  <othersquestions>Pour tout autre question...</othersquestions>
+  <geoportail>Contactez le Helpdesk du Géoportail de la Wallonie !  </geoportail>
+  <helpdeskgeoportail>Helpdesk du Géoportail de la Wallonie</helpdeskgeoportail>
 </strings>
