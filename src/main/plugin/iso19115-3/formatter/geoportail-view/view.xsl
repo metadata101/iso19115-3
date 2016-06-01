@@ -140,7 +140,7 @@
           <p class="pull-right">
             <span class="title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'lastupdate')"/> :</span>
             <xsl:choose>
-              <xsl:when test="$metadata/mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:date/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']/cit:date/gco:Date">
+              <xsl:when test="$metadata/mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:date/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']/cit:date/gco:Date!=''">
                 <xsl:call-template name="formatDate">
                   <xsl:with-param name="dateParam" select="$metadata/mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:date/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']/cit:date/gco:Date" />
                   <xsl:with-param name="dateType" select='"string"'/>
@@ -339,7 +339,7 @@
       </div>
       <div class="geoportail-section-content">
         <xsl:choose>
-          <xsl:when test="$metadata/mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent/gex:extent/gml:TimePeriod/gml:beginPosition and $metadata/mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent/gex:extent/gml:TimePeriod/gml:endPosition">
+          <xsl:when test="$metadata/mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent/gex:extent/gml:TimePeriod/gml:beginPosition!='' and $metadata/mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent/gex:extent/gml:TimePeriod/gml:endPosition!=''">
             <xsl:call-template name="formatDate">
               <xsl:with-param name="dateParam" select="$metadata/mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent/gex:extent/gml:TimePeriod/gml:beginPosition" />
               <xsl:with-param name="dateType" select='"string"'/>
@@ -394,10 +394,19 @@
         <p><xsl:value-of select="$metadata/mdb:metadataIdentifier/mcc:MD_Identifier/mcc:code/gco:CharacterString"/></p>
         <h6><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'mtdlastupdate')"/></h6>
         <p>
-          <xsl:call-template name="formatDate">
-              <xsl:with-param name="dateParam" select="$metadata/mdb:dateInfo[cit:CI_Date/cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']/cit:CI_Date/cit:date/gco:DateTime" />
+          <xsl:choose>
+            <xsl:when test="$metadata/mdb:dateInfo[cit:CI_Date/cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']/cit:CI_Date/cit:date/gco:DateTime!=''">
+              <xsl:call-template name="formatDate">
+                <xsl:with-param name="dateParam" select="$metadata/mdb:dateInfo[cit:CI_Date/cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']/cit:CI_Date/cit:date/gco:DateTime" />
                <xsl:with-param name="dateType" select='"number"'/>
-          </xsl:call-template>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'notfilledin')"/>
+            </xsl:otherwise>
+          </xsl:choose>
+
+          
         </p>
       </div>
       </div>
@@ -411,7 +420,7 @@
         <h6><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'datalastdiffusion')"/></h6>
         <p>
           <xsl:choose>
-            <xsl:when test="$metadata/mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:date/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='publication']/cit:date/gco:Date">
+            <xsl:when test="$metadata/mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:date/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='publication']/cit:date/gco:Date!=''">
               <xsl:call-template name="formatDate">
                 <xsl:with-param name="dateParam" select="$metadata/mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:date/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='publication']/cit:date/gco:Date" />
                 <xsl:with-param name="dateType" select='"number"'/>
@@ -424,7 +433,7 @@
         </p>
         <h6><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'lastupdate')"/></h6>
           <xsl:choose>
-            <xsl:when test="$metadata/mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:date/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']/cit:date/gco:Date">
+            <xsl:when test="$metadata/mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:date/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']/cit:date/gco:Date!=''">
               <xsl:call-template name="formatDate">
                 <xsl:with-param name="dateParam" select="$metadata/mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:date/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']/cit:date/gco:Date" />
                 <xsl:with-param name="dateType" select='"number"'/>
