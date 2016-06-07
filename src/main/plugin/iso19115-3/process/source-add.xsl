@@ -56,7 +56,6 @@ Stylesheet used to update metadata adding a reference to a source record.
                 <xsl:apply-templates select="mrl:scope"/>
                 <xsl:apply-templates select="mrl:additionalDocumentation"/>
                 <xsl:apply-templates select="mrl:source"/>
-                <xsl:message>#<xsl:value-of select="position()"/> </xsl:message>
                 <xsl:if test="position() = 1">
                   <mrl:source uuidref="{$sourceUuid}"
                               xlink:href="{$siteUrl}/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://standards.iso.org/iso/19115/-3/gmd&amp;elementSetName=full&amp;id={$sourceUuid}"/>

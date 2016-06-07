@@ -328,7 +328,7 @@
   <!-- Set local identifier to the first 3 letters of iso code. Locale ids
     are used for multilingual charcterString using #iso2code for referencing.
   -->
-  <xsl:template match="mdb:MD_Metadata/mdb:defaultLocale/lan:PT_Locale">
+  <xsl:template match="mdb:MD_Metadata/*/lan:PT_Locale">
     <xsl:element name="lan:{local-name()}">
       <xsl:variable name="id"
                     select="upper-case(java:twoCharLangCode(lan:language/lan:LanguageCode/@codeListValue))"/>
@@ -349,10 +349,10 @@
   <xsl:template match="lan:LocalisedCharacterString">
     <xsl:element name="lan:{local-name()}">
       <xsl:variable name="currentLocale" select="upper-case(replace(normalize-space(@locale), '^#', ''))"/>
-      <xsl:variable name="ptLocale" select="$language[upper-case(replace(normalize-space(@id), '^#', ''))=string($currentLocale)]"/>
+      <xsl:variable name="ptLocale" select="$language[upper-case(replace(normalize-space(@id), '^#', '')) = string($currentLocale)]"/>
       <xsl:variable name="id" select="upper-case(java:twoCharLangCode($ptLocale/lan:language/lan:LanguageCode/@codeListValue))"/>
       <xsl:apply-templates select="@*"/>
-      <xsl:if test="$id != '' and ($currentLocale='' or @locale!=concat('#', $id)) ">
+      <xsl:if test="$id != '' and ($currentLocale = '' or @locale != concat('#', $id)) ">
         <xsl:attribute name="locale">
           <xsl:value-of select="concat('#',$id)"/>
         </xsl:attribute>

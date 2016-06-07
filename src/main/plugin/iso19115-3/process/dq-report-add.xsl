@@ -44,6 +44,9 @@
   <xsl:param name="desc"/>
   <xsl:param name="type"/>
 
+  <!-- Target element to update. The key is based on the concatenation
+  of URL+title -->
+  <xsl:param name="updateKey"/>
 
   <xsl:variable name="mainLang"
                 select="/mdb:MD_Metadata/mdb:defaultLocale/*/lan:language/*/@codeListValue"
@@ -114,10 +117,10 @@
                       </mcc:level>
                     </mcc:MD_Scope>
                   </mdq:scope>
-                  <xsl:if test="$type = 'qualityReport'">
+                  <xsl:if test="$type = 'qualityReport' and $updateKey = ''">
                     <xsl:call-template name="create-dq-standalone-report"/>
                   </xsl:if>
-                  <xsl:if test="$type = 'qualitySpecification'">
+                  <xsl:if test="$type = 'qualitySpecification' and $updateKey = ''">
                     <xsl:call-template name="create-dq-specification-report"/>
                   </xsl:if>
                 </mdq:DQ_DataQuality>
@@ -148,7 +151,7 @@
                     <xsl:apply-templates select="*/mrl:additionalDocumentation"/>
                     <!-- Insert lineage report in the first lineage bloc after
                     existing documentation -->
-                    <xsl:if test="position() = 1">
+                    <xsl:if test="position() = 1  and $updateKey = ''">
                       <xsl:call-template name="create-dq-lineage-report"/>
                     </xsl:if>
                     <xsl:apply-templates select="*/mrl:source"/>
@@ -171,7 +174,9 @@
                       </mcc:level>
                     </mcc:MD_Scope>
                   </mrl:scope>
-                  <xsl:call-template name="create-dq-lineage-report"/>
+                  <xsl:if test="$updateKey = ''">
+                    <xsl:call-template name="create-dq-lineage-report"/>
+                  </xsl:if>
                 </mrl:LI_Lineage>
               </mdb:resourceLineage>
             </xsl:otherwise>
@@ -190,6 +195,16 @@
       <xsl:apply-templates select="mdb:acquisitionInformation"/>
       
     </xsl:copy>
+  </xsl:template>
+
+
+  <xsl:template match="mdq:report[concat(
+                          mdq:DQ_DomainConsistency/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/
+                          cit:CI_Citation/cit:onlineResource/cit:CI_OnlineResource/cit:linkage/gco:CharacterString,
+                          mdq:DQ_DomainConsistency/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/
+                          cit:CI_Citation/cit:title/gco:CharacterString) =
+                          normalize-space($updateKey)]">
+      <xsl:call-template name="create-dq-specification-report"/>
   </xsl:template>
 
   <xsl:template name="create-dq-specification-report">
@@ -226,6 +241,15 @@
   </xsl:template>
 
 
+  <xsl:template match="mdq:standaloneQualityReport[concat(
+                          mdq:DQ_StandaloneQualityReportInformation/mdq:reportReference/
+                          cit:CI_Citation/cit:onlineResource/cit:CI_OnlineResource/cit:linkage/gco:CharacterString,
+                          mdq:DQ_StandaloneQualityReportInformation/mdq:reportReference/
+                          cit:CI_Citation/cit:title/gco:CharacterString) =
+                          normalize-space($updateKey)]">
+    <xsl:call-template name="create-dq-standalone-report"/>
+  </xsl:template>
+
   <xsl:template name="create-dq-standalone-report">
     <mdq:standaloneQualityReport>
       <mdq:DQ_StandaloneQualityReportInformation>
@@ -252,6 +276,12 @@
     </mdq:standaloneQualityReport>
   </xsl:template>
 
+  <xsl:template match="mrl:additionalDocumentation[concat(
+                          cit:CI_Citation/cit:onlineResource/cit:CI_OnlineResource/cit:linkage/gco:CharacterString,
+                          cit:CI_Citation/cit:title/gco:CharacterString) =
+                          normalize-space($updateKey)]">
+    <xsl:call-template name="create-dq-lineage-report"/>
+  </xsl:template>
 
   <xsl:template name="create-dq-lineage-report">
     <mrl:additionalDocumentation>

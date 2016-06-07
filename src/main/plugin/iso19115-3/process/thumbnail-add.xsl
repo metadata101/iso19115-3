@@ -17,6 +17,9 @@
   <xsl:param name="desc" select="''"/>
   <xsl:param name="type" select="''"/>
 
+  <!-- Target element to update. The key is based on the concatenation
+  of URL+Name -->
+  <xsl:param name="updateKey"/>
 
   <xsl:variable name="mainLang"
                 select="/mdb:MD_Metadata/mdb:defaultLocale/*/lan:language/*/@codeListValue"
@@ -47,7 +50,9 @@
       <xsl:apply-templates select="mri:processingLevel"/>
       <xsl:apply-templates select="mri:resourceMaintenance"/>
 
-      <xsl:call-template name="fill"/>
+      <xsl:if test="$updateKey = ''">
+        <xsl:call-template name="fill"/>
+      </xsl:if>
 
       <xsl:apply-templates select="mri:graphicOverview"/>
 
@@ -66,7 +71,15 @@
     </xsl:copy>
   </xsl:template>
 
-  <xsl:template name="fill">
+
+  <xsl:template match="mri:graphicOverview[concat(
+                        */mcc:fileName/gco:CharacterString,
+                        */mcc:fileDescription/gco:CharacterString) = normalize-space($updateKey)]">
+    <xsl:call-template name="fill"/>
+  </xsl:template>
+
+
+    <xsl:template name="fill">
     <xsl:if test="$url != ''">
       <mri:graphicOverview>
         <mcc:MD_BrowseGraphic>
