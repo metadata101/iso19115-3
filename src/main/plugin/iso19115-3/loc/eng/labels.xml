@@ -2703,22 +2703,19 @@
   <element name="mri:extendedElementInformation" id="305.0">
     <label>Extended element information</label>
     <description>Provides information about a new metadata element, not found in
-      ISO 19115,
-      which is required to describe geographic data
+      ISO 19115, which is required to describe geographic data
     </description>
   </element>
   <element name="mri:extensionOnLineResource" id="304.0">
     <label>Extension Online resource</label>
     <description>Information about on-line sources containing the community
-      profile name and the
-      extended metadata elements. Information for all new metadata elements
+      profile name and the extended metadata elements. Information for all new metadata elements
     </description>
   </element>
-  <element name="mri:extent" id="45.0" context="mri:MD_DataIdentification">
+  <element name="mri:extent" id="45.0">
     <label>Extent</label>
     <description>Extent information including the bounding polygon, vertical,
-      and temporal
-      extent of the dataset
+      and temporal extent of the dataset
     </description>
     <_condition>Conditional / if hierarchyLevel equals "dataset"? Either
       extent.geographicElement.EX_GeographicBoundingBox or
@@ -2728,8 +2725,7 @@
   <element name="mcc:extent" id="140.0" context="mcc:MD_Scope">
     <label>Extent</label>
     <description>Information about the horizontal, vertical and temporal extent
-      of the data
-      specified by the scope
+      of the data specified by the scope
     </description>
   </element>
   <element name="gex:extent" id="351.0" context="gex:EX_TemporalExtent">
@@ -2740,24 +2736,18 @@
   <element name="gex:extentTypeCode" id="340.0">
     <label>Extent type code</label>
     <description>Indication of whether the bounding polygon encompasses an area
-      covered by the
-      data or an area where data is not present. Possible values: '1' for
-      inclusion or '0' for
-      exclusion
+      covered by the data or an area where data is not present. Possible values: '1' for
+      inclusion or '0' for exclusion
     </description>
   </element>
   <element name="mri:facsimile" id="409.0">
     <label>Facsimile</label>
-    <description>Telephone number of a facsimile machine for the responsible
-      organization or
-      individual
+    <description>Telephone number of a facsimile machine for the responsible organization or individual
     </description>
   </element>
   <element name="mrc:featureCatalogueCitation" id="238.0">
     <label>Feature catalogue citation</label>
-    <description>Complete bibliographic reference to one or more external
-      feature
-      catalogues
+    <description>Complete bibliographic reference to one or more external feature catalogues
     </description>
     <condition>mandatory</condition>
   </element>

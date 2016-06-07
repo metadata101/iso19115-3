@@ -3,9 +3,53 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://geonetwork-opensource.org/schemas/schema-ident http://geonetwork-opensource.org/schemas/schema-ident/schema-ident.xsd">
   <name>iso19115-3</name>
-  <!--<url>http://www.iso.org/iso/catalogue_detail.htm?csnumber=53798</url>-->
   <id>73928c1f-6b15-422e-8209-1fb9ee96aa62</id>
   <version>1.0</version>
+  <title xml:lang="en">Geographic information &#45;&#45; Metadata</title>
+  <title xml:lang="fr">Information géographique &#45;&#45; Métadonnées</title>
+  <description xml:lang="en"><![CDATA[
+The objective of ISO 19115 is to provide a model for describing information or resources
+that can have geographic extents. This part of ISO 19115 is intended to be used by information system
+analysts, program planners, and developers of information systems, as well as others in order to define
+basic principles and requirements for standardized description of information resources. This part of
+ISO  19115 defines metadata elements, their properties, and the relationships between elements, and
+establishes a common set of metadata terminology, definitions, and extension procedures.
+
+Although the primary purpose of this part of ISO  19115 is to describe digital information that has a
+geographic extent, it can be used to describe all types of resources including textual documents,
+initiatives, software, non-geographic information, product specifications and repositories, i.e. it can be
+used to describe information resources that do not have geographic extent. Some domains have their
+own metadata standards, such as the Dublin Core for libraries. If necessary such standards and this part
+of ISO 19115 could be profiled to create a Community Schema.
+
+This schema also includes:
+
+- ISO19110 for feature catalog
+
+- ISO19115-2 for Imagery
+
+- ISO19157 for Data Quality
+  ]]></description>
+  <description xml:lang="fr"><![CDATA[
+L’objectif de l’ISO 19115 est de fournir un modèle destiné à décrire des informations
+ou des ressources pouvant avoir des étendues géographiques. Cette partie de l’ISO 19115 est destinée à être utilisée, entre autres, par des analystes de systèmes d’informations, des planificateurs de programmes et des développeurs de systèmes d’informations, dans le but de définir des principes de base et des exigences permettant d’établir une description normalisée des ressources d’informations.
+
+Cette partie de l’ISO 19115 définit les éléments de métadonnées, leurs propriétés et les relations entre les éléments et établit un ensemble commun de terminologies, de définitions et de procédures d’extension concernant les métadonnées.
+﻿
+Bien que cette partie de l’ISO 19115 ait pour but principal de décrire les informations numériques qui ont une étendue géographique, elle peut être utilisée pour décrire tous les types de ressources, y compris les documents textuels, les initiatives, les logiciels, les informations non géographiques, les spécifications de produit et les entrepôts de données, c’est-à-dire qu’elle peut même être utilisée pour décrire des ressources d’informations n’ayant aucune étendue géographique. Certains domaines ont leurs propres normes de métadonnées, telles que celles du Dublin Core pour les bibliothèques. Si besoin, des profils
+de telles normes et de cette partie de l’ISO 19115 pourraient être développés pour créer un Schéma Communautaire.
+
+
+Ce schéma est également composé des normes :
+
+- ISO19110 pour les modèles de données
+
+- ISO19115-2 pour l'imagerie
+
+- ISO19157 pour la qualité des données
+  ]]></description>
+  <standardUrl xml:lang="en">http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=32579</standardUrl>
+  <standardUrl xml:lang="fr">http://www.iso.org/iso/fr/home/store/catalogue_tc/catalogue_detail.htm?csnumber=32579</standardUrl>
   <!-- FIXME: add all required schemas -->
   <schemaLocation>http://standards.iso.org/iso/19115/-3/mds/1.0 http://standards.iso.org/iso/19115/-3/mds/1.0/mds.xsd</schemaLocation>
   <autodetect xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
