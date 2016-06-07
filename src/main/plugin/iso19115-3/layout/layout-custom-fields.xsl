@@ -43,6 +43,57 @@
   </xsl:template>
 
 
+
+  <!-- Measure elements, gco:Distance, gco:Angle, gco:Scale, gco:Length, ... -->
+  <xsl:template mode="mode-iso19115-3" priority="2000" match="mri:*[gco:*/@uom]">
+    <xsl:param name="schema" select="$schema" required="no"/>
+    <xsl:param name="labels" select="$labels" required="no"/>
+    <xsl:param name="refToDelete" select="''" required="no"/>
+
+    <!--Avoid CHOICEELEMENT level for parent name -->
+    <xsl:variable name="labelConfig"
+                  select="gn-fn-metadata:getLabel($schema, name(), $labels,
+                              name(ancestor::mri:*[not(contains(name(), 'CHOICE_ELEMENT'))][1]),
+                              '', '')"/>
+    <xsl:variable name="labelMeasureType"
+                  select="gn-fn-metadata:getLabel($schema, name(gco:*), $labels, name(), '', '')"/>
+    <xsl:variable name="isRequired" select="gn:element/@min = 1 and gn:element/@max = 1"/>
+
+    <xsl:variable name="parentEditInfo" select="if (exists($refToDelete)) then $refToDelete else gn:element"/>
+
+    <div class="form-group gn-field gn-title {if ($isRequired) then 'gn-required' else ''}"
+         id="gn-el-{*/gn:element/@ref}"
+         data-gn-field-highlight="">
+      <label class="col-sm-2 control-label">
+        <xsl:value-of select="$labelConfig/label"/>
+        <xsl:if test="$labelMeasureType != '' and
+                      $labelMeasureType/label != $labelConfig/label">&#10;
+          (<xsl:value-of select="$labelMeasureType/label"/>)
+        </xsl:if>
+      </label>
+      <div class="col-sm-9 gn-value">
+        <xsl:variable name="elementRef"
+                      select="gco:*/gn:element/@ref"/>
+        <xsl:variable name="helper"
+                      select="gn-fn-metadata:getHelper($labelConfig/helper, .)"/>
+        <div data-gn-measure="{gco:*/text()}"
+             data-uom="{gco:*/@uom}"
+             data-ref="{concat('_', $elementRef)}">
+        </div>
+
+        <textarea id="_{$elementRef}_config" class="hidden">
+          <xsl:copy-of select="java-xsl-util:xmlToJson(
+              saxon:serialize($helper, 'default-serialize-mode'))"/></textarea>
+      </div>
+      <div class="col-sm-1 gn-control">
+        <xsl:call-template name="render-form-field-control-remove">
+          <xsl:with-param name="editInfo" select="*/gn:element"/>
+          <xsl:with-param name="parentEditInfo" select="$parentEditInfo"/>
+        </xsl:call-template>
+      </div>
+    </div>
+  </xsl:template>
+
  <!-- <xsl:template mode="mode-iso19115-3"
                 match="cit:CI_Date"
                 priority="2000">
