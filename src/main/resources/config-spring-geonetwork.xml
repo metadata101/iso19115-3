@@ -5,5 +5,14 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
   <bean id="iso19115-3SchemaPlugin"
-        class="org.fao.geonet.schema.iso19115_3.ISO19115_3SchemaPlugin"/>
+        class="org.fao.geonet.schema.iso19115_3.ISO19115_3SchemaPlugin">
+    <property name="savedQueries">
+      <list>
+        <bean class="org.fao.geonet.kernel.schema.SavedQuery">
+          <property name="id" value="wfs-indexing-config"/>
+          <property name="xpath" value="*//cit:CI_OnlineResource[contains(cit:protocol/gco:CharacterString, {{protocol}}) and cit:name/gco:CharacterString = '{{name}}' and cit:linkage/gco:CharacterString = '{{url}}']/cit:applicationProfile/gco:CharacterString"/>
+        </bean>
+      </list>
+    </property>
+  </bean>
 </beans>
