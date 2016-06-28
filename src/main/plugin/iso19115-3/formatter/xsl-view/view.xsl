@@ -161,9 +161,11 @@
                 match="*[cit:CI_Responsibility]"
                 priority="100">
     <xsl:variable name="email">
-      <xsl:apply-templates mode="render-value"
-                           select="*/cit:party/*/cit:contactInfo/
-                                      */cit:address/*/cit:electronicMailAddress"/>
+      <xsl:for-each select="**/cit:party/*/cit:contactInfo/
+                                      */cit:address/*/cit:electronicMailAddress">
+        <xsl:apply-templates mode="render-value"
+                             select="."/><xsl:if test="position() != last()">, </xsl:if>
+      </xsl:for-each>
     </xsl:variable>
 
     <!-- Display name is <org name> - <individual name> (<position name> -->
