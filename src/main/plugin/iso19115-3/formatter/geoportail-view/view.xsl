@@ -173,38 +173,65 @@
         <xsl:value-of select="$metadata/mdb:identificationInfo/*/mri:abstract"/>
       </div>
       <div class="geoportail-section-title">
+        <h3><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'categories')"/></h3>
+      </div>
+      <div class="geoportail-section-content">
+        <xsl:choose>
+          <xsl:when test="$metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                              contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
+                                       'Thèmes du géoportail wallon')]/* or $metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                              contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
+                                           'INSPIRE')] or $metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                              contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
+                                           'GEMET - Concepts, version 2.4')] or $metadata//mdb:identificationInfo/mri:MD_DataIdentification/mri:topicCategory/mri:MD_TopicCategoryCode">
+            <xsl:if test="$metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                              contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
+                                       'Thèmes du géoportail wallon')]/*">
+              <h6><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'geoportailTheme')"/> :</h6>
+              <p><xsl:value-of select="string-join($metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                              contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
+                                       'Thèmes du géoportail wallon')]/*/mri:keyword,';')"/></p>
+              
+            </xsl:if>
+            <xsl:if test="$metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                              contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
+                                           'INSPIRE')]">
+              <h6><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'inspireTheme')"/> :</h6>
+              <p><xsl:value-of select="string-join($metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                              contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
+                                           'INSPIRE')]/*/mri:keyword,';')"/></p>
+            </xsl:if>
+            <xsl:if test="$metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                              contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
+                                           'GEMET - Concepts, version 2.4')]">
+              <h6><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'gemetTheme')"/> :</h6>
+              <p><xsl:value-of select="string-join($metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                              contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
+                                           'GEMET - Concepts, version 2.4')]/*/mri:keyword,';')"/></p>
+            </xsl:if>
+            <xsl:if test="$metadata//mdb:identificationInfo/mri:MD_DataIdentification/mri:topicCategory/mri:MD_TopicCategoryCode">
+              <h6><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'isoTheme')"/> :</h6>
+              <p><xsl:value-of select="string-join($metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:topicCategory/mri:MD_TopicCategoryCode,'; ')"/></p>
+             
+            </xsl:if>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'notfilledin')"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </div>
+      <div class="geoportail-section-title">
         <h3><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'keywords')"/></h3>
       </div>
       <div class="geoportail-section-content">
-        <xsl:if test="$metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
-                          contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
-                                   'Thèmes du géoportail wallon')]/*">
-          <h6><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'geoportailTheme')"/> :</h6>
-          <p><xsl:value-of select="string-join($metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
-                          contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
-                                   'Thèmes du géoportail wallon')]/*/mri:keyword,';')"/></p>
-          
-        </xsl:if>
-        <xsl:if test="$metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
-                          contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
-                                       'INSPIRE')]">
-          <h6><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'inspireTheme')"/> :</h6>
-          <p><xsl:value-of select="string-join($metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
-                          contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
-                                       'INSPIRE')]/*/mri:keyword,';')"/></p>
-        </xsl:if>
-        <xsl:if test="$metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
-                          contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
-                                       'GEMET - Concepts, version 2.4')]">
-          <h6><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'gemetTheme')"/> :</h6>
-          <p><xsl:value-of select="string-join($metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
-                          contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
-                                       'GEMET - Concepts, version 2.4')]/*/mri:keyword,';')"/></p>
-        </xsl:if>
-        <xsl:if test="$metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[not(*/mri:thesaurusName)]/*/mri:keyword">
-          <h6 ><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'othersTheme')"/> :</h6>
-          <p><xsl:value-of select="string-join($metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[not(*/mri:thesaurusName)]/*/mri:keyword,';')"/></p>
-        </xsl:if>
+        <xsl:choose>
+          <xsl:when test="$metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[not(*/mri:thesaurusName)]/*/mri:keyword">
+            <p><xsl:value-of select="string-join($metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[not(*/mri:thesaurusName)]/*/mri:keyword,';')"/></p>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'notfilledin')"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </div>
       <div class="geoportail-section-title">
         <h3><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'thumbnails')"/></h3>

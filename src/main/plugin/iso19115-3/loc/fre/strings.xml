@@ -45,8 +45,9 @@
   <!--TAB 1 - Metadata-->
   <mw-metadata>Métadonnée</mw-metadata>
   <mw-metadata-help>Cette onglet permet de décrire la fiche.</mw-metadata-help>
-  <metadataDefinition>Informations générales</metadataDefinition>
-  <metadataTitle>Titre de la ressource</metadataTitle>
+  <metadataDefinition>Informations générales sur la ressource</metadataDefinition>
+  <metadataScopetitle>Type de ressource</metadataScopetitle>
+  <metadataTitle>Nom de la ressource</metadataTitle>
 
   <noMetadataScopeFound>
     <div class="row">
@@ -65,7 +66,7 @@
   <thisIsASerie>C'est une Série</thisIsASerie>
   <thisIsANonGeographicDataset>C'est une donnée non géographique</thisIsANonGeographicDataset>
 
-  <metadataIdentification>Identification de la fiche descriptive</metadataIdentification>
+  <metadataIdentification>Informations sur la fiche descriptive</metadataIdentification>
   <metadataDate>Ajouter un autre événement</metadataDate>
   <metadataDate-help>
     <div class="row">
@@ -81,22 +82,24 @@
   <metadataLinks>Documents, Géodonnées et Géoservices associés</metadataLinks>
   <linkToSibling>Attacher à une collection ou faire une référence à une autre fiche</linkToSibling>
   <linkToService>Indiquer le ou les géoservices diffusant cette donnée</linkToService>
-  <linkToDataset>Indiquer le ou les géodonnées diffusées par ce service</linkToDataset>
+  <linkToDataset>Indiquer la ou les géodonnées diffusées par ce service</linkToDataset>
   <metadataLanguage>Langue de la fiche</metadataLanguage>
   <infraSIGCat>Classification Infra SIG</infraSIGCat>
 
-  <resourceDescription>Intitulé de la ressource</resourceDescription>
+  <resourceDescription>Identification de la ressource</resourceDescription>
   <resourceTags>Classification de la ressource</resourceTags>
   <keywordGeoportail>Thèmes du géoportail Wallon</keywordGeoportail>
   <keywordINSPIREtheme>Thèmes INSPIRE</keywordINSPIREtheme>
-  <keywordGEMET>Mots clés GEMET</keywordGEMET>
+  <keywordGEMET>Thèmes GEMET</keywordGEMET>
   <metawalExtent>Territoire couvert</metawalExtent>
   <metawalTemporalCoverage>Période couverte par les données</metawalTemporalCoverage>
   <metadaLanguage>Langue de la métadonnée</metadaLanguage>
   
   <metadataAbstract>Résumé descriptif</metadataAbstract>
   <inspireKeywords>Mots-clés INSPIRE</inspireKeywords>
+  <thematicsKeywords>Mots-clés thématiques</thematicsKeywords>
   <otherKeywords>Autres mots-clés</otherKeywords>
+  <categories>Catégories</categories>
   <addOtherKeyword>Ajouter d'autres mots-clés</addOtherKeyword>
   <mw-feature-catalogue-help>
     <div class="row">
@@ -115,7 +118,9 @@
   <format>Format</format>
   <mw-content-help>Cet onglet permet de décrire le modèle de données</mw-content-help>
   <dataDistribution1>TODO</dataDistribution1>
-  <walloniaTheme>Ajouter un thème du géoportail</walloniaTheme>
+  <mw-ed-walloniaTheme>Ajouter un thème du géoportail</mw-ed-walloniaTheme>
+  <mw-ed-gemetTheme>Ajouter un thème GEMET</mw-ed-gemetTheme>
+  <mw-ed-inspireTheme>Ajouter un thème INSPIRE</mw-ed-inspireTheme>
   <metawalTemporalExtent>Étendue temporelle</metawalTemporalExtent>
   <addTemporalElement>Définir une étendue temporelle (Date début > Date de fin)</addTemporalElement>
   <addUpdateFrequency>Définir la fréquence de mise à jour</addUpdateFrequency>
@@ -156,7 +161,7 @@
   <extent>Définition des emprises (temporelles et géographiques)</extent>
   <completenessOmission>Données manquantes</completenessOmission>
   <absoluteExternalPositionalAccuracy>Précision absolue de la position</absoluteExternalPositionalAccuracy>
-  <mw-access>Accès</mw-access>
+  <mw-access>Diffusion</mw-access>
   <epsgCode>Code EPSG</epsgCode>
   <dataDistribution>Accès à la donnée</dataDistribution>
   <mw-data-access>Obtenir une copie de la donnée</mw-data-access>
@@ -208,6 +213,7 @@
   <use>Qualité</use>
   <associatedressources>Ressources associées</associatedressources>
   <keywords>Mots-clés</keywords>
+  <mw-fr-categories>Thématiques</mw-fr-categories>
   <geoportailTheme>Thème(s) Géoportail</geoportailTheme>
   <inspireTheme>Thème(s) INSPIRE</inspireTheme>
   <gemetTheme>Thème(s) GEMET</gemetTheme>
@@ -236,7 +242,7 @@
   <toi>Étendue temporelle</toi>
   <model>Modèle de la donnée</model>
   <legend>Légende</legend>
-  <mtdidentification>Identification de la fiche descriptive</mtdidentification>
+  <mtdidentification>Informations sur la fiche descriptive</mtdidentification>
   <mtdid>Identifiant de la fiche descriptive</mtdid>
   <mtdlastupdate>Date de mise à jour de la fiche descriptive</mtdlastupdate>
   <dataidentification>Identification de la donnée</dataidentification>
