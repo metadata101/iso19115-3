@@ -393,7 +393,8 @@
 
             <!-- One field and a collection of 3 actions to define
             the current record as a dataset, a serie or a service. -->
-            <field xpath="/mdb:MD_Metadata/mdb:metadataScope"/>
+            <section name="metadataScopetitle">
+            <field name="metadataScopetitle" xpath="/mdb:MD_Metadata/mdb:metadataScope/mdb:MD_MetadataScope/mdb:resourceScope"/>
 
             <!-- If resource scope is not define, propose to choose a type.
             This depends on the type of records. Actions for services are
@@ -554,6 +555,12 @@
             </action>
 
             <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:citation/*/cit:identifier"/>
+            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:citation/*/cit:identifier"
+                 or="identifier"
+                 in="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:citation/*"/>
+            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:spatialRepresentationType"/>
+
+            </section>
 
           </section>
 
@@ -592,7 +599,8 @@
             <field name="metadataDate"
                    xpath="/mdb:MD_Metadata/mdb:dateInfo"
                    or="dateInfo"
-                   in="/mdb:MD_Metadata"/>
+                   in="/mdb:MD_Metadata"
+                   editInfo="no"/>
           </section>
 
           <section name="metadataLinks">
@@ -620,8 +628,7 @@
           <field name="metadataTitle"
                  xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:citation/*/cit:title"/>
 
-          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:spatialRepresentationType"/>
-
+          
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:citation/*/cit:alternateTitle"
                  or="alternateTitle"
                  in="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:citation/*"/>
@@ -642,79 +649,187 @@
 
         <section name="resourceTags">
 
+          <field name="metadataTitle"
+                 xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:citation/*/cit:title"/>
+
+            <field name="metadataAbstract"
+               xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:abstract"
+               or="abstract"
+               in="/mdb:MD_Metadata/mdb:identificationInfo/*"/>
+
            <field name="infraSIGCat"
                   xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
                           contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
                                        'Mots-clés InfraSIG')]"/>
+           <section name="thematicsKeywords">
+             <action type="add"
+                    name="mw-ed-walloniaTheme"
+                    forceLabel="yes"
+                    or="descriptiveKeywords"
+                    in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"
+                    if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                            contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,
+                                     'Thèmes du géoportail wallon')]) = 0">
+              <template>
+                <snippet>
+                  <mri:descriptiveKeywords>
+                    <mri:MD_Keywords>
+                      <mri:type>
+                        <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_KeywordTypeCode"
+                                                codeListValue="theme"/>
+                      </mri:type>
+                      <mri:thesaurusName>
+                        <cit:CI_Citation>
+                          <cit:title>
+                            <gco:CharacterString>Thèmes du géoportail wallon</gco:CharacterString>
+                          </cit:title>
+                          <cit:date>
+                            <cit:CI_Date>
+                              <cit:date>
+                                <gco:Date>2012-06-19</gco:Date>
+                              </cit:date>
+                              <cit:dateType>
+                                <cit:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode"
+                                                     codeListValue="publication"/>
+                              </cit:dateType>
+                            </cit:CI_Date>
+                          </cit:date>
+                          <cit:identifier>
+                            <mcc:MD_Identifier>
+                              <mcc:code>
+                                <gcx:Anchor xlink:href="http://metawal.wallonie.be/geonetwork/srv/fre/thesaurus.download?ref=external.theme.Themes_geoportail_wallon">geonetwork.thesaurus.external.theme.Themes_geoportail_wallon</gcx:Anchor>
+                              </mcc:code>
+                            </mcc:MD_Identifier>
+                          </cit:identifier>
+                        </cit:CI_Citation>
+                      </mri:thesaurusName>
+                    </mri:MD_Keywords>
+                  </mri:descriptiveKeywords>
+                </snippet>
+              </template>
+            </action>
 
-           <action type="add"
-                  name="walloniaTheme"
-                  or="descriptiveKeywords"
-                  in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"
+            <!-- Wallonia theme selector
+            No need for a name, the thesaurus title will be used.
+            -->
+            <field name="keywordGeoportail"
+                   xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                            contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
+                                     'Thèmes du géoportail wallon')]"
+                    if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                            contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,
+                                     'Thèmes du géoportail wallon')]) > 0"/>
+          
+          
+
+            <!-- All other keywords -->
+            <action type="add"
+                    name="mw-ed-inspireTheme"
+                    forceLabel="yes"
+                    or="descriptiveKeywords"
+                    in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"
+                    if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                            contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,
+                                     'INSPIRE')]) = 0">
+              <template>
+                <snippet>
+                  <mri:descriptiveKeywords>
+                    <mri:MD_Keywords>
+                      <mri:type>
+                        <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_KeywordTypeCode"
+                                                codeListValue="theme"/>
+                      </mri:type>
+                      <mri:thesaurusName>
+                        <cit:CI_Citation>
+                          <cit:title>
+                            <gco:CharacterString>GEMET - INSPIRE themes, version 1.0</gco:CharacterString>
+                          </cit:title>
+                          <cit:date>
+                            <cit:CI_Date>
+                              <cit:date>
+                                <gco:Date>2008-06-01</gco:Date>
+                              </cit:date>
+                              <cit:dateType>
+                                <cit:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication"/>
+                              </cit:dateType>
+                            </cit:CI_Date>
+                          </cit:date>
+                          <cit:identifier>
+                            <mcc:MD_Identifier>
+                              <mcc:code>
+                                <gcx:Anchor xlink:href="http://metawal.wallonie.be/geonetwork/srv/eng/thesaurus.download?ref=external.theme.inspire-theme">geonetwork.thesaurus.external.theme.inspire-theme</gcx:Anchor>
+                              </mcc:code>
+                            </mcc:MD_Identifier>
+                          </cit:identifier>
+                        </cit:CI_Citation>
+                      </mri:thesaurusName>
+                    </mri:MD_Keywords>
+                  </mri:descriptiveKeywords>
+                </snippet>
+              </template>
+            </action>
+
+            <field name="keywordINSPIREtheme"
+                 xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                          contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
+                                       'INSPIRE')]"
                   if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
-                          contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,
-                                   'Thèmes du géoportail wallon')]) = 0">
-            <template>
-              <snippet>
-                <mri:descriptiveKeywords>
-                  <mri:MD_Keywords>
-                    <mri:type>
-                      <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_KeywordTypeCode"
-                                              codeListValue="theme"/>
-                    </mri:type>
-                    <mri:thesaurusName>
-                      <cit:CI_Citation>
-                        <cit:title>
-                          <gco:CharacterString>Thèmes du géoportail wallon</gco:CharacterString>
-                        </cit:title>
-                        <cit:date>
+                            contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,
+                                     'INSPIRE')]) > 0"/>
+            <action type="add"
+                    name="mw-ed-gemetTheme"
+                    forceLabel="yes"
+                    or="descriptiveKeywords"
+                    in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"
+                    if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                            contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,
+                                     'GEMET - Concepts, version 2.4')]) = 0">
+              <template>
+                <snippet>
+                  <mri:descriptiveKeywords>
+                    <mri:MD_Keywords>
+                      <mri:type>
+                        <mri:MD_KeywordTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_KeywordTypeCode"
+                                                codeListValue="theme"/>
+                      </mri:type>
+                      <mri:thesaurusName>
+                    <cit:CI_Citation>
+                       <cit:title>
+                          <gco:CharacterString>GEMET</gco:CharacterString>
+                       </cit:title>
+                       <cit:date>
                           <cit:CI_Date>
-                            <cit:date>
-                              <gco:Date>2012-06-19</gco:Date>
-                            </cit:date>
-                            <cit:dateType>
-                              <cit:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode"
-                                                   codeListValue="publication"/>
-                            </cit:dateType>
+                             <cit:date>
+                                <gco:Date>2012-07-20</gco:Date>
+                             </cit:date>
+                             <cit:dateType>
+                                <cit:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode"
+                                                     codeListValue="publication"/>
+                             </cit:dateType>
                           </cit:CI_Date>
-                        </cit:date>
-                        <cit:identifier>
+                       </cit:date>
+                       <cit:identifier>
                           <mcc:MD_Identifier>
-                            <mcc:code>
-                              <gcx:Anchor xlink:href="http://metawal.wallonie.be/geonetwork/srv/fre/thesaurus.download?ref=external.theme.Themes_geoportail_wallon">geonetwork.thesaurus.external.theme.Themes_geoportail_wallon</gcx:Anchor>
-                            </mcc:code>
+                             <mcc:code>
+                                <gcx:Anchor xlink:href="http://metawal.wallonie.be/geonetwork/srv/fre/thesaurus.download?ref=external.theme.gemet">geonetwork.thesaurus.external.theme.gemet</gcx:Anchor>
+                             </mcc:code>
                           </mcc:MD_Identifier>
-                        </cit:identifier>
-                      </cit:CI_Citation>
-                    </mri:thesaurusName>
-                  </mri:MD_Keywords>
-                </mri:descriptiveKeywords>
-              </snippet>
-            </template>
-          </action>
-
-          <!-- Wallonia theme selector
-          No need for a name, the thesaurus title will be used.
-          TODO: label is not displayed ?
-          -->
-          <field name="keywordGeoportail"
-                 xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
-                          contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
-                                   'Thèmes du géoportail wallon')]/*"/>
-
-          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:topicCategory"
-                 or="topicCategory"
-                 in="/mdb:MD_Metadata/mdb:identificationInfo/*"/>
-
-          <!-- All other keywords -->
-          <field name="keywordINSPIREtheme"
-                 xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
-                          contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
-                                       'INSPIRE')]"/>
-           <field name="keywordGEMET"
-                  xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
-                          contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
-                                       'GEMET - Concepts, version 2.4')]"/>
+                       </cit:identifier>
+                    </cit:CI_Citation>
+                 </mri:thesaurusName>
+                    </mri:MD_Keywords>
+                  </mri:descriptiveKeywords>
+                </snippet>
+              </template>
+            </action>
+            <field name="keywordGEMET"
+                    xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                            contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
+                                         'GEMET - Concepts, version 2.4')]"
+                    if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                            contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,
+                                     'GEMET - Concepts, version 2.4')]) > 0"/>
+          </section>
 
           <section name="otherKeywords">
             <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[not(*/mri:thesaurusName)]/*/mri:keyword"
@@ -740,6 +855,11 @@
                 </snippet>
               </template>
             </action>
+          </section>
+          <section name="categories">
+            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:topicCategory"
+                 or="topicCategory"
+                 in="/mdb:MD_Metadata/mdb:identificationInfo/*"/>
           </section>
         </section>
 
