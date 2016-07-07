@@ -697,7 +697,7 @@
                           <cit:identifier>
                             <mcc:MD_Identifier>
                               <mcc:code>
-                                <gcx:Anchor xlink:href="http://metawal.wallonie.be/geonetwork/srv/fre/thesaurus.download?ref=external.theme.Themes_geoportail_wallon">geonetwork.thesaurus.external.theme.Themes_geoportail_wallon</gcx:Anchor>
+                                <gcx:Anchor xlink:href="http://metawal.wallonie.be/geonetwork/srv/fre/thesaurus.download?ref=external.theme.Themes_geoportail_wallon">geonetwork.thesaurus.external.theme.themes_geoportail_wallon</gcx:Anchor>
                               </mcc:code>
                             </mcc:MD_Identifier>
                           </cit:identifier>
@@ -729,8 +729,8 @@
                     or="descriptiveKeywords"
                     in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"
                     if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
-                            contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,
-                                     'INSPIRE')]) = 0">
+                            */mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString[text()=
+                                     'GEMET - INSPIRE themes, version 1.0']]) = 0">
               <template>
                 <snippet>
                   <mri:descriptiveKeywords>
@@ -771,19 +771,19 @@
 
             <field name="keywordINSPIREtheme"
                  xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
-                          contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
-                                       'INSPIRE')]"
+                          */mri:thesaurusName/*/cit:title/gco:CharacterString[text()=
+                                       'GEMET - INSPIRE themes, version 1.0']]"
                   if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
-                            contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,
-                                     'INSPIRE')]) > 0"/>
+                            */mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString[text()=
+                                     'GEMET - INSPIRE themes, version 1.0']]) > 0"/>
             <action type="add"
                     name="mw-ed-gemetTheme"
                     forceLabel="yes"
                     or="descriptiveKeywords"
                     in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"
-                    if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
-                            contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,
-                                     'GEMET - Concepts, version 2.4')]) = 0">
+                    if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords/
+                      */mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString
+                     [text()='GEMET']) = 0">
               <template>
                 <snippet>
                   <mri:descriptiveKeywords>
@@ -822,13 +822,12 @@
                 </snippet>
               </template>
             </action>
+
             <field name="keywordGEMET"
                     xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
-                            contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
-                                         'GEMET - Concepts, version 2.4')]"
-                    if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
-                            contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,
-                                     'GEMET - Concepts, version 2.4')]) > 0"/>
+                            */mri:thesaurusName/*/cit:title/gco:CharacterString[text()='GEMET']]"
+                    if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords/
+                            */mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString[text()='GEMET']) > 0"/>
           </section>
 
           <section name="otherKeywords">
