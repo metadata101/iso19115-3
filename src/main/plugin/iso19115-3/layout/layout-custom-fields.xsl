@@ -52,6 +52,7 @@
   <xsl:template mode="mode-iso19115-3" priority="2000" match="mri:*[gco:*/@uom]">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
+    <xsl:param name="refToDelete" select="''" required="no"/>
 
     <!--Avoid CHOICEELEMENT level for parent name -->
     <xsl:variable name="labelConfig"
@@ -61,6 +62,8 @@
     <xsl:variable name="labelMeasureType"
                   select="gn-fn-metadata:getLabel($schema, name(gco:*), $labels, name(), '', '')"/>
     <xsl:variable name="isRequired" select="gn:element/@min = 1 and gn:element/@max = 1"/>
+
+    <xsl:variable name="parentEditInfo" select="if (exists($refToDelete)) then $refToDelete else gn:element"/>
 
     <div class="form-group gn-field gn-title {if ($isRequired) then 'gn-required' else ''}"
          id="gn-el-{*/gn:element/@ref}"
@@ -89,7 +92,7 @@
       <div class="col-sm-1 gn-control">
         <xsl:call-template name="render-form-field-control-remove">
           <xsl:with-param name="editInfo" select="*/gn:element"/>
-          <xsl:with-param name="parentEditInfo" select="gn:element"/>
+          <xsl:with-param name="parentEditInfo" select="$parentEditInfo"/>
         </xsl:call-template>
       </div>
     </div>

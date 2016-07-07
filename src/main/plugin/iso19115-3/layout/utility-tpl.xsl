@@ -28,7 +28,7 @@
 
   <xsl:template name="get-iso19115-3-extents-as-json">[
    <xsl:for-each select="//gex:geographicElement/gex:EX_GeographicBoundingBox">
-      <xsl:variable name="format" select="'##.0000'"></xsl:variable>
+      <xsl:variable name="format" select="'#0.0000'"></xsl:variable>
 
       <xsl:if test="number(gex:westBoundLongitude/gco:Decimal)
             and number(gex:southBoundLatitude/gco:Decimal)
