@@ -14,9 +14,10 @@
 
   <xsl:import href="../layout/utility-fn.xsl"/>
   <!-- TODO: could be nice to define the target distributor -->
-  
-  <xsl:param name="uuidref"/>
-  <xsl:param name="extra_metadata_uuid"/>
+
+  <!-- Main properties for the link.
+  Name and description may be multilingual eg. ENG#English name|FRE#Le français
+  Name and description may be a list of layer/feature type names and titles comma separated. -->
   <xsl:param name="protocol" select="'OGC:WMS'"/>
   <xsl:param name="url"/>
   <xsl:param name="name"/>
@@ -24,6 +25,18 @@
   <xsl:param name="function"/>
   <xsl:param name="applicationProfile"/>
   <xsl:param name="catalogUrl"/>
+
+  <!-- Add an optional uuidref attribute to the onLine element created. -->
+  <xsl:param name="uuidref"/>
+
+  <!-- In this case an external metadata is available under the
+  extra element and all online resource from this records are added
+  in this one. -->
+  <xsl:param name="extra_metadata_uuid"/>
+
+  <!-- Target element to update. The key is based on the concatenation
+  of URL+Protocol+Name -->
+  <xsl:param name="updateKey"/>
 
 
   <xsl:variable name="mainLang"
@@ -65,7 +78,7 @@
             <mrd:MD_Distribution>
               <mrd:transferOptions>
                 <mrd:MD_DigitalTransferOptions>
-                  <xsl:call-template name="fill"/>
+                  <xsl:call-template name="createOnlineSrc"/>
                 </mrd:MD_DigitalTransferOptions>
               </mrd:transferOptions>
             </mrd:MD_Distribution>
@@ -86,8 +99,12 @@
                         <xsl:apply-templates select="mrd:MD_Distribution/mrd:transferOptions[1]/mrd:MD_DigitalTransferOptions/mrd:unitsOfDistribution"/>
                         <xsl:apply-templates select="mrd:MD_Distribution/mrd:transferOptions[1]/mrd:MD_DigitalTransferOptions/mrd:transferSize"/>
                         <xsl:apply-templates select="mrd:MD_Distribution/mrd:transferOptions[1]/mrd:MD_DigitalTransferOptions/mrd:onLine"/>
-                        
-                        <xsl:call-template name="fill"/>
+
+
+
+                        <xsl:if test="$updateKey = ''">
+                          <xsl:call-template name="createOnlineSrc"/>
+                        </xsl:if>
                         
                         <xsl:apply-templates select="mrd:MD_Distribution/mrd:transferOptions[1]/mrd:MD_DigitalTransferOptions/mrd:offLine"/>
                         <xsl:apply-templates select="mrd:MD_Distribution/mrd:transferOptions[1]/mrd:MD_DigitalTransferOptions/mrd:transferFrequency"/>
@@ -118,18 +135,19 @@
       
     </xsl:copy>
   </xsl:template>
-  
-  <!-- Remove geonet:* elements. -->
-  <xsl:template match="gn:*" priority="2"/>
-  
-  <!-- Copy everything. -->
-  <xsl:template match="@*|node()">
-    <xsl:copy>
-      <xsl:apply-templates select="@*|node()"/>
-    </xsl:copy>
+
+    <!-- Updating the link matching the update key. -->
+  <xsl:template match="mrd:onLine[
+                      normalize-space($updateKey) = concat(
+                      cit:CI_OnlineResource/cit:linkage/gco:CharacterString,
+                      cit:CI_OnlineResource/cit:protocol/gco:CharacterString,
+                      cit:CI_OnlineResource/cit:name/gco:CharacterString)
+                      ]">
+      <xsl:call-template name="createOnlineSrc"/>
   </xsl:template>
-  
-  <xsl:template name="fill">
+
+
+  <xsl:template name="createOnlineSrc">
     <!-- Add all online source from the target metadata to the
                     current one -->
     <xsl:if test="//extra">
@@ -240,7 +258,18 @@
           </mrd:onLine>
         </xsl:otherwise>
       </xsl:choose>
-
     </xsl:if>
   </xsl:template>
+
+
+  <!-- Remove geonet:* elements. -->
+  <xsl:template match="gn:*" priority="2"/>
+
+  <!-- Copy everything. -->
+  <xsl:template match="@*|node()">
+    <xsl:copy>
+      <xsl:apply-templates select="@*|node()"/>
+    </xsl:copy>
+  </xsl:template>
+
 </xsl:stylesheet>

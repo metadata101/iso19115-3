@@ -43,6 +43,10 @@
   <xsl:param name="desc"/>
 
 
+  <!-- Target element to update. The key is based on the concatenation
+  of URL+Protocol+Name -->
+  <xsl:param name="updateKey"/>
+
   <xsl:variable name="mainLang"
                 select="/mdb:MD_Metadata/mdb:defaultLocale/*/lan:language/*/@codeListValue"
                 as="xs:string"/>
@@ -76,32 +80,10 @@
       <xsl:apply-templates select="mdb:distributionInfo"/>
       <xsl:apply-templates select="mdb:dataQualityInfo"/>
       <xsl:apply-templates select="mdb:resourceLineage"/>
-      <xsl:apply-templates select="mdb:portrayalCatalogueInfo[*/mpc:portrayalCatalogueCitation/*/cit:onlineResource/*/cit:linkage/*/text() != $url]"/>
-      <mdb:portrayalCatalogueInfo>
-        <mpc:MD_PortrayalCatalogueReference>
-          <mpc:portrayalCatalogueCitation>
-            <cit:CI_Citation>
-              <xsl:if test="$name != ''">
-                <cit:title>
-                  <xsl:copy-of select="gn-fn-iso19115-3:fillTextElement($name, $mainLang, $useOnlyPTFreeText)"/>
-                </cit:title>
-              </xsl:if>
-              <cit:onlineResource>
-                <cit:CI_OnlineResource>
-                  <cit:linkage>
-                    <xsl:copy-of select="gn-fn-iso19115-3:fillTextElement($url, $mainLang, $useOnlyPTFreeText)"/>
-                  </cit:linkage>
-                  <xsl:if test="$desc != ''">
-                    <cit:description>
-                      <xsl:copy-of select="gn-fn-iso19115-3:fillTextElement($desc, $mainLang, $useOnlyPTFreeText)"/>
-                    </cit:description>
-                  </xsl:if>
-                </cit:CI_OnlineResource>
-              </cit:onlineResource>
-            </cit:CI_Citation>
-          </mpc:portrayalCatalogueCitation>
-        </mpc:MD_PortrayalCatalogueReference>
-      </mdb:portrayalCatalogueInfo>
+      <xsl:apply-templates select="mdb:portrayalCatalogueInfo"/>
+      <xsl:if test="$updateKey = ''">
+        <xsl:call-template name="create-legend"/>
+      </xsl:if>
       <xsl:apply-templates select="mdb:metadataConstraints"/>
       <xsl:apply-templates select="mdb:applicationSchemaInfo"/>
       <xsl:apply-templates select="mdb:metadataMaintenance"/>
@@ -109,8 +91,47 @@
       
     </xsl:copy>
   </xsl:template>
-  
-  <!-- Remove geonet:* elements. -->
+
+
+  <xsl:template match="mdb:portrayalCatalogueInfo[concat(
+                          */mpc:portrayalCatalogueCitation/
+                          cit:CI_Citation/cit:onlineResource/cit:CI_OnlineResource/cit:linkage/gco:CharacterString,
+                          */mpc:portrayalCatalogueCitation/
+                          cit:CI_Citation/cit:title/gco:CharacterString) =
+                          normalize-space($updateKey)]">
+     <xsl:call-template name="create-legend"/>
+  </xsl:template>
+
+
+  <xsl:template name="create-legend">
+      <mdb:portrayalCatalogueInfo>
+          <mpc:MD_PortrayalCatalogueReference>
+              <mpc:portrayalCatalogueCitation>
+                  <cit:CI_Citation>
+                      <xsl:if test="$name != ''">
+                          <cit:title>
+                              <xsl:copy-of select="gn-fn-iso19115-3:fillTextElement($name, $mainLang, $useOnlyPTFreeText)"/>
+                          </cit:title>
+                      </xsl:if>
+                      <cit:onlineResource>
+                          <cit:CI_OnlineResource>
+                              <cit:linkage>
+                                  <xsl:copy-of select="gn-fn-iso19115-3:fillTextElement($url, $mainLang, $useOnlyPTFreeText)"/>
+                              </cit:linkage>
+                              <xsl:if test="$desc != ''">
+                                  <cit:description>
+                                      <xsl:copy-of select="gn-fn-iso19115-3:fillTextElement($desc, $mainLang, $useOnlyPTFreeText)"/>
+                                  </cit:description>
+                              </xsl:if>
+                          </cit:CI_OnlineResource>
+                      </cit:onlineResource>
+                  </cit:CI_Citation>
+              </mpc:portrayalCatalogueCitation>
+          </mpc:MD_PortrayalCatalogueReference>
+      </mdb:portrayalCatalogueInfo>
+  </xsl:template>
+
+    <!-- Remove geonet:* elements. -->
   <xsl:template match="gn:*" priority="2"/>
   
   <!-- Copy everything. -->
