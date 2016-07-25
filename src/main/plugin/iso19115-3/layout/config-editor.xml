@@ -232,7 +232,7 @@
       <name>cit:abstract</name>
     </expanded>
     <!-- All fields in ISO could be multilingual.
-    Define element to exlcude. 
+    Define element to exclude.
     TODO: it may be relevant to have parent defined
     to restrict the list.
     -->
@@ -271,8 +271,8 @@
       <name>mri:distance</name>
       <name>mri:vertical</name>
       <name>mri:angularDistance</name>
-      <name>msr:controlPointAvailability</name> 
-      <name>msr:orientationParameterAvailability</name>  
+      <name>msr:controlPointAvailability</name>
+      <name>msr:orientationParameterAvailability</name>
       <name>mac:averageAirTemperature</name>
       <name>mac:maxRelativeHumidity</name>
       <name>mac:maxAltitude</name>
@@ -390,6 +390,15 @@
         <section xpath="/mdb:MD_Metadata/mdb:dataQualityInfo" or="dataQualityInfo"
                  in="/mdb:MD_Metadata"/>
       </tab>
+      <!--
+      Example to display a table view of quality measures.
+      <tab id="qualityMeasures">
+        <section>
+          <xsl xpath="/mdb:MD_Metadata/mdb:dataQualityInfo"
+               or="report"
+               mode="iso19115-3-qm"/>
+        </section>
+      </tab>-->
       <tab id="resourceLineage">
         <section xpath="/mdb:MD_Metadata/mdb:resourceLineage" or="resourceLineage"
                  in="/mdb:MD_Metadata"/>
