@@ -1578,7 +1578,7 @@
     </description>
   </element>
   <element name="gex:EX_SpatialTemporalExtent" id="352.0">
-    <label>Spatial Temporal Extent</label>
+    <label>Spatial Temporal extent</label>
     <description>Extent with respect to date/time and spatial boundaries
     </description>
   </element>
