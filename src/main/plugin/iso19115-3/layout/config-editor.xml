@@ -213,6 +213,7 @@
     <name>msr:projection</name>
     <name>mdb:extent</name>
     <name>cit:extent</name>
+    <name>gex:verticalElement</name>
     <name>gex:geographicBox</name>
     <name>gex:EX_TemporalExtent</name>
     <name>mrd:MD_Distributor</name>
