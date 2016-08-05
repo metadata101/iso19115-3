@@ -452,13 +452,17 @@
        http://localhost:8080/geonetwork/srv/fre/q?agg_with_association=crossReference
       -->
       <xsl:for-each select="mri:associatedResource/mri:MD_AssociatedResource">
-        <xsl:variable name="code" select="mri:metadataReference/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code/gco:CharacterString"/>
+        <xsl:variable name="code"
+                      select="if (mri:metadataReference/@uuidref != '')
+                              then mri:metadataReference/@uuidref
+                              else mri:metadataReference/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code/gco:CharacterString"/>
         <xsl:if test="$code != ''">
           <xsl:variable name="associationType" select="mri:associationType/mri:DS_AssociationTypeCode/@codeListValue"/>
           <xsl:variable name="initiativeType" select="mri:initiativeType/mri:DS_InitiativeTypeCode/@codeListValue"/>
           <Field name="agg_{$associationType}_{$initiativeType}" string="{$code}" store="false" index="true"/>
           <Field name="agg_{$associationType}_with_initiative" string="{$initiativeType}" store="false" index="true"/>
           <Field name="agg_{$associationType}" string="{$code}" store="false" index="true"/>
+          <Field name="agg_associated" string="{$code}" store="false" index="true"/>
           <Field name="agg_with_association" string="{$associationType}" store="false" index="true"/>
           <Field name="agg_use" string="true" store="false" index="true"/>
         </xsl:if>
