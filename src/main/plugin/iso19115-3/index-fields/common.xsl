@@ -868,6 +868,7 @@
 
   <xsl:template name="ContactIndexing">
     <xsl:param name="type" select="'resource'" required="no" as="xs:string"/>
+    <xsl:param name="fieldPrefix" select="'responsibleParty'" required="no" as="xs:string"/>
     <xsl:param name="lang"/>
     <xsl:param name="langId"/>
 
@@ -894,13 +895,23 @@
       </xsl:apply-templates>
     </xsl:variable>
 
-    <Field name="responsibleParty"
+    <Field name="{$fieldPrefix}"
            string="{concat($roleTranslation, '|', $type, '|',
                               $orgName, '|', $logo, '|',
                               string-join($email, ','), '|', $individualNames,
                               '|', $positionName, '|',
                               $address, '|', string-join($phones, ','))}"
            store="true" index="false"/>
+           
+    <xsl:for-each select="$email">
+      <Field name="{$fieldPrefix}Email" string="{string(.)}" store="true" index="true"/>
+      <Field name="{$fieldPrefix}RoleAndEmail" string="{$role}|{string(.)}" store="true" index="true"/>
+    </xsl:for-each>
+    <xsl:for-each select="@uuid">
+      <Field name="{$fieldPrefix}Uuid" string="{string(.)}" store="true" index="true"/>
+      <Field name="{$fieldPrefix}RoleAndUuid" string="{$role}|{string(.)}" store="true" index="true"/>
+    </xsl:for-each>
+
   </xsl:template>
 
 
