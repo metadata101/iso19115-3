@@ -969,7 +969,7 @@
                               '|', $positionName, '|',
                               $address, '|', string-join($phones, ','))}"
            store="true" index="false"/>
-
+           
     <xsl:for-each select="$email">
       <Field name="{$fieldPrefix}Email" string="{string(.)}" store="true" index="true"/>
       <Field name="{$fieldPrefix}RoleAndEmail" string="{$role}|{string(.)}" store="true" index="true"/>
