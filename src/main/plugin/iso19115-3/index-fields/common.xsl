@@ -397,6 +397,38 @@
           </xsl:if>
         </xsl:for-each>
       </xsl:for-each>
+      
+      <xsl:variable name="listOfKeywords">{
+        <xsl:variable name="keywordWithNoThesaurus"
+                      select="//mri:MD_Keywords[
+                                not(mri:thesaurusName) or mri:thesaurusName/*/cit:title/*/text() = '']/
+                                  mri:keyword[*/text() != '']"/>
+        <xsl:if test="count($keywordWithNoThesaurus) > 0">
+          'other': [
+          <xsl:for-each select="$keywordWithNoThesaurus/(gco:CharacterString|gcx:Anchor)">
+            <xsl:value-of select="concat('''', replace(., '''', '\\'''), '''')"/>
+            <xsl:if test="position() != last()">,</xsl:if>
+          </xsl:for-each>
+          ]
+          <xsl:if test="//mri:MD_Keywords[mri:thesaurusName]">,</xsl:if>
+        </xsl:if>
+        <xsl:for-each-group select="//mri:MD_Keywords[mri:thesaurusName/*/cit:title/*/text() != '']"
+                            group-by="mri:thesaurusName/*/cit:title/*/text()">
+          '<xsl:value-of select="replace(current-grouping-key(), '''', '\\''')"/>' :[
+          <xsl:for-each select="mri:keyword/(gco:CharacterString|gcx:Anchor)">
+            <xsl:value-of select="concat('''', replace(., '''', '\\'''), '''')"/>
+            <xsl:if test="position() != last()">,</xsl:if>
+          </xsl:for-each>
+          ]
+          <xsl:if test="position() != last()">,</xsl:if>
+        </xsl:for-each-group>
+        }
+      </xsl:variable>
+
+      <Field name="keywordGroup"
+             string="{normalize-space($listOfKeywords)}"
+             store="true"
+             index="false"/>
 
       <xsl:for-each select="mri:topicCategory/mri:MD_TopicCategoryCode[text() != '']">
         <Field name="topicCat" string="{string(.)}" store="true" index="true"/>
