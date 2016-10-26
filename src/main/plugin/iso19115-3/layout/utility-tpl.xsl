@@ -27,22 +27,26 @@
 
 
   <xsl:template name="get-iso19115-3-extents-as-json">[
-   <xsl:for-each select="//gex:geographicElement/gex:EX_GeographicBoundingBox">
-      <xsl:variable name="format" select="'#0.0000'"></xsl:variable>
-
-      <xsl:if test="number(gex:westBoundLongitude/gco:Decimal)
+   <xsl:for-each select="//mdb:identificationInfo/*/mri:extent
+                          //gex:geographicElement/gex:EX_GeographicBoundingBox[
+            number(gex:westBoundLongitude/gco:Decimal)
             and number(gex:southBoundLatitude/gco:Decimal)
             and number(gex:eastBoundLongitude/gco:Decimal)
             and number(gex:northBoundLatitude/gco:Decimal)
-            ">
-        [
-        <xsl:value-of select="format-number(gex:westBoundLongitude/gco:Decimal, $format)"/>,
-        <xsl:value-of select="format-number(gex:southBoundLatitude/gco:Decimal, $format)"/>,
-        <xsl:value-of select="format-number(gex:eastBoundLongitude/gco:Decimal, $format)"/>,
-        <xsl:value-of select="format-number(gex:northBoundLatitude/gco:Decimal, $format)"/>
-        ]
-        <xsl:if test="position() != last()">,</xsl:if>
-      </xsl:if>
+            and normalize-space(gex:westBoundLongitude/gco:Decimal) != ''
+            and normalize-space(gex:southBoundLatitude/gco:Decimal) != ''
+            and normalize-space(gex:eastBoundLongitude/gco:Decimal) != ''
+            and normalize-space(gex:northBoundLatitude/gco:Decimal) != ''
+            ]">
+      <xsl:variable name="format" select="'#0.0000'"></xsl:variable>
+
+      [
+      <xsl:value-of select="format-number(gex:westBoundLongitude/gco:Decimal, $format)"/>,
+      <xsl:value-of select="format-number(gex:southBoundLatitude/gco:Decimal, $format)"/>,
+      <xsl:value-of select="format-number(gex:eastBoundLongitude/gco:Decimal, $format)"/>,
+      <xsl:value-of select="format-number(gex:northBoundLatitude/gco:Decimal, $format)"/>
+      ]
+      <xsl:if test="position() != last()">,</xsl:if>
     </xsl:for-each>
     ]
   </xsl:template>

@@ -14,6 +14,7 @@
                 xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0"
                 xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/1.0"
                 xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
+                xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0"
                 xmlns:gml="http://www.opengis.net/gml/3.2"
                 xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
                 xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
@@ -452,13 +453,17 @@
        http://localhost:8080/geonetwork/srv/fre/q?agg_with_association=crossReference
       -->
       <xsl:for-each select="mri:associatedResource/mri:MD_AssociatedResource">
-        <xsl:variable name="code" select="mri:metadataReference/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code/gco:CharacterString"/>
+        <xsl:variable name="code"
+                      select="if (mri:metadataReference/@uuidref != '')
+                              then mri:metadataReference/@uuidref
+                              else mri:metadataReference/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code/gco:CharacterString"/>
         <xsl:if test="$code != ''">
           <xsl:variable name="associationType" select="mri:associationType/mri:DS_AssociationTypeCode/@codeListValue"/>
           <xsl:variable name="initiativeType" select="mri:initiativeType/mri:DS_InitiativeTypeCode/@codeListValue"/>
           <Field name="agg_{$associationType}_{$initiativeType}" string="{$code}" store="false" index="true"/>
           <Field name="agg_{$associationType}_with_initiative" string="{$initiativeType}" store="false" index="true"/>
           <Field name="agg_{$associationType}" string="{$code}" store="false" index="true"/>
+          <Field name="agg_associated" string="{$code}" store="false" index="true"/>
           <Field name="agg_with_association" string="{$associationType}" store="false" index="true"/>
           <Field name="agg_use" string="true" store="false" index="true"/>
         </xsl:if>
@@ -711,6 +716,57 @@
     </xsl:for-each>
 
 
+    <Field name="hasDqMeasures" index="true" store="true"
+           string="{count($metadata/mdb:dataQualityInfo/*/mdq:report/*[
+                            mdq:measure/*/mdq:measureIdentification/*/mcc:code/*/text() != ''
+                          ]/mdq:result/mdq:DQ_QuantitativeResult[mdq:value/gco:Record/text() != '']) > 0}"/>
+
+   <!-- TODO: Multilingual support -->
+    <xsl:for-each select="$metadata/mdb:dataQualityInfo">
+      <!-- Checpoint / Index component id.
+        If not set, then index by dq section position. -->
+      <xsl:variable name="cptId" select="*/@uuid"/>
+      <xsl:variable name="cptName" select="*/mdq:scope/*/mcc:levelDescription[1]/*/mcc:other/*/text()"/>
+      <xsl:variable name="dqId" select="if ($cptId != '') then $cptId else position()"/>
+
+      <Field name="dqCpt" index="true" store="true"
+             string="{$dqId}"/>
+
+
+      <xsl:for-each select="*/mdq:standaloneQualityReport/*[
+                              mdq:reportReference/*/cit:title/*/text() != ''
+                            ]">
+        <Field name="dqSReport" index="false" store="true"
+               string="{normalize-space(concat(
+                          mdq:reportReference/*/cit:title/*/text(), '|', mdq:abstract/*/text()))}"/>
+      </xsl:for-each>
+
+      <xsl:for-each select="*/mdq:report/*[
+                            mdq:measure/*/mdq:measureIdentification/*/mcc:code/*/text() != ''
+                          ]">
+
+        <xsl:variable name="qmId" select="mdq:measure/*/mdq:measureIdentification/*/mcc:code/*/text()"/>
+        <xsl:variable name="qmName" select="mdq:measure/*/mdq:nameOfMeasure/*/text()"/>
+
+        <!-- Search record by measure id or measure name. -->
+        <Field name="dqMeasure" index="true" store="false"
+               string="{$qmId}"/>
+        <Field name="dqMeasureName" index="true" store="false"
+               string="{$qmName}"/>
+
+
+        <xsl:for-each select="mdq:result/mdq:DQ_QuantitativeResult">
+          <xsl:variable name="qmDate" select="mdq:dateTime/gco:Date/text()"/>
+          <xsl:variable name="qmValue" select="mdq:value/gco:Record/text()"/>
+          <xsl:variable name="qmUnit" select="mdq:valueUnit/*/gml:identifier/text()"/>
+          <Field name="dqValues" index="true" store="true"
+                 string="{concat($dqId, '|', $cptName, '|', $qmId, '|', $qmName, '|', $qmDate, '|', $qmValue, '|', $qmUnit)}"/>
+
+        </xsl:for-each>
+      </xsl:for-each>
+    </xsl:for-each>
+
+
 
     <xsl:for-each select="$metadata/mdb:resourceLineage/*/mrl:source[@uuidref]">
       <Field  name="hassource" string="{string(@uuidref)}" store="false" index="true"/>
@@ -794,8 +850,9 @@
       <Field name="language" string="{string(.)}" store="true" index="true"/>
     </xsl:for-each>
 
-
-    <xsl:for-each select="$metadata/mdb:metadataStandard/cit:CI_Citation/cit:title/gco:CharacterString">
+    <xsl:variable name="standardName"
+                  select="$metadata/mdb:metadataStandard/cit:CI_Citation/cit:title/gco:CharacterString"/>
+    <xsl:for-each select="$standardName">
       <Field name="standardName" string="{string(.)}" store="true" index="true"/>
     </xsl:for-each>
 
@@ -864,6 +921,7 @@
 
   <xsl:template name="ContactIndexing">
     <xsl:param name="type" select="'resource'" required="no" as="xs:string"/>
+    <xsl:param name="fieldPrefix" select="'responsibleParty'" required="no" as="xs:string"/>
     <xsl:param name="lang"/>
     <xsl:param name="langId"/>
 
@@ -890,13 +948,23 @@
       </xsl:apply-templates>
     </xsl:variable>
 
-    <Field name="responsibleParty"
+    <Field name="{$fieldPrefix}"
            string="{concat($roleTranslation, '|', $type, '|',
                               $orgName, '|', $logo, '|',
                               string-join($email, ','), '|', $individualNames,
                               '|', $positionName, '|',
                               $address, '|', string-join($phones, ','))}"
            store="true" index="false"/>
+
+    <xsl:for-each select="$email">
+      <Field name="{$fieldPrefix}Email" string="{string(.)}" store="true" index="true"/>
+      <Field name="{$fieldPrefix}RoleAndEmail" string="{$role}|{string(.)}" store="true" index="true"/>
+    </xsl:for-each>
+    <xsl:for-each select="@uuid">
+      <Field name="{$fieldPrefix}Uuid" string="{string(.)}" store="true" index="true"/>
+      <Field name="{$fieldPrefix}RoleAndUuid" string="{$role}|{string(.)}" store="true" index="true"/>
+    </xsl:for-each>
+
   </xsl:template>
 
 

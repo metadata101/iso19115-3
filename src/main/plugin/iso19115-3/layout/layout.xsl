@@ -23,7 +23,7 @@
   xmlns:gml="http://www.opengis.net/gml/3.2"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:gn="http://www.fao.org/geonetwork"
-  xmlns:gn-fn-core="http://geonetwork-opensource.org/xsl/functions/core" 
+  xmlns:gn-fn-core="http://geonetwork-opensource.org/xsl/functions/core"
   xmlns:gn-fn-metadata="http://geonetwork-opensource.org/xsl/functions/metadata"
   xmlns:gn-fn-iso19115-3="http://geonetwork-opensource.org/xsl/functions/profiles/iso19115-3"
   exclude-result-prefixes="#all">
@@ -149,6 +149,7 @@
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
     <xsl:param name="overrideLabel" select="''" required="no"/>
+    <xsl:param name="isDisabled" required="no"/>
     <xsl:param name="refToDelete" select="''" required="no"/>
 
 
@@ -311,6 +312,7 @@
       <xsl:with-param name="toggleLang" select="$isMultilingualElementExpanded"/>
       <xsl:with-param name="forceDisplayAttributes" select="$forceDisplayAttributes"/>
       <xsl:with-param name="isFirst" select="count(preceding-sibling::*[name() = $elementName]) = 0"/>
+      <xsl:with-param name="isDisabled" select="$isDisabled"/>
     </xsl:call-template>
   </xsl:template>
 
@@ -382,7 +384,7 @@
     </xsl:call-template>
 
   </xsl:template>
-  
+
   <!--
   <xsl:template mode="mode-iso19115-3" match="*|@*" priority="0"/>
 -->
