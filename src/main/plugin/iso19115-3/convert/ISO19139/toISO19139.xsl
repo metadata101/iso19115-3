@@ -124,8 +124,9 @@
       <gco:CharacterString>
         <xsl:choose>
           <xsl:when test="mcc:MD_Identifier/mcc:codeSpace/gco2:CharacterString">
-            <xsl:value-of select="concat(mcc:MD_Identifier/mcc:codeSpace/gco2:CharacterString, ':',
-                                         mcc:MD_Identifier/mcc:code/gco2:CharacterString)"/>
+            <!--<xsl:value-of select="concat(mcc:MD_Identifier/mcc:codeSpace/gco2:CharacterString, ':',
+                                         mcc:MD_Identifier/mcc:code/gco2:CharacterString)"/>-->
+            <xsl:value-of select="mcc:MD_Identifier/mcc:code/gco2:CharacterString"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:value-of select="mcc:MD_Identifier/mcc:code/gco2:CharacterString"/>
