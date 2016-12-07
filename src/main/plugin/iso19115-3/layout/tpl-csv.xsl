@@ -10,6 +10,7 @@
                 xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/1.0"
                 xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
                 xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
+                xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0"
                 xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
                 xmlns:dqm="http://standards.iso.org/iso/19157/-2/dqm/1.0"
                 xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
@@ -65,12 +66,41 @@
         </image>
       </xsl:for-each>
 
-      <xsl:for-each select="mdb:identificationInfo/*//mri:keyword[not(@gco:nilReason)]">
+      <!-- All keywords not having thesaurus reference -->
+      <xsl:for-each select="mdb:identificationInfo/*/mri:descriptiveKeywords/*[not(mri:thesaurusName)]/mri:keyword[not(@gco:nilReason)]">
         <keyword>
           <xsl:apply-templates mode="localised" select=".">
             <xsl:with-param name="langId" select="$langId"/>
           </xsl:apply-templates>
         </keyword>
+      </xsl:for-each>
+
+      <!-- One column per thesaurus -->
+      <xsl:for-each select="mdb:identificationInfo/*/mri:descriptiveKeywords/*[mri:thesaurusName]">
+        <xsl:variable name="thesaurusId" select="mri:thesaurusName/*/cit:identifier/*/mcc:code/*/text()"/>
+        <xsl:variable name="thesaurusKey" select="if ($thesaurusId != '') then $thesaurusId else position()"/>
+
+        <xsl:for-each select="mri:keyword[not(@gco:nilReason)]">
+          <xsl:element name="keyword-{$thesaurusKey}">
+            <xsl:apply-templates mode="localised" select=".">
+              <xsl:with-param name="langId" select="$langId"/>
+            </xsl:apply-templates>
+          </xsl:element>
+        </xsl:for-each>
+      </xsl:for-each>
+
+      <!-- One column per contact role -->
+      <xsl:for-each select="mdb:identificationInfo/*/mri:pointOfContact">
+        <xsl:variable name="key" select="*/cit:role/*/@codeListValue"/>
+
+        <xsl:element name="contact-{$key}">
+          <xsl:apply-templates mode="localised" select="*/cit:party/*/cit:name">
+            <xsl:with-param name="langId" select="$langId"/>
+          </xsl:apply-templates>/
+          <xsl:apply-templates mode="localised" select="*/cit:contactInfo/*/cit:onlineResource/*/cit:linkage">
+            <xsl:with-param name="langId" select="$langId"/>
+          </xsl:apply-templates>
+        </xsl:element>
       </xsl:for-each>
 
       <xsl:for-each select="mdb:identificationInfo/*//gex:EX_GeographicBoundingBox">
@@ -112,6 +142,17 @@
         <link>
           <xsl:value-of select="*/text()"/>
         </link>
+      </xsl:for-each>
+
+      <xsl:for-each select="mdb:identificationInfo/*/mri:pointOfContact">
+        <xsl:variable name="email"
+                      select="*/cit:party/*/cit:contactInfo/*/cit:address/*/cit:electronicMailAddress/gco:CharacterString"/>
+        <contact>
+          <xsl:value-of select="*/cit:party/*/cit:name/gco:CharacterString"/>
+          <xsl:if test="$email">
+          (<xsl:value-of select="$email"/>)
+          </xsl:if>
+        </contact>
       </xsl:for-each>
 
       <xsl:copy-of select="gn:info"/>

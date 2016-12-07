@@ -9,6 +9,7 @@
     <!-- Namespaces that include concepts outside of metadata -->
     <!-- Catalog (ISO 19115-3) -->
     <xsl:namespace name="cat" select="'http://standards.iso.org/iso/19115/-3/cat/1.0'"/>
+    <xsl:namespace name="gfc" select="'http://standards.iso.org/iso/19110/gfc/1.1'"/>
     <!-- Citation (ISO 19115-3) -->
     <xsl:namespace name="cit" select="'http://standards.iso.org/iso/19115/-3/cit/1.0'"/>
     <!-- Geospatial Common eXtension (ISO 19115-3) -->
