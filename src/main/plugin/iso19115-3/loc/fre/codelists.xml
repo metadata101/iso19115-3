@@ -1427,6 +1427,11 @@
         uniquement pour des besoins d’historiques
       </description>
     </entry>
+    <entry hideInEditMode="true">
+      <code>notobsolete</code>
+      <label>Non obsolète</label>
+      <description></description>
+    </entry>
   </codelist>
   <codelist name="mco:MD_RestrictionCode">
     <entry>

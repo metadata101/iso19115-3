@@ -49,6 +49,11 @@
     of the description of the temporal extent). -->
   <xsl:variable name="useDateAsTemporalExtent" select="false()"/>
 
+  <!-- For record not having status obsolete, flag them as non
+  obsolete records. Some catalog like to restrict to non obsolete
+  records only the default search. -->
+  <xsl:variable name="flagNonObseleteRecords" select="true()"/>
+
   <!-- Load INSPIRE theme thesaurus if available -->
   <xsl:variable name="inspire-thesaurus"
                 select="document(concat('file:///', $thesauriDir, '/external/thesauri/theme/inspire-theme.rdf'))"/>
@@ -427,6 +432,15 @@
         </xsl:for-each>
       </xsl:for-each>
 
+      <!-- Add an extra value to the status codelist to indicate all
+      non obsolete records -->
+      <xsl:if test="$flagNonObseleteRecords">
+        <xsl:variable name="isNotObsolete"
+                      select="count(mri:status[mcc:MD_ProgressCode/@codeListValue = 'obsolete']) = 0"/>
+        <xsl:if test="$isNotObsolete">
+          <Field name="cl_status" string="notobsolete" store="true" index="true"/>
+        </xsl:if>
+      </xsl:if>
 
 
       <!-- Index associated resources and provides option to query by type of
