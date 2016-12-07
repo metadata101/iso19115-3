@@ -25,6 +25,9 @@
             select="count($metadata/mdb:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
   </xsl:template>
 
+  <xsl:template name="get-iso19115-3-title">
+    <xsl:value-of select="$metadata/mdb:identificationInfo/*/mri:citation/*/cit:title/gco:CharacterString"/>
+  </xsl:template>
 
   <xsl:template name="get-iso19115-3-extents-as-json">[
    <xsl:for-each select="//mdb:identificationInfo/*/mri:extent
