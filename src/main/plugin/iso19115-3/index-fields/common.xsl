@@ -979,6 +979,21 @@
       <Field name="{$fieldPrefix}RoleAndUuid" string="{$role}|{string(.)}" store="true" index="true"/>
     </xsl:for-each>
 
+
+    <xsl:choose>
+      <xsl:when test="matches($orgName, '.*\(.*\)')">
+        <xsl:variable name="service"
+                      select="substring-before(substring-after($orgName, '('), ')')"/>
+        <Field name="{$fieldPrefix}orgNameTree"
+               string="{$service}"
+               store="true" index="true"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <Field name="{$fieldPrefix}orgNameTree"
+               string="Autre - {cit:name/gco:CharacterString}"
+               store="true" index="true"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
 
