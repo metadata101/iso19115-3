@@ -100,7 +100,8 @@
                        *[gco:Record != '']|*[gco:RecordType != '']|
                        *[gco:LocalName != '']|*[lan:PT_FreeText != '']|
                        *[gml:beginPosition != '']|*[gml:endPosition != '']|
-                       *[gco:Date != '']|*[gco:DateTime != '']|*[*/@codeListValue]|*[@codeListValue]"
+                       *[gco:Date != '']|*[gco:DateTime != '']|*[*/@codeListValue]|*[@codeListValue]|
+                       gml:beginPosition[. != '']|gml:endPosition[. != '']"
                 priority="50">
     <xsl:param name="fieldName" select="''" as="xs:string"/>
 
@@ -112,7 +113,15 @@
                                 else tr:node-label(tr:create($schema), $elementName, null)"/>
       </dt>
       <dd>
-        <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
+        <xsl:choose>
+          <!-- Display the value for simple field eg. gml:beginPosition. -->
+          <xsl:when test="count(*) = 0 and not(*/@codeListValue)">
+            <xsl:value-of select="text()"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
+          </xsl:otherwise>
+        </xsl:choose>
         <xsl:apply-templates mode="render-value" select="@*"/>
       </dd>
     </dl>
