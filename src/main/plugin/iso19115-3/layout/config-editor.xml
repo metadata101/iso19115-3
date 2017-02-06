@@ -646,19 +646,11 @@
 
           <action type="associatedResource"
                 name="addThumbnail"
-                process="thumbnail"/>
+                process="onlinesrc"/>
         </section>
 
 
         <section name="resourceTags">
-
-          <field name="metadataTitle"
-                 xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:citation/*/cit:title"/>
-
-            <field name="metadataAbstract"
-               xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:abstract"
-               or="abstract"
-               in="/mdb:MD_Metadata/mdb:identificationInfo/*"/>
 
            <field name="infraSIGCat"
                   xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
