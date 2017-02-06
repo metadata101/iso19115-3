@@ -988,6 +988,11 @@
                string="{$service}"
                store="true" index="true"/>
       </xsl:when>
+      <xsl:when test="lower-case($orgName) = 'région wallonne'">
+        <Field name="{$fieldPrefix}orgNameTree"
+               string="{$orgName}"
+               store="true" index="true"/>
+      </xsl:when>
       <xsl:otherwise>
         <Field name="{$fieldPrefix}orgNameTree"
                string="Autre - {cit:name/gco:CharacterString}"
