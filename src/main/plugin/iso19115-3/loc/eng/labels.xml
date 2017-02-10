@@ -1582,12 +1582,12 @@
     </description>
   </element>
   <element name="gex:EX_SpatialTemporalExtent" id="352.0">
-    <label>Spatial Temporal Extent</label>
+    <label>Spatial temporal extent</label>
     <description>Extent with respect to date/time and spatial boundaries
     </description>
   </element>
   <element name="gex:EX_TemporalExtent" id="350.0">
-    <label>Temporal Extent</label>
+    <label>Temporal extent</label>
     <description>Time period covered by the content of the dataset</description>
   </element>
   <element name="gex:EX_VerticalExtent" id="354.0">
