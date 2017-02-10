@@ -23,7 +23,7 @@
                 xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
                 xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
                 xmlns:gfc="http://standards.iso.org/iso/19110/gfc/1.1"
-                xmlns:tr="java:org.fao.geonet.services.metadata.format.SchemaLocalizations"
+                xmlns:tr="java:org.fao.geonet.api.records.formatters.SchemaLocalizations"
                 xmlns:gn-fn-render="http://geonetwork-opensource.org/xsl/functions/render"
                 xmlns:gn-fn-metadata="http://geonetwork-opensource.org/xsl/functions/metadata"
                 xmlns:saxon="http://saxon.sf.net/"
@@ -79,6 +79,16 @@
   <xsl:template mode="getMetadataHeader" match="mdb:MD_Metadata">
   </xsl:template>
 
+  <!-- Data quality section is rendered in a table / Disabled
+  <xsl:template mode="render-field"
+                match="mdb:dataQualityInfo[1]"
+                priority="9999">
+    <div data-gn-data-quality-measure-renderer="{$metadataId}"/>
+  </xsl:template>
+
+  <xsl:template mode="render-field"
+                match="mdb:dataQualityInfo[position() > 1]"
+                priority="9999"/>-->
 
 
   <!-- Most of the elements are ... -->
@@ -90,7 +100,8 @@
                        *[gco:Record != '']|*[gco:RecordType != '']|
                        *[gco:LocalName != '']|*[lan:PT_FreeText != '']|
                        *[gml:beginPosition != '']|*[gml:endPosition != '']|
-                       *[gco:Date != '']|*[gco:DateTime != '']|*[*/@codeListValue]|*[@codeListValue]"
+                       *[gco:Date != '']|*[gco:DateTime != '']|*[*/@codeListValue]|*[@codeListValue]|
+                       gml:beginPosition[. != '']|gml:endPosition[. != '']"
                 priority="50">
     <xsl:param name="fieldName" select="''" as="xs:string"/>
 
@@ -102,7 +113,15 @@
                                 else tr:node-label(tr:create($schema), $elementName, null)"/>
       </dt>
       <dd>
-        <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
+        <xsl:choose>
+          <!-- Display the value for simple field eg. gml:beginPosition. -->
+          <xsl:when test="count(*) = 0 and not(*/@codeListValue)">
+            <xsl:value-of select="text()"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
+          </xsl:otherwise>
+        </xsl:choose>
         <xsl:apply-templates mode="render-value" select="@*"/>
       </dd>
     </dl>
@@ -161,10 +180,10 @@
                 match="*[cit:CI_Responsibility]"
                 priority="100">
     <xsl:variable name="email">
-      <xsl:for-each select="**/cit:party/*/cit:contactInfo/
-                                      */cit:address/*/cit:electronicMailAddress">
-        <xsl:apply-templates mode="render-value"
-                             select="."/><xsl:if test="position() != last()">, </xsl:if>
+      <xsl:for-each select="*/cit:party/*/cit:contactInfo/
+                                      */cit:address/*/cit:electronicMailAddress[not(gco:nilReason)]">
+        <xsl:apply-templates mode="render-value" select="."/>
+        <xsl:if test="position() != last()">, </xsl:if>
       </xsl:for-each>
     </xsl:variable>
 

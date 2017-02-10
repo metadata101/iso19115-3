@@ -23,7 +23,7 @@
   xmlns:gml="http://www.opengis.net/gml/3.2"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:gn="http://www.fao.org/geonetwork"
-  xmlns:gn-fn-core="http://geonetwork-opensource.org/xsl/functions/core" 
+  xmlns:gn-fn-core="http://geonetwork-opensource.org/xsl/functions/core"
   xmlns:gn-fn-metadata="http://geonetwork-opensource.org/xsl/functions/metadata"
   xmlns:gn-fn-iso19115-3="http://geonetwork-opensource.org/xsl/functions/profiles/iso19115-3"
   exclude-result-prefixes="#all">
@@ -150,6 +150,7 @@
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
     <xsl:param name="overrideLabel" select="''" required="no"/>
+    <xsl:param name="isDisabled" required="no"/>
     <xsl:param name="refToDelete" select="''" required="no"/>
 
 
@@ -292,8 +293,19 @@
       </xsl:if>
     </xsl:variable>
 
+    <xsl:variable name="labelCfg">
+      <xsl:choose>
+        <xsl:when test="$overrideLabel != ''">
+          <label><xsl:value-of select="$overrideLabel"/></label>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:copy-of select="$labelConfig/*"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
     <xsl:call-template name="render-element">
-      <xsl:with-param name="label" select="if ($overrideLabel != '') then $overrideLabel else $labelConfig/label"/>
+      <xsl:with-param name="label" select="$labelCfg"/>
       <xsl:with-param name="value" select="if ($isMultilingualElement) then $values else *"/>
       <xsl:with-param name="errors" select="$errors"/>
       <xsl:with-param name="cls" select="local-name()"/>
@@ -312,6 +324,7 @@
       <xsl:with-param name="toggleLang" select="$isMultilingualElementExpanded"/>
       <xsl:with-param name="forceDisplayAttributes" select="$forceDisplayAttributes"/>
       <xsl:with-param name="isFirst" select="count(preceding-sibling::*[name() = $elementName]) = 0"/>
+      <xsl:with-param name="isDisabled" select="$isDisabled"/>
     </xsl:call-template>
   </xsl:template>
 
@@ -336,7 +349,7 @@
 
     <xsl:call-template name="render-element">
       <xsl:with-param name="label"
-                      select="gn-fn-metadata:getLabel($schema, name(), $labels, name(..), '', $xpath)/label"/>
+                      select="gn-fn-metadata:getLabel($schema, name(), $labels, name(..), '', $xpath)"/>
       <xsl:with-param name="name" select="gn:element/@ref"/>
       <xsl:with-param name="value" select="text()"/>
       <xsl:with-param name="cls" select="local-name()"/>
@@ -371,7 +384,7 @@
 
     <xsl:call-template name="render-element">
       <xsl:with-param name="label"
-                      select="gn-fn-metadata:getLabel($schema, name(), $labels, name(..), '', $xpath)/label"/>
+                      select="gn-fn-metadata:getLabel($schema, name(), $labels, name(..), '', $xpath)"/>
       <xsl:with-param name="name" select="gn:element/@ref"/>
       <xsl:with-param name="value" select="text()"/>
       <xsl:with-param name="cls" select="local-name()"/>
@@ -383,7 +396,7 @@
     </xsl:call-template>
 
   </xsl:template>
-  
+
   <!--
   <xsl:template mode="mode-iso19115-3" match="*|@*" priority="0"/>
 -->
@@ -399,9 +412,20 @@
     <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
     <xsl:variable name="isoType" select="if (../@gco:isoType) then ../@gco:isoType else ''"/>
 
+    <xsl:variable name="labelConfig">
+      <xsl:choose>
+        <xsl:when test="$overrideLabel != ''">
+          <label><xsl:value-of select="$overrideLabel"/></label>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:copy-of select="gn-fn-metadata:getLabel($schema, name(), $labels, name(..), $isoType, $xpath)"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
     <xsl:call-template name="render-element">
       <xsl:with-param name="label"
-                      select="if ($overrideLabel != '') then $overrideLabel else gn-fn-metadata:getLabel($schema, name(), $labels, name(..), $isoType, $xpath)/label"/>
+                      select="$labelConfig"/>
       <xsl:with-param name="value" select="*/@codeListValue"/>
       <xsl:with-param name="cls" select="local-name()"/>
       <xsl:with-param name="xpath" select="$xpath"/>
@@ -436,7 +460,7 @@
     <xsl:param name="codelists" select="$codelists" required="no"/>
     <xsl:call-template name="render-element">
       <xsl:with-param name="label"
-                      select="gn-fn-metadata:getLabel($schema, name(), $labels, name(..), '', '')/label"/>
+                      select="gn-fn-metadata:getLabel($schema, name(), $labels, name(..), '', '')"/>
       <xsl:with-param name="value" select="text()"/>
       <xsl:with-param name="cls" select="local-name()"/>
       <xsl:with-param name="type" select="gn-fn-iso19115-3:getCodeListType(name(), $editorConfig)"/>
@@ -461,7 +485,7 @@
 
     <xsl:variable name="added" select="parent::node()/parent::node()/@gn:addedObj"/>
     <xsl:call-template name="render-element">
-      <xsl:with-param name="label" select="$labelConfig/label"/>
+      <xsl:with-param name="label" select="$labelConfig"/>
       <xsl:with-param name="value" select="."/>
       <xsl:with-param name="cls" select="local-name()"/>
       <xsl:with-param name="xpath" select="gn-fn-metadata:getXPath(.)"/>

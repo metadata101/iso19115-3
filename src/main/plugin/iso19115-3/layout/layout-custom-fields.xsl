@@ -6,6 +6,7 @@
   xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
   xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
   xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+  xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0"
   xmlns:gts="http://www.isotc211.org/2005/gts"
   xmlns:gml="http://www.opengis.net/gml/3.2"
   xmlns:gn="http://www.fao.org/geonetwork"
@@ -44,6 +45,61 @@
       <xsl:with-param name="isDisabled" select="true()"/>
     </xsl:call-template>
 
+  </xsl:template>
+
+
+
+  <!-- Set CRS system type before the CRS -->
+  <xsl:template mode="mode-iso19115-3"
+                priority="2000"
+                match="mrs:MD_ReferenceSystem">
+    <xsl:param name="schema" select="$schema" required="no"/>
+    <xsl:param name="labels" select="$labels" required="no"/>
+
+    <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
+    <xsl:variable name="isoType" select="if (../@gco:isoType) then ../@gco:isoType else ''"/>
+
+    <xsl:variable name="attributes">
+      <!-- Create form for all existing attribute (not in gn namespace)
+      and all non existing attributes not already present. -->
+      <xsl:apply-templates mode="render-for-field-for-attribute"
+                           select="
+        @*|
+        gn:attribute[not(@name = parent::node()/@*/name())]">
+        <xsl:with-param name="ref" select="gn:element/@ref"/>
+        <xsl:with-param name="insertRef" select="gn:element/@ref"/>
+      </xsl:apply-templates>
+    </xsl:variable>
+
+    <xsl:variable name="errors">
+      <xsl:if test="$showValidationErrors">
+        <xsl:call-template name="get-errors"/>
+      </xsl:if>
+    </xsl:variable>
+
+    <xsl:call-template name="render-boxed-element">
+      <xsl:with-param name="label"
+                      select="gn-fn-metadata:getLabel($schema, name(), $labels, name(..), $isoType, $xpath)/label"/>
+      <xsl:with-param name="editInfo" select="gn:element"/>
+      <xsl:with-param name="errors" select="$errors"/>
+      <xsl:with-param name="cls" select="local-name()"/>
+      <xsl:with-param name="xpath" select="$xpath"/>
+      <xsl:with-param name="attributesSnippet" select="$attributes"/>
+      <xsl:with-param name="subTreeSnippet">
+
+        <xsl:apply-templates mode="mode-iso19115-3"
+                             select="mrs:referenceSystemType"/>
+
+        <xsl:apply-templates mode="mode-iso19115-3"
+                             select="gn:*[@name = 'referenceSystemType']"/>
+
+        <xsl:apply-templates mode="mode-iso19115-3"
+                             select="mrs:referenceSystemIdentifier"/>
+
+        <xsl:apply-templates mode="mode-iso19115-3"
+                             select="gn:*[@name = 'referenceSystemIdentifier']"/>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:template>
 
 

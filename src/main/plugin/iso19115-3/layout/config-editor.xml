@@ -182,6 +182,7 @@
 
 
   <fieldsWithFieldset>
+    <name>mdb:MD_Metadata</name>
     <name>mcc:MD_Identifier</name>
     <name>mdb:metadataStandard</name>
     <name>mdb:metadataScope</name>
@@ -200,6 +201,8 @@
     <name>mdb:spatialRepresentationInfo</name>
     <name>mri:pointOfContact</name>
     <name>mdb:dataQualityInfo</name>
+    <name>mdq:result</name>
+    <name>mdq:report</name>
     <name>mdb:resourceLineage</name>
     <name>cit:citedResponsibleParty</name>
     <name>cit:party</name>
@@ -213,6 +216,7 @@
     <name>msr:projection</name>
     <name>mdb:extent</name>
     <name>cit:extent</name>
+    <name>gex:verticalElement</name>
     <name>gex:geographicBox</name>
     <name>gex:EX_TemporalExtent</name>
     <name>mrd:MD_Distributor</name>

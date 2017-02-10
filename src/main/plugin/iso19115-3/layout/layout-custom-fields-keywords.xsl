@@ -16,11 +16,11 @@
                 xmlns:gn-fn-metadata="http://geonetwork-opensource.org/xsl/functions/metadata"
                 exclude-result-prefixes="#all">
 
-  <!-- Custom rendering of keyword section 
+  <!-- Custom rendering of keyword section
     * mri:descriptiveKeywords is boxed element and the title
     of the fieldset is the thesaurus title
     * if the thesaurus is available in the catalog, display
-    the advanced editor which provides easy selection of 
+    the advanced editor which provides easy selection of
     keywords.
   -->
   <xsl:template mode="mode-iso19115-3" priority="2000" match="
@@ -55,8 +55,8 @@
 
     <xsl:call-template name="render-boxed-element">
       <xsl:with-param name="label"
-        select="if ($thesaurusTitle) 
-                then $thesaurusTitle 
+        select="if ($thesaurusTitle)
+                then $thesaurusTitle
                 else gn-fn-metadata:getLabel($schema, name(), $labels, name(..), $isoType, $xpath)/label"/>
       <xsl:with-param name="editInfo" select="gn:element"/>
       <xsl:with-param name="cls" select="local-name()"/>
@@ -86,7 +86,7 @@
     <xsl:choose>
       <xsl:when test="$isTheaurusAvailable">
 
-        <!-- The thesaurus key may be contained in the MD_Identifier field or 
+        <!-- The thesaurus key may be contained in the MD_Identifier field or
           get it from the list of thesaurus based on its title.
           -->
         <xsl:variable name="thesaurusInternalKey"
@@ -98,9 +98,7 @@
                       then substring-after($thesaurusInternalKey, 'geonetwork.thesaurus.')
                       else $thesaurusInternalKey"/>
 
-        <!-- Single quote are escaped inside keyword. 
-          TODO: support multilingual editing of keywords
-          -->
+        <!-- Single quote are escaped inside keyword. -->
         <xsl:variable name="thesaurusConfig"
                       as="element()?"
                       select="$thesaurusList/thesaurus[@key = $thesaurusKey]"/>
@@ -133,8 +131,8 @@
 
         <xsl:variable name="parentName" select="name(..)"/>
 
-        <!-- Create custom widget: 
-              * '' for item selector, 
+        <!-- Create custom widget:
+              * '' for item selector,
               * 'tagsinput' for tags
               * 'tagsinput' and maxTags = 1 for only one tag
               * 'multiplelist' for multiple selection list
@@ -147,7 +145,7 @@
                               else ''"/>
         <!--
           Example: to restrict number of keyword to 1 for INSPIRE
-          <xsl:variable name="maxTags" 
+          <xsl:variable name="maxTags"
           select="if ($thesaurusKey = 'external.theme.inspire-theme') then '1' else ''"/>
         -->
         <!-- Create a div with the directive configuration
