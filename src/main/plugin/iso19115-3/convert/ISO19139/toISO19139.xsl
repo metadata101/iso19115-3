@@ -1,14 +1,14 @@
-<xsl:stylesheet version="2.0" 
-                xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-                xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+<xsl:stylesheet version="2.0"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:gmd="http://www.isotc211.org/2005/gmd"
-                xmlns:gco="http://www.isotc211.org/2005/gco" 
+                xmlns:gco="http://www.isotc211.org/2005/gco"
                 xmlns:gmi="http://www.isotc211.org/2005/gmi"
                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
                 xmlns:gsr="http://www.isotc211.org/2005/gsr"
                 xmlns:gss="http://www.isotc211.org/2005/gss"
-                xmlns:gts="http://www.isotc211.org/2005/gts" 
+                xmlns:gts="http://www.isotc211.org/2005/gts"
                 xmlns:srv="http://www.isotc211.org/2005/srv"
                 xmlns:gml="http://www.opengis.net/gml"
                 xmlns:cat="http://standards.iso.org/iso/19115/-3/cat/1.0"
@@ -56,14 +56,14 @@
   </xd:doc>
 
   <xsl:output method="xml" indent="yes"/>
-  
+
   <xsl:strip-space elements="*"/>
 
   <!-- Define if all online resources in the ISO19115-3 document should
   be combined in the ISO19139 distribution section. A new section is added
   with those documents. eg. feature catalogue, quality reports, legends  -->
   <xsl:variable name="mergeAllOnlineResourcesInDistribution" select="true()"/>
-  
+
   <xsl:template name="add-namespaces">
     <!-- new namespaces -->
     <xsl:namespace name="xsi" select="'http://www.w3.org/2001/XMLSchema-instance'"/>
@@ -79,9 +79,9 @@
     <xsl:namespace name="gml" select="'http://www.opengis.net/gml'"/>
     <xsl:namespace name="xlink" select="'http://www.w3.org/1999/xlink'"/>
   </xsl:template>
-  
+
   <xsl:template match="/">
-    <!-- 
+    <!--
     root element (MD_Metadata or MI_Metadata)
     -->
     <xsl:for-each select="/*">
@@ -118,7 +118,7 @@
     </xsl:for-each>
     <!-- end of main root element processing -->
   </xsl:template>
-  
+
   <xsl:template match="mdb:metadataIdentifier" priority="5">
     <gmd:fileIdentifier>
       <gco:CharacterString>
@@ -135,21 +135,25 @@
         </gco:CharacterString>
     </gmd:fileIdentifier>
   </xsl:template>
-  
-  
+
+
   <xsl:template match="mdb:defaultLocale" priority="5">
     <gmd:language>
       <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/"
-        codeListValue="{lan:PT_Locale/lan:language/lan:LanguageCode}"/>
+        codeListValue="{if (lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue != '')
+                        then lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue
+                        else lan:PT_Locale/lan:language/lan:LanguageCode/text()}"/>
     </gmd:language>
     <gmd:characterSet>
-      <gmd:MD_CharacterSetCode 
-        codeListValue="{lan:PT_Locale/lan:characterEncoding/lan:MD_CharacterSetCode}"
+      <gmd:MD_CharacterSetCode
+        codeListValue="{if (lan:PT_Locale/lan:characterEncoding/lan:MD_CharacterSetCode/@codeListValue != '')
+                        then lan:PT_Locale/lan:characterEncoding/lan:MD_CharacterSetCode/@codeListValue
+                        else lan:PT_Locale/lan:characterEncoding/lan:MD_CharacterSetCode}"
         codeList="http://www.isotc211.org/namespace/resources/codeList.xml#MD_CharacterSetCode"/>
     </gmd:characterSet>
   </xsl:template>
-  
-  
+
+
   <xsl:template match="mdb:parentMetadata" priority="5">
     <gmd:parentIdentifier>
       <gco:CharacterString>
@@ -157,7 +161,7 @@
       </gco:CharacterString>
     </gmd:parentIdentifier>
   </xsl:template>
-  
+
 
   <xsl:template match="mdb:metadataScope" priority="5">
     <!-- ISO19139 allows only one -->
@@ -165,7 +169,9 @@
       <gmd:hierarchyLevel>
         <gmd:MD_ScopeCode
             codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"
-            codeListValue="{mdb:MD_MetadataScope/mdb:resourceScope/mcc:MD_ScopeCode}"/>
+            codeListValue="{if (mdb:MD_MetadataScope/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue != '')
+                            then mdb:MD_MetadataScope/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue
+                            else mdb:MD_MetadataScope/mdb:resourceScope/mcc:MD_ScopeCode}"/>
       </gmd:hierarchyLevel>
       <xsl:if test="mdb:MD_MetadataScope/mdb:name">
        <gmd:hierarchyLevelName>
@@ -176,8 +182,8 @@
       </xsl:if>
     </xsl:if>
   </xsl:template>
-  
-  
+
+
   <!-- Assume dateStamp is revision date in the source record. Standard says creation
   but implementations usually use date stamp as revision date. If no revision date,
   use the first occurence. -->
@@ -209,8 +215,8 @@
       </gco:CharacterString>
     </gmd:metadataStandardVersion>
   </xsl:template>
-  
-  
+
+
   <xsl:template match="mdb:identificationInfo">
     <gmd:identificationInfo>
       <xsl:apply-templates select="@*"/>
@@ -412,7 +418,7 @@
             </gmd:DQ_Scope>
           </gmd:scope>
         </xsl:if>
-        
+
         <xsl:for-each select="mdq:DQ_DataQuality/mdq:report/*">
           <gmd:report>
             <xsl:element name="{concat('gmd:',local-name())}">
@@ -425,19 +431,19 @@
                 <xsl:with-param name="elementName" select="'gmd:measureDescription'"/>
                 <xsl:with-param name="nodeWithStringToWrite" select="mdq:measure/mdq:DQ_MeasureReference/mdq:measureDescription"/>
               </xsl:call-template>
-              
-              
+
+
               <xsl:call-template name="writeCodelistElement">
                 <xsl:with-param name="elementName" select="'gmd:evaluationMethodType'"/>
                 <xsl:with-param name="codeListName" select="'gmd:DQ_EvaluationMethodTypeCode'"/>
                 <xsl:with-param name="codeListValue" select="mdq:evaluation/mdq:DQ_FullInspection/mdq:evaluationMethodType/mdq:DQ_EvaluationMethodTypeCode/@codeListValue"/>
               </xsl:call-template>
-              
+
               <xsl:call-template name="writeCharacterStringElement">
                 <xsl:with-param name="elementName" select="'gmd:evaluationMethodDescription'"/>
                 <xsl:with-param name="nodeWithStringToWrite" select="mdq:evaluation/mdq:DQ_FullInspection/mdq:evaluationMethodDescription"/>
               </xsl:call-template>
-              
+
               <gmd:evaluationProcedure>
                 <xsl:apply-templates select="mdq:evaluation/mdq:DQ_FullInspection/mdq:evaluationProcedure/cit:CI_Citation"/>
               </gmd:evaluationProcedure>
@@ -448,8 +454,8 @@
             </xsl:element>
           </gmd:report>
         </xsl:for-each>
-        
-        
+
+
         <xsl:for-each select="/*/mdb:resourceLineage">
           <gmd:lineage>
             <gmd:LI_Lineage>
@@ -457,7 +463,7 @@
                 <xsl:with-param name="elementName" select="'gmd:statement'"/>
                 <xsl:with-param name="nodeWithStringToWrite" select="mrl:LI_Lineage/mrl:statement"/>
               </xsl:call-template>
-              
+
               <xsl:apply-templates select="mrl:LI_Lineage/mrl:processStep"/>
               <xsl:apply-templates select="mrl:LI_Lineage/mrl:source"/>
             </gmd:LI_Lineage>
@@ -466,8 +472,8 @@
       </gmd:DQ_DataQuality>
     </gmd:dataQualityInfo>
   </xsl:template>
-  
-  
+
+
   <xsl:template match="mmi:maintenanceDate">
     <gmd:dateOfNextUpdate>
       <xsl:apply-templates select="cit:CI_Date/cit:date/*"/>
@@ -503,7 +509,7 @@
   <xsl:template match="cit:CI_Citation">
     <xsl:element name="gmd:CI_Citation">
       <xsl:apply-templates/>
-      <!-- Special attention is required for CI_ResponsibleParties that are included in the CI_Citation only for a URL. These are currently identified as those 
+      <!-- Special attention is required for CI_ResponsibleParties that are included in the CI_Citation only for a URL. These are currently identified as those
         with no name elements (individualName, organisationName, or positionName)
       -->
       <xsl:for-each select=".//cit:CI_Responsibility[
@@ -544,7 +550,7 @@
         count(cit:party/cit:CI_Individual/cit:name/gco2:CharacterString) +
         count(cit:party/cit:CI_Individual/cit:positionName/gco2:CharacterString) +
         count(cit:party/cit:CI_Organisation/cit:name/gco2:CharacterString) > 0">
-        <!-- 
+        <!--
           CI_ResponsibleParties that include name elements (individualName, organisationName, or positionName) are translated to CI_Responsibilities.
           CI_ResponsibleParties without name elements are assummed to be placeholders for CI_OnlineResources. They are transformed later in the process
           using the CI_ResponsiblePartyToOnlineReseource template
@@ -559,7 +565,7 @@
                 cit:party/cit:CI_Individual/cit:name"/>
             </xsl:call-template>
           </xsl:if>
-          
+
           <xsl:if test="cit:party/cit:CI_Organisation/cit:name">
             <xsl:call-template name="writeCharacterStringElement">
               <xsl:with-param name="elementName" select="'gmd:organisationName'"/>
@@ -609,9 +615,9 @@
   </xsl:template>
   <xsl:template match="cit:party/*/cit:contactInfo/cit:CI_Contact/cit:phone">
     <!-- Only one phone number is allowed in ISO19139 -->
-    <xsl:variable name="phoneType" 
+    <xsl:variable name="phoneType"
                   select="if (cit:numberType/cit:CI_TelephoneTypeCode/@codeListValue != '')
-                          then cit:numberType/cit:CI_TelephoneTypeCode/@codeListValue 
+                          then cit:numberType/cit:CI_TelephoneTypeCode/@codeListValue
                           else cit:numberType/cit:CI_TelephoneTypeCode"/>
     <xsl:if test="count(preceding-sibling::node()[cit:numberType/cit:CI_TelephoneTypeCode = $phoneType]) = 0">
       <xsl:for-each select="cit:CI_Telephone">
@@ -634,12 +640,12 @@
       </xsl:for-each>
     </xsl:if>
   </xsl:template>
-  
-  
-  
+
+
+
   <xsl:template name="CI_ResponsiblePartyToOnlineResource">
-    <!-- 
-      Transform only the CI_OnlineResource element of the CI_ResponsibleParty 
+    <!--
+      Transform only the CI_OnlineResource element of the CI_ResponsibleParty
     -->
     <xsl:apply-templates select=".//gmd:onlineResource"/>
   </xsl:template>
@@ -656,9 +662,9 @@
       <gmd:version>
         <xsl:apply-templates select="mrd:formatSpecificationCitation/cit:CI_Citation/cit:edition/*"/>
       </gmd:version>
-      
+
       <xsl:apply-templates select="mrd:amendmentNumber"/>
-      
+
       <xsl:if test="mrd:formatSpecificationCitation/cit:CI_Citation/cit:alternateTitle">
        <gmd:specification>
          <xsl:apply-templates select="mrd:formatSpecificationCitation/cit:CI_Citation/cit:alternateTitle/*"/>
@@ -713,7 +719,7 @@
   <xsl:template match="@*">
     <xsl:copy-of select="."/>
   </xsl:template>
-  
+
   <xsl:template name="writeCodelistElement">
     <xsl:param name="elementName"/>
     <xsl:param name="codeListName"/>
@@ -739,16 +745,16 @@
       </xsl:element>
     </xsl:if>
   </xsl:template>
-  
+
   <xsl:template name="writeCharacterStringElement">
     <xsl:param name="elementName"/>
     <xsl:param name="nodeWithStringToWrite"/>
-    
+
     <xsl:variable name="isMultilingual"
       select="count($nodeWithStringToWrite/gmd:PT_FreeText) > 0"/>
     <xsl:variable name="hasCharacterString"
       select="count($nodeWithStringToWrite/gco2:CharacterString) = 1"/>
-    
+
     <xsl:choose>
       <xsl:when test="$nodeWithStringToWrite">
         <xsl:element name="{$elementName}">
@@ -756,7 +762,7 @@
           <xsl:if test="$isMultilingual">
             <xsl:attribute name="xsi:type" select="'gmd:PT_FreeText_PropertyType'"/>
           </xsl:if>
-          
+
           <xsl:if test="$hasCharacterString">
             <gco:CharacterString>
               <xsl:value-of select="$nodeWithStringToWrite/gco2:CharacterString"/>
@@ -769,9 +775,9 @@
       </xsl:when>
     </xsl:choose>
   </xsl:template>
-  
-  
-  
+
+
+
   <xsl:template name="characterStringSubstitutions">
     <xsl:param name="parentElement"/>
     <!-- This template takes a parent of a gco:CharacterString element and writes out the child for several possible substitutions  -->
@@ -789,7 +795,7 @@
       </xsl:choose>
     </xsl:for-each>
   </xsl:template>
-  
+
   <xsl:template name="writeDateTime">
     <xsl:for-each select="descendant::gco2:*">
       <xsl:element name="{concat('gco:',local-name(.))}">
@@ -798,7 +804,7 @@
       </xsl:element>
     </xsl:for-each>
   </xsl:template>
-  
+
   <xsl:template name="getNamespacePrefix">
     <!-- this template determines the correct namespace prefix depending on the position of the element in the new XML -->
     <xsl:variable name="prefix">
@@ -819,7 +825,7 @@
           <xsl:text>srv</xsl:text>
         </xsl:when>
         <xsl:when test="ancestor-or-self::mco:MD_Constraints
-          or ancestor-or-self::mco:MD_SecurityConstraints 
+          or ancestor-or-self::mco:MD_SecurityConstraints
           or ancestor-or-self::mco:MD_LegalConstraints
           ">
           <xsl:text>gmd</xsl:text>
@@ -830,7 +836,7 @@
         <xsl:when test="ancestor-or-self::cit:CI_ResponsibleParty or ancestor-or-self::cit:CI_OnlineResource">
           <xsl:text>gmd</xsl:text>
         </xsl:when>
-        <xsl:when test="ancestor-or-self::mcc:MD_ScopeCode or ancestor-or-self::mcc:MX_ScopeCode 
+        <xsl:when test="ancestor-or-self::mcc:MD_ScopeCode or ancestor-or-self::mcc:MX_ScopeCode
           or ancestor-or-self::mcc:MD_ScopeDescription">
           <xsl:text>gmd</xsl:text>
         </xsl:when>
@@ -874,7 +880,7 @@
         <xsl:when test="ancestor-or-self::mmi:MD_MaintenanceInformation">
           <xsl:text>gmd</xsl:text>
         </xsl:when>
-        <xsl:when test="ancestor-or-self::mri:MD_DataIdentification 
+        <xsl:when test="ancestor-or-self::mri:MD_DataIdentification
           or ancestor-or-self::mri:MD_SpatialRepresentationTypeCode">
           <xsl:text>gmd</xsl:text>
         </xsl:when>
@@ -897,8 +903,8 @@
     </xsl:variable>
     <xsl:value-of select="$prefix"/>
   </xsl:template>
-  
-  
+
+
   <!-- TODO: filter all new elements in ISO19115-3 not catched
   by previous templates. Check annex G.2 of ISO19115-1. -->
   <xsl:template match="cit:individual|
