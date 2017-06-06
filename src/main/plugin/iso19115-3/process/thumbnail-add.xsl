@@ -21,6 +21,8 @@
   of URL+Name -->
   <xsl:param name="updateKey"/>
 
+  <xsl:variable name="separator" select="'\|'"/>
+
   <xsl:variable name="mainLang"
                 select="/mdb:MD_Metadata/mdb:defaultLocale/*/lan:language/*/@codeListValue"
                 as="xs:string"/>
@@ -84,9 +86,46 @@
       <mri:graphicOverview>
         <mcc:MD_BrowseGraphic>
           <mcc:fileName>
-            <gco:CharacterString>
-              <xsl:value-of select="$url"/>
-            </gco:CharacterString>
+            <xsl:choose>
+              <!--Multilingual-->
+              <xsl:when test="contains($url, '|')">
+                <xsl:for-each select="tokenize($url, $separator)">
+                  <xsl:variable name="nameLang"
+                                select="substring-before(., '#')"></xsl:variable>
+                  <xsl:variable name="nameValue"
+                                select="substring-after(., '#')"></xsl:variable>
+
+                  <xsl:if test="$useOnlyPTFreeText = false() and $nameLang = $mainLang">
+                    <gco:CharacterString>
+                      <xsl:value-of select="$nameValue"/>
+                    </gco:CharacterString>
+                  </xsl:if>
+                </xsl:for-each>
+
+                <lan:PT_FreeText>
+                  <xsl:for-each select="tokenize($url, $separator)">
+                    <xsl:variable name="nameLang"
+                                  select="substring-before(., '#')"></xsl:variable>
+                    <xsl:variable name="nameValue"
+                                  select="substring-after(., '#')"></xsl:variable>
+
+                    <xsl:if test="$useOnlyPTFreeText = true() or
+                                      $nameLang != $mainLang">
+                      <lan:textGroup>
+                        <lan:LocalisedCharacterString locale="{concat('#', $nameLang)}">
+                          <xsl:value-of select="$nameValue"/>
+                        </lan:LocalisedCharacterString>
+                      </lan:textGroup>
+                    </xsl:if>
+                  </xsl:for-each>
+                </lan:PT_FreeText>
+              </xsl:when>
+              <xsl:otherwise>
+                <gco:CharacterString>
+                  <xsl:value-of select="$url"/>
+                </gco:CharacterString>
+              </xsl:otherwise>
+            </xsl:choose>
           </mcc:fileName>
           <xsl:if test="$desc!=''">
             <mcc:fileDescription>
