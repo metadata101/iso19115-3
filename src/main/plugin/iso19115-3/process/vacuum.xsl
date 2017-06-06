@@ -6,7 +6,7 @@
                 exclude-result-prefixes="#all"
                 version="2.0">
   <xsl:import href="../../iso19139/process/process-utility.xsl"/>
-  <xsl:import href="../layout/utility-vacuum.xsl"/>
+  <xsl:import href="../../iso19139/layout/utility-vacuum.xsl"/>
 
   <!-- i18n information -->
   <xsl:variable name="vacuum-loc">

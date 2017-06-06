@@ -171,6 +171,11 @@ for the schema:
 ```
 
 
+### Adding the conversion to the import record page
+
+In https://github.com/geonetwork/core-geonetwork/tree/3.2.x/web/src/main/webapp/xsl/conversion/import, add the 19139 to 19115-3 conversion file https://github.com/metadata101/iso19115-3/blob/3.2.x/ISO19139-to-ISO19115-3.xsl.
+
+
 
 ## More work required
 

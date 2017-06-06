@@ -77,11 +77,19 @@ public class ISO19115_3SchemaPlugin
                     Element agId = (Element) sib.getChild("metadataReference", ISO19115_3Namespaces.MRI);
                     // TODO: Reference may be defined in Citation identifier
                     String sibUuid = agId.getAttributeValue("uuidref");
-                    String initType = sib.getChild("initiativeType", ISO19115_3Namespaces.MRI)
-                            .getChild("DS_InitiativeTypeCode", ISO19115_3Namespaces.MRI)
-                            .getAttributeValue("codeListValue");
 
-                    AssociatedResource resource = new AssociatedResource(sibUuid, initType, "");
+                    String associationType = sib.getChild("associationType", ISO19115_3Namespaces.MRI)
+                        .getChild("DS_AssociationTypeCode", ISO19115_3Namespaces.MRI)
+                        .getAttributeValue("codeListValue");
+
+                    String initType = "";
+                    final Element initiativeTypeEl = sib.getChild("initiativeType", ISO19115_3Namespaces.MRI);
+                    if (initiativeTypeEl != null) {
+                        initType = initiativeTypeEl.getChild("DS_InitiativeTypeCode", ISO19115_3Namespaces.MRI)
+                            .getAttributeValue("codeListValue");
+                    }
+
+                    AssociatedResource resource = new AssociatedResource(sibUuid, initType, associationType);
                     listOfResources.add(resource);
                 }
             }
