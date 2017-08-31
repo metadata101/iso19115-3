@@ -77,7 +77,7 @@
       </description>
     </entry>
     <entry>
-      <code>lastReview</code>
+      <code>lastRevision</code>
       <label>Dernière révision</label>
       <description>Date à laquelle la ressource a été mise à jour pour la
         dernière fois
