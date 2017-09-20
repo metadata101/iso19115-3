@@ -1,5 +1,6 @@
 package org.fao.geonet.schema.iso19115_3;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -178,6 +179,41 @@ public class ISO19115_3SchemaPlugin
         }
         freeTextElement.addContent(textGroupElement);
     }
+
+    /**
+     * Remove all multingual aspect of an element. Keep the md language localized strings
+     * as default gco:CharacterString for the element.
+     *
+     * @param element
+     * @param mdLang Metadata lang encoded as #EN
+     * @return
+     * @throws JDOMException
+     */
+    @Override
+    public Element removeTranslationFromElement(Element element, String mdLang) throws JDOMException {
+
+        List<Element> multilangElement = (List<Element>)Xml.selectNodes(element, "*//lan:PT_FreeText", Arrays.asList(ISO19115_3Namespaces.LAN));
+
+        for(Element el : multilangElement) {
+            String filterAttribute = "*//node()[@locale='" + mdLang + "']";
+            List<Element> localizedElement = (List<Element>)Xml.selectNodes(el, filterAttribute, Arrays.asList(ISO19115_3Namespaces.LAN));
+            if(localizedElement.size() == 1) {
+                String mainLangString = localizedElement.get(0).getText();
+                Element mainCharacterString = ((Element)el.getParent()).getChild("CharacterString", ISO19115_3Namespaces.GCO);
+                if (mainCharacterString != null) {
+                    mainCharacterString.setText(mainLangString);
+                } else {
+                    ((Element) el.getParent()).addContent(
+                        new Element("CharacterString", ISO19115_3Namespaces.GCO).setText(mainLangString)
+                    );
+                }
+            }
+            el.detach();
+        }
+        return element;
+    }
+
+
 
     @Override
     public String getBasicTypeCharacterStringName() {
