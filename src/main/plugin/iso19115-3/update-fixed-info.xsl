@@ -11,6 +11,8 @@
   xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
   xmlns:dqm="http://standards.iso.org/iso/19157/-2/dqm/1.0"
   xmlns:gfc="http://standards.iso.org/iso/19110/gfc/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:gn-fn-iso19115-3="http://geonetwork-opensource.org/xsl/functions/profiles/iso19115-3"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:java="java:org.fao.geonet.util.XslUtil"
@@ -21,7 +23,24 @@
   <xsl:import href="convert/ISO19139/utility/create19115-3Namespaces.xsl"/>
   
   <xsl:include href="convert/functions.xsl"/>
+  <xsl:include href="layout/utility-fn.xsl"/>
 
+  <xsl:variable name="editorConfig"
+                select="document('layout/config-editor.xml')"/>
+
+  <!-- The default language is also added as gmd:locale
+  for multilingual metadata records. -->
+  <xsl:variable name="mainLanguage"
+                select="/root/*/mdb:defaultLocale/*/lan:language/*/@codeListValue"/>
+
+  <xsl:variable name="isMultilingual"
+                select="count(/root/*/mdb:otherLocale[*/lan:language/*/@codeListValue != $mainLanguage]) > 0"/>
+
+  <xsl:variable name="mainLanguageId"
+                select="upper-case(java:twoCharLangCode($mainLanguage))"/>
+
+  <xsl:variable name="locales"
+                select="/root/*/*/lan:PT_Locale"/>
 
   <!-- If no metadata linkage exist, build one based on
   the metadata UUID. -->
@@ -251,11 +270,13 @@
       <xsl:copy-of select="*"/>
     </xsl:copy>
   </xsl:template>
-  
-  
-  <xsl:template match="*[gco:CharacterString]">
+
+
+  <xsl:template match="*[gco:CharacterString|lan:PT_FreeText]">
     <xsl:copy>
-      <xsl:apply-templates select="@*[not(name()='gco:nilReason')]"/>
+      <xsl:apply-templates select="@*[not(name() = 'gco:nilReason') and not(name() = 'xsi:type')]"/>
+
+      <!-- Add nileason if text is empty -->
       <xsl:choose>
         <xsl:when test="normalize-space(gco:CharacterString)=''">
           <xsl:attribute name="gco:nilReason">
@@ -269,7 +290,60 @@
           <xsl:copy-of select="@gco:nilReason"/>
         </xsl:when>
       </xsl:choose>
-      <xsl:apply-templates select="node()"/>
+
+
+      <!-- For multilingual records, for multilingual fields,
+       create a gco:CharacterString containing
+       the same value as the default language PT_FreeText.
+      -->
+      <xsl:variable name="element" select="name()"/>
+
+
+      <xsl:variable name="excluded"
+                    select="gn-fn-iso19115-3:isNotMultilingualField(., $editorConfig)"/>
+      <xsl:choose>
+        <xsl:when test="not($isMultilingual) or
+                        $excluded">
+          <!-- Copy gco:CharacterString only. PT_FreeText are removed if not multilingual. -->
+          <xsl:apply-templates select="gco:CharacterString"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <!-- Add xsi:type for multilingual element. -->
+          <xsl:attribute name="xsi:type" select="'lan:PT_FreeText_PropertyType'"/>
+
+          <!-- Is the default language value set in a PT_FreeText ? -->
+          <xsl:variable name="isInPTFreeText"
+                        select="count(lan:PT_FreeText/*/lan:LocalisedCharacterString[
+                                            @locale = concat('#', $mainLanguageId)]) = 1"/>
+
+
+          <xsl:choose>
+            <xsl:when test="$isInPTFreeText">
+              <!-- Update gco:CharacterString to contains
+                   the default language value from the PT_FreeText.
+                   PT_FreeText takes priority. -->
+              <gco:CharacterString>
+                <xsl:value-of select="lan:PT_FreeText/*/lan:LocalisedCharacterString[
+                                            @locale = concat('#', $mainLanguageId)]/text()"/>
+              </gco:CharacterString>
+              <xsl:apply-templates select="lan:PT_FreeText"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <!-- Populate PT_FreeText for default language if not existing. -->
+              <xsl:apply-templates select="gco:CharacterString"/>
+              <lan:PT_FreeText>
+                <lan:textGroup>
+                  <lan:LocalisedCharacterString locale="#{$mainLanguageId}">
+                    <xsl:value-of select="gco:CharacterString"/>
+                  </lan:LocalisedCharacterString>
+                </lan:textGroup>
+
+                <xsl:apply-templates select="lan:PT_FreeText/lan:textGroup"/>
+              </lan:PT_FreeText>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:copy>
   </xsl:template>
   
@@ -318,10 +392,8 @@
             <xsl:copy-of select="@xlink:href"/>
           </xsl:otherwise>
         </xsl:choose>
-        
       </xsl:if>
     </xsl:copy>
-    
   </xsl:template>
   
   
