@@ -202,14 +202,14 @@ public class ISO19115_3SchemaPlugin
     public Element removeTranslationFromElement(Element element, List<String> langs) throws JDOMException {
         String mainLanguage = langs != null && langs.size() > 0 ? langs.get(0) : "#EN";
 
-        List<Element> nodesWithStrings = (List<Element>) Xml.selectNodes(element, "*//lan:PT_FreeText", Arrays.asList(LAN));
+        List<Element> nodesWithStrings = (List<Element>) Xml.selectNodes(element, "*//lan:PT_FreeText", Arrays.asList(ISO19115_3Namespaces.LAN));
 
         for(Element e : nodesWithStrings) {
             // Retrieve or create the main language element
-            Element mainCharacterString = ((Element)e.getParent()).getChild("CharacterString", GCO);
+            Element mainCharacterString = ((Element)e.getParent()).getChild("CharacterString", ISO19115_3Namespaces.GCO);
             if (mainCharacterString == null) {
                 // create it if it does not exist
-                mainCharacterString = new Element("CharacterString", GCO);
+                mainCharacterString = new Element("CharacterString", ISO19115_3Namespaces.GCO);
                 ((Element)e.getParent()).addContent(0, mainCharacterString);
             }
 
@@ -217,7 +217,7 @@ public class ISO19115_3SchemaPlugin
             List<Element> mainLangElement = (List<Element>) Xml.selectNodes(
                 e,
                 "*//lan:LocalisedCharacterString[@locale='" + mainLanguage + "']",
-                Arrays.asList(LAN));
+                Arrays.asList(ISO19115_3Namespaces.LAN));
 
             // Set the main language value
             if (mainLangElement.size() == 1) {
@@ -225,11 +225,11 @@ public class ISO19115_3SchemaPlugin
 
                 if (StringUtils.isNotEmpty(mainLangString)) {
                     mainCharacterString.setText(mainLangString);
-                } else if (mainCharacterString.getAttribute("nilReason", GCO) == null){
-                    ((Element)mainCharacterString.getParent()).setAttribute("nilReason", "missing", GCO);
+                } else if (mainCharacterString.getAttribute("nilReason", ISO19115_3Namespaces.GCO) == null){
+                    ((Element)mainCharacterString.getParent()).setAttribute("nilReason", "missing", ISO19115_3Namespaces.GCO);
                 }
             } else if (StringUtils.isEmpty(mainCharacterString.getText())) {
-                ((Element)mainCharacterString.getParent()).setAttribute("nilReason", "missing", GCO);
+                ((Element)mainCharacterString.getParent()).setAttribute("nilReason", "missing", ISO19115_3Namespaces.GCO);
             }
         }
 
