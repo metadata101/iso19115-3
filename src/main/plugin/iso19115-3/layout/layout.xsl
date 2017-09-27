@@ -189,12 +189,7 @@
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="excluded"
-                  select="(
-                    count($editorConfig/editor/multilingualFields/exclude/name[. = $elementName]) > 0 and
-                    not($editorConfig/editor/multilingualFields/exclude/name[. = $elementName]/@ancestor) and
-                    not($editorConfig/editor/multilingualFields/exclude/name[. = $elementName]/@child) and
-                    not($editorConfig/editor/multilingualFields/exclude/name[. = $elementName]/@parent)) or
-                      $exclusionMatchesAncestor = true() or $exclusionMatchesParent = true() or $exclusionMatchesChild = true()"/>
+                  select="gn-fn-iso19115-3:isNotMultilingualField(., $editorConfig)"/>
 
 
     <xsl:variable name="hasPTFreeText" select="count(lan:PT_FreeText) > 0"/>
@@ -267,10 +262,13 @@
       <xsl:if test="$isMultilingualElement">
 
         <values>
-          <!-- Or the PT_FreeText element matching the main language -->
+          <!--
+          CharacterString is not edited anymore, but it's PT_FreeText
+          counterpart is.
+          Or the PT_FreeText element matching the main language
           <xsl:if test="gco:CharacterString">
             <value ref="{$theElement/gn:element/@ref}" lang="{$metadataLanguage}"><xsl:value-of select="gco:CharacterString"/></value>
-          </xsl:if>
+          </xsl:if>-->
 
 
           <!-- the existing translation -->

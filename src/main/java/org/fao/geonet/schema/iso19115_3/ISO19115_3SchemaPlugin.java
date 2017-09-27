@@ -1,5 +1,6 @@
 package org.fao.geonet.schema.iso19115_3;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +8,7 @@ import java.util.Set;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
+import org.apache.commons.lang.StringUtils;
 import org.fao.geonet.kernel.schema.*;
 import org.fao.geonet.utils.Log;
 import org.fao.geonet.utils.Xml;
@@ -77,11 +79,19 @@ public class ISO19115_3SchemaPlugin
                     Element agId = (Element) sib.getChild("metadataReference", ISO19115_3Namespaces.MRI);
                     // TODO: Reference may be defined in Citation identifier
                     String sibUuid = agId.getAttributeValue("uuidref");
-                    String initType = sib.getChild("initiativeType", ISO19115_3Namespaces.MRI)
-                            .getChild("DS_InitiativeTypeCode", ISO19115_3Namespaces.MRI)
-                            .getAttributeValue("codeListValue");
 
-                    AssociatedResource resource = new AssociatedResource(sibUuid, initType, "");
+                    String associationType = sib.getChild("associationType", ISO19115_3Namespaces.MRI)
+                        .getChild("DS_AssociationTypeCode", ISO19115_3Namespaces.MRI)
+                        .getAttributeValue("codeListValue");
+
+                    String initType = "";
+                    final Element initiativeTypeEl = sib.getChild("initiativeType", ISO19115_3Namespaces.MRI);
+                    if (initiativeTypeEl != null) {
+                        initType = initiativeTypeEl.getChild("DS_InitiativeTypeCode", ISO19115_3Namespaces.MRI)
+                            .getAttributeValue("codeListValue");
+                    }
+
+                    AssociatedResource resource = new AssociatedResource(sibUuid, initType, associationType);
                     listOfResources.add(resource);
                 }
             }
@@ -177,6 +187,71 @@ public class ISO19115_3SchemaPlugin
             element.addContent(freeTextElement);
         }
         freeTextElement.addContent(textGroupElement);
+    }
+
+    /**
+     * Remove all multingual aspect of an element. Keep the md language localized strings
+     * as default gco:CharacterString for the element.
+     *
+     * @param element
+     * @param langs Metadata languages. The main language MUST be the first one.
+     * @return
+     * @throws JDOMException
+     */
+    @Override
+    public Element removeTranslationFromElement(Element element, List<String> langs) throws JDOMException {
+        String mainLanguage = langs != null && langs.size() > 0 ? langs.get(0) : "#EN";
+
+        List<Element> nodesWithStrings = (List<Element>) Xml.selectNodes(element, "*//lan:PT_FreeText", Arrays.asList(LAN));
+
+        for(Element e : nodesWithStrings) {
+            // Retrieve or create the main language element
+            Element mainCharacterString = ((Element)e.getParent()).getChild("CharacterString", GCO);
+            if (mainCharacterString == null) {
+                // create it if it does not exist
+                mainCharacterString = new Element("CharacterString", GCO);
+                ((Element)e.getParent()).addContent(0, mainCharacterString);
+            }
+
+            // Retrieve the main language value if exist
+            List<Element> mainLangElement = (List<Element>) Xml.selectNodes(
+                e,
+                "*//lan:LocalisedCharacterString[@locale='" + mainLanguage + "']",
+                Arrays.asList(LAN));
+
+            // Set the main language value
+            if (mainLangElement.size() == 1) {
+                String mainLangString = mainLangElement.get(0).getText();
+
+                if (StringUtils.isNotEmpty(mainLangString)) {
+                    mainCharacterString.setText(mainLangString);
+                } else if (mainCharacterString.getAttribute("nilReason", GCO) == null){
+                    ((Element)mainCharacterString.getParent()).setAttribute("nilReason", "missing", GCO);
+                }
+            } else if (StringUtils.isEmpty(mainCharacterString.getText())) {
+                ((Element)mainCharacterString.getParent()).setAttribute("nilReason", "missing", GCO);
+            }
+        }
+
+        // Remove unused lang entries
+        List<Element> translationNodes = (List<Element>)Xml.selectNodes(element, "*//node()[@locale]");
+        for(Element el : translationNodes) {
+            // Remove all translations if there is no or only one language requested
+            if(langs.size() <= 1 ||
+                !langs.contains(el.getAttribute("locale").getValue())) {
+                Element parent = (Element)el.getParent();
+                parent.detach();
+            }
+        }
+
+        // Remove PT_FreeText which might be emptied by above processing
+        for(Element el : nodesWithStrings) {
+            if (el.getChildren().size() == 0) {
+                el.detach();
+            }
+        }
+
+        return element;
     }
 
     @Override

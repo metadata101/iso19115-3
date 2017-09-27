@@ -31,7 +31,7 @@
           </xsl:variable>
           <xsl:if test="$mainLanguage">
             <xsl:variable name="mainLanguageId"
-                          select="$metadata/mdb:otherLocale/lan:PT_Locale[
+                          select="$metadata/*/lan:PT_Locale[
                                   lan:language/lan:LanguageCode/@codeListValue = $mainLanguage]/@id"/>
 
             <lang><xsl:value-of select="concat('&quot;', $mainLanguage, '&quot;:&quot;#', $mainLanguageId, '&quot;')"/></lang>

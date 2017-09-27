@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
+<!--
   Create a simple XML tree for relation description.
   <relations>
     <relation type="related|services|children">
@@ -46,7 +46,10 @@
       <xsl:for-each select="*/descendant::*[name(.) = 'mri:graphicOverview']/*">
         <item>
           <id><xsl:value-of select="mcc:fileName/gco:CharacterString"/></id>
-          <url><xsl:value-of select="mcc:fileName/gco:CharacterString"/></url>
+          <url>
+              <xsl:apply-templates mode="get-iso19115-3-localized-string"
+                                    select="mcc:fileName"/>
+          </url>
           <title>
               <xsl:apply-templates mode="get-iso19115-3-localized-string"
                                    select="mcc:fileDescription"/>
@@ -62,8 +65,10 @@
                             ]/*[cit:onlineResource/*/cit:linkage/gco:CharacterString != '']">
         <item>
           <id><xsl:value-of select="cit:onlineResource/cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/></id>
-          <!-- TODO support multilingual URL -->
-          <url><xsl:value-of select="cit:onlineResource/cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/></url>
+          <url>
+            <xsl:apply-templates mode="get-iso19115-3-localized-string"
+                                 select="cit:onlineResource/cit:CI_OnlineResource/cit:linkage"/>
+          </url>
           <title>
             <xsl:apply-templates mode="get-iso19115-3-localized-string"
                                  select="cit:title"/>
@@ -79,12 +84,15 @@
                             ]/*[cit:onlineResource/*/cit:linkage/gco:CharacterString != '']">
         <item>
           <id><xsl:value-of select="cit:onlineResource/cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/></id>
-           <url><xsl:value-of select="cit:onlineResource/cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/></url>
-           <title>
+          <url>
+            <xsl:apply-templates mode="get-iso19115-3-localized-string"
+                                 select="cit:onlineResource/cit:CI_OnlineResource/cit:linkage"/>
+          </url>
+          <title>
              <xsl:apply-templates mode="get-iso19115-3-localized-string"
                                   select="cit:title"/>
-           </title>
-            <type>dq-report</type>
+          </title>
+          <type>dq-report</type>
          </item>
       </xsl:for-each>
 
@@ -98,7 +106,8 @@
                                    select="cit:name"/>
           </title>
           <url>
-              <xsl:value-of select="cit:linkage/gco:CharacterString"/>
+              <xsl:apply-templates mode="get-iso19115-3-localized-string"
+                                   select="cit:linkage"/>
           </url>
           <function><xsl:value-of select="cit:function/*/@codeListValue"/></function>
           <applicationProfile><xsl:value-of select="cit:applicationProfile/gco:CharacterString"/></applicationProfile>
