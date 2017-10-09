@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
-  xmlns:gml="http://www.opengis.net/gml/3.2" 
+  xmlns:gml="http://www.opengis.net/gml/3.2"
   xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
   xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
   xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
@@ -19,9 +19,9 @@
   xmlns:mime="java:org.fao.geonet.util.MimeTypeFinder"
   xmlns:gn="http://www.fao.org/geonetwork"
   exclude-result-prefixes="#all">
-  
+
   <xsl:import href="convert/ISO19139/utility/create19115-3Namespaces.xsl"/>
-  
+
   <xsl:include href="convert/functions.xsl"/>
   <xsl:include href="layout/utility-fn.xsl"/>
 
@@ -44,7 +44,10 @@
 
   <!-- If no metadata linkage exist, build one based on
   the metadata UUID. -->
-  <xsl:variable name="createMetadataLinkage" select="true()"/>
+  <xsl:variable name="createMetadataLinkage"
+                select="count(/root/*/mdb:metadataLinkage/cit:CI_OnlineResource/cit:linkage/*[normalize-space(.) != '']) = 0"/>
+
+
   <xsl:variable name="url" select="/root/env/siteURL"/>
   <xsl:variable name="uuid" select="/root/env/uuid"/>
 
@@ -55,13 +58,13 @@
   <xsl:template match="/root">
     <xsl:apply-templates select="mdb:MD_Metadata"/>
   </xsl:template>
-  
+
   <xsl:template match="mdb:MD_Metadata">
     <xsl:copy copy-namespaces="no">
       <xsl:apply-templates select="@*"/>
-      
+
       <xsl:call-template name="add-iso19115-3-namespaces"/>
-      
+
       <!-- Add metadataIdentifier if it doesn't exist
       TODO: only if not harvested -->
       <mdb:metadataIdentifier>
@@ -161,7 +164,7 @@
           <xsl:apply-templates select="mdb:metadataStandard"/>
         </xsl:otherwise>
       </xsl:choose>
-      
+
       <xsl:apply-templates select="mdb:metadataProfile"/>
       <xsl:apply-templates select="mdb:alternativeMetadataReference"/>
       <xsl:apply-templates select="mdb:otherLocale"/>
@@ -169,7 +172,8 @@
 
       <xsl:variable name="pointOfTruthUrl" select="concat($url, '/metadata/', $uuid)"/>
 
-      <xsl:if test="$createMetadataLinkage and count(mdb:metadataLinkage/cit:CI_OnlineResource/cit:linkage/*[. = $pointOfTruthUrl]) = 0">
+      <!-- Create metadata linkage only if it does not exist already. -->
+      <xsl:if test="$createMetadataLinkage">
         <!-- TODO: This should only be updated for not harvested records ? -->
         <mdb:metadataLinkage>
           <cit:CI_OnlineResource>
@@ -204,8 +208,8 @@
       <xsl:apply-templates select="mdb:acquisitionInformation"/>
     </xsl:copy>
   </xsl:template>
-  
-  
+
+
   <!-- Update revision date -->
   <xsl:template match="mdb:dateInfo[cit:CI_Date/cit:dateType/cit:CI_DateTypeCode/@codeListValue='lastUpdate']">
     <xsl:copy>
@@ -226,8 +230,8 @@
       </xsl:choose>
     </xsl:copy>
   </xsl:template>
-  
-  
+
+
   <xsl:template match="@gml:id">
     <xsl:choose>
       <xsl:when test="normalize-space(.)=''">
@@ -240,9 +244,9 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-  
-  
-  <!-- Fix srsName attribute generate CRS:84 (EPSG:4326 with long/lat 
+
+
+  <!-- Fix srsName attribute generate CRS:84 (EPSG:4326 with long/lat
     ordering) by default -->
   <xsl:template match="@srsName">
     <xsl:choose>
@@ -256,7 +260,7 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-  
+
   <!-- Add required gml attributes if missing -->
   <xsl:template match="gml:Polygon[not(@gml:id) and not(@srsName)]">
     <xsl:copy>
@@ -346,15 +350,15 @@
       </xsl:choose>
     </xsl:copy>
   </xsl:template>
-  
-  
+
+
   <!-- codelists: set @codeList path -->
   <xsl:template match="lan:LanguageCode[@codeListValue]" priority="10">
     <lan:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/">
       <xsl:apply-templates select="@*[name(.)!='codeList']"/>
     </lan:LanguageCode>
   </xsl:template>
-  
+
   <xsl:template match="dqm:*[@codeListValue]" priority="10">
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
@@ -363,7 +367,7 @@
       </xsl:attribute>
     </xsl:copy>
   </xsl:template>
-  
+
   <xsl:template match="*[@codeListValue]">
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
@@ -372,9 +376,9 @@
       </xsl:attribute>
     </xsl:copy>
   </xsl:template>
-  
 
-  <!-- Do not allow to expand operatesOn sub-elements 
+
+  <!-- Do not allow to expand operatesOn sub-elements
     and constrain users to use uuidref attribute to link
     service metadata to datasets. This will avoid to have
     error on XSD validation.  |mrc:featureCatalogueCitation[@uuidref] -->
@@ -395,8 +399,8 @@
       </xsl:if>
     </xsl:copy>
   </xsl:template>
-  
-  
+
+
   <!-- Set local identifier to the first 3 letters of iso code. Locale ids
     are used for multilingual charcterString using #iso2code for referencing.
   -->
@@ -404,7 +408,7 @@
     <xsl:element name="lan:{local-name()}">
       <xsl:variable name="id"
                     select="upper-case(java:twoCharLangCode(lan:language/lan:LanguageCode/@codeListValue))"/>
-      
+
       <xsl:apply-templates select="@*"/>
       <xsl:if test="normalize-space(@id)='' or normalize-space(@id)!=$id">
         <xsl:attribute name="id">
@@ -414,10 +418,10 @@
       <xsl:apply-templates select="node()"/>
     </xsl:element>
   </xsl:template>
-  
+
   <!-- Apply same changes as above to the lan:LocalisedCharacterString -->
   <xsl:variable name="language" select="//(mdb:defaultLocale|mdb:otherLocale)/lan:PT_Locale" /> <!-- Need list of all locale -->
-  
+
   <xsl:template match="lan:LocalisedCharacterString">
     <xsl:element name="lan:{local-name()}">
       <xsl:variable name="currentLocale" select="upper-case(replace(normalize-space(@locale), '^#', ''))"/>
@@ -432,17 +436,17 @@
       <xsl:apply-templates select="node()"/>
     </xsl:element>
   </xsl:template>
-  
+
   <!-- ================================================================= -->
-  <!-- Adjust the namespace declaration - In some cases name() is used to get the 
-    element. The assumption is that the name is in the format of  <ns:element> 
-    however in some cases it is in the format of <element xmlns=""> so the 
-    following will convert them back to the expected value. This also corrects the issue 
+  <!-- Adjust the namespace declaration - In some cases name() is used to get the
+    element. The assumption is that the name is in the format of  <ns:element>
+    however in some cases it is in the format of <element xmlns=""> so the
+    following will convert them back to the expected value. This also corrects the issue
     where the <element xmlns=""> loose the xmlns="" due to the exclude-result-prefixes="#all" -->
   <!-- Note: Only included prefix gml, mds and gco for now. -->
   <!-- TODO: Figure out how to get the namespace prefix via a function so that we don't need to hard code them -->
   <!-- ================================================================= -->
-  
+
   <xsl:template name="correct_ns_prefix">
     <xsl:param name="element" />
     <xsl:param name="prefix" />
@@ -459,34 +463,34 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-  
+
   <xsl:template match="mdb:*">
     <xsl:call-template name="correct_ns_prefix">
       <xsl:with-param name="element" select="."/>
       <xsl:with-param name="prefix" select="'mdb'"/>
     </xsl:call-template>
   </xsl:template>
-  
+
   <xsl:template match="gco:*">
     <xsl:call-template name="correct_ns_prefix">
       <xsl:with-param name="element" select="."/>
       <xsl:with-param name="prefix" select="'gco'"/>
     </xsl:call-template>
   </xsl:template>
-  
+
   <xsl:template match="gml:*">
     <xsl:call-template name="correct_ns_prefix">
       <xsl:with-param name="element" select="."/>
       <xsl:with-param name="prefix" select="'gml'"/>
     </xsl:call-template>
   </xsl:template>
-  
+
   <!-- copy everything else as is -->
-  
+
   <xsl:template match="@*|node()">
     <xsl:copy>
       <xsl:apply-templates select="@*|node()"/>
     </xsl:copy>
   </xsl:template>
-  
+
 </xsl:stylesheet>
