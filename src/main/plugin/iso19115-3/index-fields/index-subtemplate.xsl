@@ -18,6 +18,7 @@
                 xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
                 xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0"
                 xmlns:geonet="http://www.fao.org/geonetwork"
+                xmlns:util="java:org.fao.geonet.util.XslUtil"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:skos="http://www.w3.org/2004/02/skos/core#">
 
@@ -26,6 +27,51 @@
   Add the [count(ancestor::node()) =  1] to only match element at the root of the document.
   This is the method to identify a subtemplate.
   -->
+  <xsl:param name="id"/>
+  <xsl:param name="uuid"/>
+  <xsl:param name="title"/>
+
+
+  <xsl:variable name="isMultilingual" select="count(distinct-values(*//lan:LocalisedCharacterString/@locale)) > 0"/>
+
+  <!-- Subtemplate indexing -->
+  <xsl:template match="/">
+    <xsl:variable name="root" select="/"/>
+    <xsl:variable name="isoDocLangId" select="util:getLanguage()"></xsl:variable>
+
+    <Documents>
+
+      <xsl:choose>
+        <xsl:when test="$isMultilingual">
+          <xsl:for-each select="distinct-values(//lan:LocalisedCharacterString/@locale)">
+            <xsl:variable name="locale" select="string(.)"/>
+            <xsl:variable name="langId" select="substring($locale,2,2)"/>
+            <xsl:variable name="isoLangId" select="util:threeCharLangCode($langId)"/>
+
+            <Document locale="{$isoLangId}">
+              <Field name="_locale" string="{$isoLangId}" store="true" index="true"/>
+              <Field name="_docLocale" string="{$isoDocLangId}" store="true" index="true"/>
+              <xsl:apply-templates mode="index" select="$root">
+                <xsl:with-param name="locale" select="$locale"/>
+                <xsl:with-param name="isoLangId" select="$isoLangId"/>
+                <xsl:with-param name="langId" select="$langId"></xsl:with-param>
+              </xsl:apply-templates>
+            </Document>
+          </xsl:for-each>
+        </xsl:when>
+        <xsl:otherwise>
+          <Document locale="">
+            <xsl:apply-templates mode="index" select="$root"/>
+          </Document>
+        </xsl:otherwise>
+      </xsl:choose>
+    </Documents>
+  </xsl:template>
+
+
+
+
+
   <xsl:template mode="index"
                 match="cit:CI_Responsibility[count(ancestor::node()) =  1]">
 
@@ -33,11 +79,17 @@
                   select="normalize-space(cit:party/cit:CI_Organisation/cit:name/gco:CharacterString)"/>
     <xsl:variable name="name"
                   select="string-join(.//cit:individual/cit:CI_Individual/cit:name/gco:CharacterString, ', ')"/>
+
+    <xsl:variable name="mail"
+                  select="string-join(.//cit:CI_Address/cit:electronicMailAddress[1]/gco:CharacterString, ', ')"/>
+
     <Field name="_title"
-           string="{if ($name != '')
-                    then concat($org, ' (', $name, ')')
+           string="{if ($title != '') then $title
+                    else if ($name != '') then concat($org, ' (', $name, ')')
+                    else if ($mail != '') then concat($org, ' (', $mail, ')')
                     else $org}"
            store="true" index="true"/>
+
     <Field name="orgName" string="{$org}" store="true" index="true"/>
 
     <xsl:call-template name="subtemplate-common-fields"/>

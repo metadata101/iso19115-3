@@ -32,7 +32,6 @@
 
   <xsl:include href="common/functions-core.xsl"/>
   <xsl:include href="../layout/utility-tpl-multilingual.xsl"/>
-  <xsl:include href="index-subtemplate-fields.xsl"/>
 
 
   <!-- Thesaurus folder -->
@@ -403,7 +402,7 @@
           </xsl:if>
         </xsl:for-each>
       </xsl:for-each>
-      
+
       <xsl:variable name="listOfKeywords">{
         <xsl:variable name="keywordWithNoThesaurus"
                       select="//mri:MD_Keywords[
@@ -993,7 +992,7 @@
         <xsl:with-param name="langId" select="concat('#', $langId)"/>
       </xsl:apply-templates>
     </xsl:variable>
- 
+
     <Field name="{$type}_{$fieldPrefix}_{$role}"
            string="{$orgName}"
            store="false"
@@ -1006,7 +1005,7 @@
                               '|', $positionName, '|',
                               $address, '|', string-join($phones, ','))}"
            store="true" index="false"/>
-           
+
     <xsl:for-each select="$email">
       <Field name="{$fieldPrefix}Email" string="{string(.)}" store="true" index="true"/>
       <Field name="{$fieldPrefix}RoleAndEmail" string="{$role}|{string(.)}" store="true" index="true"/>
