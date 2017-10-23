@@ -70,7 +70,9 @@
         in default metadata language or in a specific locale
         if exist.
     -->
-  <xsl:template mode="localised" match="*[lan:PT_FreeText or gco:CharacterString]">
+  <xsl:template name="localised"
+                mode="localised"
+                match="*[lan:PT_FreeText or gco:CharacterString]">
     <xsl:param name="langId"/>
 
     <xsl:choose>
