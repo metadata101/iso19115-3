@@ -29,6 +29,11 @@
   <metadataMaintenance>Md. maintenance</metadataMaintenance>
   <applicationSchemaInfo>Standard ext.</applicationSchemaInfo>
   <acquisitionInformation>Acquisition</acquisitionInformation>
+  <bboxesSection>Zone géographique</bboxesSection>
+  <citationProposal>Proposition de citation</citationProposal>
+  <citationProposal-help>Cette proposition de citation a été générée automatiquement selon le format suggéré par DataCite. Nous vous invitons à vérifier dans les métadonnées si les auteurs n'ont pas imposé un format de citation spécifique.</citationProposal-help>
+  <associatedResources>Ressources associées</associatedResources>
+
 
 
   <add-resource-id>Générer un identifiant</add-resource-id>
