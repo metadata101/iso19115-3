@@ -77,7 +77,7 @@
   <!-- Specific schema rendering -->
   <xsl:template mode="getMetadataTitle" match="mdb:MD_Metadata">
     <xsl:for-each select="mdb:identificationInfo/*/mri:citation/*/cit:title">
-      <xsl:call-template name="localised">
+      <xsl:call-template name="get-iso19115-3-localised">
         <xsl:with-param name="langId" select="$langId"/>
       </xsl:call-template>
     </xsl:for-each>
@@ -85,7 +85,7 @@
 
   <xsl:template mode="getMetadataAbstract" match="mdb:MD_Metadata">
     <xsl:for-each select="mdb:identificationInfo/*/mri:abstract">
-      <xsl:call-template name="localised">
+      <xsl:call-template name="get-iso19115-3-localised">
         <xsl:with-param name="langId" select="$langId"/>
       </xsl:call-template>
     </xsl:for-each>
@@ -109,7 +109,7 @@
 
       <xsl:for-each select="mcc:fileDescription">
         <div class="gn-img-thumbnail-caption">
-          <xsl:call-template name="localised">
+          <xsl:call-template name="get-iso19115-3-localised">
             <xsl:with-param name="langId" select="$langId"/>
           </xsl:call-template>
         </div>
@@ -123,7 +123,7 @@
   <xsl:template mode="getMetadataHeader" match="mdb:MD_Metadata">
     <div class="alert alert-info">
       <xsl:for-each select="mdb:identificationInfo/*/mri:abstract">
-        <xsl:call-template name="localised">
+        <xsl:call-template name="get-iso19115-3-localised">
           <xsl:with-param name="langId" select="$langId"/>
         </xsl:call-template>
       </xsl:for-each>
@@ -170,7 +170,7 @@
 
           <!-- Title -->
           <xsl:for-each select="mri:identificationInfo/*/cit:citation/*/cit:title">
-            <xsl:call-template name="localised">
+            <xsl:call-template name="get-iso19115-3-localised">
               <xsl:with-param name="langId" select="$langId"/>
             </xsl:call-template>
           </xsl:for-each>
