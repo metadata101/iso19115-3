@@ -100,13 +100,13 @@
 
     <for name="mdb:contact" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
-              data-template-add-action="true"
-              data-search-action="false"
-              data-popup-action="true"
-              data-template-type="contact"
-              data-filter='{"_root": "cit:CI_Responsibility"}'
-              data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
-              <!--data-transformation="contact-from-iso19139-to-iso19115-3"/ ADDED IN MEDSEA-->
+        data-template-add-action="true"
+        data-search-action="false"
+        data-popup-action="true"
+        data-template-type="contact"
+        data-filter='{"_root": "cit:CI_Responsibility"}'
+        data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
+      <!--data-transformation="contact-from-iso19139-to-iso19115-3"/ ADDED IN MEDSEA-->
     </for>
     <for name="mri:pointOfContact" addDirective="data-gn-directory-entry-selector">
       <!--<directiveAttributes
@@ -117,76 +117,76 @@
       <!-- To use an ISO19139 contact directory in an ISO19115-3 record
       use the following configuration: -->
       <directiveAttributes
-              data-template-add-action="true"
-              data-search-action="false"
-              data-popup-action="true"
-              data-template-type="contact"
-              data-filter='{"_root": "gmd:CI_ResponsibleParty"}'
-              data-variables="gmd:role/gmd:CI_RoleCode/@codeListValue~{role}"
-              data-transformation="contact-from-iso19139-to-iso19115-3"/>
+        data-template-add-action="true"
+        data-search-action="false"
+        data-popup-action="true"
+        data-template-type="contact"
+        data-filter='{"_root": "gmd:CI_ResponsibleParty"}'
+        data-variables="gmd:role/gmd:CI_RoleCode/@codeListValue~{role}"
+        data-transformation="contact-from-iso19139-to-iso19115-3"/>
     </for>
     <for name="mrd:distributor" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
-              data-template-add-action="true"
-              data-search-action="false"
-              data-popup-action="true"
-              data-template-type="contact"
-              data-filter='{"_root": "cit:CI_Responsibility"}'
-              data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
-              <!--data-transformation="contact-from-iso19139-to-iso19115-3"/ ADDED IN MEDSEA-->
+        data-template-add-action="true"
+        data-search-action="false"
+        data-popup-action="true"
+        data-template-type="contact"
+        data-filter='{"_root": "cit:CI_Responsibility"}'
+        data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
+      <!--data-transformation="contact-from-iso19139-to-iso19115-3"/ ADDED IN MEDSEA-->
     </for>
     <for name="mrl:processor" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
-              data-template-add-action="true"
-              data-search-action="false"
-              data-popup-action="true"
-              data-template-type="contact"
-              data-filter='{"_root": "cit:CI_Responsibility"}'
-              data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
-              <!--data-transformation="contact-from-iso19139-to-iso19115-3"/ ADDED IN MEDSEA-->
+        data-template-add-action="true"
+        data-search-action="false"
+        data-popup-action="true"
+        data-template-type="contact"
+        data-filter='{"_root": "cit:CI_Responsibility"}'
+        data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
+      <!--data-transformation="contact-from-iso19139-to-iso19115-3"/ ADDED IN MEDSEA-->
     </for>
     <for name="cit:citedResponsibleParty" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
-              data-template-add-action="true"
-              data-search-action="false"
-              data-popup-action="true"
-              data-template-type="contact"
-              data-filter='{"_root": "cit:CI_Responsibility"}'
-              data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
-              <!--data-transformation="contact-from-iso19139-to-iso19115-3"/ ADDED IN MEDSEA-->
+        data-template-add-action="true"
+        data-search-action="false"
+        data-popup-action="true"
+        data-template-type="contact"
+        data-filter='{"_root": "cit:CI_Responsibility"}'
+        data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
+      <!--data-transformation="contact-from-iso19139-to-iso19115-3"/ ADDED IN MEDSEA-->
     </for>
 
 
     <for name="cit:logo" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
-              data-template-add-action="true"
-              data-search-action="true"
-              data-popup-action="false"
-              data-template-type="logo"
-              data-filter='{"_root": "mcc:MD_BrowseGraphic"}'/>
+        data-template-add-action="true"
+        data-search-action="true"
+        data-popup-action="false"
+        data-template-type="logo"
+        data-filter='{"_root": "mcc:MD_BrowseGraphic"}'/>
     </for>
 
     <for name="mdq:report" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
-              data-template-add-action="true"
-              data-search-action="true"
-              data-popup-action="false"
-              data-template-type="report"
-              data-filter='{"_root": "mdq:DQ_*"}'/>
+        data-template-add-action="true"
+        data-search-action="true"
+        data-popup-action="false"
+        data-template-type="report"
+        data-filter='{"_root": "mdq:DQ_*"}'/>
     </for>
 
     <for name="mri:resourceConstraints" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
-              data-template-add-action="true"
-              data-search-action="true"
-              data-popup-action="false"
-              data-template-type="resourceConstraints"
-              data-filter='{"_root": "mco:MD_*"}'/>
+        data-template-add-action="true"
+        data-search-action="true"
+        data-popup-action="false"
+        data-template-type="resourceConstraints"
+        data-filter='{"_root": "mco:MD_*"}'/>
     </for>
 
     <for name="mri:descriptiveKeywords" addDirective="data-gn-thesaurus-selector">
       <directiveAttributes
-              data-transformation="to-iso19115-3-keyword"/>
+        data-transformation="to-iso19115-3-keyword"/>
     </for>
   </fields>
 
@@ -347,6 +347,18 @@
   <!-- View configuration -->
   <views>
     <view name="default">
+
+      <sidePanel>
+        <directive data-gn-onlinesrc-list=""/>
+        <directive gn-geo-publisher=""
+                   data-ng-if="gnCurrentEdit.geoPublisherConfig"
+                   data-config="{{gnCurrentEdit.geoPublisherConfig}}"
+                   data-lang="lang"/>
+        <directive data-gn-validation-report=""/>
+        <directive data-gn-suggestion-list=""/>
+        <directive data-gn-need-help="user-guide/describing-information/creating-metadata.html"/>
+      </sidePanel>
+
       <tab id="default" default="true" mode="flat">
         <section xpath="/mdb:MD_Metadata/mdb:identificationInfo"/>
         <section xpath="/mdb:MD_Metadata/mdb:contentInfo"/>
@@ -389,15 +401,27 @@
     </view>
 
     <view name="metawal" upAndDownControlHidden="true">
+
+      <sidePanel>
+        <directive data-gn-onlinesrc-list=""/>
+        <directive gn-geo-publisher=""
+                   data-ng-if="gnCurrentEdit.geoPublisherConfig"
+                   data-config="{{gnCurrentEdit.geoPublisherConfig}}"
+                   data-lang="lang"/>
+        <directive data-gn-validation-report=""/>
+        <directive data-gn-suggestion-list=""/>
+        <directive data-gn-need-help="user-guide/describing-information/creating-metadata.html"/>
+      </sidePanel>
+
       <tab id="mw-metadata" default="true" mode="flat">
-          <section name="metadataDefinition">
-             <field name="metadataTitle"
-                    xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:citation/*/cit:title"/>
+        <section name="metadataDefinition">
+          <field name="metadataTitle"
+                 xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:citation/*/cit:title"/>
 
 
-            <!-- One field and a collection of 3 actions to define
-            the current record as a dataset, a serie or a service. -->
-            <section name="metadataScopetitle">
+          <!-- One field and a collection of 3 actions to define
+          the current record as a dataset, a serie or a service. -->
+          <section name="metadataScopetitle">
             <field name="metadataScopetitle" xpath="/mdb:MD_Metadata/mdb:metadataScope/mdb:MD_MetadataScope/mdb:resourceScope"/>
 
             <!-- If resource scope is not define, propose to choose a type.
@@ -560,105 +584,105 @@
 
             <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:citation/*/cit:identifier"/>
             <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:citation/*/cit:identifier"
-                 or="identifier"
-                 in="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:citation/*"/>
+                   or="identifier"
+                   in="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:citation/*"/>
             <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:spatialRepresentationType"/>
 
-            </section>
-
           </section>
 
+        </section>
 
-          <section name="metadataIdentification">
-            <field name="resourceIdentifier"
-                   xpath="/mdb:MD_Metadata/mdb:metadataIdentifier/*/mcc:code"/>
 
-            <field name="metadataLanguage"
-                   xpath="/mdb:MD_Metadata/mdb:defaultLocale/*/lan:language"/>
+        <section name="metadataIdentification">
+          <field name="resourceIdentifier"
+                 xpath="/mdb:MD_Metadata/mdb:metadataIdentifier/*/mcc:code"/>
 
-            <!-- If not defined, add action will add French -->
-            <action type="add"
-                    name="metadataLanguage"
-                    or="defaultLocale"
-                    in="/mdb:MD_Metadata">
-              <template>
-                <snippet>
-                  <mdb:defaultLocale>
-                    <lan:PT_Locale>
-                      <lan:language>
-                        <lan:LanguageCode codeList="codeListLocation#LanguageCode" codeListValue="fre"/>
-                      </lan:language>
-                      <lan:characterEncoding>
-                        <lan:MD_CharacterSetCode codeList="codeListLocation#MD_CharacterSetCode"
-                                                 codeListValue="utf8"/>
-                      </lan:characterEncoding>
-                    </lan:PT_Locale>
-                  </mdb:defaultLocale>
-                </snippet>
-              </template>
-            </action>
+          <field name="metadataLanguage"
+                 xpath="/mdb:MD_Metadata/mdb:defaultLocale/*/lan:language"/>
 
-            <text ref="metadataDate-help"/>
+          <!-- If not defined, add action will add French -->
+          <action type="add"
+                  name="metadataLanguage"
+                  or="defaultLocale"
+                  in="/mdb:MD_Metadata">
+            <template>
+              <snippet>
+                <mdb:defaultLocale>
+                  <lan:PT_Locale>
+                    <lan:language>
+                      <lan:LanguageCode codeList="codeListLocation#LanguageCode" codeListValue="fre"/>
+                    </lan:language>
+                    <lan:characterEncoding>
+                      <lan:MD_CharacterSetCode codeList="codeListLocation#MD_CharacterSetCode"
+                                               codeListValue="utf8"/>
+                    </lan:characterEncoding>
+                  </lan:PT_Locale>
+                </mdb:defaultLocale>
+              </snippet>
+            </template>
+          </action>
 
-            <field name="metadataDate"
-                   xpath="/mdb:MD_Metadata/mdb:dateInfo"
-                   or="dateInfo"
-                   in="/mdb:MD_Metadata"
-                   editInfo="no"/>
-          </section>
+          <text ref="metadataDate-help"/>
 
-          <section name="metadataLinks">
-            <!-- TODO: here we should provide a list of services, ...
-            with delete action. For this a new directive should
-            be used based on the onlinesrclist one probably. -->
+          <field name="metadataDate"
+                 xpath="/mdb:MD_Metadata/mdb:dateInfo"
+                 or="dateInfo"
+                 in="/mdb:MD_Metadata"
+                 editInfo="no"/>
+        </section>
 
-            <action type="associatedResource"
+        <section name="metadataLinks">
+          <!-- TODO: here we should provide a list of services, ...
+          with delete action. For this a new directive should
+          be used based on the onlinesrclist one probably. -->
+
+          <action type="associatedResource"
                   name="linkToSibling"
                   process="sibling"/>
 
-            <action type="associatedResource"
-                    name="linkToService"
-                    if="count(mdb:MD_Metadata/mdb:metadataScope/mdb:MD_MetadataScope/mdb:resourceScope/mcc:MD_ScopeCode[@codeListValue = 'dataset' or @codeListValue = 'series']) > 0"
-                    process="service"/>
+          <action type="associatedResource"
+                  name="linkToService"
+                  if="count(mdb:MD_Metadata/mdb:metadataScope/mdb:MD_MetadataScope/mdb:resourceScope/mcc:MD_ScopeCode[@codeListValue = 'dataset' or @codeListValue = 'series']) > 0"
+                  process="service"/>
 
-            <action type="associatedResource"
-                    name="linkToDataset"
-                    if="count(descendant::srv:SV_ServiceIdentification) > 0"
-                    process="dataset"/>
-          </section>
+          <action type="associatedResource"
+                  name="linkToDataset"
+                  if="count(descendant::srv:SV_ServiceIdentification) > 0"
+                  process="dataset"/>
+        </section>
       </tab>
       <tab id="mw-data" mode="flat">
         <section name="resourceDescription">
           <field name="metadataTitle"
                  xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:citation/*/cit:title"/>
 
-          
+
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:citation/*/cit:alternateTitle"
                  or="alternateTitle"
                  in="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:citation/*"/>
 
           <field name="metadataAbstract"
-               xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:abstract"
-               or="abstract"
-               in="/mdb:MD_Metadata/mdb:identificationInfo/*"/>
+                 xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:abstract"
+                 or="abstract"
+                 in="/mdb:MD_Metadata/mdb:identificationInfo/*"/>
 
           <!-- TODO: add logo in Citation/graphics
           -->
 
           <action type="associatedResource"
-                name="addThumbnail"
-                process="onlinesrc"/>
+                  name="addThumbnail"
+                  process="onlinesrc"/>
         </section>
 
 
         <section name="resourceTags">
 
-           <field name="infraSIGCat"
-                  xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+          <field name="infraSIGCat"
+                 xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
                           contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
                                        'Mots-clés InfraSIG')]"/>
-           <section name="thematicsKeywords">
-             <action type="add"
+          <section name="thematicsKeywords">
+            <action type="add"
                     name="mw-ed-walloniaTheme"
                     forceLabel="yes"
                     or="descriptiveKeywords"
@@ -712,11 +736,11 @@
                    xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
                             contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
                                      'Thèmes du géoportail wallon')]"
-                    if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                   if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
                             contains(*/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString,
                                      'Thèmes du géoportail wallon')]) > 0"/>
-          
-          
+
+
 
             <!-- All other keywords -->
             <action type="add"
@@ -766,10 +790,10 @@
             </action>
 
             <field name="keywordINSPIREtheme"
-                 xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                   xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
                           */mri:thesaurusName/*/cit:title/gco:CharacterString[text()=
                                        'GEMET - INSPIRE themes, version 1.0']]"
-                  if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                   if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
                             */mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString[text()=
                                      'GEMET - INSPIRE themes, version 1.0']]) > 0"/>
             <action type="add"
@@ -789,30 +813,30 @@
                                                 codeListValue="theme"/>
                       </mri:type>
                       <mri:thesaurusName>
-                    <cit:CI_Citation>
-                       <cit:title>
-                          <gco:CharacterString>GEMET</gco:CharacterString>
-                       </cit:title>
-                       <cit:date>
-                          <cit:CI_Date>
-                             <cit:date>
+                        <cit:CI_Citation>
+                          <cit:title>
+                            <gco:CharacterString>GEMET</gco:CharacterString>
+                          </cit:title>
+                          <cit:date>
+                            <cit:CI_Date>
+                              <cit:date>
                                 <gco:Date>2012-07-20</gco:Date>
-                             </cit:date>
-                             <cit:dateType>
+                              </cit:date>
+                              <cit:dateType>
                                 <cit:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode"
                                                      codeListValue="publication"/>
-                             </cit:dateType>
-                          </cit:CI_Date>
-                       </cit:date>
-                       <cit:identifier>
-                          <mcc:MD_Identifier>
-                             <mcc:code>
+                              </cit:dateType>
+                            </cit:CI_Date>
+                          </cit:date>
+                          <cit:identifier>
+                            <mcc:MD_Identifier>
+                              <mcc:code>
                                 <gcx:Anchor xlink:href="http://metawal.wallonie.be/geonetwork/srv/fre/thesaurus.download?ref=external.theme.gemet">geonetwork.thesaurus.external.theme.gemet</gcx:Anchor>
-                             </mcc:code>
-                          </mcc:MD_Identifier>
-                       </cit:identifier>
-                    </cit:CI_Citation>
-                 </mri:thesaurusName>
+                              </mcc:code>
+                            </mcc:MD_Identifier>
+                          </cit:identifier>
+                        </cit:CI_Citation>
+                      </mri:thesaurusName>
                     </mri:MD_Keywords>
                   </mri:descriptiveKeywords>
                 </snippet>
@@ -820,9 +844,9 @@
             </action>
 
             <field name="keywordGEMET"
-                    xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                   xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
                             */mri:thesaurusName/*/cit:title/gco:CharacterString[text()='GEMET']]"
-                    if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords/
+                   if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords/
                             */mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString[text()='GEMET']) > 0"/>
           </section>
 
@@ -833,10 +857,10 @@
 
             <!-- TODO: Add suggestion when there is ; or , in such keywords -->
             <action type="add"
-                   btnLabel="addOtherKeyword"
-                   or="descriptiveKeywords"
-                   in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"
-                   if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
+                    btnLabel="addOtherKeyword"
+                    or="descriptiveKeywords"
+                    in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"
+                    if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
                           not(*/mri:thesaurusName)]) = 0">
               <template>
                 <snippet>
@@ -853,8 +877,8 @@
           </section>
           <section name="categories">
             <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:topicCategory"
-                 or="topicCategory"
-                 in="/mdb:MD_Metadata/mdb:identificationInfo/*"/>
+                   or="topicCategory"
+                   in="/mdb:MD_Metadata/mdb:identificationInfo/*"/>
           </section>
         </section>
 
@@ -1080,7 +1104,7 @@
               </snippet>
             </template>
           </action>
-         </section>
+        </section>
       </tab>
       <tab id="mw-access" mode="flat">
         <section name="mw-data-access">
@@ -1130,7 +1154,7 @@
                   name="addALinkToFeatureCatalogue"
                   process="fcats"
                   if="count(mdb:MD_Metadata/mdb:contentInfo) = 0"/>
-          
+
 
           <action type="add"
                   btnLabel="addAFeatureCatalogue"
@@ -1349,6 +1373,18 @@
     </view>
 
     <view name="advanced">
+
+      <sidePanel>
+        <directive data-gn-onlinesrc-list=""/>
+        <directive gn-geo-publisher=""
+                   data-ng-if="gnCurrentEdit.geoPublisherConfig"
+                   data-config="{{gnCurrentEdit.geoPublisherConfig}}"
+                   data-lang="lang"/>
+        <directive data-gn-validation-report=""/>
+        <directive data-gn-suggestion-list=""/>
+        <directive data-gn-need-help="user-guide/describing-information/creating-metadata.html"/>
+      </sidePanel>
+
       <tab id="identificationInfo" default="true">
         <section xpath="/mdb:MD_Metadata/mdb:identificationInfo" or="identificationInfo"
                  in="/mdb:MD_Metadata"/>
@@ -1433,6 +1469,18 @@
       </tab>
     </view>
     <view name="xml">
+
+      <sidePanel>
+        <directive data-gn-onlinesrc-list=""/>
+        <directive gn-geo-publisher=""
+                   data-ng-if="gnCurrentEdit.geoPublisherConfig"
+                   data-config="{{gnCurrentEdit.geoPublisherConfig}}"
+                   data-lang="lang"/>
+        <directive data-gn-validation-report=""/>
+        <directive data-gn-suggestion-list=""/>
+        <directive data-gn-need-help="user-guide/describing-information/creating-metadata.html"/>
+      </sidePanel>
+
       <tab id="xml" default="true"/>
     </view>
   </views>
