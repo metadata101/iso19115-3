@@ -347,7 +347,11 @@
   <!-- View configuration -->
   <views>
     <view name="default">
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> upstream/3.4.x
       <sidePanel>
         <directive data-gn-onlinesrc-list=""/>
         <directive gn-geo-publisher=""
@@ -1373,7 +1377,6 @@
     </view>
 
     <view name="advanced">
-
       <sidePanel>
         <directive data-gn-onlinesrc-list=""/>
         <directive gn-geo-publisher=""
@@ -1469,7 +1472,6 @@
       </tab>
     </view>
     <view name="xml">
-
       <sidePanel>
         <directive data-gn-onlinesrc-list=""/>
         <directive gn-geo-publisher=""
