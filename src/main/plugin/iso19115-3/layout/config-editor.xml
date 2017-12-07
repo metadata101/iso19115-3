@@ -347,11 +347,6 @@
   <!-- View configuration -->
   <views>
     <view name="default">
-<<<<<<< HEAD
-
-=======
-
->>>>>>> upstream/3.4.x
       <sidePanel>
         <directive data-gn-onlinesrc-list=""/>
         <directive gn-geo-publisher=""
