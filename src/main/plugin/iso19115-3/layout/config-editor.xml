@@ -1481,4 +1481,139 @@
       <tab id="xml" default="true"/>
     </view>
   </views>
+
+  <batchEditing>
+    <section name="identification">
+      <!-- Update existing title in metadata record -->
+      <field name="title"
+             xpath="mdb:identificationInfo/*/
+                      mri:citation/*/cit:title"
+             indexField="title">
+        <template><![CDATA[<gco:CharacterString xmlns:gco='http://standards.iso.org/iso/19115/-3/gco/1.0'>{{value}}</gco:CharacterString>]]></template>
+      </field>
+
+      <!-- Insert a new keyword in the first gmd:descriptiveKeywords found.
+      Warning: The section may contains a thesaurusName reference and
+      the keyword may not be part of it.
+      Warning: Duplicates may be inserted.
+      -->
+      <field name="keyword"
+             xpath="mdb:identificationInfo/*/
+                      mri:descriptiveKeywords/*/mri:keyword"
+             indexField="keyword"
+             insertMode="gn_create">
+        <template><![CDATA[<gco:CharacterString xmlns:gco='http://standards.iso.org/iso/19115/-3/gco/1.0'>{{value}}</gco:CharacterString>]]></template>
+      </field>
+
+      <!-- Insert a new topic category
+      Warning: Duplicates may be inserted.
+      -->
+      <field name="topicCats"
+             xpath="mri:identificationInfo/*/
+                      mri:topicCategory"
+             use="data-gn-codelist-picker"
+             codelist="mri:MD_TopicCategoryCode"
+             indexField="topicCat"
+             insertMode="gn_create">
+        <template><![CDATA[<mri:MD_TopicCategoryCode xmlns:mri='http://standards.iso.org/iso/19115/-3/mri/1.0'>{{value}}</mri:MD_TopicCategoryCode>]]></template>
+      </field>
+
+      <!-- Insert a new extent
+      Warning: Duplicates may be inserted.
+      -->
+      <field name="extent"
+             xpath="mri:identificationInfo/*/mri:extent"
+             use="data-gn-draw-bbox"
+             insertMode="gn_create"/>
+
+      <!-- Insert a new resource language
+      Warning: Duplicates may be inserted.
+      -->
+      <field name="language"
+             xpath="mri:identificationInfo/*/mri:defaultLocale/*/lan:language"
+             use="data-gn-language-picker"
+             insertMode="gn_replace"
+             removable="true">
+        <template><![CDATA[<lan:LanguageCode xmlns:lan='http://standards.iso.org/iso/19115/-3/lan/1.0' codeListValue='{{value}}'/>]]></template>
+      </field>
+
+
+      <field name="resourceStatus"
+             xpath="mri:identificationInfo/*/
+                      mri:status"
+             use="data-gn-codelist-picker"
+             codelist="mcc:MD_ProgressCode"
+             insertMode="gn_replace"
+             removable="true">
+        <template><![CDATA[<mcc:MD_ProgressCode xmlns:mcc='http://standards.iso.org/iso/19115/-3/mcc/1.0' codeListValue='{{value}}'/>]]></template>
+      </field>
+    </section>
+
+    <section name="resourceConstraints">
+      <!-- Insert a new access contraints
+            Warning: Duplicates may be inserted.
+      -->
+      <field name="legalConstraints"
+             xpath="mri:identificationInfo/*/
+                      mri:resourceConstraints/mco:MD_LegalConstraints/
+                        mco:accessConstraints"
+             use="data-gn-codelist-picker"
+             codelist="mco:MD_RestrictionCode"
+             insertMode="gn_create"
+             removable="true">
+        <template><![CDATA[<mco:MD_RestrictionCode xmlns:mco='http://standards.iso.org/iso/19115/-3/mco/1.0' codeListValue='{{value}}'/>]]></template>
+      </field>
+
+      <!-- Insert a new other contraints
+            Warning: Duplicates may be inserted.
+      -->
+      <field name="otherConstraints"
+             xpath="mri:identificationInfo/*/
+                      mco:resourceConstraints/mco:MD_LegalConstraints/
+                        mco:otherConstraints"
+             use="textarea"
+             insertMode="gn_create"
+             removable="true">
+        <template><![CDATA[<gco:CharacterString xmlns:gco='http://standards.iso.org/iso/19115/-3/gco/1.0'>{{value}}</gco:CharacterString>]]></template>
+      </field>
+    </section>
+
+
+    <!-- Replace current lineage or insert a new one.
+          Warning: Duplicates may be inserted.
+    -->
+    <section name="quality">
+      <field name="lineage"
+             xpath="mdb:resourceLineage/mrl:LI_Lineage/mrl:statement"
+             use="textarea"
+             insertMode="gn_replace"
+             removable="true">
+        <template><![CDATA[<gco:CharacterString xmlns:gco='http://standards.iso.org/iso/19115/-3/gco/1.0'>{{value}}</gco:CharacterString>]]></template>
+      </field>
+    </section>
+
+    <section name="contact">
+      <field name="resourceContact"
+             xpath="mdb:identificationInfo/*/mri:pointOfContact"
+             use="data-gn-directory-entry-selector"
+             insertMode="gn_create"/>
+      <field name="distributor"
+             xpath="mdb:distributionInfo/mrd:MD_Distribution/mrd:distributor/mrd:MD_Distributor/mrd:distributorContact"
+             use="data-gn-directory-entry-selector"
+             insertMode="gn_create"/>
+      <field name="mdContact"
+             xpath="mdb:contact"
+             use="data-gn-directory-entry-selector"
+             insertMode="gn_create"/>
+    </section>
+
+    <section name="metadata">
+      <field name="mdLanguage"
+             xpath="mdb:defaultLocale/lan:PT_Locale/lan:language"
+             use="data-gn-language-picker"
+             removable="true">
+        <template><![CDATA[<lan:LanguageCode xmlns:lan='http://standards.iso.org/iso/19115/-3/lan/1.0' codeListValue='{{value}}'/>]]></template>
+      </field>
+    </section>
+  </batchEditing>
 </editor>
