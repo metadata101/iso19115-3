@@ -16,7 +16,9 @@
   <xsl:import href="../utility/multiLingualCharacterStrings.xsl"/>
 
   <xsl:template match="gmd:dataQualityInfo" mode="from19139to19115-3">
-    <xsl:if test="gmd:DQ_DataQuality/gmd:report">
+    <xsl:if test="gmd:DQ_DataQuality/gmd:report or
+                  count(../gmd:distributionInfo//gmd:onLine[
+                          */gmd:function/*/@codeListValue = $onlineFunctionMap/entry[@type = 'dq']/@value]) > 0">
       <!-- ISO 19157 -->
       <mdb:dataQualityInfo>
         <mdq:DQ_DataQuality>
@@ -34,6 +36,7 @@
               </xsl:choose>
             </mdq:scope>
           </xsl:if>
+
           <xsl:for-each select="gmd:DQ_DataQuality/gmd:report">
             <xsl:for-each select="*">
               <xsl:element name="mdq:report">
@@ -66,10 +69,10 @@
                     </mdq:measure>
                   </xsl:if>
                   <xsl:if
-                    test="gmd:evaluationMethodDescription or gmd:evaluationProcedure/gmd:CI_Citation 
+                    test="gmd:evaluationMethodDescription or gmd:evaluationProcedure/gmd:CI_Citation
                     or gmd:evaluationMethodType/gmd:DQ_EvaluationMethodTypeCode/@codeListValue">
-                    <!-- output quality evaluation method information only if gmd:evaluationMethodDescription 
-                      or gmd:evaluationProcedure/gmd:CI_Citation 
+                    <!-- output quality evaluation method information only if gmd:evaluationMethodDescription
+                      or gmd:evaluationProcedure/gmd:CI_Citation
                       or gmd:evaluationMethodType/gmd:DQ_EvaluationMethodTypeCode/@codeListValue exist -->
                     <mdq:evaluationMethod>
                       <mdq:DQ_FullInspection>
@@ -102,6 +105,14 @@
               </xsl:element>
             </xsl:for-each>
           </xsl:for-each>
+
+          <xsl:call-template name="onlineSourceDispatcher">
+            <xsl:with-param name="type" select="'reportReference'"/>
+          </xsl:call-template>
+          <xsl:call-template name="onlineSourceDispatcher">
+            <xsl:with-param name="type" select="'specification'"/>
+          </xsl:call-template>
+
         </mdq:DQ_DataQuality>
       </mdb:dataQualityInfo>
     </xsl:if>
@@ -148,6 +159,11 @@
               </mcc:MD_Scope>
             </mrl:scope>
           </xsl:if>
+
+          <xsl:call-template name="onlineSourceDispatcher">
+            <xsl:with-param name="type" select="'additionalDocumentation'"/>
+          </xsl:call-template>
+
           <xsl:apply-templates select="gmd:source" mode="from19139to19115-3"/>
           <xsl:apply-templates select="gmd:processStep" mode="from19139to19115-3"/>
         </mrl:LI_Lineage>

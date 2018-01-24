@@ -350,6 +350,12 @@
                       <gmd:protocol>
                         <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
                       </gmd:protocol>
+
+                      <xsl:call-template name="writeCharacterStringElement">
+                        <xsl:with-param name="elementName" select="'gmd:applicationProfile'"/>
+                        <xsl:with-param name="nodeWithStringToWrite" select="cit:applicationProfile"/>
+                      </xsl:call-template>
+
                       <xsl:call-template name="writeCharacterStringElement">
                         <xsl:with-param name="elementName" select="'gmd:name'"/>
                         <xsl:with-param name="nodeWithStringToWrite" select="cit:title"/>
