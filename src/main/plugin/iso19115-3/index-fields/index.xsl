@@ -55,6 +55,16 @@
               encoding="utf-8"
               escape-uri-attributes="yes"/>
 
+
+  <!-- Store date stamp in identifier.
+       One record could have multiple versions and can originate from more than one scope (ie. harvester)
+      A record with same UUID and same dateStamp are considered identical.
+  -->
+  <xsl:variable name="withHistory"
+                select="true()"
+                as="xs:boolean"/>
+
+
   <!-- Define if operatesOn type should be defined
   by analysis of protocol in all transfers options.
   -->
@@ -103,6 +113,10 @@
     <xsl:variable name="identifier" as="xs:string"
                   select="mdb:metadataIdentifier/mcc:MD_Identifier/mcc:code/gco:CharacterString[. != '']"/>
 
+    <xsl:variable name="lastRevisionDate" as="xs:string?"
+                  select="mdb:dateInfo/*[
+                              cit:dateType/*/@codeListValue = 'revision'
+                            ]/cit:date/gco:DateTime[. != '']"/>
 
     <xsl:variable name="mainLanguage" as="xs:string?"
                   select="mdb:defaultLocale/lan:PT_Locale/
@@ -137,6 +151,11 @@
       <document>
         <!--<xsl:value-of select="saxon:serialize(., 'default-serialize-mode')"/>-->
       </document>
+      <id>
+        <xsl:value-of select="if ($withHistory)
+                             then concat($identifier, '-', $lastRevisionDate)
+                             else $identifier"/>
+      </id>
       <uuid>
         <xsl:value-of select="$identifier"/>
       </uuid>
@@ -158,11 +177,6 @@
           <xsl:value-of select="normalize-space(.)"/>
         </standardName>
       </xsl:for-each>
-
-
-      <harvestedDate>
-        <xsl:value-of select="format-dateTime(current-dateTime(), $dateFormat)"/>
-      </harvestedDate>
 
 
       <!-- Indexing record information -->
