@@ -43,10 +43,12 @@
                 priority="2">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
+    <xsl:param name="refToDelete" required="no"/>
 
     <xsl:apply-templates mode="mode-iso19115-3" select="*|@*">
       <xsl:with-param name="schema" select="$schema"/>
       <xsl:with-param name="labels" select="$labels"/>
+      <xsl:with-param name="refToDelete" select="$refToDelete"/>
     </xsl:apply-templates>
   </xsl:template>
 
@@ -455,6 +457,8 @@
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
     <xsl:param name="codelists" select="$codelists" required="no"/>
+    <xsl:param name="refToDelete" required="no"/>
+
     <xsl:call-template name="render-element">
       <xsl:with-param name="label"
                       select="gn-fn-metadata:getLabel($schema, name(), $labels, name(..), '', '')"/>
@@ -462,7 +466,7 @@
       <xsl:with-param name="cls" select="local-name()"/>
       <xsl:with-param name="type" select="gn-fn-iso19115-3:getCodeListType(name(), $editorConfig)"/>
       <xsl:with-param name="name" select="gn:element/@ref"/>
-      <xsl:with-param name="editInfo" select="*/gn:element"/>
+      <xsl:with-param name="editInfo" select="if ($refToDelete) then $refToDelete else */gn:element"/>
       <xsl:with-param name="listOfValues"
                       select="gn-fn-metadata:getCodeListValues($schema, name(), $codelists, .)"/>
     </xsl:call-template>

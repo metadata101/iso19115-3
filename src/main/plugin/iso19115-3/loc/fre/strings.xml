@@ -99,7 +99,7 @@
   <metawalExtent>Territoire couvert</metawalExtent>
   <metawalTemporalCoverage>Période couverte par les données</metawalTemporalCoverage>
   <metadaLanguage>Langue de la métadonnée</metadaLanguage>
-  
+
   <metadataAbstract>Résumé descriptif</metadataAbstract>
   <inspireKeywords>Mots-clés INSPIRE</inspireKeywords>
   <thematicsKeywords>Mots-clés thématiques</thematicsKeywords>
@@ -160,7 +160,7 @@
   <resourceDate>Cycle de vie de la ressource</resourceDate>
   <datalinks>Liens</datalinks>
   <upDate>Paramètres de mise à jour</upDate>
-  
+
   <scale>Echelle</scale>
   <constraints>Définition des contraintes</constraints>
   <extent>Définition des emprises (temporelles et géographiques)</extent>
@@ -277,4 +277,5 @@
   <othersquestions>Pour tout autre question...</othersquestions>
   <geoportail>Contactez le Helpdesk du Géoportail de la Wallonie !  </geoportail>
   <helpdeskgeoportail>Helpdesk du Géoportail de la Wallonie</helpdeskgeoportail>
+  <mwAddIsoTopic>Ajouter un thème ISO</mwAddIsoTopic>
 </strings>

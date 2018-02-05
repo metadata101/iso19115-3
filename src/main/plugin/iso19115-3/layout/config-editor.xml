@@ -850,34 +850,37 @@
           </section>
 
           <section name="otherKeywords">
-            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[not(*/mri:thesaurusName)]/*/mri:keyword"
-                   or="keyword"
-                   in="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[not(*/mri:thesaurusName)]/*"/>
+            <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[not(*/mri:thesaurusName)]/*/mri:keyword"/>
 
-            <!-- TODO: Add suggestion when there is ; or , in such keywords -->
             <action type="add"
                     btnLabel="addOtherKeyword"
-                    or="descriptiveKeywords"
-                    in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"
-                    if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[
-                          not(*/mri:thesaurusName)]) = 0">
+                    or="keyword"
+                    in="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[not(*/mri:thesaurusName)]/mri:MD_Keywords"
+                    if="count(mdb:MD_Metadata/mdb:identificationInfo/*/mri:descriptiveKeywords[not(*/mri:thesaurusName)]) > 0">
               <template>
                 <snippet>
-                  <mri:descriptiveKeywords>
-                    <mri:MD_Keywords>
-                      <mri:keyword gco:nilReason="missing">
-                        <gco:CharacterString/>
-                      </mri:keyword>
-                    </mri:MD_Keywords>
-                  </mri:descriptiveKeywords>
+                  <mri:keyword gco:nilReason="missing">
+                    <gco:CharacterString/>
+                  </mri:keyword>
                 </snippet>
               </template>
             </action>
           </section>
           <section name="categories">
             <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/*/mri:topicCategory"
-                   or="topicCategory"
-                   in="/mdb:MD_Metadata/mdb:identificationInfo/*"/>
+                   del="."/>
+            <action type="add"
+                    btnLabel="mwAddIsoTopic"
+                    in="/mdb:MD_Metadata/mdb:identificationInfo/*"
+                    or="topicCategory">
+              <template>
+                <snippet>
+                  <mri:topicCategory>
+                    <mri:MD_TopicCategoryCode></mri:MD_TopicCategoryCode>
+                  </mri:topicCategory>
+                </snippet>
+              </template>
+            </action>
           </section>
         </section>
 
