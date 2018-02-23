@@ -209,7 +209,7 @@
   <Source>Ressource en ligne</Source>
   <inspiremainsection>INSPIRE</inspiremainsection>
   <keywordsInpire>Mots-clés relatifs à la directive INSPIRE</keywordsInpire>
-    <!-- FORMATTER GEOPORTAIL -->
+  <!-- FORMATTER GEOPORTAIL -->
   <wallonia>Wallonie</wallonia>
   <lastupdate>Dernière mise à jour de la donnée</lastupdate>
   <proprietary>Propriétaire</proprietary>
@@ -227,9 +227,13 @@
   <notfilledin>Non renseigné</notfilledin>
   <viewing>Consultation</viewing>
   <thematicmap>Dans une carte thématique</thematicmap>
+  <thematicmaptext>Visualisez la donnée dans une carte conçue spécialement pour elle.</thematicmaptext>
   <walonmap>Dans WalOnMap</walonmap>
+  <walonmaptext>Visualisez la donnée dans la carte généraliste, WalOnMap.</walonmaptext>
   <arcgis>Dans ArcGIS</arcgis>
+  <arcgistext>Visualisez la donnée dans ArcGIS. Attention : ce logiciel doit être installé sur votre ordinateur.</arcgistext>
   <googleearth>Dans Gooogle Earth</googleearth>
+  <googleearthtext>Visualisez la donnée dans Google Earth. Attention : ce logiciel doit être installé sur votre ordinateur.</googleearthtext>
   <otherstools>Dans d'autres outils</otherstools>
   <applicationview>Consulter la donnée dans une application</applicationview>
   <descriptivesheet>Fiche descriptive</descriptivesheet>
