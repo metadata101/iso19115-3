@@ -235,16 +235,20 @@
   <googleearth>Dans Gooogle Earth</googleearth>
   <googleearthtext>Visualisez la donnée dans Google Earth. Attention : ce logiciel doit être installé sur votre ordinateur.</googleearthtext>
   <otherstools>Dans d'autres outils</otherstools>
-  <applicationview>Consulter la donnée dans une application</applicationview>
   <descriptivesheet>Fiche descriptive</descriptivesheet>
   <view>view</view>
   <arcgismapping>ArcGIS Mapping Service</arcgismapping>
   <copyurl>Copier l'URL</copyurl>
   <webserviceview>Consulter la donnée via un webservice</webserviceview>
+  <serviceurlview>Type et adresse du service</serviceurlview>
+  <applicationView>Consulter la carte</applicationView>
   <copy>Obtenir une copie de la donnée</copy>
   <formatter-distributor>Distributeur</formatter-distributor>
   <formatter-format>Format de distribution</formatter-format>
-  <conditions>Conditions pour télécharger et utiliser la donnée</conditions>
+  <conditionsData>Conditions pour télécharger et utiliser la donnée</conditionsData>
+  <conditions>Conditions</conditions>
+  <conditionsApplication>Conditions d'accès et d'utilisation de la carte</conditionsApplication>
+  <conditionsService>Conditions d'accès et d'utilisation du service</conditionsService>
   <contact>Contacter</contact>
   <aoi>Territoire couvert</aoi>
   <spatialreference>Système de référence spatiale</spatialreference>
@@ -254,10 +258,15 @@
   <mtdidentification>Informations sur la fiche descriptive</mtdidentification>
   <mtdid>Identifiant de la fiche descriptive</mtdid>
   <mtdlastupdate>Date de mise à jour de la fiche descriptive</mtdlastupdate>
-  <dataidentification>Identification de la donnée</dataidentification>
-  <dataid>Identifiant de la donnée</dataid>
+  <dataIdentification>Identification de la donnée</dataIdentification>
+  <serviceIdentification>Identification de la donnée</serviceIdentification>
+  <applicationIdentification>Identification de la carte statique</applicationIdentification>
+  <dataId>Identifiant de la donnée</dataId>
+  <serviceId>Identifiant du service</serviceId>
+  <applicationId>Identifiant de la carte statique</applicationId>
   <datalastdiffusion>Date de la dernière diffusion</datalastdiffusion>
-  <language>Langue de la donnée</language>
+  <languageData>Langue de la donnée</languageData>
+  <languageApplication>Langue de la carte </languageApplication>
   <document>Document</document>
   <open>Ouvrir</open>
   <referencescale>Échelle de référence</referencescale>
@@ -282,4 +291,8 @@
   <geoportail>Contactez le Helpdesk du Géoportail de la Wallonie !  </geoportail>
   <helpdeskgeoportail>Helpdesk du Géoportail de la Wallonie</helpdeskgeoportail>
   <mwAddIsoTopic>Ajouter un thème ISO</mwAddIsoTopic>
+  <address>Adresse</address>
+  <type>Type</type>
+  <dataView>Consulter la donnée dans une application</dataView>
+  <serviceView>Consulter le service dans une application</serviceView>
 </strings>

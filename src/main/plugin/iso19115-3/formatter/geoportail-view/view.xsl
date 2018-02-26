@@ -63,6 +63,7 @@
                           contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
                                    'Mots-clés InfraSIG')]/*/mri:keyword/gco:CharacterString"/>
 
+  <!-- Load associated resources -->
   <xsl:variable name="url"
                 select="'http://localhost:8080/geonetwork/srv/api/records/'"/>
   <xsl:variable name="uuid"
@@ -92,9 +93,14 @@
         <li role="presentation">
           <a data-target="#description" aria-controls="description" role="tab" data-toggle="tab"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'description')"/></a>
         </li>
-        <li role="presentation">
-          <a data-target="#use" aria-controls="use" role="tab" data-toggle="tab"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'use')"/></a>
-        </li>
+        <xsl:choose>
+          <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue!='application'">
+            <li role="presentation">
+              <a data-target="#use" aria-controls="use" role="tab" data-toggle="tab"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'use')"/></a>
+            </li>
+          </xsl:when>
+        </xsl:choose>
+
         <li role="presentation">
           <a data-target="#associatedresources" aria-controls="associatedresources" role="tab" data-toggle="tab"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'associatedressources')"/></a>
         </li>
@@ -142,6 +148,9 @@
         <xsl:when test="$metadata/mdb:identificationInfo/*/mri:spatialRepresentationType/mcc:MD_SpatialRepresentationTypeCode/@codeListValue!=''">
           <xsl:value-of select="$metadata/mdb:identificationInfo/*/mri:spatialRepresentationType/mcc:MD_SpatialRepresentationTypeCode/@codeListValue"/>
         </xsl:when>
+        <xsl:when test="$metadata/mdb:identificationInfo/srv:SV_ServiceIdentification/srv:serviceType/gco:ScopedName!=''">
+          <xsl:value-of select="$metadata/mdb:identificationInfo/srv:SV_ServiceIdentification/srv:serviceType/gco:ScopedName"/>
+        </xsl:when>
         <xsl:otherwise>
           <xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'notfilledin')"/>
         </xsl:otherwise>
@@ -168,13 +177,31 @@
           </h2>
         </div>
         <div class="row">
+          <p>
+            <xsl:choose>
+              <xsl:when test="$metadata/mdb:identificationInfo/*/mri:abstract!=''">
+                <!-- TO DO ANALYSE WHY LAZY NOT RUN IN REGEX
+                <xsl:analyze-string select="$metadata/mdb:identificationInfo/*/mri:abstract" regex="^(.*?)[.?!]">
+                  <xsl:matching-substring>
+                    <xsl:value-of select="."/>66
+                  </xsl:matching-substring>
+                </xsl:analyze-string-->
+                <xsl:value-of select="substring-before(translate($metadata/mdb:identificationInfo/*/mri:abstract,'?!','..'),'.')"/>.
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'notfilledin')"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </p>
+        </div>
+        <div class="row">
           <div class="col-lg-7 pad-left-0">
             <p>
               <span class="rw-fr-geoportail-data-key">
                 <xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'proprietary')"/> :
               </span>
               <xsl:choose>
-                <xsl:when test="$metadata/mdb:identificationInfo/*/mri:pointOfContact[cit:CI_Responsibility/cit:role/cit:CI_RoleCode/@codeListValue='owner']/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name/gco:CharacterString!=''">"
+                <xsl:when test="$metadata/mdb:identificationInfo/*/mri:pointOfContact[cit:CI_Responsibility/cit:role/cit:CI_RoleCode/@codeListValue='owner']/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name/gco:CharacterString!=''">
                   <xsl:value-of select="$metadata/mdb:identificationInfo/*/mri:pointOfContact[cit:CI_Responsibility/cit:role/cit:CI_RoleCode/@codeListValue='owner']/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name/gco:CharacterString"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -308,160 +335,253 @@
       <div class="rw-fr-geoportail-section-title">
         <h3><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'viewing')"/></h3>
       </div>
-      <div class="rw-fr-geoportail-section-content">
-        <h4><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'applicationview')"/></h4>
-        <div class="row col-lg-12 rw-fr-geoportail-application"><br></br></div>
-        <div class="row rw-fr-geoportail-application">
-          <xsl:element name="div">
-            <xsl:attribute name="class">col-lg-6 rw-fr-geoportail-application-element</xsl:attribute>
-            <xsl:if test="$metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'WWW:LINK-1.0-http--link') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing' and (cit:CI_OnlineResource/cit:applicationProfile/gco:CharacterString='' or cit:CI_OnlineResource[not(cit:applicationProfile/gco:CharacterString)])]">
-              <xsl:element name="a">
-                <xsl:attribute name="class">btn btn-default btn-lg</xsl:attribute>
-                <xsl:attribute name="href"><xsl:value-of select="$metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'WWW:LINK-1.0-http--link') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing' and (cit:CI_OnlineResource/cit:applicationProfile/gco:CharacterString='' or cit:CI_OnlineResource[not(cit:applicationProfile/gco:CharacterString)])]/cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/></xsl:attribute>
-                <span class="rw-fr-geoportail-icon-service"></span><br></br>
-                <span class="rw-fr-geoportail-application-element-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'thematicmap')"/></span>
-              </xsl:element>
-              <p class="rw-fr-geoportail-application-element-text"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'thematicmaptext')"/></p>
-              <p class="rw-fr-geoportail-application-element-bottom"></p>
-            </xsl:if>
-            <xsl:if test="not($metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'WWW:LINK-1.0-http--link') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing' and (cit:CI_OnlineResource/cit:applicationProfile/gco:CharacterString='' or cit:CI_OnlineResource[not(cit:applicationProfile/gco:CharacterString)])])">
-              <xsl:element name="a">
-                <xsl:attribute name="class">btn btn-default btn-lg disabled rw-fr-geoportail-disabled</xsl:attribute>
-                <span class="rw-fr-geoportail-icon-service"></span><br></br>
-                <span class="rw-fr-geoportail-application-element-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'thematicmap')"/></span>
-              </xsl:element>
-              <p class="rw-fr-geoportail-application-element-text rw-fr-geoportail-opacity"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'thematicmaptext')"/></p>
-              <p class="rw-fr-geoportail-application-element-bottom"></p>
-            </xsl:if>
-          </xsl:element>
-          <xsl:element name="div">
-            <xsl:attribute name="class">col-lg-6 rw-fr-geoportail-application-element</xsl:attribute>
-            <xsl:if test="$metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'ESRI:REST') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing']">
-              <xsl:element name="a">
-                <xsl:attribute name="class">btn btn-default btn-lg</xsl:attribute>
-                <xsl:attribute name="href">http://geoportail.wallonie.be/walonmap#panier=[{"serviceId":<xsl:value-of select="$metadata/mdb:metadataIdentifier/*/mcc:code/gco:CharacterString"/>,"visible": true,"url":<xsl:value-of select="$metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'ESRI:REST') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing']/cit:CI_OnlineResource/cit:linkage/gco:CharacterString[1]"/>,"label":<xsl:value-of select="$metadata/mdb:identificationInfo/*/mri:citation/*/cit:title"/>,"type":"AGS_DYNAMIC"}]</xsl:attribute>
-                <span class="rw-fr-geoportail-icon-service"></span><br></br>
-                <span class="rw-fr-geoportail-application-element-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'walonmap')"/></span>
-              </xsl:element>
-              <p class="rw-fr-geoportail-application-element-text"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'walonmaptext')"/></p>
-              <p class="rw-fr-geoportail-application-element-bottom"></p>
-            </xsl:if>
-            <xsl:if test="not($metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'ESRI:REST') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing'])">
-              <xsl:element name="a">
-                <xsl:attribute name="class">btn btn-default btn-lg disabled rw-fr-geoportail-disabled</xsl:attribute>
-                <span class="rw-fr-geoportail-icon-service"></span><br></br>
-                <span class="rw-fr-geoportail-application-element-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'walonmap')"/></span>
-              </xsl:element>
-              <p class="rw-fr-geoportail-application-element-text rw-fr-geoportail-opacity"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'walonmaptext')"/></p>
-              <p class="rw-fr-geoportail-application-element-bottom"></p>
-            </xsl:if>
-          </xsl:element>
-        </div>
-        <div class="row rw-fr-geoportail-application">
-          <xsl:element name="div">
-            <xsl:attribute name="class">col-lg-6 rw-fr-geoportail-application-element</xsl:attribute>
-            <xsl:if test="$metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'ESRI:REST') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing'] and position() = 1">
-              <xsl:element name="a">
-                <xsl:attribute name="class">btn btn-default btn-lg</xsl:attribute>
-                <xsl:attribute name="href"><xsl:value-of select="$metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'ESRI:REST') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing'][1]/cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/>?f=lyr&amp;v=9.3</xsl:attribute>
-                <span class="rw-fr-geoportail-icon-service"></span><br></br>
-                <span class="rw-fr-geoportail-application-element-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'arcgis')"/>  ®</span>
-              </xsl:element>
-              <p class="rw-fr-geoportail-application-element-text"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'arcgistext')"/></p>
-              <p class="rw-fr-geoportail-application-element-bottom"></p>
-            </xsl:if>
-            <xsl:if test="not($metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'ESRI:REST')and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing'])">
-              <xsl:element name="a">
-                <xsl:attribute name="class">btn btn-default btn-lg disabled rw-fr-geoportail-disabled</xsl:attribute>
-                <span class="rw-fr-geoportail-icon-service"></span><br></br>
-                <span class="rw-fr-geoportail-application-element-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'arcgis')"/>  ®</span>
-              </xsl:element>
-              <p class="rw-fr-geoportail-application-element-text rw-fr-geoportail-opacity"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'arcgistext')"/></p>
-              <p class="rw-fr-geoportail-application-element-bottom"></p>
-            </xsl:if>
-          </xsl:element>
-          <xsl:element name="div">
-            <xsl:attribute name="class">col-lg-6 rw-fr-geoportail-application-element</xsl:attribute>
-            <xsl:if test="$metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'WWW:LINK-1.0-http--link') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing' and cit:CI_OnlineResource/cit:applicationProfile/gco:CharacterString='application/vnd.google-earth.kml+xml']/cit:CI_OnlineResource/cit:linkage/gco:CharacterString">
-              <xsl:element name="a">
-                <xsl:attribute name="class">btn btn-default btn-lg</xsl:attribute>
-                <xsl:attribute name="href"><xsl:value-of select="$metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:otherCitationDetails/gco:CharacterString"/></xsl:attribute>
-                <span class="rw-fr-geoportail-icon-service"></span><br></br>
-                <span class="rw-fr-geoportail-application-element-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'googleearth')"/>  ®</span>
-              </xsl:element>
-              <p class="rw-fr-geoportail-application-element-text"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'googleearthtext')"/></p>
-              <p class="rw-fr-geoportail-application-element-bottom"></p>
-            </xsl:if>
-            <xsl:if test="not($metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'WWW:LINK-1.0-http--link') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing' and cit:CI_OnlineResource/cit:applicationProfile/gco:CharacterString='application/vnd.google-earth.kml+xml']/cit:CI_OnlineResource/cit:linkage/gco:CharacterString)">
-              <xsl:element name="a">
-                <xsl:attribute name="class">btn btn-default btn-lg disabled rw-fr-geoportail-disabled</xsl:attribute>
-                <span class="rw-fr-geoportail-icon-service"></span><br></br>
-                <span class="rw-fr-geoportail-application-element-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'googleearth')"/>  ®</span>
-              </xsl:element>
-              <p class="rw-fr-geoportail-application-element-text rw-fr-geoportail-opacity"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'googleearthtext')"/></p>
-              <p class="rw-fr-geoportail-application-element-bottom"></p>
-            </xsl:if>
-          </xsl:element>
-        </div>
-        <div class="row rw-fr-geoportail-application">
-          <xsl:element name="div">
-            <xsl:attribute name="class">col-lg-12 rw-fr-geoportail-application-element</xsl:attribute>
-            <xsl:if test="$metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'WWW:LINK-1.0-http--link') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing' and cit:CI_OnlineResource/cit:applicationProfile/gco:CharacterString='application/vnd.google-earth.kml+xml']/cit:CI_OnlineResource/cit:linkage/gco:CharacterString">
-              <xsl:element name="a">
-                <xsl:attribute name="class">btn btn-default btn-lg</xsl:attribute>
-                <xsl:attribute name="href"><xsl:value-of select="$metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:otherCitationDetails/gco:CharacterString"/></xsl:attribute>
-                <span class="rw-fr-geoportail-icon-service"></span><br></br>
-                <span class="rw-fr-geoportail-application-element-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'otherstools')"/></span>
-              </xsl:element>
-            </xsl:if>
-            <xsl:if test="not($metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'WWW:LINK-1.0-http--link') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing' and cit:CI_OnlineResource/cit:applicationProfile/gco:CharacterString='application/vnd.google-earth.kml+xml']/cit:CI_OnlineResource/cit:linkage/gco:CharacterString)">
-              <xsl:element name="a">
-                <xsl:attribute name="class">btn btn-default btn-lg disabled rw-fr-geoportail-disabled</xsl:attribute>
-                <span class="rw-fr-geoportail-icon-service"></span><br></br>
-                <span class="rw-fr-geoportail-application-element-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'otherstools')"/></span>
-              </xsl:element>
-            </xsl:if>
-          </xsl:element>
-        </div>
-        <div class="row col-lg-12 rw-fr-geoportail-application"><br></br></div>
-      </div>
-      <div class="rw-fr-geoportail-section-content">
-        <h4><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'webserviceview')"/></h4>
-        <xsl:apply-templates select="$metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'ESRI:REST') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing']">
-        </xsl:apply-templates>
-        <xsl:apply-templates select="$metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[starts-with(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'OGC') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing']">
-        </xsl:apply-templates>
-      </div>
+      <xsl:choose>
+        <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue!='application' or $metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue!='series'">
+          <div class="rw-fr-geoportail-section-content">
+            <xsl:choose>
+              <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='dataset'">
+                <h4><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'dataView')"/></h4>
+              </xsl:when>
+              <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='service'">
+                <h4><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'serviceView')"/></h4>
+              </xsl:when>
+            </xsl:choose>
 
-      <div class="rw-fr-geoportail-section-title">
-        <h3><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'copy')"/></h3>
-      </div>
-      <div class="rw-fr-geoportail-section-content">
-        <div class="row rw-fr-geoportail-subsection">
-          <div class="col-lg-3"></div>
-          <div class="col-lg-9">
-            <xsl:apply-templates select="$metadata/mdb:distributionInfo/*/mrd:distributor/mrd:MD_Distributor/mrd:distributionOrderProcess/mrd:MD_StandardOrderProcess/mrd:orderingInstructions/gco:CharacterString" />
+            <div class="row col-lg-12 rw-fr-geoportail-application"><br></br></div>
+            <div class="row rw-fr-geoportail-application">
+              <xsl:element name="div">
+                <xsl:attribute name="class">col-lg-6 rw-fr-geoportail-application-element</xsl:attribute>
+                <xsl:if test="$metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'WWW:LINK-1.0-http--link') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing' and (cit:CI_OnlineResource/cit:applicationProfile/gco:CharacterString='' or cit:CI_OnlineResource[not(cit:applicationProfile/gco:CharacterString)])]">
+                  <xsl:element name="a">
+                    <xsl:attribute name="class">btn btn-default btn-lg</xsl:attribute>
+                    <xsl:attribute name="href"><xsl:value-of select="$metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'WWW:LINK-1.0-http--link') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing' and (cit:CI_OnlineResource/cit:applicationProfile/gco:CharacterString='' or cit:CI_OnlineResource[not(cit:applicationProfile/gco:CharacterString)])]/cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/></xsl:attribute>
+                    <span class="rw-fr-geoportail-icon-service"></span><br></br>
+                    <span class="rw-fr-geoportail-application-element-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'thematicmap')"/></span>
+                  </xsl:element>
+                  <p class="rw-fr-geoportail-application-element-text"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'thematicmaptext')"/></p>
+                  <p class="rw-fr-geoportail-application-element-bottom"></p>
+                </xsl:if>
+                <xsl:if test="not($metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'WWW:LINK-1.0-http--link') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing' and (cit:CI_OnlineResource/cit:applicationProfile/gco:CharacterString='' or cit:CI_OnlineResource[not(cit:applicationProfile/gco:CharacterString)])])">
+                  <xsl:element name="a">
+                    <xsl:attribute name="class">btn btn-default btn-lg disabled rw-fr-geoportail-disabled</xsl:attribute>
+                    <span class="rw-fr-geoportail-icon-service"></span><br></br>
+                    <span class="rw-fr-geoportail-application-element-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'thematicmap')"/></span>
+                  </xsl:element>
+                  <p class="rw-fr-geoportail-application-element-text rw-fr-geoportail-opacity"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'thematicmaptext')"/></p>
+                  <p class="rw-fr-geoportail-application-element-bottom"></p>
+                </xsl:if>
+              </xsl:element>
+              <xsl:element name="div">
+                <xsl:attribute name="class">col-lg-6 rw-fr-geoportail-application-element</xsl:attribute>
+                <xsl:if test="$metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'ESRI:REST') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing']">
+                  <xsl:element name="a">
+                    <xsl:attribute name="class">btn btn-default btn-lg</xsl:attribute>
+                    <xsl:attribute name="href">http://geoportail.wallonie.be/walonmap#panier=[{"serviceId":<xsl:value-of select="$metadata/mdb:metadataIdentifier/*/mcc:code/gco:CharacterString"/>,"visible": true,"url":<xsl:value-of select="$metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'ESRI:REST') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing']/cit:CI_OnlineResource/cit:linkage/gco:CharacterString[1]"/>,"label":<xsl:value-of select="$metadata/mdb:identificationInfo/*/mri:citation/*/cit:title"/>,"type":"AGS_DYNAMIC"}]</xsl:attribute>
+                    <span class="rw-fr-geoportail-icon-service"></span><br></br>
+                    <span class="rw-fr-geoportail-application-element-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'walonmap')"/></span>
+                  </xsl:element>
+                  <p class="rw-fr-geoportail-application-element-text"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'walonmaptext')"/></p>
+                  <p class="rw-fr-geoportail-application-element-bottom"></p>
+                </xsl:if>
+                <xsl:if test="not($metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'ESRI:REST') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing'])">
+                  <xsl:element name="a">
+                    <xsl:attribute name="class">btn btn-default btn-lg disabled rw-fr-geoportail-disabled</xsl:attribute>
+                    <span class="rw-fr-geoportail-icon-service"></span><br></br>
+                    <span class="rw-fr-geoportail-application-element-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'walonmap')"/></span>
+                  </xsl:element>
+                  <p class="rw-fr-geoportail-application-element-text rw-fr-geoportail-opacity"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'walonmaptext')"/></p>
+                  <p class="rw-fr-geoportail-application-element-bottom"></p>
+                </xsl:if>
+              </xsl:element>
+            </div>
+            <div class="row rw-fr-geoportail-application">
+              <xsl:element name="div">
+                <xsl:attribute name="class">col-lg-6 rw-fr-geoportail-application-element</xsl:attribute>
+                <xsl:if test="$metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'ESRI:REST') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing'] and position() = 1">
+                  <xsl:element name="a">
+                    <xsl:attribute name="class">btn btn-default btn-lg</xsl:attribute>
+                    <xsl:attribute name="href"><xsl:value-of select="$metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'ESRI:REST') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing'][1]/cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/>?f=lyr&amp;v=9.3</xsl:attribute>
+                    <span class="rw-fr-geoportail-icon-service"></span><br></br>
+                    <span class="rw-fr-geoportail-application-element-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'arcgis')"/>  ®</span>
+                  </xsl:element>
+                  <p class="rw-fr-geoportail-application-element-text"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'arcgistext')"/></p>
+                  <p class="rw-fr-geoportail-application-element-bottom"></p>
+                </xsl:if>
+                <xsl:if test="not($metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'ESRI:REST')and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing'])">
+                  <xsl:element name="a">
+                    <xsl:attribute name="class">btn btn-default btn-lg disabled rw-fr-geoportail-disabled</xsl:attribute>
+                    <span class="rw-fr-geoportail-icon-service"></span><br></br>
+                    <span class="rw-fr-geoportail-application-element-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'arcgis')"/>  ®</span>
+                  </xsl:element>
+                  <p class="rw-fr-geoportail-application-element-text rw-fr-geoportail-opacity"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'arcgistext')"/></p>
+                  <p class="rw-fr-geoportail-application-element-bottom"></p>
+                </xsl:if>
+              </xsl:element>
+              <xsl:element name="div">
+                <xsl:attribute name="class">col-lg-6 rw-fr-geoportail-application-element</xsl:attribute>
+                <xsl:if test="$metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'WWW:LINK-1.0-http--link') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing' and cit:CI_OnlineResource/cit:applicationProfile/gco:CharacterString='application/vnd.google-earth.kml+xml']/cit:CI_OnlineResource/cit:linkage/gco:CharacterString">
+                  <xsl:element name="a">
+                    <xsl:attribute name="class">btn btn-default btn-lg</xsl:attribute>
+                    <xsl:attribute name="href"><xsl:value-of select="$metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:otherCitationDetails/gco:CharacterString"/></xsl:attribute>
+                    <span class="rw-fr-geoportail-icon-service"></span><br></br>
+                    <span class="rw-fr-geoportail-application-element-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'googleearth')"/>  ®</span>
+                  </xsl:element>
+                  <p class="rw-fr-geoportail-application-element-text"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'googleearthtext')"/></p>
+                  <p class="rw-fr-geoportail-application-element-bottom"></p>
+                </xsl:if>
+                <xsl:if test="not($metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'WWW:LINK-1.0-http--link') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing' and cit:CI_OnlineResource/cit:applicationProfile/gco:CharacterString='application/vnd.google-earth.kml+xml']/cit:CI_OnlineResource/cit:linkage/gco:CharacterString)">
+                  <xsl:element name="a">
+                    <xsl:attribute name="class">btn btn-default btn-lg disabled rw-fr-geoportail-disabled</xsl:attribute>
+                    <span class="rw-fr-geoportail-icon-service"></span><br></br>
+                    <span class="rw-fr-geoportail-application-element-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'googleearth')"/>  ®</span>
+                  </xsl:element>
+                  <p class="rw-fr-geoportail-application-element-text rw-fr-geoportail-opacity"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'googleearthtext')"/></p>
+                  <p class="rw-fr-geoportail-application-element-bottom"></p>
+                </xsl:if>
+              </xsl:element>
+            </div>
+            <div class="row rw-fr-geoportail-application">
+              <xsl:element name="div">
+                <xsl:attribute name="class">col-lg-12 rw-fr-geoportail-application-element</xsl:attribute>
+                <xsl:if test="$metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'WWW:LINK-1.0-http--link') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing' and cit:CI_OnlineResource/cit:applicationProfile/gco:CharacterString='application/vnd.google-earth.kml+xml']/cit:CI_OnlineResource/cit:linkage/gco:CharacterString">
+                  <xsl:element name="a">
+                    <xsl:attribute name="class">btn btn-default btn-lg</xsl:attribute>
+                    <xsl:attribute name="href"><xsl:value-of select="$metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:otherCitationDetails/gco:CharacterString"/></xsl:attribute>
+                    <span class="rw-fr-geoportail-icon-service"></span><br></br>
+                    <span class="rw-fr-geoportail-application-element-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'otherstools')"/></span>
+                  </xsl:element>
+                </xsl:if>
+                <xsl:if test="not($metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'WWW:LINK-1.0-http--link') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing' and cit:CI_OnlineResource/cit:applicationProfile/gco:CharacterString='application/vnd.google-earth.kml+xml']/cit:CI_OnlineResource/cit:linkage/gco:CharacterString)">
+                  <xsl:element name="a">
+                    <xsl:attribute name="class">btn btn-default btn-lg disabled rw-fr-geoportail-disabled</xsl:attribute>
+                    <span class="rw-fr-geoportail-icon-service"></span><br></br>
+                    <span class="rw-fr-geoportail-application-element-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'otherstools')"/></span>
+                  </xsl:element>
+                </xsl:if>
+              </xsl:element>
+            </div>
+            <div class="row col-lg-12 rw-fr-geoportail-application"><br></br></div>
           </div>
-        </div>
-        <div class="row rw-fr-geoportail-subsection-twocolumns rw-fr-geoportail-subsection">
-          <div class="col-lg-6">
-            <h4><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'formatter-distributor')"/></h4>
-            <p><xsl:value-of select="$metadata/mdb:distributionInfo/*/mrd:distributor/mrd:MD_Distributor/mrd:distributorContact/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue='distributor']/cit:party/cit:CI_Organisation/cit:name/gco:CharacterString"/><br></br>
-              <a>
-                <xsl:attribute name="href">mailto:<xsl:value-of select="$metadata/mdb:distributionInfo/*/mrd:distributor/mrd:MD_Distributor/mrd:distributorContact/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue='distributor']/cit:party/cit:CI_Organisation/cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address/cit:electronicMailAddress/gco:CharacterString"/></xsl:attribute>
-                <span><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'contact')"/></span>
-              </a>
-            </p>
+          <xsl:choose>
+            <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='dataset'">
+              <div class="rw-fr-geoportail-section-content">
+                <h4><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'webserviceview')"/></h4>
+                <xsl:apply-templates select="$metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'ESRI:REST') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing']">
+                </xsl:apply-templates>
+                <xsl:apply-templates select="$metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[starts-with(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'OGC') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing']">
+                </xsl:apply-templates>
+              </div>
+            </xsl:when>
+            <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='service'">
+              <div class="rw-fr-geoportail-section-content">
+                <h4><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'serviceurlview')"/></h4>
+                <div class='row'>
+                  <div class="col-lg-2"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'address')"/></div>
+                  <div class='col-lg-10 rw-fr-geoportail-webservice-button-box'>
+                    <div class="col-lg-12 rw-fr-geoportail-webservice-button-content-value rw-fr-geoportail-webservice-button-content-center">
+                      <a><p><xsl:value-of select="cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/></p></a>
+                    </div>
+                  </div>
+                </div>
+                <div class='row'>
+                  <div class="col-lg-2"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'type')"/></div>
+                  <div class='col-lg-10 rw-fr-geoportail-webservice-button-box'>
+                    <div class="col-lg-3 rw-fr-geoportail-webservice-button-content-key">
+                      <button class="rw-fr-geoportail-webservice-button-content-center" style=" padding: 0;border: none; background: none;">
+                        <xsl:attribute name=" data-clipboard-text"><xsl:value-of select="cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/></xsl:attribute>
+                        <xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'copyurl')"/>
+                      </button>
+                    </div>
+                    <div class="col-lg-9 rw-fr-geoportail-webservice-button-content-value rw-fr-geoportail-webservice-button-content-center">
+                      <a><p><xsl:value-of select="cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/></p></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </xsl:when>
+          </xsl:choose>
+
+        </xsl:when>
+        <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='application'">
+          <div class="rw-fr-geoportail-section-content">
+            <div class="row col-lg-12 rw-fr-geoportail-application"><br></br></div>
+            <div class="row rw-fr-geoportail-application">
+              <xsl:element name="div">
+                <xsl:attribute name="class">col-lg-12 rw-fr-geoportail-application-element</xsl:attribute>
+                <xsl:if test="$metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'WWW:LINK-1.0-http--link') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing' and cit:CI_OnlineResource/cit:applicationProfile/gco:CharacterString='application/vnd.google-earth.kml+xml']/cit:CI_OnlineResource/cit:linkage/gco:CharacterString">
+                  <xsl:element name="a">
+                    <xsl:attribute name="class">btn btn-default btn-lg</xsl:attribute>
+                    <xsl:attribute name="href"><xsl:value-of select="$metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:otherCitationDetails/gco:CharacterString"/></xsl:attribute>
+                    <span class="rw-fr-geoportail-icon-service"></span><br></br>
+                    <span class="rw-fr-geoportail-application-element-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'applicationView')"/></span>
+                  </xsl:element>
+                </xsl:if>
+                <xsl:if test="not($metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine[contains(cit:CI_OnlineResource/cit:protocol/gco:CharacterString,'WWW:LINK-1.0-http--link') and cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='browsing' and cit:CI_OnlineResource/cit:applicationProfile/gco:CharacterString='application/vnd.google-earth.kml+xml']/cit:CI_OnlineResource/cit:linkage/gco:CharacterString)">
+                  <xsl:element name="a">
+                    <xsl:attribute name="class">btn btn-default btn-lg disabled rw-fr-geoportail-disabled</xsl:attribute>
+                    <span class="rw-fr-geoportail-icon-service"></span><br></br>
+                    <span class="rw-fr-geoportail-application-element-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'applicationView')"/></span>
+                  </xsl:element>
+                </xsl:if>
+              </xsl:element>
+            </div>
+            <div class="row col-lg-12 rw-fr-geoportail-application"><br></br></div>
           </div>
-          <div class="col-lg-6">
-            <h4><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'formatter-format')"/></h4>
-            <xsl:value-of select="string-join($metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatSpecificationCitation/cit:CI_Citation/cit:title/gco:CharacterString,'; ')"/>
-            <xsl:value-of select="string-join($metadata/mdb:distributionInfo/*/mrd:distributor/mrd:MD_Distributor/mrd:distributorFormat/mrd:MD_Format/mrd:formatSpecificationCitation/cit:CI_Citation/cit:title/gco:CharacterString,'; ')"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'notfilledin')"/>
+        </xsl:otherwise>
+      </xsl:choose>
+
+      <xsl:choose>
+        <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='dataset' or $metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='series'">
+          <div class="rw-fr-geoportail-section-title">
+            <h3><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'copy')"/></h3>
           </div>
-        </div>
-        <h4><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'conditions')"/></h4>
-        <xsl:apply-templates select="$metadata/mdb:identificationInfo/*/mri:resourceConstraints/mco:MD_LegalConstraints/mco:otherConstraints/gco:CharacterString" />
-      </div>
+          <div class="rw-fr-geoportail-section-content">
+            <div class="row rw-fr-geoportail-subsection">
+              <div class="col-lg-3"></div>
+              <div class="col-lg-9">
+                <xsl:apply-templates select="$metadata/mdb:distributionInfo/*/mrd:distributor/mrd:MD_Distributor/mrd:distributionOrderProcess/mrd:MD_StandardOrderProcess/mrd:orderingInstructions/gco:CharacterString" />
+              </div>
+            </div>
+            <div class="row rw-fr-geoportail-subsection-twocolumns rw-fr-geoportail-subsection">
+              <div class="col-lg-6">
+                <h4><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'formatter-distributor')"/></h4>
+                <p><xsl:value-of select="$metadata/mdb:distributionInfo/*/mrd:distributor/mrd:MD_Distributor/mrd:distributorContact/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue='distributor']/cit:party/cit:CI_Organisation/cit:name/gco:CharacterString"/><br></br>
+                  <a>
+                    <xsl:attribute name="href">mailto:<xsl:value-of select="$metadata/mdb:distributionInfo/*/mrd:distributor/mrd:MD_Distributor/mrd:distributorContact/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue='distributor']/cit:party/cit:CI_Organisation/cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address/cit:electronicMailAddress/gco:CharacterString"/></xsl:attribute>
+                    <span><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'contact')"/></span>
+                  </a>
+                </p>
+              </div>
+              <div class="col-lg-6">
+                <h4><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'formatter-format')"/></h4>
+                <xsl:value-of select="string-join($metadata/mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatSpecificationCitation/cit:CI_Citation/cit:title/gco:CharacterString,'; ')"/>
+                <xsl:value-of select="string-join($metadata/mdb:distributionInfo/*/mrd:distributor/mrd:MD_Distributor/mrd:distributorFormat/mrd:MD_Format/mrd:formatSpecificationCitation/cit:CI_Citation/cit:title/gco:CharacterString,'; ')"/>
+              </div>
+            </div>
+            <h4><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'conditionsData')"/></h4>
+            <xsl:apply-templates select="$metadata/mdb:identificationInfo/*/mri:resourceConstraints/mco:MD_LegalConstraints/mco:otherConstraints/gco:CharacterString" />
+          </div>
+        </xsl:when>
+        <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='application' or $metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='service'">
+          <div class="rw-fr-geoportail-section-title">
+            <h3><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'conditions')"/></h3>
+          </div>
+          <div class="rw-fr-geoportail-section-content">
+            <xsl:choose>
+              <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='application'">
+                <h4><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'conditionsApplications')"/></h4>
+              </xsl:when>
+              <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='service'">
+                <h4><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'conditionsService')"/></h4>
+              </xsl:when>
+            </xsl:choose>
+            <xsl:apply-templates select="$metadata/mdb:identificationInfo/*/mri:resourceConstraints/mco:MD_LegalConstraints/mco:otherConstraints/gco:CharacterString"/>
+          </div>
+        </xsl:when>
+      </xsl:choose>
     </div>
   </xsl:template>
 
@@ -494,56 +614,72 @@
           </div>
         </div>
       </div>
-      <div class="rw-fr-geoportail-section-title">
-        <h3><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'toi')"/></h3>
-      </div>
-      <div class="rw-fr-geoportail-section-content">
-        <xsl:choose>
-          <xsl:when test="$metadata/mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent/gex:extent/gml:TimePeriod/gml:beginPosition!='' and $metadata/mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent/gex:extent/gml:TimePeriod/gml:endPosition!=''">
-            <xsl:call-template name="formatDate">
-              <xsl:with-param name="dateParam" select="$metadata/mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent/gex:extent/gml:TimePeriod/gml:beginPosition" />
-              <xsl:with-param name="dateType" select='"string"'/>
-            </xsl:call-template>
-            <span> &#8594; </span>
-            <xsl:call-template name="formatDate">
-              <xsl:with-param name="dateParam" select="$metadata/mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent/gex:extent/gml:TimePeriod/gml:endPosition" />
-              <xsl:with-param name="dateType" select='"string"'/>
-            </xsl:call-template>
-          </xsl:when>
-          <xsl:otherwise>
-            <p><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'notfilledin')"/></p>
-          </xsl:otherwise>
-        </xsl:choose>
+      <xsl:choose>
+        <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue!='service'">
+          <div class="rw-fr-geoportail-section-title">
+            <h3><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'toi')"/></h3>
+          </div>
+          <div class="rw-fr-geoportail-section-content">
+            <xsl:choose>
+              <xsl:when test="$metadata/mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent/gex:extent/gml:TimePeriod/gml:beginPosition!='' and $metadata/mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent/gex:extent/gml:TimePeriod/gml:endPosition!=''">
+                <xsl:call-template name="formatDate">
+                  <xsl:with-param name="dateParam" select="$metadata/mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent/gex:extent/gml:TimePeriod/gml:beginPosition" />
+                  <xsl:with-param name="dateType" select='"string"'/>
+                </xsl:call-template>
+                <span> &#8594; </span>
+                <xsl:call-template name="formatDate">
+                  <xsl:with-param name="dateParam" select="$metadata/mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent/gex:extent/gml:TimePeriod/gml:endPosition" />
+                  <xsl:with-param name="dateType" select='"string"'/>
+                </xsl:call-template>
+              </xsl:when>
+              <xsl:otherwise>
+                <p><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'notfilledin')"/></p>
+              </xsl:otherwise>
+            </xsl:choose>
+          </div>
+        </xsl:when>
+      </xsl:choose>
 
-      </div>
-      <div class="rw-fr-geoportail-section-title">
-        <h3><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'model')"/></h3>
-      </div>
-      <div class="rw-fr-geoportail-section-content">
-        <xsl:choose>
-          <xsl:when test="$metadata/mdb:distributionInfo/*/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='information.content'">
-            <xsl:call-template name="descriptiontable">
-              <xsl:with-param name="param">information.content</xsl:with-param>
-            </xsl:call-template>
-          </xsl:when>
-          <xsl:otherwise>
-          </xsl:otherwise>
-        </xsl:choose>
-      </div>
-      <div class="rw-fr-geoportail-section-title">
-        <h3><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'legend')"/></h3>
-      </div>
-      <div class="rw-fr-geoportail-section-content">
-        <xsl:choose>
-          <xsl:when test="$metadata/mdb:distributionInfo/*/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='information.portrayal'">
-            <xsl:call-template name="descriptiontable">
-              <xsl:with-param name="param">information.portrayal</xsl:with-param>
-            </xsl:call-template>
-          </xsl:when>
-          <xsl:otherwise>
-          </xsl:otherwise>
-        </xsl:choose>
-      </div>
+
+      <xsl:choose>
+        <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue!='application' and $metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue!='service'">
+          <div class="rw-fr-geoportail-section-title">
+            <h3><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'model')"/></h3>
+          </div>
+          <div class="rw-fr-geoportail-section-content">
+            <xsl:choose>
+              <xsl:when test="$metadata/mdb:distributionInfo/*/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='information.content'">
+                <xsl:call-template name="descriptiontable">
+                  <xsl:with-param name="param">information.content</xsl:with-param>
+                </xsl:call-template>
+              </xsl:when>
+              <xsl:otherwise>
+              </xsl:otherwise>
+            </xsl:choose>
+          </div>
+        </xsl:when>
+      </xsl:choose>
+
+      <xsl:choose>
+        <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue!='service'">
+          <div class="rw-fr-geoportail-section-title">
+            <h3><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'legend')"/></h3>
+          </div>
+          <div class="rw-fr-geoportail-section-content">
+            <xsl:choose>
+              <xsl:when test="$metadata/mdb:distributionInfo/*/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource/cit:function/cit:CI_OnLineFunctionCode/@codeListValue='information.portrayal'">
+                <xsl:call-template name="descriptiontable">
+                  <xsl:with-param name="param">information.portrayal</xsl:with-param>
+                </xsl:call-template>
+              </xsl:when>
+              <xsl:otherwise>
+              </xsl:otherwise>
+            </xsl:choose>
+          </div>
+        </xsl:when>
+      </xsl:choose>
+
+
       <div class="row">
         <div class="col-lg-6 rw-fr-geoportail-twocolumns">
           <div class="rw-fr-geoportail-section-title">
@@ -572,12 +708,54 @@
         </div>
         <div class="col-lg-6 rw-fr-geoportail-twocolumns">
           <div class="rw-fr-geoportail-section-title">
-            <h3 class="rw-fr-geoportail-border-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'dataidentification')"/></h3>
+            <xsl:choose>
+              <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='service'">
+                <h3 class="rw-fr-geoportail-border-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'serviceIdentification')"/></h3>
+              </xsl:when>
+              <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='application'">
+                <h3 class="rw-fr-geoportail-border-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'applicationIdentification')"/></h3>
+              </xsl:when>
+              <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='series' or $metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='dataset'">
+                <h3 class="rw-fr-geoportail-border-title"><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'dataIdentification')"/></h3>
+              </xsl:when>
+            </xsl:choose>
+
           </div>
           <div class="rw-fr-geoportail-section-content rw-fr-geoportail-border-content">
-            <h6><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'dataid')"/></h6>
-            <p><xsl:value-of select="$metadata/mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:codeSpace/gco:CharacterString"/><xsl:value-of select="$metadata/mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier[mcc:codeSpace/gco:CharacterString !='']/mcc:code/gco:CharacterString"/></p>
-            <h6><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'datalastdiffusion')"/></h6>
+            <xsl:choose>
+              <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='service'">
+                <h6><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'serviceId')"/></h6>
+              </xsl:when>
+              <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='application'">
+                <h6><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'applicationId')"/></h6>
+              </xsl:when>
+              <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='series' or $metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='dataset'">
+                <h6><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'dataId')"/></h6>
+              </xsl:when>
+            </xsl:choose>
+            <p>
+              <xsl:choose>
+                <xsl:when test="$metadata/mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:codeSpace/gco:CharacterString">
+                  <xsl:value-of select="$metadata/mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:codeSpace/gco:CharacterString"/>
+                  <xsl:value-of select="$metadata/mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier[mcc:codeSpace/gco:CharacterString !='']/mcc:code/gco:CharacterString"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'notfilledin')"/>
+                </xsl:otherwise>
+              </xsl:choose>
+            </p>
+            <xsl:choose>
+              <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='service'">
+                <h6><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'serviceLastdiffusion')"/></h6>
+              </xsl:when>
+              <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='application'">
+                <h6><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'applicationLastdiffusion')"/></h6>
+              </xsl:when>
+              <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='series' or $metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='dataset'">
+                <h6><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'datalastdiffusion')"/></h6>
+              </xsl:when>
+            </xsl:choose>
+
             <p>
               <xsl:choose>
                 <xsl:when test="$metadata/mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:date/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='publication']/cit:date/gco:Date!=''">
@@ -591,27 +769,43 @@
                 </xsl:otherwise>
               </xsl:choose>
             </p>
-            <h6><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'lastupdate')"/></h6>
             <xsl:choose>
-              <xsl:when test="$metadata/mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:date/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']/cit:date/gco:Date!=''">
-                <xsl:call-template name="formatDate">
-                  <xsl:with-param name="dateParam" select="$metadata/mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:date/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']/cit:date/gco:Date" />
-                  <xsl:with-param name="dateType" select='"number"'/>
-                </xsl:call-template>
+              <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='dataset' or $metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='series'">
+                <h6><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'lastupdate')"/></h6>
+                <xsl:choose>
+                  <xsl:when test="$metadata/mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:date/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']/cit:date/gco:Date!=''">
+                    <xsl:call-template name="formatDate">
+                      <xsl:with-param name="dateParam" select="$metadata/mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:date/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']/cit:date/gco:Date" />
+                      <xsl:with-param name="dateType" select='"number"'/>
+                    </xsl:call-template>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'notfilledin')"/>
+                  </xsl:otherwise>
+                </xsl:choose>
               </xsl:when>
-              <xsl:otherwise>
-                <xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'notfilledin')"/>
-              </xsl:otherwise>
             </xsl:choose>
           </div>
         </div>
       </div>
-      <div class="rw-fr-geoportail-section-title">
-        <h3><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'language')"/></h3>
-      </div>
-      <div class="rw-fr-geoportail-section-content">
-        <p><xsl:value-of select="$metadata/mdb:identificationInfo/*/mri:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue" /></p>
-      </div>
+      <xsl:choose>
+        <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='application'">
+          <div class="rw-fr-geoportail-section-title">
+            <h3><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'languageApplication')"/></h3>
+          </div>
+          <div class="rw-fr-geoportail-section-content">
+            <p><xsl:value-of select="$metadata/mdb:identificationInfo/*/mri:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue" /></p>
+          </div>
+        </xsl:when>
+        <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='dataset' or $metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue='series'">
+          <div class="rw-fr-geoportail-section-title">
+            <h3><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'languageData')"/></h3>
+          </div>
+          <div class="rw-fr-geoportail-section-content">
+            <p><xsl:value-of select="$metadata/mdb:identificationInfo/*/mri:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue" /></p>
+          </div>
+        </xsl:when>
+      </xsl:choose>
     </div>
   </xsl:template>
 
@@ -718,13 +912,18 @@
 
   <xsl:template name="associatedresourcesTemplate">
     <div class="rw-fr-geoportail-section">
-      <div class="rw-fr-geoportail-section-title">
-        <h3><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'associateddata')"/></h3>
-      </div>
-      <div class="rw-fr-geoportail-section-content">
-        <xsl:call-template name="associatedRessourcestable">
-        </xsl:call-template>
-      </div>
+      <xsl:choose>
+        <xsl:when test="$metadata/mdb:metadataScope/*/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue!='application'">
+          <div class="rw-fr-geoportail-section-title">
+            <h3><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'associateddata')"/></h3>
+          </div>
+          <div class="rw-fr-geoportail-section-content">
+            <xsl:call-template name="associatedRessourcestable">
+            </xsl:call-template>
+          </div>
+        </xsl:when>
+      </xsl:choose>
+
       <div class="rw-fr-geoportail-section-title">
         <h3><xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'associatedsite')"/></h3>
       </div>
@@ -1163,12 +1362,14 @@
   </xsl:template>
   <xsl:template name="formatEPSG">
     <xsl:param name="epsgParam"/>
-    <xsl:choose>
-      <xsl:when test="tokenize($epsgParam,'/')[last()] = '31371'">Belge 1972 / Belgian Lambert 72 (EPSG: 31370)</xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="gn-fn-render:get-schema-strings($schemaStrings,'notfilledin')"/>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:for-each select="$epsgParam">
+      <xsl:if test="contains(.,'31370')">
+        <span>- Belge 1972 / Belgian Lambert 72 (EPSG: 31370)</span><br></br>
+      </xsl:if>
+      <xsl:if test="not(contains(.,'31370'))">
+        <span>- <xsl:value-of select="."/></span><br></br>
+      </xsl:if>
+    </xsl:for-each>
   </xsl:template>
 
   <xsl:template match="/root/mdb:MD_Metadata/mdb:distributionInfo/*/mrd:distributor/mrd:MD_Distributor/mrd:distributionOrderProcess/mrd:MD_StandardOrderProcess/mrd:orderingInstructions/gco:CharacterString">
