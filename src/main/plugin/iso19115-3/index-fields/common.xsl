@@ -329,6 +329,62 @@
         </xsl:for-each>
       </xsl:for-each>
 
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <!-- - - - - - - - - - RW accessConstraints  - - - - - - - - - - - - - -->
+
+      <xsl:choose>
+        <xsl:when test="mri:resourceConstraints/mco:MD_LegalConstraints/mco:accessConstraints/mco:MD_RestrictionCode/@codeListValue = 'restricted'">
+          <Field name="accessConstraints" string="restricted" store="true" index="true"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <Field name="accessConstraints" string="public" store="true" index="true"/>
+        </xsl:otherwise>
+      </xsl:choose>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <!-- - - - - - - - - - - - - RW diffusion  - - - - - - - - - - - - - - -->
+
+      <xsl:for-each select="mri:descriptiveKeywords[
+                          contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
+                                   'Mots-clés InfraSIG')]/*/mri:keyword">
+        <xsl:variable name="downloaddata" select="gco:CharacterString"/>
+        <xsl:if test="$downloaddata = 'PanierTelechargementGeoportail'">
+          <Field name="diffusionmode"
+                 string="download"
+                 store="true" index="true"/>
+        </xsl:if>
+      </xsl:for-each>
+      <xsl:for-each select="mrd:transferOptions/mrd:MD_DigitalTransferOptions/*/cit:CI_OnlineResource">
+        <xsl:if test="contains(cit:protocol/gco:CharacterString,'WWW:LINK-1.0-http--link') and (cit:function/cit:CI_OnLineFunctionCode/@codeListValue  = 'browsing') and (cit:applicationProfile/gco:CharacterString='' or count(cit:applicationProfile/gco:CharacterString) = 0)">
+          <Field name="diffusionmode" string="thematicmap" store="true" index="true"/>
+        </xsl:if>
+      </xsl:for-each>
+      <xsl:for-each select="mrd:transferOptions/mrd:MD_DigitalTransferOptions/*/cit:CI_OnlineResource">
+        <xsl:if test="contains(cit:protocol/gco:CharacterString,'ESRI:REST') and (cit:function/cit:CI_OnLineFunctionCode/@codeListValue  = 'browsing')">
+          <Field name="diffusionmode" string="walonmap" store="true" index="true"/>
+        </xsl:if>
+      </xsl:for-each>
+
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <!-- - - - - - - - - - RW official resources  - - - - - - - - - - - - -->
+
+      <xsl:for-each select="mri:descriptiveKeywords[
+                          contains(*/mri:thesaurusName/*/cit:title/gco:CharacterString,
+                                   'Mots-clés InfraSIG')]/*/mri:keyword">
+        <xsl:variable name="keywordOfficialResource" select="gco:CharacterString"/>
+        <xsl:if test="$keywordOfficialResource = 'Ressource officielle wallonne'">
+          <Field name="officialResource"
+                 string="Wallonie"
+                 store="true" index="true"/>
+        </xsl:if>
+        <xsl:if test="$keywordOfficialResource = 'Reporting INSPIRE'">
+          <Field name="officialResource"
+                 string="INSPIRE"
+                 store="true" index="true"/>
+        </xsl:if>
+
+      </xsl:for-each>
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
       <xsl:for-each select="//mri:MD_Keywords">
         <xsl:variable name="thesaurusTitle"
