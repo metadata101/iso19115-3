@@ -336,7 +336,7 @@
   <!-- View configuration -->
   <views>
     <view name="default">
-      
+
       <sidePanel>
         <directive data-gn-onlinesrc-list=""/>
         <directive gn-geo-publisher=""
@@ -378,7 +378,6 @@
       <!-- Elements that should not use the "flat" mode -->
       <flatModeExceptions>
         <for name="mri:descriptiveKeywords"/>
-        <for name="mri:topicCategory"/>
         <for name="mri:pointOfContact"/>
         <for name="mrd:distributor"/>
         <for name="mdb:contact"/>
@@ -389,7 +388,7 @@
       </flatModeExceptions>
     </view>
     <view name="advanced">
-      
+
       <sidePanel>
         <directive data-gn-onlinesrc-list=""/>
         <directive gn-geo-publisher=""
@@ -485,7 +484,7 @@
       </tab>
     </view>
     <view name="xml">
-      
+
       <sidePanel>
         <directive data-gn-onlinesrc-list=""/>
         <directive gn-geo-publisher=""

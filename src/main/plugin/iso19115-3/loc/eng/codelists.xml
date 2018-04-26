@@ -1734,7 +1734,7 @@
       <description>Scene from a video recording</description>
     </entry>
   </codelist>
-  <codelist name="mri:MD_TopicCategoryCode">
+  <codelist name="mri:MD_TopicCategoryCode" alias="topicCategory">
     <entry>
       <code>farming</code>
       <label>Farming</label>
