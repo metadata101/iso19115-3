@@ -15,6 +15,9 @@ public class ISO19115_3Namespaces {
     public static final Namespace MRI =
             Namespace.getNamespace("mri",
                     "http://standards.iso.org/iso/19115/-3/mri/1.0");
+    public static final Namespace GEX =
+            Namespace.getNamespace("gex",
+                    "http://standards.iso.org/iso/19115/-3/gex/1.0");
     public static final Namespace SRV =
             Namespace.getNamespace("srv",
                     "http://standards.iso.org/iso/19115/-3/srv/2.0");
@@ -27,4 +30,6 @@ public class ISO19115_3Namespaces {
     public static final Namespace LAN =
             Namespace.getNamespace("lan",
                     "http://standards.iso.org/iso/19115/-3/lan/1.0");
+    public static final Namespace XLINK =
+        Namespace.getNamespace("xlink", "http://www.w3.org/1999/xlink");
 }
