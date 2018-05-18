@@ -1089,4 +1089,32 @@
       <!-- inspire annex cannot be established: leave empty -->
     </xsl:choose>
   </xsl:template>
+  
+
+  <xsl:template match="*" mode="latLon19115-3">
+    <xsl:variable name="format" select="'##.00'"></xsl:variable>
+
+    <xsl:if test="number(gex:westBoundLongitude/gco:Decimal)
+            and number(gex:southBoundLatitude/gco:Decimal)
+            and number(gex:eastBoundLongitude/gco:Decimal)
+            and number(gex:northBoundLatitude/gco:Decimal)
+            ">
+      <Field name="westBL" string="{format-number(gex:westBoundLongitude/gco:Decimal, $format)}"
+             store="false" index="true"/>
+      <Field name="southBL" string="{format-number(gex:southBoundLatitude/gco:Decimal, $format)}"
+             store="false" index="true"/>
+
+      <Field name="eastBL" string="{format-number(gex:eastBoundLongitude/gco:Decimal, $format)}"
+             store="false" index="true"/>
+      <Field name="northBL" string="{format-number(gex:northBoundLatitude/gco:Decimal, $format)}"
+             store="false" index="true"/>
+
+      <Field name="geoBox" string="{concat(gex:westBoundLongitude/gco:Decimal, '|',
+                gex:southBoundLatitude/gco:Decimal, '|',
+                gex:eastBoundLongitude/gco:Decimal, '|',
+                gex:northBoundLatitude/gco:Decimal
+                )}" store="true" index="false"/>
+    </xsl:if>
+
+  </xsl:template>
 </xsl:stylesheet>
