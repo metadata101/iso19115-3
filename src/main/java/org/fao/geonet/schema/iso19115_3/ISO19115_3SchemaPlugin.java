@@ -360,8 +360,8 @@ public class ISO19115_3SchemaPlugin
             try {
                 extents.add(new Extent(
                     Double.valueOf(box.getChild("westBoundLongitude", GEX).getChild("Decimal", GCO).getText()),
-                    Double.valueOf(box.getChild("southBoundLatitude", GEX).getChild("Decimal", GCO).getText()),
                     Double.valueOf(box.getChild("eastBoundLongitude", GEX).getChild("Decimal", GCO).getText()),
+                    Double.valueOf(box.getChild("southBoundLatitude", GEX).getChild("Decimal", GCO).getText()),
                     Double.valueOf(box.getChild("northBoundLatitude", GEX).getChild("Decimal", GCO).getText())
                 ));
             } catch (NullPointerException e) {}

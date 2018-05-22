@@ -201,6 +201,7 @@
     <name>mri:resourceConstraints</name>
     <name>mdb:spatialRepresentationInfo</name>
     <name>mri:pointOfContact</name>
+    <name>mri:resourceFormat</name>
     <name>mdb:dataQualityInfo</name>
     <name>mdq:result</name>
     <name>mdq:report</name>

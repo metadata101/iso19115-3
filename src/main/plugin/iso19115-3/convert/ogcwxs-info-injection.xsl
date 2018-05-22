@@ -45,15 +45,16 @@
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:geonet="http://www.fao.org/geonetwork"
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                xmlns:wfs="http://www.opengis.net/wfs"
-                xmlns:ows="http://www.opengis.net/ows"
-                xmlns:owsg="http://www.opengeospatial.net/ows"
-                xmlns:ows11="http://www.opengis.net/ows/1.1"
+                xmlns:csw="http://www.opengis.net/cat/csw/2.0.2"
                 xmlns:wcs="http://www.opengis.net/wcs"
+                xmlns:wfs="http://www.opengis.net/wfs"
                 xmlns:wms="http://www.opengis.net/wms"
                 xmlns:wps="http://www.opengeospatial.net/wps"
                 xmlns:wps1="http://www.opengis.net/wps/1.0.0"
                 xmlns:wps2="http://www.opengis.net/wps/2.0"
+                xmlns:ows="http://www.opengis.net/ows"
+                xmlns:owsg="http://www.opengeospatial.net/ows"
+                xmlns:ows11="http://www.opengis.net/ows/1.1"
                 xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0"
                 xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"
                 xmlns:saxon="http://saxon.sf.net/"
@@ -101,12 +102,15 @@
                 select="/root/getCapabilities"/>
   <xsl:variable name="rootName"
                 select="$getCapabilities/*/local-name()"/>
+  <xsl:variable name="rootNameWithNs"
+                select="$getCapabilities/*/name()"/>
   <xsl:variable name="serviceTitle"
                 select="$getCapabilities/(*/ows:ServiceIdentification/ows:Title|
                        */ows11:ServiceIdentification/ows11:Title|
                        */wfs:Service/wfs:Title|
                        */wms:Service/wms:Title|
                        */Service/Title|
+                       */csw:Capabilities/ows:ServiceIdentification/ows:Title|
                        */wcs:Service/wcs:label)/text()"/>
   <xsl:variable name="layerTitle"
                 select="$getCapabilities/(
@@ -222,7 +226,8 @@
 
   <!-- Insert abstract. -->
   <xsl:template mode="copy"
-                match="mdb:MD_Metadata/mdb:identificationInfo/srv:SV_ServiceIdentification/mri:abstract">
+                match="mdb:MD_Metadata/mdb:identificationInfo/srv:SV_ServiceIdentification/mri:abstract"
+                priority="1999">
     <xsl:copy>
       <xsl:attribute name="gco:nilReason" select="$nilReasonValue"/>
       <gco:CharacterString>
@@ -231,6 +236,7 @@
                          */wfs:Service/wfs:Abstract|
                          */wms:Service/wms:Abstract|
                          */Service/Abstract|
+                         */csw:Capabilities/ows:ServiceIdentification/ows:Abstract|
                          */wcs:Service/wcs:description)/text()"/>
       </gco:CharacterString>
     </xsl:copy>
@@ -307,6 +313,21 @@
       <xsl:apply-templates mode="copy" select="mri:citation"/>
       <xsl:apply-templates mode="copy" select="mri:abstract"/>
       <xsl:apply-templates mode="copy" select="mri:purpose"/>
+
+      <!-- CSW Add queryables in purpose -->
+      <xsl:if test="$rootNameWithNs = 'csw:Capabilities'">
+        <mri:purpose>
+          <xsl:attribute name="gco:nilReason" select="$nilReasonValue"/>
+          <gco:CharacterString>
+            <xsl:for-each
+              select="$getCapabilities//ows:Constraint[@name='SupportedISOQueryables' or @name='AdditionalQueryables']/ows:Value">
+              <xsl:value-of select="."/>
+              <xsl:if test="position()!=last()">,</xsl:if>
+            </xsl:for-each>
+          </gco:CharacterString>
+        </mri:purpose>
+      </xsl:if>
+
       <xsl:apply-templates mode="copy" select="mri:credit"/>
       <xsl:apply-templates mode="copy" select="mri:status"/>
 
@@ -409,15 +430,44 @@
       <xsl:apply-templates mode="copy" select="mri:spatialResolution"/>
       <xsl:apply-templates mode="copy" select="mri:temporalResolution"/>
       <xsl:apply-templates mode="copy" select="mri:topicCategory"/>
+      <xsl:apply-templates mode="copy" select="mri:extent"/>
 
-      <xsl:call-template name="build-extent"/>
+
+      <xsl:if test="$rootNameWithNs != 'csw:Capabilities'">
+        <!-- This can not be find in CSW capabilities-->
+        <xsl:call-template name="build-extent"/>
+      </xsl:if>
 
       <xsl:apply-templates mode="copy" select="mri:additionalDocumentation"/>
       <xsl:apply-templates mode="copy" select="mri:processingLevel"/>
 
       <xsl:apply-templates mode="copy" select="mri:resourceMaintenance"/>
-      <xsl:apply-templates mode="copy" select="mri:graphicOverview"/>
+      <xsl:if test="$serviceType = 'WMS'">
+        <xsl:apply-templates mode="copy" select="mri:graphicOverview[not(contains(*/mcc:fileName/gco:CharacterString, concat('attachments/', $uuid, '.png')))]"/>
+      </xsl:if>
       <xsl:apply-templates mode="copy" select="mri:resourceFormat"/>
+
+
+      <!-- CSW Add output schema -->
+      <xsl:if test="$rootNameWithNs = 'csw:Capabilities'">
+        <xsl:for-each-group select="//ows:Parameter[@name='outputSchema']/ows:Value" group-by=".">
+          <mri:resourceFormat>
+            <xsl:attribute name="gco:nilReason" select="$nilReasonValue"/>
+            <mrd:MD_Format>
+              <mrd:formatSpecificationCitation>
+                <cit:CI_Citation>
+                  <cit:title>
+                    <gco:CharacterString>
+                      <xsl:value-of select="."/>
+                    </gco:CharacterString>
+                  </cit:title>
+                </cit:CI_Citation>
+              </mrd:formatSpecificationCitation>
+            </mrd:MD_Format>
+          </mri:resourceFormat>
+        </xsl:for-each-group>
+      </xsl:if>
+
 
       <!-- Insert keywords. -->
       <xsl:variable name="keywords"
@@ -579,9 +629,11 @@
     <mri:descriptiveKeywords>
       <xsl:attribute name="gco:nilReason" select="$nilReasonValue"/>
       <mri:MD_Keywords>
-        <mri:keyword>
-          <gco:CharacterString><xsl:value-of select="."/></gco:CharacterString>
-        </mri:keyword>
+        <xsl:for-each select="*">
+          <mri:keyword>
+            <gco:CharacterString><xsl:value-of select="."/></gco:CharacterString>
+          </mri:keyword>
+        </xsl:for-each>
       </mri:MD_Keywords>
     </mri:descriptiveKeywords>
   </xsl:template>
@@ -750,6 +802,7 @@
 
   <xsl:template mode="convert"
                 match="wms:OnlineResource|
+                       OnlineResource|
                        wfs:Get|
                        ows:Get">
     <mrd:onLine>
