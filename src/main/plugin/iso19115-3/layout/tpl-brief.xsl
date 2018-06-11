@@ -46,13 +46,45 @@
     </abstract>
   </xsl:template>
 
+
+  <!-- Templates used for RSS -->
   <xsl:template name="iso19115-3Brief">
     <metadata>
-      <xsl:call-template name="iso19139-brief"/>
+      <xsl:call-template name="iso19115-3-brief"/>
     </metadata>
   </xsl:template>
 
   <xsl:template name="iso19115-3-brief">
-    <xsl:call-template name="iso19139-brief"/>
+    <xsl:variable name="info" select="gn:info"/>
+    <xsl:variable name="id" select="$info/id"/>
+    <xsl:variable name="uuid" select="$info/uuid"/>
+
+    <xsl:variable name="langId" select="gn-fn-iso19139:getLangId(., $lang)"/>
+
+    <title>
+      <xsl:apply-templates mode="localised"
+                           select="mdb:identificationInfo/*/mri:citation/*/cit:title">
+        <xsl:with-param name="langId" select="$langId"/>
+      </xsl:apply-templates>
+    </title>
+    <abstract>
+      <xsl:apply-templates mode="localised" select="mdb:identificationInfo/*/mri:abstract">
+        <xsl:with-param name="langId" select="$langId"/>
+      </xsl:apply-templates>
+    </abstract>
+
+
+    <xsl:variable name="overviews"
+                  select="mdb:identificationInfo/*/mri:graphicOverview/mcc:MD_BrowseGraphic/
+                                mcc:fileName/gco:CharacterString[. != '']"/>
+    <xsl:for-each select="$overviews">
+      <image>
+        <xsl:value-of select="."/>
+      </image>
+    </xsl:for-each>
+
+    <metadatacreationdate>
+      <xsl:value-of select="mdb:dateInfo/*[cit:dateType/*/@codeListValue = 'revision']/cit:date/gco:DateTime"/>
+    </metadatacreationdate>
   </xsl:template>
 </xsl:stylesheet>
