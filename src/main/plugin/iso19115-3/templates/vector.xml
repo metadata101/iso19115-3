@@ -276,7 +276,7 @@
                                     codeList="./resources/codeList.xml#MD_RestrictionCode"/>
           </mco:accessConstraints>
           <mco:useConstraints>
-            <mco:MD_RestrictionCode codeListValue="otherRestictions"
+            <mco:MD_RestrictionCode codeListValue="otherRestrictions"
                                     codeList="./resources/codeList.xml#MD_RestrictionCode"/>
           </mco:useConstraints>
           <mco:otherConstraints>
