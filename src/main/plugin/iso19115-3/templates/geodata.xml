@@ -111,7 +111,7 @@
       <mri:citation>
         <cit:CI_Citation>
           <cit:title>
-            <gco:CharacterString>Template for Vector data (preferred!)</gco:CharacterString>
+            <gco:CharacterString>Template for geo data (preferred!)</gco:CharacterString>
           </cit:title>
           <cit:date>
             <cit:CI_Date>
@@ -170,7 +170,7 @@
         </cit:CI_Responsibility>
       </mri:pointOfContact>
       <mri:spatialRepresentationType>
-        <mcc:MD_SpatialRepresentationTypeCode codeList="" codeListValue="vector"/>
+        <mcc:MD_SpatialRepresentationTypeCode codeList="" codeListValue=""/>
       </mri:spatialRepresentationType>
       <mri:spatialResolution>
         <mri:MD_Resolution>
