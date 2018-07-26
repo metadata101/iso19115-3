@@ -1,6 +1,16 @@
 package org.fao.geonet.schema.iso19115_3;
 
+<<<<<<< HEAD
 import java.util.*;
+=======
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+>>>>>>> origin/3.4.3
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -15,6 +25,10 @@ import org.jdom.filter.ElementFilter;
 import org.jdom.xpath.XPath;
 
 import static org.fao.geonet.schema.iso19115_3.ISO19115_3Namespaces.*;
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/3.4.3
 /**
  * Created by francois on 6/15/14.
  */
@@ -33,12 +47,12 @@ public class ISO19115_3SchemaPlugin
 
     static {
         allNamespaces = ImmutableSet.<Namespace>builder()
-                .add(ISO19115_3Namespaces.GCO)
-                .add(ISO19115_3Namespaces.MDB)
+                .add(GCO)
+                .add(MDB)
                 .add(ISO19115_3Namespaces.MRC)
                 .add(ISO19115_3Namespaces.MRL)
                 .add(ISO19115_3Namespaces.MRI)
-                .add(ISO19115_3Namespaces.SRV)
+                .add(SRV)
                 .build();
 
         allTypenames = ImmutableMap.<String, Namespace>builder()
@@ -100,7 +114,7 @@ public class ISO19115_3SchemaPlugin
 
     @Override
     public Set<String> getAssociatedParentUUIDs(Element metadata) {
-        ElementFilter elementFilter = new ElementFilter("parentMetadata", ISO19115_3Namespaces.MDB);
+        ElementFilter elementFilter = new ElementFilter("parentMetadata", MDB);
         return Xml.filterElementValues(
                 metadata,
                 elementFilter,
@@ -109,7 +123,7 @@ public class ISO19115_3SchemaPlugin
     }
 
     public Set<String> getAssociatedDatasetUUIDs (Element metadata) {
-        return getAttributeUuidrefValues(metadata, "operatesOn", ISO19115_3Namespaces.SRV);
+        return getAttributeUuidrefValues(metadata, "operatesOn", SRV);
     };
     public Set<String> getAssociatedFeatureCatalogueUUIDs (Element metadata) {
         // Feature catalog may also be embedded into the document
@@ -203,10 +217,10 @@ public class ISO19115_3SchemaPlugin
 
         for(Element e : nodesWithStrings) {
             // Retrieve or create the main language element
-            Element mainCharacterString = ((Element)e.getParent()).getChild("CharacterString", ISO19115_3Namespaces.GCO);
+            Element mainCharacterString = ((Element)e.getParent()).getChild("CharacterString", GCO);
             if (mainCharacterString == null) {
                 // create it if it does not exist
-                mainCharacterString = new Element("CharacterString", ISO19115_3Namespaces.GCO);
+                mainCharacterString = new Element("CharacterString", GCO);
                 ((Element)e.getParent()).addContent(0, mainCharacterString);
             }
 
@@ -222,11 +236,11 @@ public class ISO19115_3SchemaPlugin
 
                 if (StringUtils.isNotEmpty(mainLangString)) {
                     mainCharacterString.setText(mainLangString);
-                } else if (mainCharacterString.getAttribute("nilReason", ISO19115_3Namespaces.GCO) == null){
-                    ((Element)mainCharacterString.getParent()).setAttribute("nilReason", "missing", ISO19115_3Namespaces.GCO);
+                } else if (mainCharacterString.getAttribute("nilReason", GCO) == null){
+                    ((Element)mainCharacterString.getParent()).setAttribute("nilReason", "missing", GCO);
                 }
             } else if (StringUtils.isEmpty(mainCharacterString.getText())) {
-                ((Element)mainCharacterString.getParent()).setAttribute("nilReason", "missing", ISO19115_3Namespaces.GCO);
+                ((Element)mainCharacterString.getParent()).setAttribute("nilReason", "missing", GCO);
             }
         }
 
@@ -258,7 +272,7 @@ public class ISO19115_3SchemaPlugin
 
     @Override
     public Element createBasicTypeCharacterString() {
-        return new Element("CharacterString", ISO19115_3Namespaces.GCO);
+        return new Element("CharacterString", GCO);
     }
 
 
@@ -361,6 +375,7 @@ public class ISO19115_3SchemaPlugin
         }
         return extents;
     }
+
 
     @Override
     public Map<String, Namespace> getCswTypeNames() {

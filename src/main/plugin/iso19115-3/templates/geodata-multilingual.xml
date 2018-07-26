@@ -48,7 +48,7 @@
   <mdb:contact>
     <cit:CI_Responsibility>
       <cit:role>
-        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="anyValidURI">pointOfContact</cit:CI_RoleCode>
+        <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="pointOfContact">pointOfContact</cit:CI_RoleCode>
       </cit:role>
       <cit:party>
         <cit:CI_Organisation>

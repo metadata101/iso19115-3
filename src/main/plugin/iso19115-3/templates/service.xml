@@ -30,7 +30,7 @@
       </lan:language>
       <lan:characterEncoding>
         <lan:MD_CharacterSetCode codeList="codeListLocation#MD_CharacterSetCode"
-          codeListValue="anyValidURI"/>
+          codeListValue=""/>
       </lan:characterEncoding>
     </lan:PT_Locale>
   </mdb:defaultLocale>
@@ -124,7 +124,7 @@
         <mrd:MD_StandardOrderProcess>
          <mrd:fees>
            <gco:CharacterString>aa</gco:CharacterString>
-         </mrd:fees> 
+         </mrd:fees>
         </mrd:MD_StandardOrderProcess>
       </srv:accessProperties>
       <srv:couplingType></srv:couplingType>
