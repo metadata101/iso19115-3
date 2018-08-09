@@ -1,8 +1,5 @@
 package org.fao.geonet.schema.iso19115_3;
-
-<<<<<<< HEAD
 import java.util.*;
-=======
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -10,7 +7,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
->>>>>>> origin/3.4.3
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -25,10 +21,6 @@ import org.jdom.filter.ElementFilter;
 import org.jdom.xpath.XPath;
 
 import static org.fao.geonet.schema.iso19115_3.ISO19115_3Namespaces.*;
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/3.4.3
 /**
  * Created by francois on 6/15/14.
  */
