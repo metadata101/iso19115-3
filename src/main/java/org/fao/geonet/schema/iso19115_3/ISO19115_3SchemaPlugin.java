@@ -1,17 +1,5 @@
 package org.fao.geonet.schema.iso19115_3;
 
-<<<<<<< HEAD
-import java.util.*;
-=======
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
->>>>>>> origin/3.4.3
-
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import org.apache.commons.lang.StringUtils;
@@ -24,11 +12,10 @@ import org.jdom.Namespace;
 import org.jdom.filter.ElementFilter;
 import org.jdom.xpath.XPath;
 
-import static org.fao.geonet.schema.iso19115_3.ISO19115_3Namespaces.*;
-<<<<<<< HEAD
-=======
+import java.util.*;
 
->>>>>>> origin/3.4.3
+import static org.fao.geonet.schema.iso19115_3.ISO19115_3Namespaces.*;
+
 /**
  * Created by francois on 6/15/14.
  */
@@ -49,10 +36,13 @@ public class ISO19115_3SchemaPlugin
         allNamespaces = ImmutableSet.<Namespace>builder()
                 .add(GCO)
                 .add(MDB)
-                .add(ISO19115_3Namespaces.MRC)
-                .add(ISO19115_3Namespaces.MRL)
-                .add(ISO19115_3Namespaces.MRI)
+                .add(GEX)
+                .add(MRC)
+                .add(MRL)
+                .add(LAN)
+                .add(MRI)
                 .add(SRV)
+                .add(XLINK)
                 .build();
 
         allTypenames = ImmutableMap.<String, Namespace>builder()
