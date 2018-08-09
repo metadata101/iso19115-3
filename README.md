@@ -59,7 +59,7 @@ Add the dependency in the web module in web/pom.xml:
 <dependency>
   <groupId>${project.groupId}</groupId>
   <artifactId>schema-iso19115-3</artifactId>
-  <version>${project.version}</version>
+  <version>${gn.schemas.version}</version>
 </dependency>
 ```
 
