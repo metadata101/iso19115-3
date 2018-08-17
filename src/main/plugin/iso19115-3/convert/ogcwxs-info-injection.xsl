@@ -247,6 +247,22 @@
   </xsl:template>
 
   <xsl:template mode="copy"
+                match="mdb:MD_Metadata/mdb:identificationInfo/*/mri:citation/*/cit:date"
+                priority="1999">
+    <xsl:copy-of select="."/>
+
+    <!-- Add dates from ns:AdditionalParameters if any-->
+    <xsl:for-each select="$getCapabilities//ows2:AdditionalParameters/cit:date">
+      <xsl:copy>
+        <xsl:attribute name="gco:nilReason" select="$nilReasonValue"/>
+        <xsl:copy-of select="*"/>
+      </xsl:copy>
+    </xsl:for-each>
+
+  </xsl:template>
+
+
+  <xsl:template mode="copy"
                 match="mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:abstract"
                 priority="1999">
 
@@ -304,6 +320,7 @@
                           */wfs:Service/wfs:ContactInformation|
                           */wms:Service/wms:ContactInformation|
                           */ows:ServiceProvider|
+                          */ows2:ServiceProvider|
                           */owsg:ServiceProvider|
                           */ows11:ServiceProvider)"/>
     <xsl:for-each select="$contacts">
@@ -355,6 +372,8 @@
                            ows:ServiceProvider|
                            ows11:ServiceProvider)"/>
 
+
+
       <xsl:for-each select="$contacts">
         <mri:pointOfContact>
           <xsl:attribute name="gco:nilReason" select="$nilReasonValue"/>
@@ -364,6 +383,13 @@
       </xsl:for-each>
       <xsl:apply-templates mode="copy" select="mri:pointOfContact"/>
 
+      <!-- Add contact from ns:AdditionalParameters if any-->
+      <xsl:for-each select="$getCapabilities//ows2:AdditionalParameters/mri:pointOfContact">
+        <xsl:copy>
+          <xsl:attribute name="gco:nilReason" select="$nilReasonValue"/>
+          <xsl:copy-of select="*"/>
+        </xsl:copy>
+      </xsl:for-each>
 
       <!-- For layers, add spatial representation type for WFS and WCS. -->
       <xsl:if test="$isBuildingDatasetRecord">
@@ -492,6 +518,7 @@
                               wfs:FeatureType[wfs:Name=$Name]/ows:Keywords|
                               wcs:CoverageOfferingBrief[wcs:name=$Name]/wcs:keywords)
                             else $getCapabilities/(*/ows:ServiceIdentification/ows:Keywords|
+                               */ows2:ServiceIdentification/ows2:Keywords|
                                */ows11:ServiceIdentification/ows11:Keywords|
                                */wms:Service/wms:KeywordList|
                                */wfs:Service/wfs:keywords|
@@ -625,6 +652,7 @@
                        wcs:responsibleParty|
                        wms:responsibleParty|
                        ows:ServiceProvider|
+                       ows2:ServiceProvider|
                        owsg:ServiceProvider|
                        ows11:ServiceProvider">
     <cit:CI_Responsibility>
@@ -636,6 +664,7 @@
 
   <xsl:template mode="convert"
                 match="ows:Keywords|
+                       ows2:Keywords|
                        ows11:Keywords|
                        wfs:keywords|
                        KeywordList|
