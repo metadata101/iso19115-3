@@ -53,6 +53,7 @@
                 xmlns:wps1="http://www.opengis.net/wps/1.0.0"
                 xmlns:wps2="http://www.opengis.net/wps/2.0"
                 xmlns:ows="http://www.opengis.net/ows"
+                xmlns:ows2="http://www.opengis.net/ows/2.0"
                 xmlns:owsg="http://www.opengeospatial.net/ows"
                 xmlns:ows11="http://www.opengis.net/ows/1.1"
                 xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0"
@@ -117,6 +118,7 @@
                                   *//wms:Layer[wms:Name=$Name]/wms:Title|
                                   *//Layer[Name=$Name]/Title|
                                   *//wcs:CoverageOfferingBrief[wcs:name=$Name]/wcs:label|
+                                  *//wps2:Process[ows2:Identifier=$Name]/ows2:Title|
                                   *//wfs:FeatureType[wfs:Name=$Name]/wfs:Title)/text()"/>
   <xsl:variable name="ows">
     <xsl:choose>
@@ -253,7 +255,16 @@
                                   *//wms:Layer[wms:Name=$Name]/wms:Abstract|
                                   *//Layer[Name=$Name]/Abstract|
                                   *//wcs:CoverageOfferingBrief[wcs:name=$Name]/wcs:description|
-                                  *//wfs:FeatureType[wfs:Name=$Name]/wfs:Abstract)/text()"/>
+                                  *//wfs:FeatureType[wfs:Name=$Name]/wfs:Abstract|
+                                  wps2:Process[ows2:Identifier=$Name]/ows2:Abstract)/text()
+                                  "/>
+
+
+        <xsl:variable name="processes"
+                      select="$getCapabilities//wps2:Process[ows2:Identifier=$Name]/(wps2:Input|wps2:Output)"/>
+        <xsl:for-each select="$processes">
+          * <xsl:value-of select="concat(local-name(.), ':', ows2:Title, ', ', ows2:Abstract, '(', string-join(wps2:LiteralData/wps2:Format/@mimeType, ', '), ')')"/>
+        </xsl:for-each>
       </gco:CharacterString>
     </xsl:copy>
   </xsl:template>
