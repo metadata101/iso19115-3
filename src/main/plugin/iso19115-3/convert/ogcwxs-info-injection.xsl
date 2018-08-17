@@ -107,6 +107,7 @@
                 select="$getCapabilities/*/name()"/>
   <xsl:variable name="serviceTitle"
                 select="$getCapabilities/(*/ows:ServiceIdentification/ows:Title|
+                       */ows2:ServiceIdentification/ows2:Title|
                        */ows11:ServiceIdentification/ows11:Title|
                        */wfs:Service/wfs:Title|
                        */wms:Service/wms:Title|
@@ -235,6 +236,7 @@
       <gco:CharacterString>
         <xsl:value-of select="$getCapabilities/(*/ows:ServiceIdentification/ows:Abstract|
                          */ows11:ServiceIdentification/ows11:Abstract|
+                         */ows2:ServiceIdentification/ows2:Abstract|
                          */wfs:Service/wfs:Abstract|
                          */wms:Service/wms:Abstract|
                          */Service/Abstract|
@@ -263,7 +265,8 @@
         <xsl:variable name="processes"
                       select="$getCapabilities//wps2:Process[ows2:Identifier=$Name]/(wps2:Input|wps2:Output)"/>
         <xsl:for-each select="$processes">
-          * <xsl:value-of select="concat(local-name(.), ':', ows2:Title, ', ', ows2:Abstract, '(', string-join(wps2:LiteralData/wps2:Format/@mimeType, ', '), ')')"/>
+          * <xsl:value-of select="concat(local-name(.), ':', ows2:Title, ', ', ows2:Abstract, '(', string-join(wps2:LiteralData/wps2:Format/@mimeType, ', '), ')')"/><xsl:text>
+</xsl:text>
         </xsl:for-each>
       </gco:CharacterString>
     </xsl:copy>
