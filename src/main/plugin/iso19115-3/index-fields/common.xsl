@@ -23,6 +23,7 @@
                 xmlns:geonet="http://www.fao.org/geonetwork"
                 xmlns:util="java:org.fao.geonet.util.XslUtil"
                 xmlns:joda="java:org.fao.geonet.domain.ISODate"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:gn-fn-core="http://geonetwork-opensource.org/xsl/functions/core"
                 xmlns:gn-fn-iso19115-3="http://geonetwork-opensource.org/xsl/functions/profiles/iso19115-3"
                 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -411,7 +412,8 @@
         <xsl:if test="count($keywordWithNoThesaurus) > 0">
           'other': [
           <xsl:for-each select="$keywordWithNoThesaurus/(gco:CharacterString|gcx:Anchor)">
-            <xsl:value-of select="concat('''', replace(., '''', '\\'''), '''')"/>
+            {'value': <xsl:value-of select="concat('''', replace(., '''', '\\'''), '''')"/>,
+            'link': '<xsl:value-of select="@xlink:href"/>'}
             <xsl:if test="position() != last()">,</xsl:if>
           </xsl:for-each>
           ]
@@ -420,8 +422,9 @@
         <xsl:for-each-group select="//mri:MD_Keywords[mri:thesaurusName/*/cit:title/*/text() != '']"
                             group-by="mri:thesaurusName/*/cit:title/*/text()">
           '<xsl:value-of select="replace(current-grouping-key(), '''', '\\''')"/>' :[
-          <xsl:for-each select="mri:keyword/(gco:CharacterString|gcx:Anchor)">
-            <xsl:value-of select="concat('''', replace(., '''', '\\'''), '''')"/>
+          <xsl:for-each select="current-group()/mri:keyword/(gco:CharacterString|gcx:Anchor)">
+            {'value': <xsl:value-of select="concat('''', replace(., '''', '\\'''), '''')"/>,
+            'link': '<xsl:value-of select="@xlink:href"/>'}
             <xsl:if test="position() != last()">,</xsl:if>
           </xsl:for-each>
           ]
@@ -1089,7 +1092,7 @@
       <!-- inspire annex cannot be established: leave empty -->
     </xsl:choose>
   </xsl:template>
-  
+
 
   <xsl:template match="*" mode="latLon19115-3">
     <xsl:variable name="format" select="'##.00'"></xsl:variable>
