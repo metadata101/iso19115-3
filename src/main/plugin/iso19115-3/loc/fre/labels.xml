@@ -7628,7 +7628,7 @@ l’IGN (WPS)
       <option value="Integer">Integer</option>
       <option value="Ratio">Ratio</option>
       <option value="Pourcentage">Pourcentage</option>
-      <option value="Mesure(s) (valeur(s) + unité(s))">Mesure(s) (valeur(s) +
+      <option value="Mesure(s) (valeur(s)   unité(s))">Mesure(s) (valeur(s) +
         unité(s))
       </option>
     </helper>
@@ -8869,4 +8869,41 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
     <label>Statut d'un élément de l'inventaire</label>
     <description></description>
   </element>
+  <element name="mmi:MD_MaintenanceFrequencyCode">
+    <label>Fréquence de maintenance</label>
+  </element>
+  <element name="mco:MD_RestrictionCode" context="mco:accessConstraints">
+    <label>Contraintes d'accès</label>
+  </element>
+  <element name="gco:RecordType">
+    <label>Type de document</label>
+  </element>
+  <element name="msr:MD_DimensionNameTypeCode">
+    <label>Nom</label>
+  </element>
+  <element name="mrc:MD_CoverageContentTypeCode">
+    <label>Coverage content</label>
+  </element>
+  <element name="gml:UnitDefinition">
+    <label>Unité</label>
+  </element>
+  <element name="mcc:MD_ScopeCode">
+     <label>Scope code</label>
+     <description>Class of information to which the referencing entity applies
+     </description>
+   </element>
+   <element name="lan:LanguageCode">
+     <label>ISO Language code</label>
+     <description>Language code</description>
+   </element>
+   <element name="cit:CI_RoleCode">
+     <label>Role code</label>
+     <description/>
+   </element>
+   <element name="mcc:MD_SpatialRepresentationTypeCode">
+     <label>Type de représentation spatiale</label>
+   </element>
+   <element name="mcc:MD_ProgressCode">
+     <label>Statut</label>
+   </element>
 </labels>

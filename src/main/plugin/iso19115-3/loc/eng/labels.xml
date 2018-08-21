@@ -1335,6 +1335,11 @@
     <description>Class of information to which the referencing entity applies
     </description>
   </element>
+  <element name="mcc:MD_ScopeCode">
+    <label>Scope code</label>
+    <description>Class of information to which the referencing entity applies
+    </description>
+  </element>
   <element name="code" id="207.0" context="mri:MD_Identifier">
     <label>Code</label>
     <description>Alphanumeric value identifying an instance in the namespace
@@ -5072,6 +5077,10 @@
     <label>Language</label>
     <description>Language code</description>
   </element>
+  <element name="lan:LanguageCode">
+    <label>ISO Language code</label>
+    <description>Language code</description>
+  </element>
   <element name="mri:LanguageCode">
     <label>ISO Language code</label>
     <description>Language code</description>
@@ -5181,6 +5190,16 @@
   <element name="mri:CI_RoleCode">
     <label>Role code</label>
     <description/>
+  </element>
+  <element name="cit:CI_RoleCode">
+    <label>Role code</label>
+    <description/>
+  </element>
+  <element name="mcc:MD_SpatialRepresentationTypeCode">
+    <label>Spatial Representation Type</label>
+  </element>
+  <element name="mcc:MD_ProgressCode">
+    <label>Status</label>
   </element>
   <element name="gco:TM_PeriodDuration">
     <label>Period duration</label>
@@ -5586,5 +5605,23 @@
   <element name="reg:RE_ItemStatus">
     <label>Item status</label>
     <description></description>
+  </element>
+  <element name="mmi:MD_MaintenanceFrequencyCode">
+    <label>Maintenance Frequency</label>
+  </element>
+  <element name="mco:MD_RestrictionCode" context="mco:accessConstraints">
+    <label>Access constraints</label>
+  </element>
+  <element name="gco:RecordType">
+    <label>Record type</label>
+  </element>
+  <element name="msr:MD_DimensionNameTypeCode">
+    <label>Name</label>
+  </element>
+  <element name="mrc:MD_CoverageContentTypeCode">
+    <label>Coverage content</label>
+  </element>
+  <element name="gml:UnitDefinition">
+    <label>Unit definition</label>
   </element>
 </labels>
