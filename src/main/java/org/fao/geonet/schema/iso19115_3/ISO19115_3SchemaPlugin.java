@@ -295,7 +295,9 @@ public class ISO19115_3SchemaPlugin
 
 
                 // Create operation according to service type
-                Element operation = new Element("operationName", SRV);
+                Element operation = new Element("operation", SRV);
+                Element operationMetadata = new Element("SV_OperationMetadata", SRV);
+                Element operationName = new Element("operationName", SRV);
                 Element operationValue = new Element("CharacterString", GCO);
 
                 if (serviceType.startsWith("WMS"))
@@ -304,24 +306,30 @@ public class ISO19115_3SchemaPlugin
                     operationValue.setText("GetFeature");
                 else if (serviceType.startsWith("WCS"))
                     operationValue.setText("GetCoverage");
+                else if (serviceType.startsWith("WPS"))
+                    operationValue.setText("DescribeProcess");
                 else if (serviceType.startsWith("SOS"))
                     operationValue.setText("GetObservation");
-                operation.addContent(operationValue);
+                operationName.addContent(operationValue);
+                operationMetadata.addContent(operationName);
+                operation.addContent(operationMetadata);
+
 
                 // Create identifier (which is the metadata identifier)
-                Element id = new Element("identifier", SRV);
-                Element idValue = new Element("CharacterString", GCO);
-                idValue.setText(uuid);
-                id.addContent(idValue);
+                Element id = new Element("resourceReference", SRV);
+                id.setAttribute("uuidref", uuid);
 
                 // Create scoped name element as defined in CSW 2.0.2 ISO profil
                 // specification to link service metadata to a layer in a service.
-                Element scopedName = new Element("ScopedName", GCO);
-                scopedName.setText(layerName);
+                Element scopedName = new Element("scopedName", SRV);
+                Element scopedNameValue = new Element("ScopedName", GCO);
+                scopedNameValue.setText(layerName);
+                scopedName.addContent(scopedNameValue);
 
-                scr.addContent(operation);
-                scr.addContent(id);
                 scr.addContent(scopedName);
+                scr.addContent(id);
+                // TODO: Add missing DCP here
+//                scr.addContent(operation);
                 coupledResource.addContent(scr);
 
                 // Add coupled resource before coupling type element
