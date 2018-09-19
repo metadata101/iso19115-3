@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
   ~ Copyright (C) 2001-2016 Food and Agriculture Organization of the
   ~ United Nations (FAO-UN), United Nations World Food Programme (WFP)
@@ -274,9 +273,20 @@
                                   *//Layer[Name=$Name]/Abstract|
                                   *//wcs:CoverageOfferingBrief[wcs:name=$Name]/wcs:description|
                                   *//wfs:FeatureType[wfs:Name=$Name]/wfs:Abstract|
-                                  wps2:Process[ows2:Identifier=$Name]/ows2:Abstract)/text()
+                                  *//wps2:Process[ows2:Identifier=$Name]/ows2:Abstract)/text()
                                   "/>
 
+        <xsl:if test="$getCapabilities//wps2:Process[ows2:Identifier=$Name]">
+          <xsl:text>
+
+
+          </xsl:text>
+          Process identifier <xsl:value-of select="$Name"/>.
+          <xsl:text>
+
+
+          </xsl:text>
+        </xsl:if>
 
         <xsl:variable name="processes"
                       select="$getCapabilities//wps2:Process[ows2:Identifier=$Name]/(wps2:Input|wps2:Output)"/>
@@ -292,7 +302,7 @@
 
 
   <xsl:template mode="copy"
-                match="mdb:MD_Metadata/mdb:defaultLocale/*/lan:language/lan:LanguageCode"
+                match="mdb:MD_Metadata/mdb:defaultLocale/*/lan:language"
                 priority="1999">
 
     <xsl:variable name="language"
@@ -300,9 +310,11 @@
 
     <xsl:copy>
       <xsl:attribute name="gco:nilReason" select="$nilReasonValue"/>
-      <xsl:copy-of select="@codeList"/>
-      <xsl:attribute name="codeListValue"
-                     select="if ($language != '') then $language else 'eng'"/>
+      <lan:LanguageCode>
+        <xsl:copy-of select="@codeList"/>
+        <xsl:attribute name="codeListValue"
+                       select="if ($language != '') then $language else 'eng'"/>
+      </lan:LanguageCode>
     </xsl:copy>
   </xsl:template>
 
