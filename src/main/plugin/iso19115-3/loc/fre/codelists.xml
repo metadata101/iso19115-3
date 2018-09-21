@@ -1773,7 +1773,7 @@
 			<description></description>
 		</entry>-->
   </codelist>
-  <codelist name="mri:MD_TopicCategoryCode">
+  <codelist name="mri:MD_TopicCategoryCode" alias="topicCategory">
     <entry>
       <code>farming</code>
       <label>Agriculture</label>

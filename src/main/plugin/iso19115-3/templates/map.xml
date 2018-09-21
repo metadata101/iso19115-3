@@ -37,7 +37,7 @@
    <mdb:defaultLocale>
       <lan:PT_Locale>
          <lan:language>
-            <lan:LanguageCode codeList="codeListLocation#LanguageCode" codeListValue="anyValidURI"/>
+            <lan:LanguageCode codeList="codeListLocation#LanguageCode" codeListValue=""/>
          </lan:language>
          <lan:characterEncoding>
             <lan:MD_CharacterSetCode codeList="codeListLocation#MD_CharacterSetCode"
@@ -56,7 +56,7 @@
    <mdb:contact>
       <cit:CI_Responsibility>
          <cit:role>
-            <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="anyValidURI">pointOfContact</cit:CI_RoleCode>
+            <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="pointOfContact">pointOfContact</cit:CI_RoleCode>
          </cit:role>
          <cit:party>
             <cit:CI_Organisation>
@@ -84,7 +84,7 @@
             <gco:DateTime>2013-04-09T13:28:30</gco:DateTime>
          </cit:date>
          <cit:dateType>
-            <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="anyValidURI">creation</cit:CI_DateTypeCode>
+            <cit:CI_DateTypeCode codeList="codeListLocation#CI_DateTypeCode" codeListValue="creation">creation</cit:CI_DateTypeCode>
          </cit:dateType>
       </cit:CI_Date>
    </mdb:dateInfo>

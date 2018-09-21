@@ -15,7 +15,7 @@ To obtain additional rights of use, visit http://www.opengeospatial.org/legal/ .
 	</annotation>
 	<include schemaLocation="gml.xsd"/>
 	<include schemaLocation="dictionary.xsd"/>
-	<import namespace="http://standards.iso.org/iso/19115/-3/gex/1.0" schemaLocation="http://standards.iso.org/iso/19115/-3/gex/1.0/gex.xsd"/>
+	<import namespace="http://standards.iso.org/iso/19115/-3/gex/1.0" schemaLocation="../../standards.iso.org/19115/-3/gex/1.0/gex.xsd"/>
 	<complexType name="IdentifiedObjectType" abstract="true">
 		<annotation>
 			<documentation>gml:IdentifiedObjectType provides identification properties of a CRS-related object. In gml:DefinitionType, the gml:identifier element shall be the primary name by which this object is identified, encoding the "name" attribute in the UML model.

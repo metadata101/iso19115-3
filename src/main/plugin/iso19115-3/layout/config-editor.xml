@@ -210,6 +210,7 @@
     <name>mri:resourceConstraints</name>
     <name>mdb:spatialRepresentationInfo</name>
     <name>mri:pointOfContact</name>
+    <name>mri:resourceFormat</name>
     <name>mdb:dataQualityInfo</name>
     <name>mdq:report</name>
     <name>mdq:DQ_CompletenessOmission</name>
@@ -347,6 +348,7 @@
   <!-- View configuration -->
   <views>
     <view name="default">
+
       <sidePanel>
         <directive data-gn-onlinesrc-list=""/>
         <directive gn-geo-publisher=""
@@ -388,7 +390,6 @@
       <!-- Elements that should not use the "flat" mode -->
       <flatModeExceptions>
         <for name="mri:descriptiveKeywords"/>
-        <for name="mri:topicCategory"/>
         <for name="mri:pointOfContact"/>
         <for name="mrd:distributor"/>
         <for name="mdb:contact"/>
@@ -1376,6 +1377,7 @@
     </view>
 
     <view name="advanced">
+
       <sidePanel>
         <directive data-gn-onlinesrc-list=""/>
         <directive gn-geo-publisher=""
@@ -1471,6 +1473,7 @@
       </tab>
     </view>
     <view name="xml">
+
       <sidePanel>
         <directive data-gn-onlinesrc-list=""/>
         <directive gn-geo-publisher=""

@@ -9,7 +9,7 @@ This is the ISO19115-3 schema plugin for GeoNetwork 3.1.x or greater version.
 * https://github.com/ISO-TC211/XML/
  
 
-## Description:
+## Description:
 
 This plugin is composed of:
 
@@ -23,7 +23,70 @@ This plugin is composed of:
 * multilingual metadata support
 * validation (XSD and Schematron)
 
-## Metadata rules:
+
+
+
+## Installing the plugin
+
+### GeoNetwork version to use with this plugin
+
+This is an implementation of the latest XSD published by ISO-TC211. 
+It'll not be supported in 2.10.x series so don't plug it into it!
+Use GeoNetwork 3.0.3+ version.
+
+### Adding the plugin to the source code
+
+The best approach is to add the plugin as a submodule into GeoNetwork schema module.
+
+```
+cd schemas
+git submodule add https://github.com/metadata101/iso19115-3.git iso19115-3
+```
+
+Choose the branch corresponding to the GeoNetwork version you are using.
+
+Add the new module to the schema/pom.xml:
+
+```
+  <module>iso19139</module>
+  <module>iso19115-3</module>
+</modules>
+```
+
+Add the dependency in the web module in web/pom.xml:
+
+```
+<dependency>
+  <groupId>${project.groupId}</groupId>
+  <artifactId>schema-iso19115-3</artifactId>
+  <version>${gn.schemas.version}</version>
+</dependency>
+```
+
+Add the module to the webapp in web/pom.xml:
+
+```
+<execution>
+  <id>copy-schemas</id>
+  <phase>process-resources</phase>
+  ...
+  <resource>
+    <directory>${project.basedir}/../schemas/iso19115-3/src/main/plugin</directory>
+    <targetPath>${basedir}/src/main/webapp/WEB-INF/data/config/schema_plugins</targetPath>
+  </resource>
+```
+
+
+Build the application.
+
+
+### Adding the conversion to the import record page
+
+In https://github.com/geonetwork/core-geonetwork/tree/3.2.x/web/src/main/webapp/xsl/conversion/import, add the 19139 to 19115-3 conversion file https://github.com/metadata101/iso19115-3/blob/3.2.x/ISO19139-to-ISO19115-3.xsl.
+
+
+
+## Metadata rules:
 
 ### Metadata identifier
 
@@ -82,7 +145,7 @@ Validation steps are first XSD validation made on the schema, then the schematro
 * INSPIRE rules
 
 
-## CSW requests:
+## CSW requests:
 
 If requesting using output schema http://www.isotc211.org/2005/gmd an ISO19139 record is returned. 
 To retrieve the record in ISO19115-3, use http://standards.iso.org/iso/19115/-3/mdb/1.0 output schema.
@@ -97,83 +160,6 @@ To retrieve the record in ISO19115-3, use http://standards.iso.org/iso/19115/-3/
 </csw:GetRecordById>
 ```
 Note: outputSchema = own will also return the record in ISO19115-3.
-
-
-
-
-## Installing the plugin
-
-### GeoNetwork version to use with this plugin
-
-This is an implementation of the latest XSD published by ISO-TC211. 
-It'll not be supported in 2.10.x series so don't plug it into it!
-Use GeoNetwork 3.0.3+ version.
-
-### Adding the plugin to the source code
-
-The best approach is to add the plugin as a submodule into GeoNetwork schema module.
-
-```
-cd schemas
-git submodule add https://github.com/metadata101/iso19115-3.git iso19115-3
-```
-
-Add the new module to the schema/pom.xml:
-
-```
-  <module>iso19139</module>
-  <module>iso19115-3</module>
-</modules>
-```
-
-Add the dependency in the web module in web/pom.xml:
-
-```
-<dependency>
-  <groupId>${project.groupId}</groupId>
-  <artifactId>schema-iso19115-3</artifactId>
-  <version>${project.version}</version>
-</dependency>
-```
-
-Add the module to the webapp in web/pom.xml:
-
-```
-<execution>
-  <id>copy-schemas</id>
-  <phase>process-resources</phase>
-  ...
-  <resource>
-    <directory>${project.basedir}/../schemas/iso19115-3/src/main/plugin</directory>
-    <targetPath>${basedir}/src/main/webapp/WEB-INF/data/config/schema_plugins</targetPath>
-  </resource>
-```
-
-
-Build the application.
-
-
-### Adding editor configuration
-
-Once the application started, check the plugin is loaded in the admin > standard page. 
-Then in admin > Settings, add to metadata/editor/schemaConfig the editor configuration
-for the schema:
-
-```
-"iso19115-3":{
-  "defaultTab":"default",
-  "displayToolTip":false,
-  "related":{
-    "display":true,
-    "categories":[]},
-  "suggestion":{"display":true},
-  "validation":{"display":true}}
-```
-
-
-### Adding the conversion to the import record page
-
-In https://github.com/geonetwork/core-geonetwork/tree/3.2.x/web/src/main/webapp/xsl/conversion/import, add the 19139 to 19115-3 conversion file https://github.com/metadata101/iso19115-3/blob/3.2.x/ISO19139-to-ISO19115-3.xsl.
 
 
 

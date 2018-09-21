@@ -22,7 +22,7 @@ This gcoBase.xsd schema provides:
 	</xs:annotation>
 	<!-- ================================== Imports ================================== -->
 	<xs:import namespace="http://www.w3.org/1999/xlink"
-		schemaLocation="http://www.w3.org/1999/xlink.xsd"/>
+		schemaLocation="../../../../../others/xlink/xlink.xsd"/>
 
 	<!-- ########################################################################### -->
 	<!-- =========================================================================== -->

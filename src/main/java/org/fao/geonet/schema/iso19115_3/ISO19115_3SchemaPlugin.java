@@ -1,11 +1,5 @@
 package org.fao.geonet.schema.iso19115_3;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import org.apache.commons.lang.StringUtils;
@@ -17,6 +11,10 @@ import org.jdom.JDOMException;
 import org.jdom.Namespace;
 import org.jdom.filter.ElementFilter;
 import org.jdom.xpath.XPath;
+
+import java.util.*;
+
+import static org.fao.geonet.schema.iso19115_3.ISO19115_3Namespaces.*;
 
 /**
  * Created by francois on 6/15/14.
@@ -36,12 +34,15 @@ public class ISO19115_3SchemaPlugin
 
     static {
         allNamespaces = ImmutableSet.<Namespace>builder()
-                .add(ISO19115_3Namespaces.GCO)
-                .add(ISO19115_3Namespaces.MDB)
-                .add(ISO19115_3Namespaces.MRC)
-                .add(ISO19115_3Namespaces.MRL)
-                .add(ISO19115_3Namespaces.MRI)
-                .add(ISO19115_3Namespaces.SRV)
+                .add(GCO)
+                .add(MDB)
+                .add(GEX)
+                .add(MRC)
+                .add(MRL)
+                .add(LAN)
+                .add(MRI)
+                .add(SRV)
+                .add(XLINK)
                 .build();
 
         allTypenames = ImmutableMap.<String, Namespace>builder()
@@ -103,7 +104,7 @@ public class ISO19115_3SchemaPlugin
 
     @Override
     public Set<String> getAssociatedParentUUIDs(Element metadata) {
-        ElementFilter elementFilter = new ElementFilter("parentMetadata", ISO19115_3Namespaces.MDB);
+        ElementFilter elementFilter = new ElementFilter("parentMetadata", MDB);
         return Xml.filterElementValues(
                 metadata,
                 elementFilter,
@@ -112,7 +113,7 @@ public class ISO19115_3SchemaPlugin
     }
 
     public Set<String> getAssociatedDatasetUUIDs (Element metadata) {
-        return getAttributeUuidrefValues(metadata, "operatesOn", ISO19115_3Namespaces.SRV);
+        return getAttributeUuidrefValues(metadata, "operatesOn", SRV);
     };
     public Set<String> getAssociatedFeatureCatalogueUUIDs (Element metadata) {
         // Feature catalog may also be embedded into the document
@@ -206,10 +207,10 @@ public class ISO19115_3SchemaPlugin
 
         for(Element e : nodesWithStrings) {
             // Retrieve or create the main language element
-            Element mainCharacterString = ((Element)e.getParent()).getChild("CharacterString", ISO19115_3Namespaces.GCO);
+            Element mainCharacterString = ((Element)e.getParent()).getChild("CharacterString", GCO);
             if (mainCharacterString == null) {
                 // create it if it does not exist
-                mainCharacterString = new Element("CharacterString", ISO19115_3Namespaces.GCO);
+                mainCharacterString = new Element("CharacterString", GCO);
                 ((Element)e.getParent()).addContent(0, mainCharacterString);
             }
 
@@ -225,11 +226,11 @@ public class ISO19115_3SchemaPlugin
 
                 if (StringUtils.isNotEmpty(mainLangString)) {
                     mainCharacterString.setText(mainLangString);
-                } else if (mainCharacterString.getAttribute("nilReason", ISO19115_3Namespaces.GCO) == null){
-                    ((Element)mainCharacterString.getParent()).setAttribute("nilReason", "missing", ISO19115_3Namespaces.GCO);
+                } else if (mainCharacterString.getAttribute("nilReason", GCO) == null){
+                    ((Element)mainCharacterString.getParent()).setAttribute("nilReason", "missing", GCO);
                 }
             } else if (StringUtils.isEmpty(mainCharacterString.getText())) {
-                ((Element)mainCharacterString.getParent()).setAttribute("nilReason", "missing", ISO19115_3Namespaces.GCO);
+                ((Element)mainCharacterString.getParent()).setAttribute("nilReason", "missing", GCO);
             }
         }
 
@@ -261,8 +262,118 @@ public class ISO19115_3SchemaPlugin
 
     @Override
     public Element createBasicTypeCharacterString() {
-        return new Element("CharacterString", ISO19115_3Namespaces.GCO);
+        return new Element("CharacterString", GCO);
     }
+
+
+    @Override
+    public Element addOperatesOn(Element serviceRecord,
+                                 Map<String, String> layers,
+                                 String serviceType,
+                                 String baseUrl) {
+
+        Element root = serviceRecord
+            .getChild("identificationInfo", MDB)
+            .getChild("SV_ServiceIdentification", SRV);
+
+        if (root != null) {
+
+            // Coupling type MUST be present as it is the insertion point
+            // for coupledResource
+            Element couplingType = root.getChild("couplingType", SRV);
+            int coupledResourceIdx = root.indexOf(couplingType);
+
+            layers.keySet().forEach(uuid -> {
+                String layerName = layers.get(uuid);
+
+                // Create coupled resources elements to register all layername
+                // in service metadata. This information could be used to add
+                // interactive map button when viewing service metadata.
+                Element coupledResource = new Element("coupledResource", SRV);
+                coupledResource.setAttribute("nilReason", "synchronizedFromOGC", GCO);
+                Element scr = new Element("SV_CoupledResource", SRV);
+
+
+                // Create operation according to service type
+                Element operation = new Element("operation", SRV);
+                Element operationMetadata = new Element("SV_OperationMetadata", SRV);
+                Element operationName = new Element("operationName", SRV);
+                Element operationValue = new Element("CharacterString", GCO);
+
+                if (serviceType.startsWith("WMS"))
+                    operationValue.setText("GetMap");
+                else if (serviceType.startsWith("WFS"))
+                    operationValue.setText("GetFeature");
+                else if (serviceType.startsWith("WCS"))
+                    operationValue.setText("GetCoverage");
+                else if (serviceType.startsWith("WPS"))
+                    operationValue.setText("DescribeProcess");
+                else if (serviceType.startsWith("SOS"))
+                    operationValue.setText("GetObservation");
+                operationName.addContent(operationValue);
+                operationMetadata.addContent(operationName);
+                operation.addContent(operationMetadata);
+
+
+                // Create identifier (which is the metadata identifier)
+                Element id = new Element("resourceReference", SRV);
+                id.setAttribute("uuidref", uuid);
+
+                // Create scoped name element as defined in CSW 2.0.2 ISO profil
+                // specification to link service metadata to a layer in a service.
+                Element scopedName = new Element("scopedName", SRV);
+                Element scopedNameValue = new Element("ScopedName", GCO);
+                scopedNameValue.setText(layerName);
+                scopedName.addContent(scopedNameValue);
+
+                scr.addContent(scopedName);
+                scr.addContent(id);
+                // TODO: Add missing DCP here
+//                scr.addContent(operation);
+                coupledResource.addContent(scr);
+
+                // Add coupled resource before coupling type element
+                if (coupledResourceIdx != -1) {
+                    root.addContent(coupledResourceIdx, coupledResource);
+                }
+
+
+                // Add operatesOn element at the end of identification section.
+                Element op = new Element("operatesOn", SRV);
+                op.setAttribute("nilReason", "synchronizedFromOGC", GCO);
+                op.setAttribute("uuidref", uuid);
+
+                String hRefLink = baseUrl + "api/records/" + uuid + "/formatters/xml";
+                op.setAttribute("href", hRefLink, XLINK);
+
+                root.addContent(op);
+            });
+        }
+
+        return serviceRecord;
+    }
+
+    @Override
+    public List<Extent> getExtents(Element record) {
+        List<Extent> extents = new ArrayList<>();
+
+        ElementFilter bboxFinder = new ElementFilter("EX_GeographicBoundingBox", GEX);
+        @SuppressWarnings("unchecked")
+        Iterator<Element> bboxes = record.getDescendants(bboxFinder);
+        while (bboxes.hasNext()) {
+            Element box = bboxes.next();
+            try {
+                extents.add(new Extent(
+                    Double.valueOf(box.getChild("westBoundLongitude", GEX).getChild("Decimal", GCO).getText()),
+                    Double.valueOf(box.getChild("eastBoundLongitude", GEX).getChild("Decimal", GCO).getText()),
+                    Double.valueOf(box.getChild("southBoundLatitude", GEX).getChild("Decimal", GCO).getText()),
+                    Double.valueOf(box.getChild("northBoundLatitude", GEX).getChild("Decimal", GCO).getText())
+                ));
+            } catch (NullPointerException e) {}
+        }
+        return extents;
+    }
+
 
     @Override
     public Map<String, Namespace> getCswTypeNames() {
