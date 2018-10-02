@@ -795,14 +795,16 @@
           <linkProtocol>
             <xsl:value-of select="cit:protocol/gco:CharacterString/text()"/>
           </linkProtocol>
-          <link>
-            <xsl:value-of select="cit:protocol/*/text()"/>
-            <xsl:text>|</xsl:text>
+          <xsl:element name="linkUrlProtocol{replace($protocol, '[^a-zA-Z0-9]', '')}">
             <xsl:value-of select="cit:linkage/*/text()"/>
-            <xsl:text>|</xsl:text>
-            <xsl:value-of select="normalize-space(cit:name/*/text())"/>
-            <xsl:text>|</xsl:text>
-            <xsl:value-of select="normalize-space(cit:description/*/text())"/>
+          </xsl:element>
+          <link type="object">{
+            "protocol":"<xsl:value-of select="cit:protocol/*/text()"/>",
+            "url":"<xsl:value-of select="cit:linkage/*/text()"/>",
+            "name":"<xsl:value-of select="normalize-space(cit:name/*/text())"/>",
+            "description":"<xsl:value-of select="replace(cit:description/*/text(),
+                                              $doubleQuote, $escapedDoubleQuote)"/>"
+            }
           </link>
 
           <xsl:if test="$operatesOnSetByProtocol and normalize-space($protocol) != ''">
