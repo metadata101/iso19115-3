@@ -3,13 +3,14 @@
   xmlns:gn="http://www.fao.org/geonetwork"
   xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
   xmlns:gmd="http://www.isotc211.org/2005/gmd"
+  xmlns:srv="http://www.isotc211.org/2005/srv"
   xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
   exclude-result-prefixes="#all">
-  
+
   <xsl:import href="../../convert/ISO19139/toISO19139.xsl"/>
-  
+
   <xsl:param name="displayInfo"/>
-  
+
   <xsl:template match="/">
     <xsl:for-each select="/*">
       <xsl:variable name="info" select="gn:info"/>

@@ -890,7 +890,7 @@
           or ancestor-or-self::mri:MD_SpatialRepresentationTypeCode">
           <xsl:text>gmd</xsl:text>
         </xsl:when>
-        <xsl:when test="ancestor-or-self::mri:SV_ServiceIdentification">
+        <xsl:when test="ancestor-or-self::srv2:SV_ServiceIdentification">
           <xsl:text>srv</xsl:text>
         </xsl:when>
         <xsl:when test="ancestor-or-self::mrc:MD_CoverageDescription or ancestor-or-self::mrc:MI_CoverageDescription">
