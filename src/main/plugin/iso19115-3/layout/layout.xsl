@@ -477,7 +477,7 @@
       <xsl:with-param name="value" select="$topicCategories"/>
       <xsl:with-param name="cls" select="local-name()"/>
       <xsl:with-param name="xpath" select="$xpath"/>
-      <xsl:with-param name="directive" select="'gn-topiccategory-selector'"/>
+      <xsl:with-param name="type" select="'data-gn-topiccategory-selector-div'"/>
       <xsl:with-param name="editInfo" select="gn:element"/>
       <xsl:with-param name="parentEditInfo" select="../gn:element"/>
     </xsl:call-template>
