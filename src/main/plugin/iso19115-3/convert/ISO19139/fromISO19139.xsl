@@ -168,13 +168,10 @@
   <xsl:template name="onlineSourceDispatcher">
     <xsl:param name="type" as="xs:string"/>
 
-    <xsl:message>Checking type <xsl:copy-of select="$type"/></xsl:message>
     <xsl:for-each select="(.|ancestor::gmd:MD_Metadata)/descendant::gmd:CI_OnlineResource[
                     gmd:function/*/@codeListValue = $onlineFunctionMap/entry[@key = $type]/@value
                     ]">
-      <xsl:message>Found a match <xsl:copy-of select="."/></xsl:message>
-      <!-- Convert onlineSource to a citation in the corresponding element. -->
-
+    <!-- Convert onlineSource to a citation in the corresponding element. -->
     <xsl:choose>
       <xsl:when test="$type = 'portrayalCatalogueCitation'">
         <mdb:portrayalCatalogueInfo>
