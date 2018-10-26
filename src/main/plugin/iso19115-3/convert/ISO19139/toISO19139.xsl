@@ -80,11 +80,11 @@
     <xsl:namespace name="xlink" select="'http://www.w3.org/1999/xlink'"/>
   </xsl:template>
 
-  <xsl:template match="/">
+  <xsl:template match="/" name="toISO19139">
     <!--
     root element (MD_Metadata or MI_Metadata)
     -->
-    <xsl:for-each select="/*">
+    <xsl:for-each select="*">
       <xsl:variable name="nameSpacePrefix">
         <xsl:call-template name="getNamespacePrefix"/>
       </xsl:variable>
