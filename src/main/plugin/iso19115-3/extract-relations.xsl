@@ -67,7 +67,7 @@
           <id><xsl:value-of select="cit:onlineResource/cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/></id>
           <url>
             <xsl:apply-templates mode="get-iso19115-3-localized-string"
-                                 select="cit:onlineResource/cit:CI_OnlineResource/cit:linkage"/>
+                                 select="cit:onlineResource/*/cit:linkage"/>
           </url>
           <title>
             <xsl:apply-templates mode="get-iso19115-3-localized-string"
@@ -86,7 +86,7 @@
           <id><xsl:value-of select="cit:onlineResource/cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/></id>
           <url>
             <xsl:apply-templates mode="get-iso19115-3-localized-string"
-                                 select="cit:onlineResource/cit:CI_OnlineResource/cit:linkage"/>
+                                 select="cit:onlineResource/*/cit:linkage"/>
           </url>
           <title>
              <xsl:apply-templates mode="get-iso19115-3-localized-string"
@@ -125,7 +125,10 @@
                             ]/*[cit:onlineResource/*/cit:linkage/gco:CharacterString != '']">
         <item>
           <id><xsl:value-of select="cit:onlineResource/cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/></id>
-          <url><xsl:value-of select="cit:onlineResource/cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/></url>
+          <url>
+            <xsl:apply-templates mode="get-iso19115-3-localized-string"
+                                 select="cit:onlineResource/*/cit:linkage"/>
+          </url>
           <title>
             <xsl:apply-templates mode="get-iso19115-3-localized-string"
                                select="cit:title"/>
