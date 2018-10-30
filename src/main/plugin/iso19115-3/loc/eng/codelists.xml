@@ -213,6 +213,11 @@
       <description>Complete metadata provided</description>
     </entry>
     <entry>
+      <code>doi</code>
+      <label>Digital Object Identifier (DOI)</label>
+      <description></description>
+    </entry>
+    <entry>
       <code>browseGraphic</code>
       <label>Browse Graphic</label>
       <description>Browse Graphic provided</description>

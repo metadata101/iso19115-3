@@ -184,6 +184,11 @@
       <description>Métadonnées fournies en intégralité</description>
     </entry>
     <entry>
+      <code>doi</code>
+      <label>Digital Object Identifier (DOI)</label>
+      <description></description>
+    </entry>
+    <entry>
       <code>browseGraphic</code>
       <label>Graphique de consultation</label>
       <description>Graphique de consultation fourni</description>
