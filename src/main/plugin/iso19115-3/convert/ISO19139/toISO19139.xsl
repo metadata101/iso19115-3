@@ -80,11 +80,11 @@
     <xsl:namespace name="xlink" select="'http://www.w3.org/1999/xlink'"/>
   </xsl:template>
 
-  <xsl:template match="/">
+  <xsl:template match="/" name="toISO19139">
     <!--
     root element (MD_Metadata or MI_Metadata)
     -->
-    <xsl:for-each select="/*">
+    <xsl:for-each select="*">
       <xsl:variable name="nameSpacePrefix">
         <xsl:call-template name="getNamespacePrefix"/>
       </xsl:variable>
@@ -402,9 +402,15 @@
   </xsl:template>
 
   <xsl:template match="mri:MD_AssociatedResource/mri:name">
-    <gmd:aggregateDataSetName>
+    <gmd:aggregateDataSetIdentifier>
+      <gmd:MD_Identifier>
+        <xsl:apply-templates select="cit:CI_Citation/*/mcc:MD_Identifier/*"/>
+      </gmd:MD_Identifier>
+    </gmd:aggregateDataSetIdentifier>
+
+    <!--<gmd:aggregateDataSetName>
       <xsl:apply-templates select="*"/>
-    </gmd:aggregateDataSetName>
+    </gmd:aggregateDataSetName>-->
   </xsl:template>
 
   <xsl:template match="srv2:SV_ServiceIdentification/mri:extent" priority="2">
@@ -479,6 +485,25 @@
     </gmd:dataQualityInfo>
   </xsl:template>
 
+  <xsl:template match="mdb:resourceLineage[not(../*/mdb:dataQualityInfo)]">
+    <gmd:dataQualityInfo>
+      <gmd:DQ_DataQuality>
+        <xsl:for-each select="/*/mdb:resourceLineage">
+          <gmd:lineage>
+            <gmd:LI_Lineage>
+              <xsl:call-template name="writeCharacterStringElement">
+                <xsl:with-param name="elementName" select="'gmd:statement'"/>
+                <xsl:with-param name="nodeWithStringToWrite" select="mrl:LI_Lineage/mrl:statement"/>
+              </xsl:call-template>
+
+              <xsl:apply-templates select="mrl:LI_Lineage/mrl:processStep"/>
+              <xsl:apply-templates select="mrl:LI_Lineage/mrl:source"/>
+            </gmd:LI_Lineage>
+          </gmd:lineage>
+        </xsl:for-each>
+      </gmd:DQ_DataQuality>
+    </gmd:dataQualityInfo>
+  </xsl:template>
 
   <xsl:template match="mmi:maintenanceDate">
     <gmd:dateOfNextUpdate>
@@ -686,11 +711,18 @@
     </srv:DCP>
   </xsl:template>
 
-  <xsl:template match="mcc:MD_Identifier">
+  <xsl:template match="mcc:MD_Identifier[mcc:codeSpace]">
     <gmd:RS_Identifier>
       <xsl:apply-templates select="@*"/>
       <xsl:apply-templates/>
     </gmd:RS_Identifier>
+  </xsl:template>
+
+  <xsl:template match="mcc:MD_Identifier[not(mcc:codeSpace)]">
+    <gmd:MD_Identifier>
+      <xsl:apply-templates select="@*"/>
+      <xsl:apply-templates/>
+    </gmd:MD_Identifier>
   </xsl:template>
 
   <xsl:template match="*">
@@ -924,7 +956,6 @@
                        mdb:metadataProfile|
                        mdb:alternativeMetadataReference|
                        mdb:metadataLinkage|
-                       mdb:resourceLineage|
                        mrl:LI_Source/mrl:scope|
                        mrl:sourceSpatialResolution|
                        mdq:derivedElement" priority="2"/>
