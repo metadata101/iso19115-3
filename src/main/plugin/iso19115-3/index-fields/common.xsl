@@ -317,7 +317,7 @@
           <xsl:copy-of select="gn-fn-iso19115-3:index-field('geoDescCode', ., $langId)"/>
         </xsl:for-each>
 
-        <xsl:for-each select="mri:temporalElement/gex:EX_TemporalExtent/gex:extent">
+        <xsl:for-each select="gex:temporalElement/gex:EX_TemporalExtent/gex:extent">
           <xsl:for-each select="gml:TimePeriod">
             <Field name="tempExtentBegin"
                    string="{lower-case(gn-fn-iso19115-3:formatDateTime(gml:beginPosition|gml:begin/gml:TimeInstant/gml:timePosition))}"
