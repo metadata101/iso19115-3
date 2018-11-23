@@ -246,9 +246,9 @@
   </xsl:template>
 
   <xsl:template mode="copy"
-                match="mdb:MD_Metadata/mdb:identificationInfo/*/mri:citation/*/cit:date"
+                match="mdb:MD_Metadata/mdb:identificationInfo/*/mri:citation/*/cit:date[1]"
                 priority="1999">
-    <xsl:copy-of select="."/>
+    <xsl:copy-of select=".[@gco:nilReason != $nilReasonValue]"/>
 
     <!-- Add dates from ns:AdditionalParameters if any-->
     <xsl:for-each select="$getCapabilities//ows2:AdditionalParameters/cit:date">
@@ -393,7 +393,7 @@
                                select="."/>
         </mri:pointOfContact>
       </xsl:for-each>
-      <xsl:apply-templates mode="copy" select="mri:pointOfContact"/>
+      <xsl:apply-templates mode="copy" select="mri:pointOfContact[@gco:nilReason != $nilReasonValue]"/>
 
       <!-- Add contact from ns:AdditionalParameters if any-->
       <xsl:for-each select="$getCapabilities//ows2:AdditionalParameters/mri:pointOfContact">
