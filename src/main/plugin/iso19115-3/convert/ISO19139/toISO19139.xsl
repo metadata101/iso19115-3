@@ -468,7 +468,7 @@
         </xsl:for-each>
 
 
-        <xsl:for-each select="/*/mdb:resourceLineage">
+        <xsl:for-each select="../mdb:resourceLineage">
           <gmd:lineage>
             <gmd:LI_Lineage>
               <xsl:call-template name="writeCharacterStringElement">
@@ -485,7 +485,9 @@
     </gmd:dataQualityInfo>
   </xsl:template>
 
-  <xsl:template match="mdb:resourceLineage[not(../*/mdb:dataQualityInfo)]">
+  <xsl:template match="mdb:resourceLineage[../mdb:dataQualityInfo]"/>
+
+  <xsl:template match="mdb:resourceLineage[not(../mdb:dataQualityInfo)]">
     <gmd:dataQualityInfo>
       <gmd:DQ_DataQuality>
         <xsl:for-each select="/*/mdb:resourceLineage">
@@ -711,6 +713,14 @@
     </srv:DCP>
   </xsl:template>
 
+  <xsl:template match="mdb:referenceSystemInfo/*/mrs:referenceSystemIdentifier/mcc:MD_Identifier"
+                priority="2">
+    <gmd:RS_Identifier>
+      <xsl:apply-templates select="@*"/>
+      <xsl:apply-templates/>
+    </gmd:RS_Identifier>
+  </xsl:template>
+
   <xsl:template match="mcc:MD_Identifier[mcc:codeSpace]">
     <gmd:RS_Identifier>
       <xsl:apply-templates select="@*"/>
@@ -763,7 +773,7 @@
     <xsl:param name="codeListName"/>
     <xsl:param name="codeListValue"/>
     <!-- The correct codeList Location goes here -->
-    <xsl:variable name="codeListLocation" select="'codeListLocation'"/>
+    <xsl:variable name="codeListLocation" select="'https://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml'"/>
     <xsl:if test="$codeListValue">
       <xsl:element name="{$elementName}">
         <xsl:element name="{$codeListName}">

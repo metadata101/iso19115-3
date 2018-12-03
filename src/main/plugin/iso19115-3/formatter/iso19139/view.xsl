@@ -73,7 +73,7 @@
               indent="yes"/>
 
   <xsl:variable name="metadata"
-                select="//gmd:MD_Metadata"/>
+                select="//mdb:MD_Metadata"/>
 
   <xsl:template match="/" priority="99">
     <xsl:for-each select="$metadata">

@@ -65,7 +65,7 @@
         <xsl:param name="codeListName"/>
         <xsl:param name="codeListValue"/>
         <!-- The correct codeList Location goes here -->
-        <xsl:variable name="codeListLocation" select="'codeListLocation'"/>
+        <xsl:variable name="codeListLocation" select="'https://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml'"/>
 
         <xsl:for-each select="$codeListValue">
           <xsl:if test="string-length(.) > 0">
