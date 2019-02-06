@@ -9,6 +9,7 @@ import org.fao.geonet.utils.Xml;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.Namespace;
+import org.jdom.Text;
 import org.jdom.filter.ElementFilter;
 import org.jdom.xpath.XPath;
 
@@ -62,8 +63,7 @@ public class ISO19115_3SchemaPlugin
 
     public Set<AssociatedResource> getAssociatedResourcesUUIDs(Element metadata) {
         String XPATH_FOR_AGGRGATIONINFO = "*//mri:associatedResource/*" +
-                "[mri:metadataReference/@uuidref " +
-                "and mri:initiativeType/mri:DS_InitiativeTypeCode/@codeListValue != '']";
+                "[mri:associationType/mri:DS_AssociationTypeCode/@codeListValue != '']";
         Set<AssociatedResource> listOfResources = new HashSet<AssociatedResource>();
         List<?> sibs = null;
         try {
@@ -77,10 +77,29 @@ public class ISO19115_3SchemaPlugin
             for (Object o : sibs) {
                 if (o instanceof Element) {
                     Element sib = (Element) o;
-                    Element agId = (Element) sib.getChild("metadataReference", ISO19115_3Namespaces.MRI);
+                    Element metadataReference = (Element) sib.getChild("metadataReference", ISO19115_3Namespaces.MRI);
                     // TODO: Reference may be defined in Citation identifier
-                    String sibUuid = agId.getAttributeValue("uuidref");
-
+                    String sibUuid = "";
+                    if (metadataReference != null) {
+                        sibUuid = metadataReference.getAttributeValue("uuidref");
+                    } else {
+                        String citationIdentifierXpath = "mri:name/*/cit:identifier/*/mcc:code/*/text()";
+                        List<?> citationIdentifierList = null;
+                        try {
+                            citationIdentifierList = Xml
+                                .selectNodes(
+                                    sib,
+                                    citationIdentifierXpath,
+                                    allNamespaces.asList());
+                            for (Object code : citationIdentifierList) {
+                                if (code instanceof Text) {
+                                    sibUuid = ((Text) code).getTextNormalize();
+                                }
+                            }
+                        } catch (JDOMException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     String associationType = sib.getChild("associationType", ISO19115_3Namespaces.MRI)
                         .getChild("DS_AssociationTypeCode", ISO19115_3Namespaces.MRI)
                         .getAttributeValue("codeListValue");
