@@ -90,7 +90,7 @@
       </xsl:variable>
       <xsl:element name="{concat($nameSpacePrefix,':',local-name(.))}">
         <xsl:call-template name="add-namespaces"/>
-
+        <xsl:attribute name="xsi:schemaLocation">http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/gmx http://www.isotc211.org/2005/gmx/gmx.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd</xsl:attribute>
         <xsl:apply-templates select="mdb:metadataIdentifier"/>
         <xsl:apply-templates select="mdb:defaultLocale"/>
         <xsl:apply-templates select="mdb:parentMetadata"/>
@@ -896,6 +896,9 @@
         <!--
           Changed 2013-03-06 to fix PresentationFormCode <xsl:when test="parent::gmd:CI_Citation or self::gmd:CI_Citation">-->
         <xsl:when test="ancestor-or-self::cit:CI_Citation">
+          <xsl:text>gmd</xsl:text>
+        </xsl:when>
+        <xsl:when test="ancestor-or-self::mri:citation">
           <xsl:text>gmd</xsl:text>
         </xsl:when>
         <xsl:when test="ancestor-or-self::mpc:MD_PortrayalCatalogueReference">
