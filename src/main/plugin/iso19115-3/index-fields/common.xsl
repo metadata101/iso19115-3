@@ -197,14 +197,19 @@
   </xsl:template>
 
 
-  <!-- Format a date. If null, unknown, current, now return
-  the current date time.
+
+  <!-- Format a date.
+  If null, unknown return empty,
+  if current, now return the current date time.
   -->
   <xsl:function name="gn-fn-iso19115-3:formatDateTime" as="xs:string">
-    <xsl:param name="value" as="xs:string"/>
+    <xsl:param name="value" as="xs:string?"/>
 
     <xsl:choose>
-      <xsl:when test="$value='' or lower-case($value)='unknown' or lower-case($value)='current' or lower-case($value)='now'">
+      <xsl:when test="$value='' or lower-case($value)='unknown'">
+        <xsl:value-of select="''"/>
+      </xsl:when>
+      <xsl:when test="lower-case($value)='current' or lower-case($value)='now'">
         <xsl:value-of select="format-dateTime(current-dateTime(),$df)"/>
       </xsl:when>
       <xsl:otherwise>
@@ -212,7 +217,7 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-
+  
 
   <xsl:template name="CommonFieldsFactory">
     <xsl:param name="lang" select="$documentMainLanguage"/>
@@ -319,14 +324,17 @@
 
         <xsl:for-each select="gex:temporalElement/gex:EX_TemporalExtent/gex:extent">
           <xsl:for-each select="gml:TimePeriod">
-            <Field name="tempExtentBegin"
-                   string="{lower-case(gn-fn-iso19115-3:formatDateTime(gml:beginPosition|gml:begin/gml:TimeInstant/gml:timePosition))}"
-                   store="true" index="true"/>
-            <Field name="tempExtentEnd"
-                   string="{lower-case(gn-fn-iso19115-3:formatDateTime(gml:endPosition|gml:end/gml:TimeInstant/gml:timePosition))}"
-                   store="true" index="true"/>
+            <xsl:for-each select="gml:beginPosition[. != '']|gml:begin/gml:TimeInstant/gml:timePosition[. != '']">
+              <Field name="tempExtentBegin"
+                     string="{lower-case(gn-fn-iso19115-3:formatDateTime(.))}"
+                     store="true" index="true"/>
+            </xsl:for-each>
+            <xsl:for-each select="gml:endPosition[. != '']|gml:end/gml:TimeInstant/gml:timePosition[. != '']">
+              <Field name="tempExtentEnd"
+                     string="{lower-case(gn-fn-iso19115-3:formatDateTime(.))}"
+                     store="true" index="true"/>
+            </xsl:for-each>
           </xsl:for-each>
-
         </xsl:for-each>
       </xsl:for-each>
 

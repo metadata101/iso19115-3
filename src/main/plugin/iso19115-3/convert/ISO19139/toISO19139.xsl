@@ -312,36 +312,35 @@
   <xsl:template match="mdb:distributionInfo">
     <gmd:distributionInfo>
       <xsl:apply-templates select="@*"/>
-      <xsl:apply-templates select="*"/>
-    </gmd:distributionInfo>
+      <gmd:MD_Distribution>
+        <xsl:apply-templates select="mrd:MD_Distribution/@*"/>
+        <xsl:apply-templates select="mrd:MD_Distribution/*"/>
 
-    <!-- Add a new distribution section after existing one with
-    documents referenced in other sections of the record. -->
-    <xsl:if test="$mergeAllOnlineResourcesInDistribution">
-      <!-- Define custom function depending on the section of origin.
-      Values are an extension of ISO19139 to be able to make distinction
-      between documents. -->
-      <xsl:variable name="functionMap">
-        <entry key="portrayalCatalogueCitation" value="information.portrayal"/>
-        <entry key="additionalDocumentation" value="information.lineage"/>
-        <entry key="specification" value="information.qualitySpecification"/>
-        <entry key="reportReference" value="information.qualityReport"/>
-        <entry key="featureCatalogueCitation" value="information.content"/>
-      </xsl:variable>
+        <!-- Add a new distribution section after existing one with
+        documents referenced in other sections of the record. -->
+        <xsl:if test="$mergeAllOnlineResourcesInDistribution and position() = 1">
+          <!-- Define custom function depending on the section of origin.
+          Values are an extension of ISO19139 to be able to make distinction
+          between documents. -->
+          <xsl:variable name="functionMap">
+            <entry key="portrayalCatalogueCitation" value="information.portrayal"/>
+            <entry key="additionalDocumentation" value="information.lineage"/>
+            <entry key="specification" value="information.qualitySpecification"/>
+            <entry key="reportReference" value="information.qualityReport"/>
+            <entry key="featureCatalogueCitation" value="information.content"/>
+          </xsl:variable>
 
-      <xsl:variable name="hasRelation"
-                    select="count(ancestor::mdb:MD_Metadata/descendant::*[
+          <xsl:variable name="hasRelation"
+                        select="count(ancestor::mdb:MD_Metadata/descendant::*[
                               local-name() = $functionMap/entry/@key]/
                                 *[cit:onlineResource/*/cit:linkage/
                                   gco2:CharacterString != '']) > 0"/>
-      <xsl:if test="$hasRelation">
-        <gmd:distributionInfo>
-          <gmd:MD_Distribution>
+          <xsl:if test="$hasRelation">
             <gmd:transferOptions>
               <gmd:MD_DigitalTransferOptions>
                 <xsl:for-each select="ancestor::mdb:MD_Metadata/descendant::*[
-                    local-name() = $functionMap/entry/@key
-                    ]/*[cit:onlineResource/*/cit:linkage/gco2:CharacterString != '']">
+                local-name() = $functionMap/entry/@key
+                ]/*[cit:onlineResource/*/cit:linkage/gco2:CharacterString != '']">
                   <gmd:onLine>
                     <gmd:CI_OnlineResource>
                       <gmd:linkage>
@@ -380,11 +379,14 @@
                 </xsl:for-each>
               </gmd:MD_DigitalTransferOptions>
             </gmd:transferOptions>
-          </gmd:MD_Distribution>
-        </gmd:distributionInfo>
-      </xsl:if>
-    </xsl:if>
+          </xsl:if>
+        </xsl:if>
+
+      </gmd:MD_Distribution>
+    </gmd:distributionInfo>
+
   </xsl:template>
+
 
   <xsl:template match="mdb:contentInfo">
     <gmd:contentInfo>
