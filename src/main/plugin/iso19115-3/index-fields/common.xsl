@@ -56,7 +56,7 @@
 
   <!-- Load INSPIRE theme thesaurus if available -->
   <xsl:variable name="inspire-thesaurus"
-                select="document(concat('file:///', $thesauriDir, '/external/thesauri/theme/inspire-theme.rdf'))"/>
+                select="document(concat('file:///', $thesauriDir, '/external/thesauri/theme/httpinspireeceuropaeutheme-theme.rdf'))"/>
 
   <xsl:variable name="inspire-theme"
                 select="if ($inspire-thesaurus//skos:Concept)
