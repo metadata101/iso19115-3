@@ -417,16 +417,6 @@
                       select="//mri:MD_Keywords[
                                 not(mri:thesaurusName) or mri:thesaurusName/*/cit:title/*/text() = '']/
                                   mri:keyword[*/text() != '']"/>
-        <xsl:if test="count($keywordWithNoThesaurus) > 0">
-          'other': [
-          <xsl:for-each select="$keywordWithNoThesaurus/(gco:CharacterString|gcx:Anchor)">
-            {'value': <xsl:value-of select="concat('''', replace(., '''', '\\'''), '''')"/>,
-            'link': '<xsl:value-of select="@xlink:href"/>'}
-            <xsl:if test="position() != last()">,</xsl:if>
-          </xsl:for-each>
-          ]
-          <xsl:if test="//mri:MD_Keywords[mri:thesaurusName]">,</xsl:if>
-        </xsl:if>
         <xsl:for-each-group select="//mri:MD_Keywords[mri:thesaurusName/*/cit:title/*/text() != '']"
                             group-by="mri:thesaurusName/*/cit:title/*/text()">
           '<xsl:value-of select="replace(current-grouping-key(), '''', '\\''')"/>' :[
@@ -438,6 +428,16 @@
           ]
           <xsl:if test="position() != last()">,</xsl:if>
         </xsl:for-each-group>
+        <xsl:if test="count(//mri:MD_Keywords[mri:thesaurusName/*/cit:title/*/text() != '']) > 0">
+          <xsl:if test="//mri:MD_Keywords[mri:thesaurusName]">,</xsl:if>
+          'otherKeywords': [
+          <xsl:for-each select="$keywordWithNoThesaurus/(gco:CharacterString|gcx:Anchor)">
+            {'value': <xsl:value-of select="concat('''', replace(., '''', '\\'''), '''')"/>,
+            'link': '<xsl:value-of select="@xlink:href"/>'}
+            <xsl:if test="position() != last()">,</xsl:if>
+          </xsl:for-each>
+          ]
+        </xsl:if>
         }
       </xsl:variable>
 
@@ -733,7 +733,8 @@
         <Field name="specificationDateType" string="{string(.)}" store="true" index="true"/>
       </xsl:for-each>
     </xsl:for-each>
-    <xsl:for-each select="mdb:dataQualityInfo/*/dqm:lineage/*/dqm:statement">
+
+    <xsl:for-each select="$metadata/mdb:resourceLineage/*/mrl:statement">
       <xsl:copy-of select="gn-fn-iso19115-3:index-field('lineage', ., $langId)"/>
     </xsl:for-each>
 
