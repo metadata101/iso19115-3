@@ -22,6 +22,8 @@
              schemaLocation="schema/standards.iso.org/19115/-3/mmi/1.0/mmi.xsd"/>
   <xs:import namespace="http://standards.iso.org/iso/19115/-3/mas/1.0"
              schemaLocation="schema/standards.iso.org/19115/-3/mas/1.0/mas.xsd"/>
+  <xs:import namespace="http://standards.iso.org/iso/19115/-3/mrd/1.0"
+             schemaLocation="schema/standards.iso.org/19115/-3/mrd/1.0/mrd.xsd"/>
   <xs:import namespace="http://standards.iso.org/iso/19115/-3/mri/1.0"
              schemaLocation="schema/standards.iso.org/19115/-3/mri/1.0/mri.xsd"/>
   <xs:import namespace="http://standards.iso.org/iso/19115/-3/mac/1.0"

@@ -8,6 +8,7 @@
                 xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
                 xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
                 xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+                xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
                 xmlns:gml="http://www.opengis.net/gml/3.2"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -34,7 +35,7 @@
     <xsl:variable name="thesaurusTitle"
       select="if ($overrideLabel != '')
               then $overrideLabel
-              else mri:MD_Keywords/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString"/>
+              else mri:MD_Keywords/mri:thesaurusName/cit:CI_Citation/cit:title/(gco:CharacterString|gcx:Anchor)"/>
 
     <xsl:variable name="attributes">
       <xsl:if test="$isEditing">
@@ -79,7 +80,7 @@
 
   <xsl:template mode="mode-iso19115-3" match="mri:MD_Keywords" priority="2000">
     <xsl:variable name="thesaurusTitle"
-      select="mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString"/>
+      select="mri:thesaurusName/cit:CI_Citation/cit:title/(gco:CharacterString|gcx:Anchor)"/>
 
     <xsl:variable name="isTheaurusAvailable"
       select="count($listOfThesaurus/thesaurus[title=$thesaurusTitle]) > 0"/>

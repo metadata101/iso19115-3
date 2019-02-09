@@ -3,6 +3,7 @@
   xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
   xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
   xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+  xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
   xmlns:gn="http://www.fao.org/geonetwork"
   xmlns:xslutil="java:org.fao.geonet.util.XslUtil"
   exclude-result-prefixes="#all">
@@ -72,7 +73,7 @@
     -->
   <xsl:template name="get-iso19115-3-localised"
                 mode="localised"
-                match="*[lan:PT_FreeText or gco:CharacterString]">
+                match="*[lan:PT_FreeText or gco:CharacterString or gcx:Anchor]">
     <xsl:param name="langId"/>
 
     <xsl:choose>
@@ -88,7 +89,7 @@
             select="lan:PT_FreeText/lan:textGroup[position()=1]/lan:LocalisedCharacterString"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="gco:CharacterString"/>
+        <xsl:value-of select="gco:CharacterString|gcx:Anchor"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>

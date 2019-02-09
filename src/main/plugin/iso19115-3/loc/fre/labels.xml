@@ -358,6 +358,10 @@
     </description>
     <condition></condition>
   </element>
+  <element name="mdb:metadataProfile">
+    <label>Profil des métadonnées</label>
+    <description>Citation du/des profil(s) de la norme de métadonnées</description>
+  </element>
   <element name="mdb:MD_MetadataScoperd" id="39.0">
     <label>Domaine d’application des métadonnées</label>
     <description iso="true">Informations concernant le domaine d’application de
@@ -902,11 +906,16 @@
     </description>
   </element>
   <element name="mdq:explanation">
-    <label>Explanation</label>
-    <description></description>
+    <label>Explication</label>
+    <description>Explication de la signification de conformance pour ces résultats</description>
   </element>
   <element name="mdq:pass">
-    <label>Taux de revisite</label>
+    <label>Degré de conformité</label>
+    <description>Indication sur le résultat de conformité à la spécification où 0 = non conforme et 1= conforme</description>
+    <help for="inspire"><![CDATA[<b>Exigence INSPIRE :</b>
+    Degré de conformité de la ressource par rapport à la spécification citée ci-dessus.
+    ]]>
+    </help>
     <description></description>
   </element>
   <element name="mdq:specification">
@@ -7920,8 +7929,11 @@ INSPIRE doit être fournie.
       <option value="invoke">Service d'appel de services (invoke)</option>
       <option value="other">Autres services (other)</option>
       <option value="OGC:WMS">OGC Web Map Service</option>
+      <option value="OGC:WMTS">OGC Web Map Tile Service</option>
       <option value="OGC:WFS">OGC Web Feature Service</option>
       <option value="OGC:WCS">OGC Web Coverage Service</option>
+      <option value="OGC:WPS">OGC Web Processing Service</option>
+      <option value="atom:feed">ATOM feed</option>
       <!--<option value="W3C:HTML:DOWNLOAD">Téléchargement</option>
       <option value="W3C:HTML:LINK">Information</option>-->
     </helper>

@@ -26,11 +26,14 @@
   <resourceLineageTab>Lineage</resourceLineageTab>
 
   <advanced>Complète</advanced>
+  <advanced-help>La vue complète permet d'ajouter tous les descripteurs définis dans le standard. Les champs sont groupés par onglet.</advanced-help>
   <default>Simple</default>
   <simple>Simple</simple>
+  <simple-help>La vue simple affiche toutes les informations présentes dans la fiche.</simple-help>
   <inspire>INSPIRE</inspire>
   <resource>Ressource</resource>
   <xml>XML</xml>
+  <xml-help>La vue XML permet de modifier directement le XML de la fiche.</xml-help>
   <metadata>Métadonnées</metadata>
   <identificationInfo>Identification</identificationInfo>
   <distributionInfo>Distribution</distributionInfo>

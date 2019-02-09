@@ -90,7 +90,7 @@
       </xsl:variable>
       <xsl:element name="{concat($nameSpacePrefix,':',local-name(.))}">
         <xsl:call-template name="add-namespaces"/>
-        <xsl:attribute name="xsi:schemaLocation">http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/gmx http://www.isotc211.org/2005/gmx/gmx.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd</xsl:attribute>
+        <xsl:attribute name="xsi:schemaLocation">http://www.isotc211.org/2005/gmd https://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/gmx https://www.isotc211.org/2005/gmx/gmx.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd</xsl:attribute>
         <xsl:apply-templates select="mdb:metadataIdentifier"/>
         <xsl:apply-templates select="mdb:defaultLocale"/>
         <xsl:apply-templates select="mdb:parentMetadata"/>
@@ -168,7 +168,7 @@
     <xsl:if test="name(preceding-sibling::node()[1]) != name()">
       <gmd:hierarchyLevel>
         <gmd:MD_ScopeCode
-            codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"
+            codeList="https://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode"
             codeListValue="{if (mdb:MD_MetadataScope/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue != '')
                             then mdb:MD_MetadataScope/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue
                             else mdb:MD_MetadataScope/mdb:resourceScope/mcc:MD_ScopeCode}"/>

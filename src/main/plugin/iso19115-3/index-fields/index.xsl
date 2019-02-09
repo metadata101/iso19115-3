@@ -107,6 +107,10 @@
     <xsl:variable name="identifier" as="xs:string"
                   select="mdb:metadataIdentifier/mcc:MD_Identifier/mcc:code/gco:CharacterString[. != '']"/>
 
+    <xsl:variable name="lastRevisionDate" as="xs:string?"
+                  select="mdb:dateInfo/*[
+                              cit:dateType/*/@codeListValue = 'revision'
+                            ]/cit:date/gco:DateTime[. != '']"/>
 
     <xsl:variable name="mainLanguage" as="xs:string?"
                   select="mdb:defaultLocale/lan:PT_Locale/

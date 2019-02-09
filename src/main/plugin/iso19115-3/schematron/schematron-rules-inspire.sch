@@ -155,14 +155,14 @@
 			
 			<!-- Topic category -->
 			<sch:let name="topic" value="mri:topicCategory/mri:MD_TopicCategoryCode"/>
-			<sch:let name="noTopic" value="not(mri:topicCategory)  or normalize-space(mri:topicCategory/mri:MD_TopicCategoryCode/text()) = ''"/>
+			<sch:let name="noTopic" value="not(mri:topicCategory)  or normalize-space(string-join(mri:topicCategory/mri:MD_TopicCategoryCode/text(), '')) = ''"/>
 			<sch:assert test="not($noTopic)" diagnostics="rule.dataIdentification-mri-topicCategory-failure-en
 			rule.dataIdentification-mri-topicCategory-failure-fr"/>
 			<sch:report test="not($noTopic)" diagnostics="rule.dataIdentification-mri-topicCategory-success-en
 			rule.dataIdentification-mri-topicCategory-success-fr"/>
 			
 			<!-- Unique identifier -->
-			<sch:let name="resourceIdentifier" value="mri:citation/cit:CI_Citation/cit:identifier 
+			<sch:let name="resourceIdentifier" value="mri:citation/cit:CI_Citation/cit:identifier
 				and not(mri:citation/cit:CI_Citation/cit:identifier[*/mcc:code/@gco:nilReason='missing'])"/>
 			<sch:let name="resourceIdentifier_code" value="mri:citation/cit:CI_Citation/cit:identifier/*/mcc:code/*/text()"/>
 			<sch:let name="resourceIdentifier_codeSpace" value="mri:citation/cit:CI_Citation/cit:identifier/*/mcc:codeSpace/*/text()"/>

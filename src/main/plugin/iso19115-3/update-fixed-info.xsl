@@ -104,7 +104,7 @@
               <gco:DateTime><xsl:value-of select="/root/env/changeDate"/></gco:DateTime>
             </cit:date>
             <cit:dateType>
-              <cit:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation"/>
+              <cit:CI_DateTypeCode codeList="https://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation"/>
             </cit:dateType>
           </cit:CI_Date>
         </mdb:dateInfo>
@@ -116,7 +116,7 @@
               <gco:DateTime><xsl:value-of select="/root/env/changeDate"/></gco:DateTime>
             </cit:date>
             <cit:dateType>
-              <cit:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="revision"/>
+              <cit:CI_DateTypeCode codeList="https://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="revision"/>
             </cit:dateType>
           </cit:CI_Date>
         </mdb:dateInfo>
@@ -136,7 +136,7 @@
                   <gco:DateTime><xsl:value-of select="/root/env/changeDate"/></gco:DateTime>
                 </cit:date>
                 <cit:dateType>
-                  <cit:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="revision"/>
+                  <cit:CI_DateTypeCode codeList="https://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="revision"/>
                 </cit:dateType>
               </cit:CI_Date>
             </mdb:dateInfo>
@@ -186,7 +186,7 @@
             point of truth for the metadata linkage but this
             needs to be language dependant. -->
             <cit:function>
-              <cit:CI_OnLineFunctionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_OnLineFunctionCode"
+              <cit:CI_OnLineFunctionCode codeList="https://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_OnLineFunctionCode"
                                          codeListValue="completeMetadata"/>
             </cit:function>
           </cit:CI_OnlineResource>
@@ -220,7 +220,7 @@
               <gco:DateTime><xsl:value-of select="/root/env/changeDate"/></gco:DateTime>
             </cit:date>
             <cit:dateType>
-              <cit:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="lastUpdate"/>
+              <cit:CI_DateTypeCode codeList="https://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="lastUpdate"/>
             </cit:dateType>
           </cit:CI_Date>
         </xsl:when>
@@ -276,21 +276,40 @@
   </xsl:template>
 
 
-  <xsl:template match="*[gco:CharacterString|lan:PT_FreeText]">
+  <xsl:template match="*[gco:CharacterString|gcx:Anchor|lan:PT_FreeText]">
     <xsl:copy>
       <xsl:apply-templates select="@*[not(name() = 'gco:nilReason') and not(name() = 'xsi:type')]"/>
 
+      <xsl:variable name="excluded"
+                    select="gn-fn-iso19115-3:isNotMultilingualField(., $editorConfig)"/>
+
+      <xsl:variable name="valueInPtFreeTextForMainLanguage"
+                    select="normalize-space(lan:PT_FreeText/*/lan:LocalisedCharacterString[
+                                            @locale = concat('#', $mainLanguageId)])"/>
       <!-- Add nileason if text is empty -->
+      <xsl:variable name="isEmpty"
+                    select="if ($isMultilingual and not($excluded))
+                            then $valueInPtFreeTextForMainLanguage = ''
+                            else if ($valueInPtFreeTextForMainLanguage != '')
+                            then $valueInPtFreeTextForMainLanguage = ''
+                            else normalize-space(gco:CharacterString|gcx:Anchor) = ''"/>
+
+      <!-- TODO ? Removes @nilReason from parents of gmx:Anchor if anchor has @xlink:href attribute filled. -->
+      <xsl:variable name="isEmptyAnchor"
+                    select="normalize-space(gcx:Anchor/@xlink:href) = ''" />
+
       <xsl:choose>
-        <xsl:when test="normalize-space(gco:CharacterString)=''">
+        <xsl:when test="$isEmpty">
           <xsl:attribute name="gco:nilReason">
             <xsl:choose>
-              <xsl:when test="@gco:nilReason"><xsl:value-of select="@gco:nilReason"/></xsl:when>
+              <xsl:when test="@gco:nilReason">
+                <xsl:value-of select="@gco:nilReason"/>
+              </xsl:when>
               <xsl:otherwise>missing</xsl:otherwise>
             </xsl:choose>
           </xsl:attribute>
         </xsl:when>
-        <xsl:when test="@gco:nilReason!='missing' and normalize-space(gco:CharacterString)!=''">
+        <xsl:when test="@gco:nilReason != 'missing' and not($isEmpty)">
           <xsl:copy-of select="@gco:nilReason"/>
         </xsl:when>
       </xsl:choose>
@@ -303,13 +322,24 @@
       <xsl:variable name="element" select="name()"/>
 
 
-      <xsl:variable name="excluded"
-                    select="gn-fn-iso19115-3:isNotMultilingualField(., $editorConfig)"/>
       <xsl:choose>
+        <!-- Check record does not contains multilingual elements
+          matching the main language. This may happen if the main
+          language is declared in locales and only PT_FreeText are set.
+          It should not be possible in GeoNetwork, but record user can
+          import may use this encoding. -->
+        <xsl:when test="not($isMultilingual) and
+                        $valueInPtFreeTextForMainLanguage != '' and
+                        normalize-space(gco:CharacterString|gcx:Anchor) = ''">
+          <xsl:element name="{if (gcx:Anchor) then 'gmx:Anchor' else 'gco:CharacterString'}">
+            <xsl:copy-of select="gcx:Anchor/@*"/>
+            <xsl:value-of select="$valueInPtFreeTextForMainLanguage"/>
+          </xsl:element>
+        </xsl:when>
         <xsl:when test="not($isMultilingual) or
                         $excluded">
           <!-- Copy gco:CharacterString only. PT_FreeText are removed if not multilingual. -->
-          <xsl:apply-templates select="gco:CharacterString"/>
+          <xsl:apply-templates select="gco:CharacterString|gcx:Anchor"/>
         </xsl:when>
         <xsl:otherwise>
           <!-- Add xsi:type for multilingual element. -->
@@ -326,23 +356,30 @@
               <!-- Update gco:CharacterString to contains
                    the default language value from the PT_FreeText.
                    PT_FreeText takes priority. -->
-              <gco:CharacterString>
+              <xsl:element name="{if (gcx:Anchor) then 'gmx:Anchor' else 'gco:CharacterString'}">
+                <xsl:copy-of select="gcx:Anchor/@*"/>
                 <xsl:value-of select="lan:PT_FreeText/*/lan:LocalisedCharacterString[
                                             @locale = concat('#', $mainLanguageId)]/text()"/>
-              </gco:CharacterString>
-              <xsl:apply-templates select="lan:PT_FreeText"/>
+              </xsl:element>
+
+              <xsl:if test="lan:PT_FreeText[normalize-space(.) != '']">
+                <lan:PT_FreeText>
+                  <xsl:call-template name="populate-free-text"/>
+                </lan:PT_FreeText>
+              </xsl:if>
+
             </xsl:when>
             <xsl:otherwise>
+
               <!-- Populate PT_FreeText for default language if not existing. -->
-              <xsl:apply-templates select="gco:CharacterString"/>
+              <xsl:apply-templates select="gco:CharacterString|gcx:Anchor"/>
               <lan:PT_FreeText>
                 <lan:textGroup>
                   <lan:LocalisedCharacterString locale="#{$mainLanguageId}">
                     <xsl:value-of select="gco:CharacterString"/>
                   </lan:LocalisedCharacterString>
                 </lan:textGroup>
-
-                <xsl:apply-templates select="lan:PT_FreeText/lan:textGroup"/>
+                <xsl:call-template name="populate-free-text"/>
               </lan:PT_FreeText>
             </xsl:otherwise>
           </xsl:choose>
@@ -351,6 +388,33 @@
     </xsl:copy>
   </xsl:template>
 
+
+  <xsl:template name="populate-free-text">
+    <xsl:variable name="freeText"
+                  select="lan:PT_FreeText/lan:textGroup"/>
+
+    <!-- Loop on locales in order to preserve order.
+       Keep main language on top.
+       Translations having no locale are ignored. eg. when removing a lang. -->
+    <xsl:for-each select="$locales[@id = $mainLanguageId]">
+      <xsl:variable name="localId"
+                    select="@id"/>
+
+      <xsl:variable name="element"
+                    select="$freeText[*/@locale = concat('#', $localId)]"/>
+
+      <xsl:apply-templates select="$element"/>
+    </xsl:for-each>
+
+    <xsl:for-each select="$locales[@id != $mainLanguageId]">
+      <xsl:variable name="localId"
+                    select="@id"/>
+      <xsl:variable name="element"
+                    select="$freeText[*/@locale = concat('#', $localId)]"/>
+
+      <xsl:apply-templates select="$element"/>
+    </xsl:for-each>
+  </xsl:template>
 
   <!-- codelists: set @codeList path -->
   <xsl:template match="lan:LanguageCode[@codeListValue]" priority="10">
@@ -372,7 +436,7 @@
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
       <xsl:attribute name="codeList">
-        <xsl:value-of select="concat('http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#',local-name(.))"/>
+        <xsl:value-of select="concat('https://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#',local-name(.))"/>
       </xsl:attribute>
     </xsl:copy>
   </xsl:template>
@@ -399,6 +463,29 @@
       </xsl:if>
     </xsl:copy>
   </xsl:template>
+
+
+  <!-- For XLinked subtemplates, the lang parameter MUST be in the same order as in the record.
+  Main language first, then other locales. If not, then the default CharacterString does not contain
+  the main language. It user change the language order in the record, the lang parameter needs to
+  be reordered too.
+  Example of URL:
+  <gmd:pointOfContact xmlns:xlink="http://www.w3.org/1999/xlink"
+                             xlink:href="local://srv/api/registries/entries/af9e5d4e-2c1a-48c0-853f-3a771fcf9ee3?
+                               process=gmd:role/gmd:CI_RoleCode/@codeListValue~distributor&amp;
+                               lang=eng,ara,spa,rus,fre,ger,chi&amp;
+                               schema=iso19139"
+  Can also be using lang=eng&amp;lang=ara.
+  -->
+  <xsl:template match="@xlink:href[starts-with(., 'local://srv/api/registries/entries')]">
+    <xsl:attribute name="xlink:href"
+                   select="replace(.,
+                                  '(&amp;lang=.*)+&amp;',
+                                  concat('&amp;lang=', $mainLanguage, ',',
+                                    string-join($locales//lan:LanguageCode/@codeListValue[. != $mainLanguage], ','),
+                                    '&amp;'))"/>
+  </xsl:template>
+
 
 
   <!-- Set local identifier to the first 3 letters of iso code. Locale ids
