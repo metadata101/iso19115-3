@@ -73,6 +73,10 @@
             <xsl:apply-templates mode="get-iso19115-3-localized-string"
                                  select="cit:title"/>
           </title>
+          <description>
+            <xsl:apply-templates mode="get-iso19115-3-localized-string"
+                                 select="cit:onlineResource/cit:CI_OnlineResource/cit:description"/>
+          </description>
           <type>legend</type>
         </item>
       </xsl:for-each>
@@ -92,6 +96,10 @@
              <xsl:apply-templates mode="get-iso19115-3-localized-string"
                                   select="cit:title"/>
           </title>
+          <description>
+            <xsl:apply-templates mode="get-iso19115-3-localized-string"
+                                 select="cit:onlineResource/cit:CI_OnlineResource/cit:description"/>
+          </description>
           <type>dq-report</type>
          </item>
       </xsl:for-each>
@@ -133,6 +141,10 @@
             <xsl:apply-templates mode="get-iso19115-3-localized-string"
                                select="cit:title"/>
           </title>
+          <description>
+            <xsl:apply-templates mode="get-iso19115-3-localized-string"
+                               select="cit:onlineResource/cit:CI_OnlineResource/cit:description"/>
+          </description>
           <type>fcats</type>
         </item>
       </xsl:for-each>
