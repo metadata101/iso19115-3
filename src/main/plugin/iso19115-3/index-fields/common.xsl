@@ -244,6 +244,21 @@
 
     <xsl:for-each select="$metadata/mdb:identificationInfo/*">
 
+      <Field name="anylight" store="false" index="true">
+        <xsl:attribute name="string">
+          <xsl:for-each
+            select="mri:citation/*/cit:title/gco:CharacterString|
+                    mri:citation/*/cit:alternateTitle/gco:CharacterString|
+                    mri:abstract/gco:CharacterString|
+                    mri:credit/gco:CharacterString|
+                    .//cit:CI_Organisation/cit:name/gco:CharacterString|
+                    mri:descriptiveKeywords/*/mri:keyword/gco:CharacterString|
+                    mri:descriptiveKeywords/*/mri:keyword/gcx:Anchor">
+            <xsl:value-of select="concat(., ' ')"/>
+          </xsl:for-each>
+        </xsl:attribute>
+      </Field>
+      
       <xsl:for-each select="mri:citation/*">
         <xsl:for-each select="mcc:identifier/mcc:MD_Identifier/mcc:code">
           <xsl:copy-of select="gn-fn-iso19115-3:index-field('identifier', ., $langId)"/>
