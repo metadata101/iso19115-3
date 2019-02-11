@@ -39,7 +39,11 @@
 
   <xsl:param name="url"/>
   <xsl:param name="name"/>
+  <xsl:param name="desc"/>
 
+  <!-- Target element to update. The key is based on the concatenation
+  of url+name -->
+  <xsl:param name="updateKey"/>
 
   <xsl:variable name="mainLang"
                 select="/mdb:MD_Metadata/mdb:defaultLocale/*/lan:language/*/@codeListValue"
@@ -70,25 +74,14 @@
       <xsl:apply-templates select="mdb:referenceSystemInfo"/>
       <xsl:apply-templates select="mdb:metadataExtensionInfo"/>
       <xsl:apply-templates select="mdb:identificationInfo"/>
+
+      <!-- Copy or update -->
       <xsl:apply-templates select="mdb:contentInfo"/>
-      <mdb:contentInfo>
-        <mrc:MD_FeatureCatalogueDescription>
-          <mrc:featureCatalogueCitation>
-            <cit:CI_Citation>
-              <cit:title>
-                <xsl:copy-of select="gn-fn-iso19115-3:fillTextElement($name, $mainLang, $useOnlyPTFreeText)"/>
-              </cit:title>
-              <cit:onlineResource>
-                <cit:CI_OnlineResource>
-                  <cit:linkage>
-                    <xsl:copy-of select="gn-fn-iso19115-3:fillTextElement($url, $mainLang, $useOnlyPTFreeText)"/>
-                  </cit:linkage>
-                </cit:CI_OnlineResource>
-              </cit:onlineResource>
-            </cit:CI_Citation>
-          </mrc:featureCatalogueCitation>
-        </mrc:MD_FeatureCatalogueDescription>
-      </mdb:contentInfo>
+
+      <!-- Insert new one -->
+      <xsl:if test="$updateKey = ''">
+        <xsl:call-template name="create-link"/>
+      </xsl:if>
 
       <xsl:apply-templates select="mdb:distributionInfo"/>
       <xsl:apply-templates select="mdb:dataQualityInfo"/>
@@ -101,7 +94,43 @@
       
     </xsl:copy>
   </xsl:template>
-  
+
+  <!-- Updating the link matching the update key. -->
+  <xsl:template match="mdb:contentInfo[
+                      $updateKey != '' and
+                      normalize-space($updateKey) = concat(
+                      */mrc:featureCatalogueCitation/*/cit:onlineResource/*/cit:linkage/gco:CharacterString,
+                      */mrc:featureCatalogueCitation/*/cit:title/gco:CharacterString)
+                      ]">
+    <xsl:call-template name="create-link"/>
+  </xsl:template>
+
+  <xsl:template name="create-link">
+    <mdb:contentInfo>
+      <mrc:MD_FeatureCatalogueDescription>
+        <mrc:featureCatalogueCitation>
+          <cit:CI_Citation>
+            <cit:title>
+              <xsl:copy-of select="gn-fn-iso19115-3:fillTextElement($name, $mainLang, $useOnlyPTFreeText)"/>
+            </cit:title>
+            <cit:onlineResource>
+              <cit:CI_OnlineResource>
+                <cit:linkage>
+                  <xsl:copy-of select="gn-fn-iso19115-3:fillTextElement($url, $mainLang, $useOnlyPTFreeText)"/>
+                </cit:linkage>
+                <xsl:if test="$desc != ''">
+                  <cit:description>
+                    <xsl:copy-of select="gn-fn-iso19115-3:fillTextElement($desc, $mainLang, $useOnlyPTFreeText)"/>
+                  </cit:description>
+                </xsl:if>
+              </cit:CI_OnlineResource>
+            </cit:onlineResource>
+          </cit:CI_Citation>
+        </mrc:featureCatalogueCitation>
+      </mrc:MD_FeatureCatalogueDescription>
+    </mdb:contentInfo>
+  </xsl:template>
+
   <!-- Remove geonet:* elements. -->
   <xsl:template match="gn:*" priority="2"/>
   
