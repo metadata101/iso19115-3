@@ -335,7 +335,7 @@
                       select="gn-fn-metadata:getFieldType($editorConfig, name(), name($theElement), $xpath)"/>
       <xsl:with-param name="name" select="if ($isEditing) then $theElement/gn:element/@ref else ''"/>
       <xsl:with-param name="editInfo" select="$theElement/gn:element"/>
-      <xsl:with-param name="parentEditInfo" select="if (exists($refToDelete)) then $refToDelete else gn:element"/>
+      <xsl:with-param name="parentEditInfo" select="if ($refToDelete) then $refToDelete else gn:element"/>
       <xsl:with-param name="listOfValues" select="$helper"/>
       <xsl:with-param name="toggleLang" select="$isMultilingualElementExpanded"/>
       <xsl:with-param name="forceDisplayAttributes" select="$forceDisplayAttributes"/>
