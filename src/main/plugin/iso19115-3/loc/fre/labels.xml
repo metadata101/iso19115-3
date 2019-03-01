@@ -4627,9 +4627,10 @@ période de temps couverte par le service.
       Exemple: EPS, GIF, JPEG, PBM, PS, TIFF, PDF
     </description>
     <helper>
-      <option value="EPS">EPS</option>
+      <option value="PNG">PNG</option>
       <option value="GIF">GIF</option>
       <option value="JPEG">JPEG</option>
+      <option value="EPS">EPS</option>
       <option value="PBM">PBM</option>
       <option value="PS">PS</option>
       <option value="TIFF">TIFF</option>
