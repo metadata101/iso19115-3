@@ -711,7 +711,7 @@
 
   <xsl:template match="srv2:distributedComputingPlatform">
     <srv:DCP>
-      <xsl:apply-templates select="*"/>
+      <xsl:apply-templates select="@*|*"/>
     </srv:DCP>
   </xsl:template>
 
@@ -937,7 +937,10 @@
           or ancestor-or-self::mri:MD_SpatialRepresentationTypeCode">
           <xsl:text>gmd</xsl:text>
         </xsl:when>
-        <xsl:when test="ancestor-or-self::srv2:SV_ServiceIdentification">
+        <xsl:when test="ancestor-or-self::srv2:SV_ServiceIdentification
+                        and not(ancestor-or-self::mri:pointOfContact)
+                        and not(ancestor-or-self::mri:resourceConstraints)
+                        and not(ancestor-or-self::mri:descriptiveKeywords)">
           <xsl:text>srv</xsl:text>
         </xsl:when>
         <xsl:when test="ancestor-or-self::mrc:MD_CoverageDescription or ancestor-or-self::mrc:MI_CoverageDescription">
