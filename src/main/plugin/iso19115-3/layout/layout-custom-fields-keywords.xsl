@@ -9,7 +9,6 @@
                 xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
                 xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
                 xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
-                xmlns:gmx="http://www.isotc211.org/2005/gmx"
                 xmlns:gml="http://www.opengis.net/gml/3.2"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -126,7 +125,7 @@
         <xsl:variable name="transformation"
           select="if (parent::node()/@xlink:href)
                   then 'to-iso19115-3-keyword-as-xlink'
-                  else if (count(mri:keyword/gmx:Anchor) > 0)
+                  else if (count(mri:keyword/gcx:Anchor) > 0)
                   then 'to-iso19115-3-keyword-with-anchor'
                   else 'to-iso19115-3-keyword'"/>
 
