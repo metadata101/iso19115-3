@@ -554,7 +554,7 @@
         </xsl:call-template>
 
         <xsl:if test="$associatedResourceAsMetadataReferenceOnly">
-          <mri:metadataReference uuidref="{gmd:MD_AggregateInformation/gmd:aggregateDataSetIdentifier/gmd:MD_Identifier/*/text()}"/>
+          <mri:metadataReference uuidref="{gmd:MD_AggregateInformation/gmd:aggregateDataSetIdentifier/*/gmd:code/*/text()}"/>
         </xsl:if>
 
       </xsl:element>
