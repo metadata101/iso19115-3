@@ -1,4 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (C) 2001-2016 Food and Agriculture Organization of the
+  ~ United Nations (FAO-UN), United Nations World Food Programme (WFP)
+  ~ and United Nations Environment Programme (UNEP)
+  ~
+  ~ This program is free software; you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation; either version 2 of the License, or (at
+  ~ your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but
+  ~ WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+  ~ General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program; if not, write to the Free Software
+  ~ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+  ~
+  ~ Contact: Jeroen Ticheler - FAO - Viale delle Terme di Caracalla 2,
+  ~ Rome - Italy. email: geonetwork@osgeo.org
+  -->
 <xsl:stylesheet version="2.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:mds="http://standards.iso.org/iso/19115/-3/mds/1.0"
@@ -49,8 +71,18 @@
         which use the thesaurus identifier for initialization. -->
     <xsl:param name="withThesaurusAnchor" select="true()"/>
 
+
+    <!-- The lang parameter contains a list of languages
+    with the main one as the first element. If only one element
+    is provided, then CharacterString or Anchor are created.
+    If more than one language is provided, then PT_FreeText
+    with or without CharacterString can be created. -->
     <xsl:variable name="listOfLanguage" select="tokenize(/root/request/lang, ',')"/>
-    <xsl:variable name="textgroupOnly" select="/root/request/textgroupOnly"/>
+    <xsl:variable name="textgroupOnly"
+                  as="xs:boolean"
+                  select="if (/root/request/textgroupOnly and normalize-space(/root/request/textgroupOnly) != '')
+                          then /root/request/textgroupOnly
+                          else false()"/>
 
     <xsl:apply-templates mode="to-iso19115-3-keyword" select="." >
       <xsl:with-param name="withAnchor" select="$withAnchor"/>
@@ -85,12 +117,13 @@
                               else $serviceUrl"/>
 
           <xsl:attribute name="xlink:href"
-                         select="concat($prefixUrl, '/xml.keyword.get?thesaurus=', thesaurus/key,
-                            '&amp;amp;id=', replace(/root/request/id, '#', '%23'),
-                            '&amp;amp;multiple=', $multiple,
-                            if (/root/request/lang) then concat('&amp;amp;lang=', /root/request/lang) else '',
-                            if ($textgroupOnly) then '&amp;amp;textgroupOnly' else '')"/>
-          <xsl:attribute name="xlink:show">replace</xsl:attribute>
+                         select="concat($prefixUrl,
+                                  'api/registries/vocabularies/keyword?skipdescriptivekeywords=true&amp;thesaurus=',
+                                   if (thesaurus/key) then thesaurus/key else /root/request/thesaurus,
+                                  '&amp;amp;id=', encode-for-uri(/root/request/id),
+                                  '&amp;amp;multiple=', $multiple,
+                                  if (/root/request/lang) then concat('&amp;amp;lang=', /root/request/lang) else '',
+                                  if ($textgroupOnly) then '&amp;amp;textgroupOnly' else '')"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:call-template name="to-iso19115-3-md-keywords">
@@ -137,15 +170,15 @@
                 if 'all' thesaurus we need to encode the thesaurus name so that update-fixed-info can re-organize the
                 keywords into the correct thesaurus sections.
             -->
-            <xsl:variable name="keywordThesaurus" select="replace(./uri, 'http://org.fao.geonet.thesaurus.all/([^@]+)@@@.+', '$1')" />
-            <xsl:attribute name="gco:nilReason" select="concat('thesaurus::', $keywordThesaurus)" />
-          </xsl:if>
-          <xsl:if test="count($listOfLanguage) > 1">
-            <xsl:attribute name="xsi:type" select="'lan:PT_FreeText_PropertyType'"/>
+            <xsl:variable name="keywordThesaurus"
+                          select="replace(./uri, 'http://org.fao.geonet.thesaurus.all/([^@]+)@@@.+', '$1')" />
+            <xsl:attribute name="gco:nilReason"
+                           select="concat('thesaurus::', $keywordThesaurus)" />
           </xsl:if>
 
           <xsl:choose>
-            <xsl:when test="/root/request/lang">
+            <xsl:when test="count($listOfLanguage) > 1">
+              <xsl:attribute name="xsi:type" select="'lan:PT_FreeText_PropertyType'"/>
               <xsl:variable name="keyword" select="." />
 
               <xsl:if test="not($textgroupOnly)">
@@ -153,26 +186,36 @@
                   <xsl:value-of select="$keyword/values/value[@language = $listOfLanguage[1]]/text()"></xsl:value-of>
                 </gco:CharacterString>
               </xsl:if>
-              <xsl:if test="count($listOfLanguage) > 1">
-                <lan:PT_FreeText>
-                  <xsl:for-each select="$listOfLanguage">
-                    <xsl:variable name="lang" select="." />
-                    <xsl:if test="$textgroupOnly or $lang != $listOfLanguage[1]">
-                      <lan:textGroup>
-                        <lan:LocalisedCharacterString locale="#{upper-case(util:twoCharLangCode($lang))}">
-                          <xsl:value-of select="$keyword/values/value[@language = $lang]/text()"></xsl:value-of>
-                        </lan:LocalisedCharacterString>
-                      </lan:textGroup>
-                    </xsl:if>
-                  </xsl:for-each>
-                </lan:PT_FreeText>
-              </xsl:if>
+              <lan:PT_FreeText>
+                <xsl:for-each select="$listOfLanguage">
+                  <xsl:variable name="lang" select="." />
+                  <xsl:if test="$textgroupOnly or $lang != $listOfLanguage[1]">
+                    <lan:textGroup>
+                      <lan:LocalisedCharacterString locale="#{upper-case(util:twoCharLangCode($lang))}">
+                        <xsl:value-of select="$keyword/values/value[@language = $lang]/text()"/>
+                      </lan:LocalisedCharacterString>
+                    </lan:textGroup>
+                  </xsl:if>
+                </xsl:for-each>
+              </lan:PT_FreeText>
             </xsl:when>
             <xsl:otherwise>
+              <!-- ... default mode -->
               <xsl:choose>
                 <xsl:when test="$withAnchor">
-                  <gcx:Anchor xlink:href="{$serviceUrl}/xml.keyword.get?thesaurus={thesaurus/key}&amp;id={uri}">
-                    <xsl:value-of select="value" />
+                  <gcx:Anchor>
+                    <xsl:attribute name="xlink:href">
+                      <xsl:choose>
+                        <xsl:when test="matches(uri, '^http.*')">
+                          <xsl:value-of select="uri"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:value-of select="concat($serviceUrl, 'api/registries/vocabularies/keyword?thesaurus=',
+                                                thesaurus/key, '&amp;id=', uri)"/>
+                        </xsl:otherwise>
+                      </xsl:choose>
+                    </xsl:attribute>
+                    <xsl:value-of select="value"/>
                   </gcx:Anchor>
                 </xsl:when>
                 <xsl:otherwise>
@@ -185,6 +228,13 @@
           </xsl:choose>
         </mri:keyword>
       </xsl:for-each>
+
+      <!-- If no keyword, add one to avoid invalid metadata -->
+      <xsl:if test="count(//keyword[thesaurus/key = $currentThesaurus]) = 0">
+        <mri:keyword gco:nilReason="missing">
+          <gco:CharacterString></gco:CharacterString>
+        </mri:keyword>
+      </xsl:if>
 
       <xsl:copy-of select="geonet:add-iso19115-3-thesaurus-info($currentThesaurus, $withThesaurusAnchor, /root/gui/thesaurus/thesauri, not(/root/request/keywordOnly))" />
 
