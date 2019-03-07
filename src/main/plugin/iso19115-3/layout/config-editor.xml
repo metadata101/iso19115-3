@@ -49,12 +49,11 @@
     <for name="gmd:handlingDescription" use="textarea"/>
     <for name="mdq:measureDescription" use="textarea"/>
     <for name="gmd:purpose" use="textarea"/>
-    <for name="gmd:orderingInstructions" use="textarea"/>
+    <for name="mrd:orderingInstructions" use="textarea"/>
     <for name="mco:otherConstraints" use="textarea"/>
     <for name="mri:statement" use="textarea"/>
     <for name="mri:supplementalInformation" use="textarea"/>
     <for name="gmd:specificUsage" use="textarea"/>
-    <for name="gmd:userNote" use="textarea"/>
     <for name="mco:useLimitation" use="textarea"/>
     <for name="cit:otherCitationDetails" use="textarea"/>
     <for name="mmi:maintenanceNote" use="textarea"/>
