@@ -498,13 +498,14 @@
       <xsl:with-param name="parentEditInfo" select="../gn:element"/>
     </xsl:call-template>
   </xsl:template>
-
-  <!-- Ignore the following topic categories-->
+  
+  <!-- Ignore the following topic categories and the gn:child to add new ones -->
   <xsl:template mode="mode-iso19115-3"
-                match="mri:topicCategory[
-                        preceding-sibling::*[1]/name() = name()]"
+                match="mri:topicCategory[preceding-sibling::*[1]/name() = name()]"
                 priority="2100"/>
-
+  <xsl:template mode="mode-iso19115-3"
+                match="gn:child[@name = 'topicCategory' and count(../mri:topicCategory) > 0]"
+                priority="21000"/>
 
   <xsl:template mode="mode-iso19115-3"
                 match="*[gn:element/gn:text]"
