@@ -2,6 +2,10 @@
 
 This is the ISO19115-3 schema plugin for GeoNetwork 3.1.x or greater version.
 
+## Status
+
+**This plugin is deprecated** - Use https://github.com/metadata101/iso19115-3.2018.
+
 ## Reference documents:
 
 * http://www.iso.org/iso/catalogue_detail.htm?csnumber=53798
