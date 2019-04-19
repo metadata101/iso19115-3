@@ -58,7 +58,7 @@ Stylesheet used to update metadata adding a reference to a source record.
                 <xsl:apply-templates select="mrl:source"/>
                 <xsl:if test="position() = 1">
                   <mrl:source uuidref="{$sourceUuid}"
-                              xlink:href="{$siteUrl}/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://standards.iso.org/iso/19115/-3/gmd&amp;elementSetName=full&amp;id={$sourceUuid}"/>
+                              xlink:href="{$siteUrl}/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://standards.iso.org/iso/19115/-3/mdb/1.0&amp;elementSetName=full&amp;id={$sourceUuid}"/>
                 </xsl:if>
                 <xsl:apply-templates select="mrl:processStep"/>
               </mrl:LI_Lineage>
@@ -69,7 +69,7 @@ Stylesheet used to update metadata adding a reference to a source record.
           <mdb:resourceLineage>
             <mrl:LI_Lineage>
               <mrl:source uuidref="{$sourceUuid}"
-                          xlink:href="{$siteUrl}/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://standards.iso.org/iso/19115/-3/gmd&amp;elementSetName=full&amp;id={$sourceUuid}"/>
+                          xlink:href="{$siteUrl}/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://standards.iso.org/iso/19115/-3/mdb/1.0&amp;elementSetName=full&amp;id={$sourceUuid}"/>
             </mrl:LI_Lineage>
           </mdb:resourceLineage>
         </xsl:otherwise>
