@@ -9,6 +9,9 @@ public class ISO19115_3Namespaces {
     public static final Namespace GCO =
             Namespace.getNamespace("gco",
                     "http://standards.iso.org/iso/19115/-3/gco/1.0");
+    public static final Namespace GCX =
+            Namespace.getNamespace("gcx",
+                    "http://standards.iso.org/iso/19115/-3/gcx/1.0");
     public static final Namespace MDB =
             Namespace.getNamespace("mdb",
                     "http://standards.iso.org/iso/19115/-3/mdb/1.0");
