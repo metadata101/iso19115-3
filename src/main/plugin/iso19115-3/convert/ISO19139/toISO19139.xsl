@@ -394,16 +394,27 @@
       <!-- TODO -->
     </gmd:contentInfo>
   </xsl:template>
-
+  
   <xsl:template match="mri:associatedResource">
     <gmd:aggregationInfo>
       <gmd:MD_AggregateInformation>
-        <xsl:apply-templates select="mri:MD_AssociatedResource/*"/>
+        <xsl:apply-templates select="mri:MD_AssociatedResource/(mri:metadataReference|mri:name)"/>
+        <xsl:apply-templates select="mri:MD_AssociatedResource/(mri:associationType|mri:initiativeType)"/>
       </gmd:MD_AggregateInformation>
     </gmd:aggregationInfo>
   </xsl:template>
 
-  <xsl:template match="mri:MD_AssociatedResource/mri:name">
+  <xsl:template match="mri:MD_AssociatedResource/mri:metadataReference" priority="2">
+    <gmd:aggregateDataSetIdentifier>
+      <gmd:MD_Identifier>
+        <gmd:code>
+          <gco:CharacterString><xsl:value-of select="@uuidref"/></gco:CharacterString>
+        </gmd:code>
+      </gmd:MD_Identifier>
+    </gmd:aggregateDataSetIdentifier>
+  </xsl:template>
+
+  <xsl:template match="mri:MD_AssociatedResource/mri:name" priority="2">
     <gmd:aggregateDataSetIdentifier>
       <gmd:MD_Identifier>
         <xsl:apply-templates select="cit:CI_Citation/*/mcc:MD_Identifier/*"/>
@@ -414,7 +425,7 @@
       <xsl:apply-templates select="*"/>
     </gmd:aggregateDataSetName>-->
   </xsl:template>
-
+  
   <xsl:template match="srv2:SV_ServiceIdentification/mri:extent" priority="2">
     <srv:extent>
       <xsl:apply-templates select="*"/>
