@@ -36,6 +36,7 @@ public class ISO19115_3SchemaPlugin
     static {
         allNamespaces = ImmutableSet.<Namespace>builder()
                 .add(GCO)
+                .add(GCX)
                 .add(MDB)
                 .add(GEX)
                 .add(MRC)
