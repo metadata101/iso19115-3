@@ -4,12 +4,12 @@
 	queryBinding="xslt2">
 
 	<sch:title xmlns="http://www.w3.org/2001/XMLSchema">INSPIRE metadata implementing rule validation</sch:title>
-	<sch:ns prefix="gml" uri="http://www.opengis.net/gml"/>
-	<sch:ns prefix="gmd" uri="http://standards.iso.org/iso/19115/-3/gmd"/>
+	  <sch:ns prefix="gml" uri="http://www.opengis.net/gml"/>
+  	<sch:ns prefix="gmd" uri="http://www.isotc211.org/2005/gmd"/>
     <sch:ns prefix="gmx" uri="http://standards.iso.org/iso/19115/-3/gmx"/>
-	<sch:ns prefix="geonet" uri="http://www.fao.org/geonetwork"/>
-	<sch:ns prefix="skos" uri="http://www.w3.org/2004/02/skos/core#"/>
-	<sch:ns prefix="xlink" uri="http://www.w3.org/1999/xlink"/>
+	  <sch:ns prefix="geonet" uri="http://www.fao.org/geonetwork"/>
+	  <sch:ns prefix="skos" uri="http://www.w3.org/2004/02/skos/core#"/>
+	  <sch:ns prefix="xlink" uri="http://www.w3.org/1999/xlink"/>
     <sch:ns prefix="srv" uri="http://standards.iso.org/iso/19115/-3/srv/2.0"/>
     <sch:ns prefix="mdb" uri="http://standards.iso.org/iso/19115/-3/mdb/1.0"/>
     <sch:ns prefix="mcc" uri="http://standards.iso.org/iso/19115/-3/mcc/1.0"/>
