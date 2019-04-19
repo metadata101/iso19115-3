@@ -403,4 +403,79 @@ public class ISO19115_3SchemaPlugin
     public Map<String, String> getExportFormats() {
         return allExportFormats;
     }
+
+
+    /**
+     * Process some of the ISO elements which can have substitute.
+     *
+     * For example, a CharacterString can have a gcx:Anchor as a substitute
+     * to encode a text value + an extra URL. To make the transition between
+     * CharacterString and Anchor transparent, this method takes care of
+     * creating the appropriate element depending on the presence of an xlink:href attribute.
+     * If the attribute is empty, then a CharacterString is used, if a value is set, an Anchor is created.
+     *
+     * @param el element to process.
+     * @param attributeRef the attribute reference
+     * @param parsedAttributeName the name of the attribute, for example <code>xlink:href</code>
+     * @param attributeValue the attribute value
+     * @return
+     */
+    @Override
+    public Element processElement(Element el,
+                                  String attributeRef,
+                                  String parsedAttributeName,
+                                  String attributeValue) {
+        if (Log.isDebugEnabled(LOGGER_NAME)) {
+            Log.debug(LOGGER_NAME, String.format(
+                "Processing element %s, attribute %s with attributeValue %s.",
+                el, attributeRef, attributeValue));
+        }
+
+        boolean elementToProcess = isElementToProcess(el);
+
+        if (elementToProcess && parsedAttributeName.equals("xlink:href")) {
+            boolean isEmptyLink = StringUtils.isEmpty(attributeValue);
+            boolean isMultilingualElement = el.getName().equals("LocalisedCharacterString");
+
+            if (isMultilingualElement) {
+                // The attribute provided relates to the CharacterString and not to the LocalisedCharacterString
+                Element targetElement = el.getParentElement().getParentElement().getParentElement()
+                    .getChild("CharacterString", GCO);
+                if (targetElement != null) {
+                    el = targetElement;
+                }
+            }
+
+            if (isEmptyLink) {
+                el.setNamespace(GCO).setName("CharacterString");
+                el.removeAttribute("href", XLINK);
+                return el;
+            } else {
+                el.setNamespace(GCX).setName("Anchor");
+                el.setAttribute("href", "", XLINK);
+                return el;
+            }
+        } else if (elementToProcess && StringUtils.isNotEmpty(parsedAttributeName) &&
+            parsedAttributeName.startsWith(":")) {
+            // eg. :codeSpace
+            el.setAttribute(parsedAttributeName.substring(1), attributeValue);
+            return el;
+        } else {
+            return super.processElement(el, attributeRef, parsedAttributeName, attributeValue);
+        }
+
+    }
+
+    /**
+     * Checks if an element requires processing in {@link #processElement(Element, String, String, String)}.
+     *
+     * @param el Element to check.
+     *
+     * @return boolean indicating if the element requires processing or not.
+     */
+    protected boolean isElementToProcess(Element el) {
+        if (el == null) return false;
+
+        return elementsToProcess.contains(el.getQualifiedName());
+    }
 }
