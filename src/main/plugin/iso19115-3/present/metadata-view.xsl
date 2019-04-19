@@ -14,7 +14,7 @@
   xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
   xmlns:dqm="http://standards.iso.org/iso/19157/-2/dqm/1.0"
   xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
-  xmlns:gmd="http://standards.iso.org/iso/19115/-3/gmd"
+  xmlns:gmd="http://www.isotc211.org/2005/gmd"
   xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0" xmlns:gmx="http://standards.iso.org/iso/19115/-3/gmx"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink"
