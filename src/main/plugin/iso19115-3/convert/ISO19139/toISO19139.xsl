@@ -395,6 +395,17 @@
     </gmd:contentInfo>
   </xsl:template>
 
+  <!-- Add mandatory includedWithDataset if not present. -->
+  <xsl:template match="mrc:MD_FeatureCatalogueDescription[not(mrc:includedWithDataset)]">
+    <gmd:MD_FeatureCatalogueDescription>
+      <xsl:apply-templates select="mrc:complianceCode|mrc:locale"/>
+      <gmd:includedWithDataset>
+        <gco:Boolean>true</gco:Boolean>
+      </gmd:includedWithDataset>
+      <xsl:apply-templates select="mrc:featureTypes|mrc:featureCatalogueCitation"/>
+    </gmd:MD_FeatureCatalogueDescription>
+  </xsl:template>
+  
   <xsl:template match="mri:associatedResource">
     <gmd:aggregationInfo>
       <gmd:MD_AggregateInformation>
