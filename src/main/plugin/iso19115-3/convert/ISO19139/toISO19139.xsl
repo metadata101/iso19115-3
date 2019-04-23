@@ -988,6 +988,7 @@
         </xsl:when>
         <xsl:when test="ancestor-or-self::srv2:SV_ServiceIdentification
                         and not(ancestor-or-self::mri:pointOfContact)
+                        and not(ancestor-or-self::mri:resourceMaintenance)
                         and not(ancestor-or-self::mri:resourceConstraints)
                         and not(ancestor-or-self::mri:descriptiveKeywords)">
           <xsl:text>srv</xsl:text>
