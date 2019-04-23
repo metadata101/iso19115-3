@@ -760,7 +760,13 @@
       <xsl:apply-templates select="@*|*"/>
     </srv:DCP>
   </xsl:template>
-
+  
+  <xsl:template match="gco2:TM_PeriodDuration">
+    <gts:TM_PeriodDuration>
+      <xsl:apply-templates select="@*|*"/>
+    </gts:TM_PeriodDuration>
+  </xsl:template>
+  
   <xsl:template match="mdb:referenceSystemInfo/*/mrs:referenceSystemIdentifier/mcc:MD_Identifier"
                 priority="2">
     <gmd:RS_Identifier>
