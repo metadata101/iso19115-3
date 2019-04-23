@@ -302,6 +302,12 @@
             <xsl:with-param name="codeListValue" select="srv2:couplingType/srv2:SV_CouplingType/@codeListValue"/>
           </xsl:call-template>
           <xsl:apply-templates select="srv2:containsOperations"/>
+          
+          <!-- Add mandatory contains operation -->
+          <xsl:if test="not(srv2:containsOperation)">
+            <srv:containsOperations/>
+          </xsl:if>
+
           <xsl:apply-templates select="srv2:operatesOn"/>
         </xsl:element>
       </xsl:for-each>
