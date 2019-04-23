@@ -493,6 +493,7 @@
 
 
         <xsl:for-each select="../mdb:resourceLineage">
+          <!-- The lineage scope may be lost in this case. -->
           <gmd:lineage>
             <gmd:LI_Lineage>
               <xsl:call-template name="writeCharacterStringElement">
@@ -509,24 +510,26 @@
     </gmd:dataQualityInfo>
   </xsl:template>
 
+  <!-- When a dataquality section exist, move the lineage in the DQ section -->
   <xsl:template match="mdb:resourceLineage[../mdb:dataQualityInfo]"/>
 
+  <!-- If not, create one DQ section per lineage. -->
   <xsl:template match="mdb:resourceLineage[not(../mdb:dataQualityInfo)]">
     <gmd:dataQualityInfo>
       <gmd:DQ_DataQuality>
-        <xsl:for-each select="/*/mdb:resourceLineage">
+          <xsl:apply-templates select="mrl:LI_Lineage/mrl:scope"/>
           <gmd:lineage>
             <gmd:LI_Lineage>
               <xsl:call-template name="writeCharacterStringElement">
-                <xsl:with-param name="elementName" select="'gmd:statement'"/>
-                <xsl:with-param name="nodeWithStringToWrite" select="mrl:LI_Lineage/mrl:statement"/>
+                <xsl:with-param name="elementName"
+                                select="'gmd:statement'"/>
+                <xsl:with-param name="nodeWithStringToWrite"
+                                select="mrl:LI_Lineage/mrl:statement"/>
               </xsl:call-template>
-
               <xsl:apply-templates select="mrl:LI_Lineage/mrl:processStep"/>
               <xsl:apply-templates select="mrl:LI_Lineage/mrl:source"/>
             </gmd:LI_Lineage>
           </gmd:lineage>
-        </xsl:for-each>
       </gmd:DQ_DataQuality>
     </gmd:dataQualityInfo>
   </xsl:template>
