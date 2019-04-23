@@ -304,7 +304,7 @@
           <xsl:apply-templates select="srv2:containsOperations"/>
           
           <!-- Add mandatory contains operation -->
-          <xsl:if test="not(srv2:containsOperation)">
+          <xsl:if test="not(srv2:containsOperations)">
             <srv:containsOperations/>
           </xsl:if>
 
