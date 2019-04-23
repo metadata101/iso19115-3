@@ -697,35 +697,29 @@
       </gmd:contactInfo>
     </xsl:for-each>
   </xsl:template>
-  <xsl:template match="cit:party/*/cit:contactInfo/cit:CI_Contact/cit:phone">
-    <!-- Only one phone number is allowed in ISO19139 -->
-    <xsl:variable name="phoneType"
-                  select="if (cit:numberType/cit:CI_TelephoneTypeCode/@codeListValue != '')
-                          then cit:numberType/cit:CI_TelephoneTypeCode/@codeListValue
-                          else cit:numberType/cit:CI_TelephoneTypeCode"/>
-    <xsl:if test="count(preceding-sibling::node()[cit:numberType/cit:CI_TelephoneTypeCode = $phoneType]) = 0">
-      <xsl:for-each select="cit:CI_Telephone">
-        <gmd:phone>
-          <gmd:CI_Telephone>
-            <xsl:for-each select=".[cit:numberType/cit:CI_TelephoneTypeCode = 'voice' or
-              cit:numberType/cit:CI_TelephoneTypeCode/@codeListValue = 'voice']/cit:number">
-              <gmd:voice>
-                <xsl:apply-templates select="gco2:CharacterString"/>
-              </gmd:voice>
-            </xsl:for-each>
-            <xsl:for-each select=".[cit:numberType/cit:CI_TelephoneTypeCode = 'facsimile' or
-              cit:numberType/cit:CI_TelephoneTypeCode/@codeListValue = 'facsimile']/cit:number">
-              <gmd:facsimile>
-                <xsl:apply-templates select="gco2:CharacterString"/>
-              </gmd:facsimile>
-            </xsl:for-each>
-          </gmd:CI_Telephone>
-        </gmd:phone>
-      </xsl:for-each>
-    </xsl:if>
+  
+  <xsl:template match="cit:party/*/cit:contactInfo/cit:CI_Contact/cit:phone[1]">
+    <!-- Only phone number and facsimile are allowed in ISO19139 -->
+    <gmd:phone>
+      <gmd:CI_Telephone>
+        <xsl:for-each select="../cit:phone/*[
+                cit:numberType/cit:CI_TelephoneTypeCode = 'voice' or
+                cit:numberType/cit:CI_TelephoneTypeCode/@codeListValue = 'voice']/cit:number">
+          <gmd:voice>
+            <xsl:apply-templates select="gco2:CharacterString"/>
+          </gmd:voice>
+        </xsl:for-each>
+        <xsl:for-each select="../cit:phone/*[
+                cit:numberType/cit:CI_TelephoneTypeCode = 'facsimile' or
+                cit:numberType/cit:CI_TelephoneTypeCode/@codeListValue = 'facsimile']/cit:number">
+          <gmd:facsimile>
+            <xsl:apply-templates select="gco2:CharacterString"/>
+          </gmd:facsimile>
+        </xsl:for-each>
+      </gmd:CI_Telephone>
+    </gmd:phone>
   </xsl:template>
-
-
+  <xsl:template match="cit:party/*/cit:contactInfo/cit:CI_Contact/cit:phone[position() > 1]"/>
 
   <xsl:template name="CI_ResponsiblePartyToOnlineResource">
     <!--
