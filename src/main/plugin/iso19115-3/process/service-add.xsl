@@ -68,7 +68,7 @@ by adding a reference to the distribution section.
         <xsl:otherwise>
 
           <xsl:variable name="nbOfDistributionSection"
-                        select="count(mrd:distributionInfo)"/>
+                        select="count(mdb:distributionInfo)"/>
           <xsl:choose>
             <xsl:when test="$url != '' and $scopedName != '' and $nbOfDistributionSection = 0">
               <!-- Create a new one -->
@@ -86,13 +86,13 @@ by adding a reference to the distribution section.
               <mdb:distributionInfo>
                 <mrd:MD_Distribution>
                   <xsl:copy-of
-                          select="mrd:distributionInfo[1]/mrd:MD_Distribution/mrd:description"/>
+                          select="mdb:distributionInfo[1]/mrd:MD_Distribution/mrd:description"/>
                   <xsl:copy-of
-                          select="mrd:distributionInfo[1]/mrd:MD_Distribution/mrd:distributionFormat"/>
+                          select="mdb:distributionInfo[1]/mrd:MD_Distribution/mrd:distributionFormat"/>
                   <xsl:copy-of
-                          select="mrd:distributionInfo[1]/mrd:MD_Distribution/mrd:distributor"/>
+                          select="mdb:distributionInfo[1]/mrd:MD_Distribution/mrd:distributor"/>
                   <xsl:copy-of
-                          select="mrd:distributionInfo[1]/mrd:MD_Distribution/mrd:transferOptions"/>
+                          select="mdb:distributionInfo[1]/mrd:MD_Distribution/mrd:transferOptions"/>
 
                   <mrd:transferOptions>
                     <mrd:MD_DigitalTransferOptions>
