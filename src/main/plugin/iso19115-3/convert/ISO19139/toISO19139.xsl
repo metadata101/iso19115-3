@@ -224,6 +224,10 @@
         <xsl:variable name="nameSpacePrefix">
           <xsl:call-template name="getNamespacePrefix"/>
         </xsl:variable>
+
+        <xsl:variable name="isService"
+                      select="local-name(.) = 'SV_ServiceIdentification'"/>
+
         <xsl:element name="{concat($nameSpacePrefix,':',local-name(.))}">
           <xsl:apply-templates select="@*"/>
           <xsl:apply-templates select="mri:citation"/>
@@ -302,9 +306,9 @@
             <xsl:with-param name="codeListValue" select="srv2:couplingType/srv2:SV_CouplingType/@codeListValue"/>
           </xsl:call-template>
           <xsl:apply-templates select="srv2:containsOperations"/>
-          
+
           <!-- Add mandatory contains operation -->
-          <xsl:if test="not(srv2:containsOperations)">
+          <xsl:if test="$isService and not(srv2:containsOperations)">
             <srv:containsOperations/>
           </xsl:if>
 
@@ -411,7 +415,7 @@
       <xsl:apply-templates select="mrc:featureTypes|mrc:featureCatalogueCitation"/>
     </gmd:MD_FeatureCatalogueDescription>
   </xsl:template>
-  
+
   <xsl:template match="mri:associatedResource">
     <gmd:aggregationInfo>
       <gmd:MD_AggregateInformation>
@@ -569,7 +573,13 @@
     </gmd:DQ_QuantitativeResult>
   </xsl:template>
 
-
+  <!-- maintenanceScope was updateScope -->
+  <xsl:template match="mmi:maintenanceScope">
+    <gmd:updateScope>
+      <!-- "//" is a temporaty fix for invalid 115-3 records -->
+      <xsl:apply-templates select="*/mcc:level//mcc:MD_ScopeCode"/>
+    </gmd:updateScope>
+  </xsl:template>
 
 
   <xsl:template match="cit:CI_Citation">
@@ -703,7 +713,7 @@
       </gmd:contactInfo>
     </xsl:for-each>
   </xsl:template>
-  
+
   <xsl:template match="cit:party/*/cit:contactInfo/cit:CI_Contact/cit:phone[1]">
     <!-- Only phone number and facsimile are allowed in ISO19139 -->
     <gmd:phone>
@@ -726,6 +736,7 @@
     </gmd:phone>
   </xsl:template>
   <xsl:template match="cit:party/*/cit:contactInfo/cit:CI_Contact/cit:phone[position() > 1]"/>
+
 
   <xsl:template name="CI_ResponsiblePartyToOnlineResource">
     <!--
@@ -763,13 +774,13 @@
       <xsl:apply-templates select="@*|*"/>
     </srv:DCP>
   </xsl:template>
-  
+
   <xsl:template match="gco2:TM_PeriodDuration">
     <gts:TM_PeriodDuration>
       <xsl:apply-templates select="@*|*"/>
     </gts:TM_PeriodDuration>
   </xsl:template>
-  
+
   <xsl:template match="mdb:referenceSystemInfo/*/mrs:referenceSystemIdentifier/mcc:MD_Identifier"
                 priority="2">
     <gmd:RS_Identifier>
