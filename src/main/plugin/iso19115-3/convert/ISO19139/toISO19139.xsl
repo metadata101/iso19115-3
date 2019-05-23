@@ -1053,6 +1053,7 @@
                        mdb:metadataProfile|
                        mdb:alternativeMetadataReference|
                        mdb:metadataLinkage|
+                       mcc:MD_Identifier/mcc:description|
                        mrl:LI_Source/mrl:scope|
                        mrl:sourceSpatialResolution|
                        mdq:derivedElement" priority="2"/>
