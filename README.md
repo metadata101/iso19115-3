@@ -1,4 +1,4 @@
-# ISO 19115-3 schema plugin
+# ISO 19115-3 schema plugin - deprecated
 
 This is the ISO19115-3 schema plugin for GeoNetwork 3.1.x or greater version.
 
